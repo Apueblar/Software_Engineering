@@ -1,0 +1,17 @@
+INST(ADD) 	// 1	0x01    acc = op1 + op2
+INST(SHIFT)	// 2	0x02    acc = acc/(2)^op1
+INST(DIV)	// 3	0x03    acc = op1 / op2 // EXCEPTION_BIT exception if op2 = 0
+INST(TRAP)	// 4	0x04    Runs the specified key in op1 -> See OperatingSystem_InterruptLogic()
+INST(NOP)	// 5	0x05    NOTHING
+INST(JUMP)	// 6	0x06    PC += op1
+INST(ZJUMP)	// 7	0x07    if(Processor_PSW_BitState(ZERO_BIT)=1) PC+=op1
+INST(WRITE)	// 8	0x08    register(op2) = read(op1) //op1 is a memory address
+INST(READ)	// 9	0x09    address(op1) = register(op2)
+INST(INC)	// 10	0x0a    register(op2) += op1
+INST(HALT)	// 11	0x0b PRIVILEGED Processor_ActivatePSW_Bit(POWEROFF_BIT);
+INST(OS)	// 12	0x0c PRIVILEGED Interrupt Logic -> op1=2 For SysCall (with trap instruction) / op1=6 For Exception and terminate executing process
+INST(IRET)	// 13	0x0d PRIVILEGED Return from a interrupt handle manager call
+INST(MOV)   // 14   0x0e    register(op2) = register(op1) //moves the content 
+INST(RET)   // 15   0x0f    Return from a subroutine
+INST(CALL)  // 16   0x10    Jump to a subroutine
+INST(MEMADD)// 17   0x11    acc = register(op1) + read(op2) //op2 is an address, and op1 is a register value

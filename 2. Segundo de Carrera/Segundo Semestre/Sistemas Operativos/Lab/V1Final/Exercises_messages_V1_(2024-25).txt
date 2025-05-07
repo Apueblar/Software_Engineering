@@ -1,0 +1,50 @@
+Ejercicio 1:
+
+User program list: 
+<tab>Program [ejemplo1] with arrival time [0]
+
+Ejercicio 6:
+
+// prog-V1-E6
+65
+2
+READ 20
+ZJUMP 7
+SHIFT 1
+ZJUMP 2
+JUMP -2
+TRAP 3
+NOP
+JUMP -1
+TRAP 3
+
+
+Ejercicio 9:
+
+Ready-to-run processes queue: 
+<tab>[1,0], [3,2], [0,100]
+
+Ejercicio 10:
+
+char * statesNames [5]={"NEW","READY","EXECUTING","BLOCKED","EXIT"};
+
+
+Ejercicio 11:
+
+// In OperatingSystem.h
+// #define NUMBEROFQUEUES 1
+#define NUMBEROFQUEUES 2
+enum TypeOfReadyToRunProcessQueues { USERPROCESSQUEUE, DAEMONSQUEUE};
+
+// In OperatingSystem.c
+// int numberOfReadyToRunProcesses[0]={0};
+int numberOfReadyToRunProcesses[NUMBEROFQUEUES]={0,0};
+char * queueNames [NUMBEROFQUEUES]={"USER","DAEMONS"};
+
+int queueID;
+
+Ready-to-run processes queues:
+<tab>USER: [1,0], [3,2]
+<tab>DAEMONS: [0,100]
+
+

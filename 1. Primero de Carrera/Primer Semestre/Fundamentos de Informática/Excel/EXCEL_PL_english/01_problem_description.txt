@@ -1,0 +1,68 @@
+1. Open this link:
+https://www.seg-social.es/wps/wcm/connect/wss/956373dd-e967-4722-be08-bbb9705131c4/Relación+provisional+de+aspirantes+admitidos+AUDITORÍA++2015.pdf?MOD=AJPERES DOCUMENTACION
+
+    Copy the data from the table in the first page of the pdf and copy it into a text file.
+	
+2. Directly opening the data file in EXCEL:
+    Problems due to data missing.
+	So we need to work a bit transforming the data as needed: either in a text editor tool, or in EXCEL or in both.
+	We are going to show how to do that in both cases.
+
+3. Data transformation in a text editor:
+    a. Deleting the irrelevant rows.
+	b. Replacing ' L' with ''. Mind the starting blank!
+	c. Replacing ' SI' with ''. Mind the starting blank!
+	d. Save the file with a different file name.
+	
+4. Data transformation in EXCEL: create a new EXCEL book and place the cursor on cell A1.
+    a. Load the data from the file created in the previous step.
+	b. Split the data using COMMA (',') --default action--. Then we can see the data split into DNI+APELLIDOS and NOMBRE.
+	c. Selecting the first column, apply SPLIT COLUMN using a first blank to the left as delimiter. So we get DNI and APELLIDOS split in two columns.
+	d. Acept the data transformation.
+We will be using this listing as the list of students of a subject in the next exercise.
+
+
+5. Description of the problem to solve.
+We are the teachers of PROMPT ENGINEERING, a subject from the computer science area, which is organized in 3 main topics: T1, T2 and T3.
+Each topic has a set of tasks the students must solve: T1 has 3 tasks, T2 has 4 and T3 has a single task.
+Each task has an evaluation mark, this mark varies from 0 to 10, allowing a single decimal digit of precision.
+Passing a task implies a grade higher or equal than a minimum threshold value. This minimum value is set to 6 for the tasks from T1, 7 for the tasks of T2 and 5 for the task from T3.
+To pass a topic, a minimum number of tasks must be passed: T1 requires 2 or more successful tasks, T3 requires al least 3; T1 only requires 1 successful task for obvious reasons.
+Therefore, a topic Tx is successful if you pass the minimum number of tasks from that topic; in this case, the topic's mark is calculated as the average of the marks from ALL its tasks.
+Otherwise, you fail topic Tx, and the topic's mark is set to the lower mark among its tasks.
+To pass the subject you must pass each of the three topics. In this case, the final mark is calculated as the average of the task's marks weighted with the estimated workload of each topic (15 hours for T1, 25 for T2 and 50 for T3).
+If you fail the subject, the minimum mark among the different topics is kept as final subject's mark.
+
+
+We are requested to prepare an EXCEL spreadsheet to automate this problem.
+A recap table should be included, with the number of success students for each task and for the whole subject.
+Finally, a plot of the data in this table is required to illustrate the goodness of this evaluation scheme.
+
+
+6. HOW-TO solve a problem using a spreadsheet:
+Before typing a possible solution it is better to THINK IT TWICE and to DESIGN A FEASIBLE SOLUTION.
+Surely enough, we need to perfectly understand the problem.
+
+Here are some ideas I think are interesting for solving this problem:
+a. We need to keep track of the marks for each task for every student.
+b. We need to check wheter each topic is passed or not. And to compute the corresponding mark!
+c. Then, we can compute the final mark.
+d. To do so, we need to also store the parameters of the problem: the estimated time per topic, the minimum number of successful tasks and the minimum mark to pass a task for each topic.
+
+ 
+Se here are some steps I think are useful in solving this problem:
+   a. Use the data we downloaded and transformed. Convert them into a table.
+   b. Create columns T1.1, T1.2, T1.3, T2.1, T2.2, T2.3, T2.4 and T3.1 --a column per task--. We use these columns for storing the tasks' marks for every student.
+   c. Create columns 'Tx pass' and 'Tx mark' for each topic. 'Tx pass' checks whether the topic is successfull or not, while 'Tx mark' calculates the topic's mark.
+   d. Insertr column 'Final Mark' for computing the final mark of the subject.
+   e. Create the parameter table: the three parameters and a value for each topic.
+   f. We will use the RANDOM function to simulate any task' mark.
+   g. Tx pass checks that the sum of the tasks with a mark higher or equal to the topic's minimum mark is higher or equal than the minimum of successful tasks for the topic.
+   h. Tx mark calculates the minimum of the topic's tasks marks when the topic is failed; otherwise, the average among all the tasks is computed.
+   i. The final mark, when 'Tx pass' is TRUE for all the topics, as the weighted sum of the topic's marks times their corresponding expected workload, all of that divided by the sum of workloads.
+   When 'Tx pass' is FALSE, then the minimum of the marks for the different topics is used as final mark.
+   j. Create a table --let's say that at cell U1-- a summary table. We store the number of successfull students for each topic, the number of students that pass all the topics at the same time, and the number of successful students for the subject.
+   These calculations requires an extra column to determine for which students the final mark is higher or equal than 5.0.
+   k. Now, we insert a graphic with the values in this summary table.
+ 
+ 

@@ -1,0 +1,4 @@
+﻿  Eje1.cpp
+C:\Users\uo299874\Desktop\Delivery\Exercise1\Eje1.cpp(11,21): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\uo299874\Desktop\Delivery\Exercise1\Eje1.cpp(12,20): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Eje1.vcxproj -> C:\Users\uo299874\Desktop\Delivery\Exercise1\x64\Debug\Eje1.exe

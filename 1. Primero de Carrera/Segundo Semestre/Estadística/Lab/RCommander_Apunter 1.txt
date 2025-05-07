@@ -1,0 +1,130 @@
+# Hypothesis Testing
+# Basics of hypothesis testing: Significant Evidence
+# 1. We make a hypothesis H0, abaut a distribution
+# 2. Collect data
+# 3. Measure the discrepancy between the data and h0.
+# 4. P-VALUE = P(having more discrepancy than than the one observed)
+# 	P-VALUE small (< 0.05) -> REJECT H0
+# 	P-VALUE larger (>= 0.05) -> ACCEPT H0
+#
+# ONE SAMPLE TEST: PASOS
+# 1. H0: X ~ N(μ,σ)
+# 	 H1: X !~ N(μ,σ)
+# 	 shapiro-wilktest - - Statistics -> Summaries -> Test of Normality -> Shapiro-wilk
+#
+# 2. H0: μ = μ0  | H0: μ >= μ0 | H0: μ <= μ0
+# 	 H1: μ != μ0 | H1: μ < μ0  | H1: μ > μ0
+# 	 2.1 X is normal: SINGLE SAMPLE T - - Statistics -> Means -> Single sample testing
+# 	 2.2 X is NOT normal: SINGLE SAMPLE Wilcoxon - - Statistics -> Non parametric -> Single sample Wilcoxon
+# 	 (!= same as Two-sided) IMPORTANT!!
+#
+# 3.(No hacen falta los pasos anteriores)
+# 	 H0: p = p0  | H0: p >= p0 | H0: p <= p0
+# 	 H1: p != p0  | H1: p < p0  | H1: p > p0
+# 	 simple sample proportion -- Statistics -> Proportions -> Single sample proportion
+# 	 ¡¡CAREFUL!! : p is the proportion of the first category un alphabetical order.
+# 	 If we want to make the test about the proportion of the other category, we can either:
+# 	 - Express H0, H1 in terms of the proportion of the other category
+# 	 - Change the meaning of p with -- Data -> Manage variables... -> Reorder factor levels
+#
+# 	Example: prop line B < 0.4 --> H1: Pb < 0.4 == H1: Pa > 0.6
+# 
+# H1 = opposite of H0
+# Usually the thing we are interested in is our H1. This is because we only reject H0 if we are almost sure it is false.
+# 
+# 
+# CONFIDENCE INTERVALS: TIPOS
+# 1. C.I. for μ if X~N(μ, σ) -- Statistics -> Means -> Single sample terms --- Pick != in alternative --- Enter 1-α in Confidence level
+# 2. C.I. for a proportion p -- Statistics -> Proportions -> Single sample proportion --- Pick != in alternative --- Enter 1-α in Confidence level
+# 
+# 
+# TWO SAMPLE TEST: PASOS
+#
+# 1. H0: p1 = p2  | H0: p1 >= p2 | H0: p1 <= p2
+# 	 H1: p1 != p2 | H1: p1 < p2  | H1: p1 > p2
+# 
+# 	 Two sample proportion test -- Statistics -> Proportions -> Two sample proportions
+# 	 Careful with:
+# 	 * Identify correctly the Response (main one) and Group (One determining the groups) variables
+# 	 * Identify the H0, H1 : The statement we are interested in is H1
+# 	 * Is p representing what we want? : By default is the proportion of the frst category alphabetically. If we are interested in the other, either:
+# 		-  Express H0, H1 in terms of the proportion used by R
+# 	 	- Change the meaning of p with -- Data -> Manage variables... -> Reorder factor levels
+# 	 * Order of the values in the group variable for Difference
+#
+# 2. Comparation of variances:
+# 	 H0: σ^2 * A  = σ^2 * B
+# 	 H1: σ^2 * A != σ^2 * B
+# 
+# 	 2.2.A: A,B normal -> F test -- Statistics -> Variances -> Two variances F
+# 	 2.2.B: A or B not normal -> Levene test -- Statistics -> Variances -> Levene's test
+#
+# 3. Comparation of means:
+# 	 - 1 variable + 2 groups = Independent
+# 		-- A,B normal -> T test -- Statistics -> Means -> Independent samples t-test
+# 		-- A or B not normal -> Wilcoxon test -- Statistics -> Non-parametric -> Two sample Wilcoxon Test
+# 	 - 2 variables + 1 group = Paired
+# 		-- A - B normal -> T test -- Statistics -> Means -> Paired t test
+# 		-- A - B not normal -> Wilcoxon test -- Statistics -> Non-parametric -> Paired sample Wilcoxon Test
+#
+# ¡¡ Test of normality -- Statistics -> Summaries -> Test of normality
+# 
+# 				| Independent       | Paired
+# --------------+-------------------+------------------------
+# variables are | Response - Quanti | Both
+# 				| Group    - Qualit | Quantitative
+# --------------+-------------------+------------------------
+# elements are  | 1 data            | 2 data
+# --------------+-------------------+------------------------
+# Test of       | of A, B separado  | of A - B
+# normality     | (Test by groups)  | (Compute new variable)
+# 
+# We need for the 3 the 2!!
+# 
+# X^2 - TEST: PASOS (X,Y are related) - α = 0,05
+#
+# 1. X,Y qualitative or discrete : X^2 Test of independence
+# 	Statistics -> Contingency -> Two way table
+# 	(t-obs = X-squared) (print expected frequencies)
+# 	(If less than 80% are lower than 5) -> Fisher's exact test
+# 		%(X=xi, Y=yj) -> Percentages of total
+# 		%(Y=yj) when X=xi -> Row percentages
+# 		%(X=xi) when Y=yj -> Column percentages     (X in row, Y in col)
+# 
+# We can enter a contingency table at --- Statistics -> Contingency tables -> Enter and analyze
+# 
+# 
+# 2. X,Y continuous : Correlation test
+# 	H0: X,Y linearly independent
+# 	H1: X,Y linearly related
+# 	Test normality : Statistics -> Summaries -> Test normality
+# 		-X,Y normal : Pearson
+# 		-X,Y independent : Spearman
+# 		Statistics -> Summaries -> Correlation test
+# 	If we have more than 2 variables, we can apply the correlation test to any pair of them at --- Statistics -> Summaries -> Correlation matrix
+# 	¡¡ Select pairwise p-values) !!
+# 
+# GRAPHS:
+# - Scatterplot: Activate linear regresion
+# 
+# 1) To determine the best explanatory variable --- Statistics -> Summaries -> Correlation matrix
+# 	- In the 2nd matrix, 2 variables are related if p-v <0.05
+# 	- For those, in the 1st matrix the greater the abs(Rxy) the stronger the relationship
+# 2) To determine the equation --- Statistics -> Fit models -> Linear regresion 
+# 	(y=aX+b) where (Response = a * Explanatory + b)
+# 	- Intercept and estimate   -> b
+# 	- Explanatory and estimate -> a
+# 3) Diagnosis:
+# 	- p-v of Pearson's test < 0.05
+# 	- Explanatory and Pr(>|t|) -> p-v of Pearson's test
+# 	
+# 	- Determination Coefficient (R^2) >= 0.81
+# 	- Multiple R-Squared -> DC
+# 	
+# 	- Residual analysis --- Models -> Graphs -> Basic Diagnostic Plots
+# 		- Normal Q-Q plot should be diagonal (normality)
+# 		- Residuals vs filtered -> Red line should be horizontal (mean = 0)
+# 								-> Width constant from left to right (homoscedasticity)
+# 								-> no pattern (uncorrelated)
+# 4) To make predictions: predict(<regressionModelName>, data.frame(<explanatoryVariable> = c(<value,value,...>)), interval='<type>', level='<confidencelevel>')  
+# 						// ¡¡ The explanatory variable is the one of the model !! -- type is 'prediction' : Y/X=x0 or 'confidence' : E(Y)/X=x0 -- confidencelevel usually -> 0.95

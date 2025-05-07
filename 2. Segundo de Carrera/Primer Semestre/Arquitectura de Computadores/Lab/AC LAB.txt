@@ -1,0 +1,373 @@
+Abre virtualBox - importar máquina virtual
+- Nombre 2AC
+- Reinicializar la dirección MAC de todas las tarjetas de red.
+
+Concetarse:
+- Dirección: localhost
+- Puerto: 60022
+
+Primer acceso: U: student C: student
+Cambia la contraseña a:
+Usuario: student Contraseña: student1
+Inicia de nuevo la conexión
+
+Atajos:
+	pwd 	-> Te dice en el directorio en el que estás
+	cd <directorio>		-> Te mete en el directorio deseado (/ para la madre) Ex: cd /usr/include
+	cd - 	-> Regresa al directorio anterior
+	cd .. 	-> Sube al directorio padre
+	- .. -> Directorio padre
+	- . -> Mismo directorio
+	cd o cd ~ o cd $HOME -> Directorio de inicio
+	cat <Absolut path> -> shows contents of a file
+	ls -> Te muestra el contenido del directorio actual
+
+Principales directorios en /:
+	/home : Directorio en el que se guarda 1 directorio por usuario
+	/bin : Contains comands like pwd
+	/dev : Special files and peripherals of the computer are stored
+	/etc : Configuration files of the OS y programas instalaos
+	/proc : Archivos con info del system
+
+Editar files:
+	nano -c <name.txt> -> Create in the same directorio
+	nano -c <direction> -> Same pero decides lugar EX: nano -c /home/student/1-1text.txt
+	Ctrl + O and Enter -> Save
+	Ctrl + X -> Close editor
+
+Permissions:
+	(r) read, (w) write, (x) execute
+	3 levels of access:
+		file owner
+		owner group
+		rest of users
+	ls -l -> to show them
+	
+	Ex:
+	-rw-rw-r-- 1 student student 1704 Oct 10 12:36 1-1.txt
+	- (File type) rw- (owner) rw- (group) r-- (rest) 1 student (owner user) student (owner group) ...
+	
+	Quitar permisos:
+		chmod -<r/w/x> <name.txt> -> Uno a uno
+		chmod <3 números> <name> -> Los 3 números son para cada grupo (rwx -> 7 / rw- -> 6 / r-- -> 4 (100b) tipo binario)
+	
+	Admin user: root
+	
+	whoami -> Shows the actual user you logged with
+	sudo <instruction> -> Ejecutar con permisos de administrador Ex: sudo apt-get update
+
+Operations con files:
+	mkdir <directorio>/<name> -> Crea un nuevo directorio
+	cp <origen> <destination> -> Copiar archivos a una dirección deseada
+	mv <origen> <destination> -> Moves and renames a file a una dirección deseada
+	rm <name> -> Borra el archivo
+	rmdir <name> -> Borra directorio si ta vacío
+
+On-line help:
+	man <category> <command> -> Show on-line help of the command
+	category: 1 -> commands of command-line / 3 -> library functions callable from a C program.
+	q -> for exit
+
+Shut down the OS:
+	sudo poweroff -> Apagar
+	reboot -> Reiniciar
+
+Version control:
+	git config --global user.name "<user>"
+	git config --global user.email "<email>"
+	
+	Create an app password:
+	Settings -> Personal BitBucket Sett. -> App Pass.. -> Create ...
+	P: ATBBzTMsTutrUV9wK6A875ybjyJZ6A08D2CF
+	git clone https://2ac-pl1-uo299874-admin@bitbucket.org/uo299874/2ac-pl1-uo299874.git
+	git config credential.helper store
+	
+
+What to do at the beggining:
+1. git pull -> Bring the changes from the Bitbucket repository
+2. Change/modify files (Done in the exam)
+2.5 git status -> To check the status of the modified files
+3. git add <file> -> Adds the file to the version control
+3.1 git rm <file> -> To remove the file from the online repository
+4. git commit -> Explain changes
+5. git push -> Finally sends all the changes (git push --set-upstream origin main -> for the first time)
+6. git log -> Check the updates (optional)
+
+Lab 1.1:
+
+Write a program in c as: name.c
+-> nano -c <name>.c 
+-> Write program - ctrl + o - ctrl + x
+-> Compile with: gcc -c <name>.c [more.c another.c ...] -> (Transforms the instructions into a .o machine code language)
+-> Linking: gcc <name>.o -o <executableName> -> To create the executable
+-> ./<executableName> -> To run it 
+
+Methods:
+	gcc -c <1-1hello>.c -> To compile a C program (Creates the .o file)
+	gcc <1-1hello>.o [linkOption] -o <executableName> -> To link the objects
+	
+	or
+	
+	gcc <name>.c -o <executableName> -> Does the compilation and linking in 1 step
+
+Header:
+	#include <inttypes.h> -> For changing the number of bits of space of the int. : int32_t == int type, int8_t ...
+	#include <stdlib.h> -> Used for EXIT_SUCCESS and EXIT_FAILURE
+	#include <pthread.h> -> Provides the pthread_create, pthread_join, and related threading functions.
+	#include <unistd.h> -> For the sleep function
+	#include <math.h> -> needs the -lm flag to compile
+	
+Pointers:
+	char * pChar;  // Refers to a piece of data in memory 1-byte wide
+	int32_t * pInt;    // Refers to a 32-bits integer in memory
+	double * pDouble1, * pDouble2;  // Refer to float numbers with double
+									// precision (8-byte wide)
+	Ex:
+	 double *pdSrc1 = (double*)malloc(nElements * sizeof(double));
+
+%c: character (char).
+
+%d: signed decimal integer (int).
+
+%f: real (float or double). %.2f can be used
+
+%s: character string (char *).
+
+%x: signed hexadecimal.
+
+%p: pointer.
+
+Show implicit conversion warnings when compiling:  gcc -Wconversion <name>.c
+
+make command:
+	create a MakeFile
+	in it you can add multiple lines with:
+	
+	target: prerequisites
+	<Tab> commands
+	
+	when you call make, it will start checking if the prerequisites are met if so, it does the commands.
+
+Measuring time:
+	CLOCK_REALTIME for C and C++
+	
+	'''
+	#include <time.h>
+
+	int main()
+	{
+		struct timespec tStart, tEnd;
+		double dElapsedTimeS;
+
+		// Start time measurement
+		clock_gettime(CLOCK_REALTIME, &tStart);
+
+		// Code to be measured
+		......
+		......
+
+		// Finish time measurement
+		clock_gettime(CLOCK_REALTIME, &tEnd);
+
+		// Compute the elapsed time, in seconds
+		dElapsedTimeS = (tEnd.tv_sec - tStart.tv_sec); //Cuenta los segundo enteros
+		dElapsedTimeS += (tEnd.tv_nsec - tStart.tv_nsec) / 1e+9; //Cuenta los nanosegundos quitando los segundos
+
+		return 0;
+	}
+	'''
+	
+	time <executable> -> Shows the time of execution of the program
+	
+Info of components:
+	System Procesor:
+	- lscpu
+	- lshw
+	- cat /proc/cpuinfo
+	
+	Mainboard:
+	- sudo dmidecode -t 2
+	
+	Memory:
+	- free
+	- top -> you can also use the: top -d <seconds> -> in order to refresh the data every x seconds  
+	- lshw
+	- cat /proc/meminfo
+	- sudo dmidecode -t 17  -> Type of memory
+	
+	Install 2 packages:
+	sudo apt-get install hwinfo inxi
+	
+	- hwinfo
+	- inxi
+	
+	OS version:
+	- cat /etc/lsb-release
+	
+Multi-thread:
+	- Create:
+	'''
+	int pthread_create( pthread_t* thread, const pthread_attr_t* attr,
+     void* (*start_routine) (void*), void* arg);
+	'''
+	
+	- Wait until another has finished:
+	'''
+	int pthread_join(pthread_t thread, void** retval);
+	
+	
+	Compile with:
+		gcc <name>.c -o <nameExecutable> -lpthread
+	
+Profilers:
+	Used to optimize the hotspots using the Amdahl’s law. -> gprof
+	
+	- We need to include the -pg when compiling:
+		Ex: gcc prog1.c -pg -o prog1
+	- Run:
+		time ./prog1
+	
+	- Show with ls the new file: gmon.out
+	
+	- Generate the report with:
+		gprof ./prog1 > report.txt
+
+Optimizations:
+	We can have info of what it does with: man gcc
+	
+	Optimization 1:
+	add -O1 -> "o" mayúscula 1 Ex: gcc -O1 prog1.c -o prog1
+	
+	Op 2:
+	same with -O2
+	
+	Op 3:
+	same with -O3
+	
+	Optimization + Profilers:
+	Ex: gcc prog1.c -O3 -pg -o prog1
+	The same for the rest.
+	
+To Write in assembly:
+
+	__asm__ (
+			"mov %ax, 0\n\t"
+			"add %ax, %cx"
+		);
+
+Generating the post mortem:
+	ulimit -c unlimited -> Enables the core
+	
+	Be sure to errase core: rm core
+	
+	Compile with: gcc <name.c> -g -o <nameExecutable>
+	
+	Execute: ./<nameExecutable>
+	
+	Write: gdb <nameExecutable> core
+	
+	Extra info with:
+		layout asm -> The first instruction is the one that failed
+		layout prev -> Preview of the code
+	
+	quit -> To exit
+	
+	Errase core: rm core
+
+int *p = NULL; -> Initializes pointer in C
+
+nproc --all -> To find the number of cores
+
+
+
+sudo apt install nasm ->  To install nasm
+
+lscpu -> To get different cache levelsm type and capacity
+./bandwidth32 | more -> Used for non amd computers
+Control + C -> Exit
+
+sudo nice -n -2 ./bandwidth32 --fastest -> A plot is generated when the program finishes: Name bandwidth.bmp.
+ Copy this image to your computer. The y-axis: memory bandwidth. x-axis: size of the workload.
+ 
+IMPORTANT:
+#include <stdint.h>
+#include <stdio.h>
+
+#define NROWS    8192 // 2^13 rows
+#define NCOLS    8192 // 2^13 cols
+#define NTIMES   10   // Repeat 10 times
+
+// Matrix size 2^26 = 64 MiBytes
+uint8_t matrix[NROWS][NCOLS];
+
+int main(void)
+{
+    int i, j, rep;
+
+    for (rep = 0; rep < NTIMES; rep++)
+    {
+        for (i = 0; i < NROWS; i++)
+        {
+            for(j = 0; j < NCOLS; j++)
+            {
+                matrix[i][j] = 0;
+				if (rep == 0 && i < 4)
+				{
+					if (j == 0)
+						printf("Row start\n");
+
+					printf("%p\n", &(matrix[i][j]));
+				}
+            }
+        }
+    }
+}
+
+Some of the abbreviations used by cachegrind are:
+	I: instruction.
+	D: data (rd: read, wr: write).
+	I1: L1 instruction cache.
+	D1: L1 data cache.
+	LL: last levels of the memory hierarchy (L2, L3).
+	LLi: accesses to instructions in the last levels of the memory hierarchy.
+	LLd: accesses to data in the last levels of the memory hierarchy.
+
+valgrind --tool=cachegrind ./<executable> -> Simulate memory trace
+
+Task memory organization:
+	gcc <-static> 3-4maps.c -o 3-4maps-1 -> Compile and link maps (-static if you want)
+	./3-4maps-1 -> Run maps (in terminal 1)
+	
+	more /proc/pid/maps -> Change pid by the number of the pid (in another terminal (2))
+	
+	To compare 2 programs use:
+		ls -l --block-size=K <executable-file> -> Shows in KiB the space
+		Do it with the other and substract
+	
+	Analize address space of a task:
+		systemctl status linmem -> To check if the kernel has been updated
+		
+		if (fail) { -> Escribe estos 3 pasos
+			cd /usr/src/atc/linmem
+			sudo make clean
+			sudo make install
+			(Check if now is installed)
+		}
+	
+	Flag:
+		N - 0 - 1
+		0 - Not Present - Present
+		1 - R - R/W
+		2 - OS - User
+		3 - Write-Back - Write-Through cache
+		4 - Cache enabled / C. disabled
+		5 - Unaccessed / Accessed
+		6 - Dirty (The page is written - not written)
+		8 - Not global / global
+	
+	Request/Release memory dynamically:
+		malloc() and free() are less powerfull than mmap() and munmap()
+		
+		sudo cat /proc/iomem
+		
+		gcc -Wall 3-4proclinux-5.c 3-4print-pte.c -o 3-4proclinux-5 -lrt -lmem

@@ -1,0 +1,15 @@
+Pasos a seguir en cada ronda:
+1. Tirar dados de Crew (Los posibles)
+2. Si hay dado Threat, mandarlo a daños y si toca a enfermería
+3. Asignar a la Crew (Dar a elegir las acciones)
+4. Destapa un nuevo peligro
+5. Tira dado 6 caras y activa peligros
+6. Recoge a los curados de enfermería
+
+Cartas y valores:
+commander: 1
+tactical: 2
+medic: 3
+scientist: 4
+ingenier: 5
+threat: 6

@@ -1,0 +1,6 @@
+This file contains the lists for exercise 2. They are provided so that they are available to copy and paste and avoid writing them manually.
+
+----inglés----
+characters = ['Miss Scarlett', 'Coronel Mustard', 'Mr. White', 'Rev. Green', 'Mrs. Peacock', 'Prof. Plum']
+weapons = ['Candelstick', 'Dagger', 'Lead piping', 'Revolver', 'Rope', 'Spanner']
+rooms = ['Kitchen', 'Dining Room', 'Lounge', 'Hall', 'Study', 'Library', 'Billiard Room', 'Conservatory', 'Ballroom']

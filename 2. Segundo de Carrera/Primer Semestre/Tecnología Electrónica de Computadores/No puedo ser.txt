@@ -1,0 +1,165 @@
+// Motor 5
+//PIN DEFINITION (keep)
+//Right motor
+#define AIN1_pin 2 //
+#define AIN2_pin 3 //
+//Left motor
+#define BIN1_pin 4 //
+#define BIN2_pin 5 //
+//Speed - PWM
+#define PWMA_pin 9 // right motor speed (PWM)
+#define PWMB_pin 10 // left motor speed (PWM)
+//Enable the motors (standby)
+#define STBY_pin 13 // (Standby)
+
+#define PhotoLeft_pin A0 // tracking sensor pin Left
+#define PhotoRight_pin A1 // tracking sensor pin Right
+
+// variable for reading the photo track sensors
+int PhotoLeft,PhotoRight = 0;
+
+int alpha = 345;
+int rotation = 0;
+
+void setup() {
+
+  Serial.begin(115200);
+  // initialize the motor control pins as output:
+  //Right motor
+  pinMode(AIN1_pin, OUTPUT);
+  pinMode(AIN2_pin, OUTPUT);
+  //Left motor
+  pinMode(BIN1_pin, OUTPUT);
+  pinMode(BIN2_pin, OUTPUT);
+  //Standby mode
+  pinMode(STBY_pin, OUTPUT);
+  //Speed of the motor (PWM)
+  pinMode(PWMA_pin, OUTPUT);
+  pinMode(PWMB_pin, OUTPUT);
+  digitalWrite(STBY_pin, HIGH); // enable motors
+
+  // initialize the tracking sensor pin as input
+  // even though is not needed, as they are inputs by default
+  pinMode(PhotoLeft_pin, INPUT);
+  pinMode(PhotoRight_pin, INPUT);
+
+}
+
+void moveForward() {
+  //Set motor forward
+  digitalWrite(AIN1_pin, HIGH);
+  digitalWrite(AIN2_pin, LOW);
+  digitalWrite(BIN1_pin, HIGH);
+  digitalWrite(BIN2_pin, LOW);
+}
+
+void moveBackward() {
+  //Set motor forward
+  digitalWrite(AIN1_pin, LOW);
+  digitalWrite(AIN2_pin, HIGH);
+  digitalWrite(BIN1_pin, LOW);
+  digitalWrite(BIN2_pin, HIGH);
+}
+
+void leftSpeed(int x) {
+  analogWrite(PWMB_pin , constrain(x, 0, 255));
+}
+
+void rightSpeed(int x) {
+  analogWrite(PWMA_pin , constrain(x, 0, 255));
+}
+
+void sameSpeed(int value) {
+  leftSpeed(value);
+  rightSpeed(value);
+}
+
+void rotate(int rotate) {
+  if (rotate == 0) {return ;}
+  PhotoLeft = analogRead(PhotoLeft_pin);
+  PhotoRight = analogRead(PhotoRight_pin);
+  int s = 255;
+  int factor = 730;
+  while (PhotoLeft > alpha && PhotoRight > alpha) {
+    if (rotate < 0) {
+      rightSpeed(s);
+      leftSpeed(s * (factor / 1000.0));
+      delay(5);
+    } else {
+      leftSpeed(s);
+      rightSpeed(s * (factor / 1000.0));
+      delay(5);
+    }
+    if (factor > 200) {
+      factor -= 4;
+    }
+    PhotoLeft = analogRead(PhotoLeft_pin);
+    PhotoRight = analogRead(PhotoRight_pin);
+  }
+}
+
+void rotateLeft() {
+  rotation -= 1;
+  rightSpeed(255);
+  int s = 255;
+  leftSpeed(s*0.77);
+  delay(1);
+}
+
+void rotateRight() {
+  rotation += 1;
+  leftSpeed(255);
+  int s = 255;
+  rightSpeed(s*0.77);
+  delay(1);
+}
+
+void loop() {
+
+  PhotoLeft = analogRead(PhotoLeft_pin);
+  PhotoRight = analogRead(PhotoRight_pin);
+  Serial.print("Left: ");
+  Serial.println(PhotoLeft);
+  Serial.print("Right: ");
+  Serial.println(PhotoRight);
+  Serial.println("");
+
+  moveForward();
+  digitalWrite(STBY_pin, HIGH);
+
+  if (PhotoLeft > alpha && PhotoRight > alpha) {
+    rotate(rotation);
+  } else {
+    if (PhotoRight > alpha) {
+      if (rotation < -200) {
+        rotate(rotation);
+      } else {
+        rotateLeft();
+      }
+    }
+    if (PhotoLeft > alpha) {
+      if (rotation > 200) {
+        rotate(rotation);
+      } else {
+        rotateRight();
+      }
+    }
+    if (PhotoLeft < alpha && PhotoRight < alpha) {
+      rotation = 0;
+      sameSpeed(255);
+    }
+  }
+}
+
+//AnalogWrite([0,255] : speed)
+/*
+  PhotoLeft = analogRead(PhotoLeft_pin);
+  PhotoRight = analogRead(PhotoRight_pin);
+
+  Serial.print("Left: ");
+  Serial.println(PhotoLeft);
+  Serial.print("Right: ");
+  Serial.println(PhotoRight);
+  Serial.println("");
+  delay(500);
+  */

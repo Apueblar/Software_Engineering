@@ -1,0 +1,3 @@
+Problem: 10
+Data type: float
+Data size (SIMD): __256

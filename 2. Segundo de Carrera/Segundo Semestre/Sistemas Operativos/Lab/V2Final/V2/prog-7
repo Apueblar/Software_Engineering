@@ -1,0 +1,13 @@
+30   // Space in memory
+40    // Priority
+ADD 5 0 // acc = 5
+MOV 0 2 // regB = acc (5)
+ADD 7 0 // acc = 7
+MOV 0 1 // regB = acc (7)
+ADD 9 0 // acc = 9
+TRAP 5 // Shows the registers
+TRAP 4 // Change process
+NOP
+NOP
+TRAP 5
+TRAP 3 // For selecting finish the process

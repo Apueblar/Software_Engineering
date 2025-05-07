@@ -1,0 +1,166 @@
+Host: ritchie.ingenieriainformatica.uniovi.es
+
+Login as: UO299874
+Contraseña: Aew5th
+
+Ubuntu 20.04.6 LTS
+
+
+Class 1:
+
+clear	-> Para borrar la pantalla
+
+help <order>	->  Provides information about internal (built-in) shell commands
+man <comand>	-> Para acceder al manual of external commands (borrar <>)
+apropos <palabra>	-> Por si no sabes bien el programa (search engine)
+whatis <comando>	-> Te describe brevemente el comando
+
+passwd	-> Para cambiar la contraseña
+Ctrl + C	-> Para cancelar
+
+Ctrl + D or logout	-> Para cerrar la sesión
+Cierra la ventana	-> En caso extremo para cerrar (no recomended)
+
+
+info <command> -> Evolución de el comando man
+	Tabulador -> Para ir al siguiente link
+	Enter -> Entrar
+	L -> Para retroceder
+
+type <command> -> Para saber si el comando está (builtin) en el interpreter o no (/algo/algo ...)
+
+history	-> Para ver los comandos utilizados
+	!<number>	-> Para copiar el comando en el número <number> del history
+
+pwd	-> Current directory
+cd ..	-> Ascend on directory
+cd ./ -> Bajar on directories
+cd -> Private directory
+
+nano <nombrearchivo.algo> -> To create the file in the current folder
+	Ctrl + o	-> Guardar
+	Ctrl + x	-> Salir
+
+ls	-> Para ver que archivos hay en un directory
+ls -l	-> Para ver más detalles (permisos - nada - creador - creador folder - ...)
+
+cp <nametocopy> <dirección/nombre>	-> Copiar un archivos
+mv <nametomove> <dirección/nombre>	-> Mover / renombrar un archivo
+rm <nametoremove>	-> Remover un archivo
+mkdir <nombreDirectorio> -> Crear un directorio
+rmdir <nombreDirectorio> -> Eliminar un directorio
+
+
+Class 2:
+
+nano .bash_profile -> Enter 
+export LANG="en_GB.utf8" -> Escribir en cualquier line
+	-> Para cambiar el idioma
+
+ls -l <extra>
+	* -> Zero or more characters
+	a* -> Files that start by a
+	a*b -> Files that start by a and finish by b
+	? -> 1 character long (any)
+	?a* -> Files that has an a in the second caracter
+	[ac]* -> Empieza por "a" o "c"
+	[AP] -> Archivos llamados "A" o "P"
+	[a-z] -> Archivo que empieza con 1 caracter de la a "a" a la "z"
+	[!abcd]? -> Archivos de longitud 2 que NO empieze por "a","b","c" o "d"
+
+rm <extra> -> Also works
+
+Permisions:
+		* Not directories: Read file contents (r) / No (-)		-- Directories: Read directory contents (r) / No (-)
+		* Not directories: Modify file contents (w) / No (-)	-- Directories: Modify directory contents (w) / No (-)
+		* Not directories: Execute or Run (x) / No (-)			-- Directories: Allowed to move into the directory (x) / Cannot enter or pass through (-)
+
+	1. File(-) / Directory(d)
+	Owner:	
+	2.	r/-
+	3.	w/-
+	4.	x/-
+	Group:	
+	5.	r/-
+	6.	w/-
+	7.	x/-
+	Rest:
+	8.	r/-
+	9.	w/-
+	10.	x/-
+
+	Owner
+
+	Owner group
+
+Modify Permisions:
+
+chmod <octal value> <file(s)> -> El octal va así (r = 4, w = 2, x = 1, - = 0), entonces (r-x = 5) para los 3 (555) (Owner-Group-Rest)
+
+ls -ld <name of directory> -> Para ver permisos de el directorio y no sus contenidos
+
+who -> Para ver quién está conectado
+w -> Igual pero con más info (WHAT -> Programa que se está ejecutando cada usuario)
+ps -> Programas que tamos ejecutando
+ps axu -> Programas que todos estamos ejecutando
+
+kill -9 <process identifier (PID)> -> Para abortar un programa que se está ejecutando, sabiendo el identificador con ps
+
+Ctrl + Z -> Para el programa actual y poder cambiar, mientras el otro se mantiene en pausa
+jobs -> Te muestra los programas parados
+fg <number> -> Para ponerlo en el foreground (para reactivar el programa)
+
+<any program> & -> To start the program in the background (sin verlo)
+
+<any command> > <nameArchivo> -> Redireccionar en un archivo lo que se imprimiría por la pantalla (crea/sobreescribe el nameArchivo) ¡¡CUIDAO - Que sobreescribe!!
+<any command> >> <nameArchivo> -> "" pero te lo append (No borra lo anterior)
+<any command> 2> <nameArchivo> -> Redirecciona los errores (sobreescribe)
+<any command> 2>> <nameArchivo> -> Append errors
+
+	Combinación: <any command> >> normal 2>> errores -> Doble o simple >, sobreescribe, >>, append
+
+tr [input] [output] -> Swap the message (posición 0 con 0, 1 con 1, ...)
+tr [input] [output] < <file> -> Swaps and prints the message with the changed input
+También lo puedes guardar con > <messageOutput> -> Ex: tr [input] [output] < <fileIn> >> <outAppend>
+
+<command1> | <command2> -> The output of command1 goes into the input of command 2
+
+tail -n <number> -> Numero de lineas por el final que escribe
+head -n <number> -> Numero de lineas por el inicio que escribe
+
+Puedes combinar los | -> (se llaman pipes) -> Comand1 | Comand2 | Comand3 | ...
+
+
+Class 3:
+
+<command> | wc -> Number of lines - Number of words - Characters of the output of the command
+<command> | wc -l -> Only number of lines of the output of the command
+
+<command> | sort -> Sorts the output
+
+<command> | grep <text> -> Searches for strings or regular expresions in the output -> EX: ls -l ../ | grep 1234 -> Line that contains 1234
+
+<command> | grep -n <text> -> Same and says the line where it is in the output
+
+ln -s <direccion> <nameOfShortcut> -> For shortcuts/links
+
+atoi("number") -> Converts a string into an int
+
+
+Class 4:
+
+nano Makefile
+
+<filename> : <dependencies>
+tab	commands
+¡El tab es '	'!
+
+-g flag to debug
+ddd <executableName> -> To debug an executableName (Visually) - Mucho mejor
+	Commands while debugging:
+		print <register>
+		step -> Current sentence (step into in eclipse) and enters in functions
+		next -> Current sentence (step in eclipse)
+		continue -> Resumes the program (continues until finished or another break point)
+	
+gdb <executableName> -> To debug an executableName (Textual)

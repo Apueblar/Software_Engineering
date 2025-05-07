@@ -1,0 +1,12 @@
+30   // Space in memory
+40    // Priority (same as prog-7)
+NOP
+NOP
+TRAP 5 // Shows the registers
+ADD 4 0 // acc = 4
+MOV 0 2 // regB = acc (4)
+ADD 6 0 // acc = 6
+MOV 0 1 // regB = acc (6)
+ADD 8 0 // acc = 8
+TRAP 5 // Shows the registers
+TRAP 3 // For selecting finish the process

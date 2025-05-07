@@ -1,0 +1,258 @@
+
+> load("C:/Users/UO299874/Desktop/RComander/Students-modificado.RData")
+
+> library(abind, pos=16)
+
+> local({  .Table <- xtabs(~Sex+PublicTransport, data=Students)
++   cat("\nPercentage table:\n")
++   print(rowPercents(.Table))
++   prop.test(.Table, alternative='two.sided', conf.level=.95, correct=FALSE)
++ })
+
+Percentage table:
+        PublicTransport
+Sex        No  Yes Total Count
+  Female 34.1 65.9   100   126
+  Male   39.8 60.2   100   327
+
+	2-sample test for equality of proportions without continuity correction
+
+data:  .Table
+X-squared = 1.2206, df = 1, p-value = 0.2692
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.15460659  0.04203924
+sample estimates:
+   prop 1    prop 2 
+0.3412698 0.3975535 
+
+
+> local({  .Table <- xtabs(~Sex+PublicTransport, data=Students)
++   cat("\nPercentage table:\n")
++   print(rowPercents(.Table))
++   prop.test(.Table, alternative='less', conf.level=.95, correct=FALSE)
++ })
+
+Percentage table:
+        PublicTransport
+Sex        No  Yes Total Count
+  Female 34.1 65.9   100   126
+  Male   39.8 60.2   100   327
+
+	2-sample test for equality of proportions without continuity correction
+
+data:  .Table
+X-squared = 1.2206, df = 1, p-value = 0.1346
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.00000000  0.02623152
+sample estimates:
+   prop 1    prop 2 
+0.3412698 0.3975535 
+
+
+> local({  .Table <- xtabs(~PublicTransport+Sex, data=Students)
++   cat("\nPercentage table:\n")
++   print(rowPercents(.Table))
++   prop.test(.Table, alternative='less', conf.level=.95, correct=FALSE)
++ })
+
+Percentage table:
+               Sex
+PublicTransport Female Male Total Count
+            No    24.9 75.1   100   173
+            Yes   29.6 70.4   100   280
+
+	2-sample test for equality of proportions without continuity correction
+
+data:  .Table
+X-squared = 1.2206, df = 1, p-value = 0.1346
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.00000000  0.02238449
+sample estimates:
+   prop 1    prop 2 
+0.2485549 0.2964286 
+
+
+> local({  .Table <- xtabs(~Sex+PublicTransport, data=Students)
++   cat("\nPercentage table:\n")
++   print(rowPercents(.Table))
++   prop.test(.Table, alternative='greater', conf.level=.95, correct=FALSE)
++ })
+
+Percentage table:
+        PublicTransport
+Sex        No  Yes Total Count
+  Female 34.1 65.9   100   126
+  Male   39.8 60.2   100   327
+
+	2-sample test for equality of proportions without continuity correction
+
+data:  .Table
+X-squared = 1.2206, df = 1, p-value = 0.8654
+alternative hypothesis: greater
+95 percent confidence interval:
+ -0.1387989  1.0000000
+sample estimates:
+   prop 1    prop 2 
+0.3412698 0.3975535 
+
+
+> local({  .Table <- xtabs(~Sex+PublicTransport, data=Students)
++   cat("\nPercentage table:\n")
++   print(rowPercents(.Table))
++   prop.test(.Table, alternative='greater', conf.level=.95, correct=FALSE)
++ })
+
+Percentage table:
+        PublicTransport
+Sex        No  Yes Total Count
+  Female 34.1 65.9   100   126
+  Male   39.8 60.2   100   327
+
+	2-sample test for equality of proportions without continuity correction
+
+data:  .Table
+X-squared = 1.2206, df = 1, p-value = 0.8654
+alternative hypothesis: greater
+95 percent confidence interval:
+ -0.1387989  1.0000000
+sample estimates:
+   prop 1    prop 2 
+0.3412698 0.3975535 
+
+
+> local({
++   .Table <- xtabs(~Sex+Group, data=Students)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+        Group
+Sex        A   B   E   F   X
+  Female  32  14   1  14  65
+  Male    68  34  11  27 187
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 4.5157, df = 4, p-value = 0.3407
+
+
+> local({
++   .Table <- xtabs(~Sex+Group, data=Students)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   cat("\nRow percentages:\n")
++   print(rowPercents(.Table))
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+        Group
+Sex        A   B   E   F   X
+  Female  32  14   1  14  65
+  Male    68  34  11  27 187
+
+Row percentages:
+        Group
+Sex         A    B   E    F    X Total Count
+  Female 25.4 11.1 0.8 11.1 51.6 100.0   126
+  Male   20.8 10.4 3.4  8.3 57.2 100.1   327
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 4.5157, df = 4, p-value = 0.3407
+
+
+> local({
++   .Table <- xtabs(~Sex+Group, data=Students)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   cat("\nColumn percentages:\n")
++   print(colPercents(.Table))
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+        Group
+Sex        A   B   E   F   X
+  Female  32  14   1  14  65
+  Male    68  34  11  27 187
+
+Column percentages:
+        Group
+Sex        A     B     E     F     X
+  Female  32  29.2   8.3  34.1  25.8
+  Male    68  70.8  91.7  65.9  74.2
+  Total  100 100.0 100.0 100.0 100.0
+  Count  100  48.0  12.0  41.0 252.0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 4.5157, df = 4, p-value = 0.3407
+
+
+> normalityTest(~TimeinCampus, test="shapiro.test", data=Students)
+
+	Shapiro-Wilk normality test
+
+data:  TimeinCampus
+W = 0.99455, p-value = 0.1079
+
+
+> with(Students, (t.test(TimeinCampus, alternative='greater', mu=29, conf.level=.95)))
+
+	One Sample t-test
+
+data:  TimeinCampus
+t = 3.3007, df = 452, p-value = 0.0005205
+alternative hypothesis: true mean is greater than 29
+95 percent confidence interval:
+ 29.80125      Inf
+sample estimates:
+mean of x 
+ 30.60046 
+
+
+> RegModel.1 <- lm(CallReceived~CallMade, data=Students)
+
+> summary(RegModel.1)
+
+Call:
+lm(formula = CallReceived ~ CallMade, data = Students)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.3455 -0.3116 -0.0136  0.3244  1.4904 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.03366    0.03608   0.933    0.351    
+CallMade     1.01996    0.01501  67.938   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4731 on 451 degrees of freedom
+Multiple R-squared:  0.911,	Adjusted R-squared:  0.9108 
+F-statistic:  4616 on 1 and 451 DF,  p-value: < 2.2e-16
+
+
+> predict(RegModel.1, data.frame(CallMade = c(8)), interval='prediction')
+       fit      lwr      upr
+1 8.193348 7.245258 9.141438
+
+> predict(RegModel.1, data.frame(CallMade = c(7,8,9)), interval='prediction')
+       fit      lwr       upr
+1 7.173386 6.230459  8.116314
+2 8.193348 7.245258  9.141438
+3 9.213309 8.259172 10.167446
+

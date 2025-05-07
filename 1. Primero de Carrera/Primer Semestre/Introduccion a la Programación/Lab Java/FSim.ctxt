@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=FSim
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ FSim\ here.\r\n\ \r\n\ @author\ Me\ Wario\r\n\ @version\ 1.0.0\r\n
+comment1.params=
+comment1.target=FSim()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ FSim\r\n
+comment2.params=plane
+comment2.target=void\ add(Airplane)
+comment2.text=\r\n\ Adds\ the\ plane\ to\ the\ map\r\n\ \r\n\ @param\ plane\ The\ plane\ that\ needs\ to\ be\ added\r\n
+comment3.params=
+comment3.target=void\ paintBackground()
+comment3.text=\r\n\ Paints\ the\ background.\r\n
+comment4.params=
+comment4.target=void\ paintForeground()
+comment4.text=\r\n\ Paints\ the\ planes.\r\n
+comment5.params=
+comment5.target=void\ paint()
+comment5.text=\r\n\ Paints\ the\ map.\r\n
+comment6.params=
+comment6.target=void\ flyPlanes()
+comment6.text=\r\n\ Asks\ the\ planes\ to\ fly.\r\n
+comment7.params=frames
+comment7.target=void\ animate(int)
+comment7.text=\r\n\ Animates\ the\ map.\r\n
+numComments=8

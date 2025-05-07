@@ -1,0 +1,11 @@
+30   // Space in memory
+40    // Priority
+TRAP 5
+ADD 1 0
+ADD 1 1
+TRAP 4
+ADD 4 0
+WRITE 15 0
+TRAP 3 // For selecting finish the process
+OS 2 // For executing the finish
+

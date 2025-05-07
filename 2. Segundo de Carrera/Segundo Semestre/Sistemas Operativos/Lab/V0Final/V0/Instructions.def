@@ -1,0 +1,10 @@
+INST(ADD) 	// decimal 1 = Hex (0x01) - acc = op1 + op2
+INST(SHIFT)	// decimal 2 = Hex (0x02) - acc = acc/(2)^op1
+INST(NOP)	// decimal 3 = Hex (0x03) - NOTHING
+INST(JUMP)	// decimal 4 = Hex (0x04) - PC += op1
+INST(ZJUMP)	// decimal 5 = Hex (0x05) - if(acc=0) PC+=op1
+INST(WRITE)	// decimal 6 = Hex (0x06) - WRITE in op1 the Value Acc
+INST(READ)	// decimal 7 = Hex (0x07) - READ from op1 the Value to Acc
+INST(INC)	// decimal 8 = Hex (0x08) - acc += 1
+INST(HALT)	// decimal 9 = Hex (0x09) - Finish/Stop executing
+INST(MEMADD)    // decimal 10 = Hex (0x0A) - acc = op1 + read(op2) //op2 is an address

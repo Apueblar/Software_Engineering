@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Math
+comment0.text=\r\n\ This\ is\ the\ math\ class\ were\ you\ can\ find\ some\ math\ exercises.\r\n\ \r\n\ @author\ \u00C1lvaro\ Puebla\r\n\ @version\ 22-09-2023\r\n
+comment1.params=
+comment1.target=Math()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Math\r\n
+comment2.params=baseTriangle\ heightTriangle
+comment2.target=double\ compueteArea(double,\ double)
+comment2.text=\r\n\ Computes\ the\ area\ of\ a\ triangle\ from\ its\ base\ and\ height.\ Both\ must\ be\ in\ the\ \r\n\ \r\n\ @param\ \ baseTriangle\ \ \ Base\ of\ the\ triangle.\ Positive\ numbers\ are\ the\ ones\ acepted.\r\n\ @param\ \ heightTriangle\ \ \ Height\ of\ the\ triangle.\ Positive\ numbers\ are\ the\ ones\ acepted.\r\n\ @return\ Returns\ the\ area\ of\ the\ triangle\ in\ squared\ units.\r\n
+numComments=3

@@ -1,0 +1,4 @@
+- Select R 4.2.3
+- Sys.setenv(LANGUAGE='en')
+- Paquetes -> Cargar -> Rcmdr
+- Data -> Load Data -> Steel...

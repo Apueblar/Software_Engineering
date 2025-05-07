@@ -1,0 +1,10 @@
+// Store odd numbers between 101 and 119 at memory location 122
+
+ADD 101
+WRITE 122 0         // Store 101 at address 122 (initial odd number)
+MEMADD 2 122    // Load the current memory address
+WRITE 122 0     // Update the memory address for the next iteration
+MEMADD -119 122 // Check if value of 122 address is 119 (last odd number)
+ZJUMP 2       // If ACC == 0, stop execution
+JUMP -4         // Loop back
+HALT            // Stop execution

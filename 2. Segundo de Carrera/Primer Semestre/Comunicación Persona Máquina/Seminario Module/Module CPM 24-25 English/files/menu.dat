@@ -1,0 +1,20 @@
+BE01@Water@Still mineral water, half-litre bottle@YES@Drink@2.5
+BE02@Coca cola@35cl bottle of colacola@YES@Drink@2.25
+BE03@Godello wine@Delicate and elegant white wine, with a great balance between freshness and volume@YES@Drink@18
+EN01@Caesar Salad@Lettuce, chicken, cherry tomatoes, parmesan, crispy bread and Caesar sauce@NO@Salad@13.70
+EN02@Pasta Salad@Lettuce, spirals, corn, tomato, tuna, onion and black pepper@YES@Salad@12.50
+ET01@Cheese crisps@Breaded and fried cheese portions with tomato jam@NO@Starter@9.50
+ET02@Baked Provolone@Italian cheese originating from southern Italy, melted and accompanied by spices and fresh herbs@YES@Starter@11.75
+ET03@Italian charcuterie board@Guanciale, mortadella di Bologna, coppa piancentina, prosciutto cotto, salame@YES@Starter@13
+PA01@Grissini@Thin, elongated crispbread. 12 units@YES@Bread@2
+PA02@Garlic bread@6 slices of bread with garlic and extra virgin olive oil@NO@Bread@3.25
+PS01@Spaghetti carbonara@Spaghetti, carbonara sauce, bacon, mushrooms and parmesan cheese@NO@Pasta@12.5
+PS02@Vegetable lasagna@Spinach pasta with eggplant, carrot, cheese, tomato, basil and oregano, covered with bechamel sauce@YES@Pasta@13
+PS03@Ravioli with pesto@Cheese ravioli, with pine nuts, cherry tomatoes, parmesan cheese y basil@YES@Pasta@13.75
+PI01@Four Cheese Pizza@Tomato, mozzarella, cabrales cheese, emmental, parmesan and oregano@NO@Pizza@12.75
+PI02@Margherita Pizza@Tomato, mozzarella y basil@YES@Pizza@10.5
+PI03@Roman Pizza@Tomato, mozzarella, anchovies and black olives@YES@Pizza@11.5
+PI04@Vegetable Pizza@Tomato, mozzarella, peppers, artichokes, mushrooms, capers and onion@YES@Pizza@12.25
+PO01@Fruit salad@Watermelon, kiwi, grapes, mango and blueberries with honey sauce@YES@Dessert@3.25
+PO02@Cheesecake@Baked cheesecake with red berry jam@NO@Dessert@4.50
+PO03@Tiramisu@Layers of coffee-soaked sponge cake, soft cheese and whipped cream@NO@Dessert@4.75

@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Math
+comment0.text=\r\n\ This\ is\ the\ math\ class\ were\ you\ can\ find\ some\ math\ exercises.\r\n\ \r\n\ @author\ \u00C1lvaro\ Puebla\r\n\ @version\ 22-09-2023\r\n
+comment1.params=
+comment1.target=Math()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Math\r\n
+comment2.params=baseTriangle\ heightTriangle
+comment2.target=double\ compueteArea(double,\ double)
+comment2.text=\r\n\ Computes\ the\ area\ of\ a\ triangle\ from\ its\ base\ and\ height.\ Both\ must\ be\ in\ the\ \r\n\ \r\n\ @param\ \ baseTriangle\ \ \ Base\ of\ the\ triangle.\ Positive\ numbers\ are\ the\ ones\ acepted.\r\n\ @param\ \ heightTriangle\ \ \ Height\ of\ the\ triangle.\ Positive\ numbers\ are\ the\ ones\ acepted.\r\n\ @return\ Returns\ the\ area\ of\ the\ triangle\ in\ squared\ units.\r\n
+comment3.params=text
+comment3.target=boolean\ isPalindrome(java.lang.String)
+comment3.text=\r\n\ Given\ a\ text,\ removes\ the\ spaces\ and\ checks\ if\ it\ is\ a\ palindrome.\r\n\ \r\n\ @param\ text\ The\ text\ to\ check.\r\n\ \r\n\ @return\ True\ if\ the\ text\ is\ palindrome.\ Otherwise,\ false.\r\n
+comment4.params=number
+comment4.target=boolean\ isPrime(int)
+comment4.text=\r\n\ Given\ a\ number\ returns\ all\ the\ prime\ numbers\ under\ that\ number.\r\n\ \r\n\ @param\ number\ The\ number\ is\ checked.\r\n\ \r\n\ @return\ Returns\ true\ if\ the\ number\ is\ prime.\r\n
+comment5.params=limit
+comment5.target=java.util.ArrayList\ getPrimeUnder(int)
+comment5.text=\r\n\ Given\ a\ number\ returns\ all\ the\ prime\ numbers\ under\ that\ number.\r\n\ \r\n\ @param\ limit\ The\ limit.\r\n\ \r\n\ @return\ Returns\ an\ array\ list\ with\ all\ the\ primes\ lower\ than\ a\ given\ value.\r\n
+comment6.params=array
+comment6.target=int[]\ sortIntArray(int[])
+comment6.text=\r\n\ Given\ an\ array\ of\ ints,\ it\ sorts\ it,\ and\ returns\ it.\r\n\ \r\n\ @param\ array\ The\ array\ that\ is\ going\ to\ be\ sort\r\n\ \r\n\ @return\ The\ sorted\ array.\r\n
+comment7.params=a\ b
+comment7.target=int[][]\ sumMatrix(int[][],\ int[][])
+comment7.text=\r\n\ Given\ 2\ matrices,\ it\ will\ add\ pixel\ by\ pixel\ and\ return\ a\ new\ sum\ matrix.\r\n\ \r\n\ @param\ a\ The\ first\ Matrix\r\n\ @param\ b\ The\ second\ Matrix\r\n\ \r\n\ @return\ The\ added\ Matrix\r\n
+numComments=8

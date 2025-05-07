@@ -1,0 +1,37 @@
+./Simulator --debugSections=Xd --daemonsProgramsFile=daemonsFile ex1 ex2
+
+[52] Process [0 - ex1] forced to wake up by OS for optimization CPU usage
+[77] Process [0 - ex1] forced to wake up by OS for optimization CPU usage
+[87] Process [1 - ex2] forced to wake up by OS for optimization CPU usage
+[97] Process [1 - ex2] forced to wake up by OS for optimization CPU usage
+[111] The system will shut down now...
+[113] END of the simulation
+
+./Simulator --debugSections=Xd ex1 ex2 ex3
+
+[37] Process [2 – ex3] forced to wake up by OS for optimization CPU usage
+[47] Process [0 - ex1] forced to wake up by OS for optimization CPU usage
+[57] Process [0 – ex1] forced to wake up by OS for optimization CPU usage
+[67] Process [1 - ex2] forced to wake up by OS for optimization CPU usage
+[77] Process [1 - ex2] forced to wake up by OS for optimization CPU usage
+[91] The system will shut down now...
+[93] END of the simulation
+
+./Simulator --debugSections=X --numProcesses=8 ex4 ex5 ex6 ex7
+
+[497] Process [1 - ex5] was thrown out of the processor [1] times
+[497] Process [1 - ex5] transferred the control of the processor [10] times
+[531] Process [0 – ex4] was thrown out of the processor [3] times
+[531] Process [0 – ex4] transferred the control of the processor [9] times
+[581] Process [2 – ex6] was thrown out of the processor [0] times
+[581] Process [2 – ex6] transferred the control of the processor [1] times
+[696] Process [3 – ex7] was thrown out of the processor [0] times
+[696] Process [3 – ex7] transferred the control of the processor [2] times
+[706] Process [7 - SystemIdleProcess] was thrown out of the processor [2] times
+[706] Process [7 - SystemIdleProcess] transferred the control of the processor [0] times
+
+
+Generación del fichero de ENTREGA del examen:
+
+zip Apellido1Apellido2NombreUOxxxx-ExV2.zip UOxxxx-Ex[12]/*
+

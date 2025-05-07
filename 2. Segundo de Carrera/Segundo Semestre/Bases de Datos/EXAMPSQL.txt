@@ -1,0 +1,113 @@
+-- TESTS
+SELECT * FROM department;
+
+INSERT INTO instructor (instructor_id, instructor_name, salary, total_hours_teaches, dept_name) VALUES (50, 'paco', 12, 240, 'Cybernetics');
+
+DELETE FROM instructor WHERE instructor_id = 50;
+
+UPDATE instructor SET dept_name = 'Astronomy' WHERE instructor_id = 50;
+
+-- EXAM
+
+-- ####### EX1 ###
+
+CREATE OR REPLACE TRIGGER EX1_1
+BEFORE INSERT OR UPDATE OF PROJECT_ID,INSTRUCTOR_ID ON PARTICIPATES
+FOR EACH ROW
+DECLARE
+I_SALARY INSTRUCTOR.SALARY%TYPE;
+I_PR_STATUS PROJECT.PR_STATUS%TYPE;
+BEGIN
+    SELECT SALARY INTO I_SALARY
+        FROM INSTRUCTOR
+        WHERE INSTRUCTOR_ID = :NEW.INSTRUCTOR_ID;
+
+    IF I_SALARY > 70000 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'SALARY OF INSTRUCTOR > 70000');
+    END IF;
+
+    SELECT PR_STATUS INTO I_PR_STATUS
+        FROM PROJECT
+        WHERE PROJECT_ID = :NEW.PROJECT_ID;
+    
+    IF I_PR_STATUS <> 'Active' THEN
+        RAISE_APPLICATION_ERROR(-20002, 'PROJECT IS NOT ACTIVE');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20003,'NOT DATA FOUND');
+END;
+
+alter table department add numInstructors number default 0;
+
+CREATE OR REPLACE TRIGGER EX1_2
+AFTER INSERT OR DELETE OR UPDATE OF DEPT_NAME ON INSTRUCTOR
+FOR EACH ROW
+BEGIN
+    IF INSERTING OR UPDATING THEN
+        UPDATE DEPARTMENT SET numInstructors = numInstructors + 1 WHERE DEPT_NAME = :NEW.DEPT_NAME;
+    END IF;
+
+    IF DELETING OR UPDATING THEN
+        UPDATE DEPARTMENT SET numInstructors = numInstructors - 1 WHERE DEPT_NAME = :OLD.DEPT_NAME;
+    END IF;
+END;
+
+
+-- ####### EX2 ###
+
+CREATE OR REPLACE PROCEDURE EX2 AS
+    CURSOR c1 IS 
+        SELECT instructor_id, instructor_name, COUNT(*) num_projects, SUM(extra_payment) total_extra_payment 
+            FROM PARTICIPATES INNER JOIN PROJECT USING (PROJECT_ID)
+                INNER JOIN INSTRUCTOR USING (INSTRUCTOR_ID)
+            WHERE PR_DURATION > 1 AND instructor_id NOT IN (SELECT INSTRUCTOR_ID FROM STUDENT)
+            GROUP BY instructor_id, instructor_name
+            ORDER BY instructor_name DESC, num_projects DESC;
+
+    CURSOR c2 (I_instructor_id Instructor.instructor_id%TYPE) IS
+        SELECT d.dept_name, d.dept_building, t.course_id, c.title, t.sec_id, t.semester, t.year
+            FROM TEACHES t 
+                INNER JOIN COURSE c ON c.COURSE_ID = t.COURSE_ID
+                INNER JOIN DEPARTMENT d ON c.DEPT_NAME = d.DEPT_NAME
+            WHERE t.INSTRUCTOR_ID = I_instructor_id
+                AND c.course_id IN (SELECT PREREQ_ID FROM is_prerequisite)
+            ORDER BY c.course_id DESC;
+BEGIN
+    FOR i IN c1 LOOP
+        DBMS_OUTPUT.PUT_LINE('INSTRUCTOR: ' || i.instructor_id || ' / ' || i.instructor_name || ' / ' || i.num_projects || ' / ' || i.total_extra_payment);
+        FOR j IN c2 (i.instructor_id) LOOP
+            DBMS_OUTPUT.PUT_LINE('--SECTION: ' || j.dept_name || ' - ' || j.dept_building || ' - ' || j.course_id || ' - ' || j.title || ' - ' || j.sec_id || ' - ' || j.semester|| ' - ' || j.year);
+        END LOOP; 
+    END LOOP;
+END;
+
+
+-- ####### EX3 ###
+
+CREATE OR REPLACE  PROCEDURE EX3 (
+    P_YEAR IN SECTION.SEMESTER%TYPE, 
+    I_STUDENT_ID OUT STUDENT.STUDENT_ID%TYPE, 
+    I_STUDENT_NAME OUT STUDENT.STUDENT_NAME%TYPE, 
+    I_AVG OUT NUMBER ) IS
+BEGIN
+    SELECT STUDENT_ID, STUDENT_NAME, AVG(grade) grades INTO I_STUDENT_ID, I_STUDENT_NAME, I_AVG
+        FROM STUDENT INNER JOIN TAKES USING (STUDENT_ID)
+        WHERE YEAR = P_YEAR AND STUDENT_ID IN (
+            SELECT STUDENT_ID
+                FROM STUDENT
+                WHERE DEPT_NAME IN (
+                    SELECT DEPT_NAME 
+                        FROM COURSE 
+                        WHERE TYPE IN ('Compulsory', 'Elective')
+                        GROUP BY DEPT_NAME
+                        HAVING COUNT(DISTINCT type) = 2
+                    )
+        )
+        GROUP BY STUDENT_ID, STUDENT_NAME
+        ORDER BY grades ASC
+        FETCH FIRST 1 ROWS ONLY;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20010,'NOT DATA FOUND');
+END;
