@@ -335,17 +335,24 @@ int OperatingSystem_CreateProcess(int indexOfExecutableProgram) {
 // always obtains the chunk whose position in memory is equal to the processor identifier
 int OperatingSystem_ObtainMainMemory(int processSize) {
 	int i;
-	int sum_holes_size;
+	int sum_holes_size = 0;
+	int lowest_valid_size = -1;
+	int valid = -1;
 
 	for (i = 0; i < PARTITIONSANDHOLESTABLEMAXSIZE; i++) {
 		//"INITIAL ADDRESS: %d, SIZE: %d, PID: %d\n", partitionsAndHolesTable[i].initAddress, partitionsAndHolesTable[i].size, partitionsAndHolesTable[i].PID
 		if (partitionsAndHolesTable[i].PID == HOLE) {
 			sum_holes_size = sum_holes_size + partitionsAndHolesTable[i].size;
-			if (partitionsAndHolesTable[i].size >= processSize) { // The program fits
-				return i; // Returns the identifier of the found hole
+			if (partitionsAndHolesTable[i].size >= processSize) { // If its valid
+				if (lowest_valid_size == -1 || partitionsAndHolesTable[i].size < lowest_valid_size) {
+					lowest_valid_size = partitionsAndHolesTable[i].size;
+					valid = i;
+				}
 			}
 		}
 	}
+
+	if (lowest_valid_size != -1) {return valid;}
 
 	// No hole found
 	if (processSize > sum_holes_size) { // The program does not fit in main memory
@@ -565,10 +572,10 @@ void OperatingSystem_HandleSystemCall() {
 				char selectedName[MAXFILENAMELENGTH];
 				strcpy(selectedName, programList[processTable[selectedProcessPID].programListIndex]->executableName);
 
-				OperatingSystem_PreemptRunningProcess(); // Saves the value to the PCB
-
 				// Show message: "Process [executingProcessID - exProcessName] will transfer the control of the processor to process [NewPID - NewName]\n"
 				ComputerSystem_DebugMessage(TIMED_MESSAGE,55,SHORTTERMSCHEDULE,currentPID, currentName, selectedProcessPID, selectedName);
+
+				OperatingSystem_PreemptRunningProcess(); // Saves the value to the PCB
 			
 				OperatingSystem_Dispatch(selectedProcessPID); // Locates the "new" process the executing state
 				
@@ -606,14 +613,18 @@ void OperatingSystem_HandleSystemCall() {
 
 			// Prints the status
 			OperatingSystem_PrintStatus();
+			
+			break;
 		}
 		default: { // Else finish the process as it is not defined
 			// Shows message: "41,Process [PID - executablename] has made an invalid system call (regD) and is being terminated\n"
-			ComputerSystem_DebugMessage(TIMED_MESSAGE,71,INTERRUPT,executingProcessID,programList[processTable[executingProcessID].programListIndex]->executableName,systemCallID);
+			ComputerSystem_DebugMessage(TIMED_MESSAGE,41,INTERRUPT,executingProcessID,programList[processTable[executingProcessID].programListIndex]->executableName,systemCallID);
 			
 			OperatingSystem_TerminateExecutingProcess();
 
 			OperatingSystem_PrintStatus();
+
+			break;
 		}
 	}
 }

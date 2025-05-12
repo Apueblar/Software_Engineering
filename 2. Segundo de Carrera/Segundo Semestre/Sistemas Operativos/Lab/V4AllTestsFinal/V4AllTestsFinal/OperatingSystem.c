@@ -335,17 +335,24 @@ int OperatingSystem_CreateProcess(int indexOfExecutableProgram) {
 // always obtains the chunk whose position in memory is equal to the processor identifier
 int OperatingSystem_ObtainMainMemory(int processSize) {
 	int i;
-	int sum_holes_size;
+	int sum_holes_size = 0;
+	int lowest_valid_size = -1;
+	int valid = -1;
 
 	for (i = 0; i < PARTITIONSANDHOLESTABLEMAXSIZE; i++) {
 		//"INITIAL ADDRESS: %d, SIZE: %d, PID: %d\n", partitionsAndHolesTable[i].initAddress, partitionsAndHolesTable[i].size, partitionsAndHolesTable[i].PID
 		if (partitionsAndHolesTable[i].PID == HOLE) {
 			sum_holes_size = sum_holes_size + partitionsAndHolesTable[i].size;
-			if (partitionsAndHolesTable[i].size >= processSize) { // The program fits
-				return i; // Returns the identifier of the found hole
+			if (partitionsAndHolesTable[i].size >= processSize) { // If its valid
+				if (lowest_valid_size == -1 || partitionsAndHolesTable[i].size < lowest_valid_size) {
+					lowest_valid_size = partitionsAndHolesTable[i].size;
+					valid = i;
+				}
 			}
 		}
 	}
+
+	if (lowest_valid_size != -1) {return valid;}
 
 	// No hole found
 	if (processSize > sum_holes_size) { // The program does not fit in main memory
