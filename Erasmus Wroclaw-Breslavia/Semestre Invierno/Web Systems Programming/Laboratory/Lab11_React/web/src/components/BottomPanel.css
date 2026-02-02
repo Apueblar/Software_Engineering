@@ -1,0 +1,77 @@
+.bottom-panel {
+  background: white;
+  margin: 0.75rem 2rem 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 4rem);
+}
+
+/* Reuse styles from TopPanel for consistency */
+.bottom-panel.panel-placeholder {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+}
+
+.bottom-panel.panel-placeholder p:first-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.bottom-panel.panel-placeholder .hint {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.bottom-panel.panel-active h3 {
+  color: #2a5298;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.bottom-panel .article-details {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.bottom-panel .detail-row {
+  display: flex;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bottom-panel .detail-row:last-child {
+  border-bottom: none;
+}
+
+.bottom-panel .detail-row strong {
+  min-width: 120px;
+  color: #495057;
+}
+
+.bottom-panel .detail-row.description {
+  flex-direction: column;
+}
+
+.bottom-panel .detail-row.description strong {
+  margin-bottom: 0.5rem;
+}
+
+.bottom-panel .panel-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .bottom-panel .panel-actions {
+    flex-direction: column;
+  }
+}

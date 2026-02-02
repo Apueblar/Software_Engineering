@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB 06 - JS2</title>
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Laboratory 06 - JavaScript 2</h1>
+        <p>Tasks: <code>Table Creation</code> and <code>Canvas Drawing</code></p>
+    </header>
+    <main>
+        <div class="canvas-card-absolute">
+            <h3>Canvas Absolute</h3>
+            <canvas class="drawingCross" data-id="A"></canvas>
+        </div>
+        <article>
+            <h2>Tasks:</h2>
+            <section aria-labelledby="mult-heading">
+                <h2 id="mult-heading">Multiplication table (random):</h2>
+
+                <div class="controls">
+                    <label for="nInput">n (5 ≤ n ≤ 20):</label>
+                    <input id="nInput" type="number" min="5" max="20" value="10">
+                    <button id="generateBtn">Generate table</button>
+                    <div id="msg" class="note" aria-live="polite"></div>
+                </div>
+
+                <div class="table-wrap" id="tableContainer" aria-live="polite">
+                <!-- table created dynamically -->
+                </div>
+            </section>
+
+            <section aria-labelledby="canvas-heading">
+                <h2 id="canvas-heading">Canvas drawing: lines from corners to cursor</h2>
+                <p>Move the mouse inside a canvas to draw lines from each corner to the cursor. Lines disappear on mouse leave. You can place multiple canvases on the page.</p>
+
+                <div class="canvas-row">
+                    <div class="canvas-card">
+                        <h3>Canvas A</h3>
+                        <canvas class="drawingX" data-id="A"></canvas>
+                    </div>
+                    <div class="canvas-card">
+                        <h3>Canvas B</h3>
+                        <canvas class="drawingX" data-id="B"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="canvas-heading">
+                <h2 id="canvas-heading">Canvas drawing: lines as a +</h2>
+                <p>Move the mouse inside a canvas to draw lines from each corner to the cursor. Lines disappear on mouse leave. You can place multiple canvases on the page.</p>
+
+                <div class="canvas-row">
+                    <div class="canvas-card">
+                        <h3>Canvas A</h3>
+                        <canvas class="drawingCross" data-id="A"></canvas>
+                    </div>
+                    <div class="canvas-card-relative">
+                        <h3>Canvas Relative</h3>
+                        <canvas class="drawingCross" data-id="A"></canvas>
+                    </div>
+                    <div class="canvas-card">
+                        <h3>Canvas B</h3>
+                        <canvas class="drawingCross" data-id="B"></canvas>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <div class="canvas-card-fixed">
+            <h3>Canvas Fixed</h3>
+            <canvas class="drawingCross" data-id="A"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>Tests:</p>
+        <ul>
+            <li><img src="HTMLTest.png" alt="HTML Test" height="300"></li>
+            <li><img src="CSSTest.png" alt="CSS Test" height="300"></li>
+            <li><img src="JSTest.png" alt="JS Test" width="600"></li>
+        </ul>
+    </footer>
+</body>
+</html>

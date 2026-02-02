@@ -1,0 +1,20 @@
+<% layout('layout', { title: 'Article ' + article.id, request: request }) %>
+
+<section>
+  <h2>Article details</h2>
+  <dl class="details">
+    <dt>ID</dt><dd><%= article.id %></dd>
+    <dt>Name</dt><dd><%= article.name %></dd>
+    <dt>Category</dt><dd><%= article.category %></dd>
+    <dt>Price</dt><dd><%= article.price.toFixed(2) %></dd>
+    <dt>Description</dt><dd><pre class="desc"><%= article.description || '-' %></pre></dd>
+  </dl>
+
+  <div class="actions-row">
+    <a class="btn" href="/articles">Back to list</a>
+    <a class="btn secondary" href="/articles/<%= article.id %>/edit">Edit</a>
+    <form class="inline" method="post" action="/articles/<%= article.id %>/delete" onsubmit="return confirm('Delete this article?');">
+      <button class="btn danger" type="submit">Delete</button>
+    </form>
+  </div>
+</section>

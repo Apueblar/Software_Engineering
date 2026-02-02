@@ -1,0 +1,180 @@
+:root {
+    --accent1: #0b5fa5;
+    --accent2: #2fa1d6;
+    --even: #48ff85;
+    --odd: #ffbe5d;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+header {
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    color: #fff;
+    padding: 1.25rem;
+}
+
+main {
+    padding: 1.25rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+input[type=number] {
+    width: 6rem;
+    padding: .35rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: .45rem .75rem;
+    border-radius: 6px;
+    border: 0;
+    background: var(--accent1);
+    color: #fff;
+    cursor: pointer;
+}
+
+.note {
+    color: #8a1a00;
+    margin-left: .5rem;
+}
+
+
+/* Table styling */
+.table-wrap {
+    overflow: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .75rem;
+    background: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+caption {
+    font-weight: 700;
+    text-align: left;
+    padding: .35rem 0;
+}
+
+thead th {
+    background: var(--accent1);
+    color: #fff;
+    padding: .6rem;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tbody td,
+thead th {
+    border: 1px solid #e6e6e6;
+    padding: .5rem;
+    text-align: center;
+}
+
+tbody th {
+    background: #f7fafc;
+    font-weight: 700;
+}
+
+td.even {
+    background: var(--even);
+}
+
+td.odd {
+    background: var(--odd);
+}
+
+
+/* Canvas area */
+.canvas-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+}
+
+.canvas-card {
+    flex: 1 1 320px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: .75rem;
+    background: #fff;
+}
+
+.canvas-card-fixed {
+    flex: 1 1 320px;
+    position: fixed;
+    bottom:10px;
+    right:15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: .75rem;
+    background: #fff;
+}
+
+.canvas-card-relative {
+    flex: 1 1 320px;
+    position: relative;
+    top:75px;
+    left:35px;
+    height:315px;
+    width:320px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: .75rem;
+    background: #fff;
+}
+
+.canvas-card-absolute {
+    flex: 1 1 320px;
+    position: absolute;
+    top:200px;
+    left:800px;
+    height:315px;
+    width:1000px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: .75rem;
+    background: #fff;
+}
+
+canvas {
+    width: 100%;
+    height: 250px;
+    border-radius: 6px;
+    display: block;
+    background: #0f1724;
+}
+
+
+/* Footer / long text to make page scroll */
+.long {
+    margin-top: 2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+@media (max-width:620px) {
+    canvas {
+        height: 160px;
+    }
+}

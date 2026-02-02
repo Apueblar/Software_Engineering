@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Form styling demo">
+    <meta name="keywords" content="form, input, label, select">
+    <title>Form — Styled form</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="back" href="index.html">← Back</a>
+    <main>
+        <h1>Form — various input types</h1>
+        <form method="post" action="form.html" class="demo-form">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com">
+
+            <label for="pet" class="sr-only">Favorite pet</label>
+            <select id="pet" name="pet">
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="other">Other</option>
+            </select>
+
+            <fieldset>
+            <legend>Choices</legend>
+            <label><input type="checkbox" name="opt" value="a"> Option A</label>
+            <label><input type="checkbox" name="opt" value="b"> Option B</label>
+            </fieldset>
+
+            <input type="submit" value="Send">
+        </form>
+    </main>
+    <footer class="site-footer">
+        <a class="back" href="index.html">← Back</a>
+    </footer>
+</body>
+</html>

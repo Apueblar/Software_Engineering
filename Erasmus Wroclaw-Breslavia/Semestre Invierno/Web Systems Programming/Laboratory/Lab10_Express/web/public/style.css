@@ -1,0 +1,39 @@
+:root{
+  --bg:#f7f8fb; --card:#fff; --accent:#2b6cb0; --muted:#6b7280; --danger:#e53e3e;
+  --radius:8px; --maxw:1000px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:var(--bg); color:#111; margin:0; padding:0}
+.container{max-width:var(--maxw); margin:24px auto; padding:0 16px}
+.topbar{background:linear-gradient(90deg,#fff,#f3f6fb); border-bottom:1px solid #e6eef8; padding:12px 0}
+.brand{display:inline-block; margin:0; font-size:20px; color:var(--accent)}
+.menu{display:inline-block; float:right}
+.menu ul{list-style:none; margin:0; padding:0; display:flex; gap:8px}
+.menu a{display:inline-block; padding:8px 12px; color:var(--accent); text-decoration:none; border-radius:6px}
+.menu a.active, .menu a:hover{background:rgba(43,108,176,0.08)}
+
+.table{width:100%; border-collapse:collapse; background:var(--card); border-radius:8px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.03)}
+.table th, .table td{padding:12px 14px; text-align:left; border-bottom:1px solid #f0f4fb}
+.table thead th{background:#f6f9ff; color:var(--muted); font-weight:600}
+.table tbody tr:last-child td{border-bottom:none}
+.muted{color:var(--muted); text-align:center; padding:18px}
+
+.btn{display:inline-block; padding:8px 12px; background:var(--accent); color:#fff; text-decoration:none; border-radius:6px; border:none; cursor:pointer}
+.btn.secondary{background:#edf2fb; color:var(--accent); border:1px solid rgba(43,108,176,0.12)}
+.btn.danger{background:var(--danger)}
+.btn.small{padding:6px 8px; font-size:13px}
+.inline{display:inline-block; margin:0}
+.actions{display:flex; gap:8px; align-items:center}
+.actions-row{margin-top:16px; display:flex; gap:8px; align-items:center}
+
+.field{margin-bottom:12px}
+.field label{display:block; margin-bottom:6px; color:var(--muted); font-size:13px}
+.field input[type="text"], .field input[type="number"], .field textarea{width:100%; padding:10px; border:1px solid #e6eef8; border-radius:6px; background:#fff}
+.field textarea{min-height:120px; resize:vertical}
+
+.errors{background:#fff6f6; border:1px solid #ffdede; padding:10px; border-radius:6px; color:var(--danger)}
+.details{display:grid; grid-template-columns:120px 1fr; gap:8px; background:var(--card); padding:12px; border-radius:8px}
+.details dt{color:var(--muted); font-weight:600}
+.desc{white-space:pre-wrap; margin:0; padding:0}
+
+.footer{padding:18px 0; text-align:center; color:var(--muted); font-size:14px}

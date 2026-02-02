@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="List style demos">
+    <meta name="keywords" content="lists, ul, ol, list-style-type">
+    <title>Lists - List styles</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <a class="back" href="index.html">← Back</a>
+    <main>
+        <h1>List styles and nested selectors</h1>
+
+        <h2>Unordered lists</h2>
+        <ul class="a">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Pear</li>
+        </ul>
+
+        <h2>Ordered lists</h2>
+        <ol class="alpha">
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+        </ol>
+
+        <section class="outer">
+            <h2>Complex selector example</h2>
+            <p class="important hard">This paragraph matches <code>p.important.hard</code>.</p>
+            <div class="inner"><p class="important medium">This paragraph matches <code>.outer .inner p</code>.</p></div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <a class="back" href="index.html">← Back</a>
+    </footer>
+</body>
+</html>

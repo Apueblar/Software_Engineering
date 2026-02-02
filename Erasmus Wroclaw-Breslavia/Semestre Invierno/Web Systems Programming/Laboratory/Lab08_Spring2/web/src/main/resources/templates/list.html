@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout('Lists', ~{::content})}">
+<div th:fragment="content">
+    <p>Products: <a th:href="@{/product/add}">Add New Product</a></p>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Weight</th><th>Price</th><th>Category</th><th>Actions</th></tr>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.weight}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.category.name}"></td>
+            <td>
+                <a th:href="@{|/product/${p.id}|}">Details</a> |
+                <a th:href="@{|/product/edit/${p.id}|}">Edit</a> |
+                <a th:href="@{|/product/delete/${p.id}|}">Remove</a>
+            </td>
+        </tr>
+    </table>
+
+    <p>Categories: <a th:href="@{/category/add}">Add New Category</a></p>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Code</th><th>Actions</th></tr>
+        <tr th:each="c : ${categories}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.code}"></td>
+            <td>
+                <a th:href="@{|/category/edit/${c.id}|}">Edit</a> |
+                <a th:href="@{|/category/delete/${c.id}|}">Remove</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

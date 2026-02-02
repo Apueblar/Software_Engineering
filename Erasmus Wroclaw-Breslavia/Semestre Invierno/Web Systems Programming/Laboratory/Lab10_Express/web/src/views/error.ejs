@@ -1,0 +1,7 @@
+<% layout('layout', { title: 'Error', request: request }) %>
+
+<section>
+  <h2>Error</h2>
+  <p class="error-message"><%= message || 'An unexpected error occurred.' %></p>
+  <a class="btn" href="/articles">Back to articles</a>
+</section>

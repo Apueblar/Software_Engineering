@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Embedded and inline CSS examples">
+    <meta name="keywords" content="embedded css, inline css, head style">
+    <title>Embedding Demo</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Embedded stylesheet -->
+    <style>
+    /* Embedded styles: only on this page to demonstrate embedding */
+    .embedded-box{
+    border: 4px dashed #6a5acd;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg,#f7f7ff,#eef);
+    }
+    </style>
+</head>
+<body>
+    <a class="back" href="index.html">← Back</a>
+    <main>
+    <h1>Embedding CSS Demo</h1>
+    <div class="embedded-box">
+        <p>This box is styled by an embedded stylesheet in the <code>&lt;head&gt;</code>. All other rules live in the external file.</p>
+    </div>
+
+    <p style="color:crimson; padding:0.5rem">This paragraph uses an inline style (demonstration only).</p>
+    </main>
+</body>
+</html>

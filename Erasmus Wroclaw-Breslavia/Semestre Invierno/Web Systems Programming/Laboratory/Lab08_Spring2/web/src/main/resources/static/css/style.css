@@ -1,0 +1,215 @@
+/* ----------------------
+   GLOBAL STYLES
+------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    min-height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a1f0fd, #91bfff);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px; /* margin from viewport edges */
+}
+
+/* ----------------------
+   NAVIGATION BAR
+------------------------ */
+nav {
+    width: calc(100% - 40px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 15px 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+/* ----------------------
+   HEADER
+------------------------ */
+header {
+    padding: 120px 20px 40px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* ----------------------
+   MAIN CONTENT
+------------------------ */
+.main-content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.centered-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.centered-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------------
+   TABLE STYLING
+------------------------ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background: #66a6ff;
+    color: #fff;
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* ----------------------
+   FORM STYLING
+------------------------ */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 0 auto; /* horizontal centering, no top margin */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #66a6ff;
+    box-shadow: 0 0 5px rgba(102, 166, 255, 0.5);
+}
+
+.form-container button {
+    background: #66a6ff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+    background: #5590e6;
+    transform: translateY(-2px);
+}
+
+/* ----------------------
+   LINK STYLING
+------------------------ */
+a {
+    color: #66a6ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.2s;
+}
+
+a:hover {
+    color: #5590e6;
+    transform: translateY(-2px);
+}
+
+a.button-link {
+    display: inline-block;
+    background: #66a6ff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+a.button-link:hover {
+    background: #5590e6;
+    transform: translateY(-2px);
+}
+
+/* ----------------------
+   FOOTER
+------------------------ */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    margin-top: 40px;
+    border-radius: 10px;
+}

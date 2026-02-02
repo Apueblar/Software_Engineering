@@ -1,0 +1,13 @@
+First Time:
+npm create vite@latest web
+npm install
+npm install react-router-dom
+npm install json-server
+npm run build
+
+
+Start backend:
+npm run server
+
+Start frontend:
+npm run dev

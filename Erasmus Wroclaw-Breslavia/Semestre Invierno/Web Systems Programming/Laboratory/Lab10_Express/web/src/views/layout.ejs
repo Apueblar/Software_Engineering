@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title || 'Articles App' %></title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand">Articles Manager</h1>
+      <%- include('partials/menu') %>
+    </div>
+  </header>
+
+  <main class="container">
+    <% if (flash) { %>
+      <div class="flash"><%= flash %></div>
+    <% } %>
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <%= new Date().getFullYear() %> Articles App</div>
+  </footer>
+</body>
+</html>

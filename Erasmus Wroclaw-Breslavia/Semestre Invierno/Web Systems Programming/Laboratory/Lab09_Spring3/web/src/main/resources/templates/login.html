@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout('Login', ~{::content})}">
+<div th:fragment="content" class="login-container">
+
+    <!-- show an error if authentication failed -->
+    <div th:if="${param.error}" class="alert alert-error" role="alert"
+         th:text="${session.SPRING_SECURITY_LAST_EXCEPTION != null
+                    ? session.SPRING_SECURITY_LAST_EXCEPTION.message
+                    : 'Invalid username or password.'}"></div>
+
+    <!-- show message after logout -->
+    <div th:if="${param.logout}" class="alert alert-success" th:text="'You have been logged out.'"></div>
+
+
+    <!-- show message after sign in -->
+    <div th:if="${userCreated}" class="alert alert-success">
+        <span th:text="${userCreated}"></span>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <!-- CSRF token - required for Spring Security -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" th:value="${param.username}"/>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password"/>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>
+        You don't have an account, right? <a th:href="@{/signin}">Sign in</a>
+    </p>
+</div>
+</html>

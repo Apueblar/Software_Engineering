@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - Home</title>
+    <meta name="description" content="Simple HTML web page for the task 3">
+    <meta name="keywords" content="HTML, Text, Images, Lists, Forms, Checkboxes, Task3">
+</head>
+<body>
+    <header>
+        <p>This is the header of the web page</p>
+    </header>
+    <main>
+        <h1 id="start"><strong>Task 3</strong> These are all the things required for the web page:</h1>
+        <ol type="1" start="1">
+            <li>Text:
+                <ol type="a" start="1">
+                    <li>Headers</li>
+                    <li>Paragraphs</li>
+                    <li>Bold/italic etc. fonts (using &lt;em&gt; etc.)</li>
+                    <li>Special characters</li>
+                </ol>
+            </li>
+            <li>Graphics:
+                <ol type="a">
+                    <li>Placing on the site in natural size and modified</li>
+                    <li>Each graphic should have alternative text (alt)</li>
+                </ol>
+            </li>
+            <li>Lists (bullets):
+                <ol type="a">
+                    <li>Numbered and unnumbered</li>
+                    <li>List nesting</li>
+                    <li>Definition list</li>
+                </ol>
+            </li>
+            <li>Tables (with headers, body and footer):
+                <ol type="a">
+                    <li>Standard</li>
+                    <li>Combining columns and rows.</li>
+                </ol>
+            </li>
+            <li>References (links):
+                <ol type="a">
+                    <li>To another page (yours and others)</li>
+                    <li>To the identifier in your page</li>
+                </ol>
+            </li>
+            <li>Form:
+                <ol type="a">
+                    <li>Several text fields (input type = "text")</li>
+                    <li>A drop-down list with options grouped</li>
+                    <li>Group of single-select items (radio)</li>
+                    <li>A group of multiple-selection items (checkbox)</li>
+                    <li>Text field for entering a maximum of 200 characters (text area)</li>
+                    <li>Buttons for clearing and submitting the form.</li>
+                </ol>
+            </li>
+        </ol>
+
+        <h2>This is a header 2</h2>
+        <p>This is its recorrespondant paragraph</p>
+        <h3>Same with h3</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In recusandae provident excepturi minima. Voluptates neque tenetur atque. Optio vitae doloremque nemo! Nesciunt, neque explicabo? Libero maiores amet perferendis magni minus?</p>
+        <!-- Why not having comments -->
+        <p>This is a <strong>strong text</strong> also we have <em>emphasized one</em>, a pretty <small>small one</small>, also <mark>selected</mark>, and <del>crossed out</del>, this is <ins>inserted</ins>, on the <sub>bottom</sub> and the <sup>top</sup>, just <b>bold</b> and <i>italic</i></p>
+        <p>Here you have the collection of special characters: &amp; &andv; &gdot; &lt; &copy; &phone; &nbsp;, they are made by & a code and ;</p>
+    
+        <h2>Now be start with the images:</h2>
+        <p>Natural size image:</p>
+        <img src="Sporting.png" alt="Logo of Sporting de Gijón">
+        <p>Modified image:</p>
+        <img src="Sporting.png" alt="Logo scalled of Sporting de Gijón" width="90" height="160">
+    
+        <h2>We miss a definition list:</h2>
+        <ol>
+            <li>Lets try</li>
+            <li>No, this is not, this is an <strong>ordered one</strong></li>
+        </ol>
+        <ul>
+            <li>And this?</li>
+            <li>No, this is not, this is an <strong>unordered one</strong></li>
+        </ul>
+        <dl>
+            <dt>Definition List</dt>
+            <dd>A definition list is made by &lt;dl&gt; and each defined term is &lt;dt&gt; and its definition &lt;dd&gt;</dd>
+        </dl>
+        
+        <h2>Now its time for the tables:</h2>
+        <p>A table consists in a caption, a thead (with th), tbody (with td) and tfoot (with th or td), with its correspondent rows (tr)</p>
+        <table border="5">
+            <caption>This is a Standard table</caption>
+            <thead>
+                <tr>
+                    <th>Player</th><th>Puntuation (/10)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cesar Gelabert</td><td>8</td>
+                </tr>
+                <tr>
+                    <td>Jordy Caicedo</td><td>-1</td>
+                </tr>
+                <tr>
+                    <td>Rubén Yañez</td><td>100</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Best player:</th><td>Rubén Yañez</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <table border="1">
+            <caption>This is a Combining columns and rows table</caption>
+            <thead>
+                <tr>
+                <th>HOUR</th>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>08:00-09:00</td>
+                <td rowspan="2">Math</td>
+                <td>English</td>
+                <td colspan="2">Assembly (Thur+Fri)</td>
+                </tr>
+                <tr>
+                <td>09:00-10:00</td>
+                <!-- Monday cell continues (rowspan=2) -->
+                <td>History</td>
+                <td>Physics</td>
+                <td>Physics Lab</td>
+                </tr>
+                <tr>
+                <td>10:00-11:00</td>
+                <td>Chemistry</td>
+                <td colspan="2">Seminar (Tue+Thu)</td>
+                <td>Free</td>
+                </tr>
+                <tr>
+                <td>11:00-12:00</td>
+                <td colspan="3">Project Work (Mon, Tue &amp; Thu)</td>
+                <td>Exam Prep</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                <td colspan="5">Note: this example demonstrates use of <code>rowspan</code> and <code>colspan</code>.</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h2>Websites and links:</h2>
+        <ul>
+            <li><a href="https://youtube.com" target="_blank">Youtube</a></li>
+            <li><a href="https://www.example.com" target="_blank">Example Link</a></li>
+        </ul><!--When target="_blank" then new page opens in a new tab-->
+        <p><a href="#start">Go to the start</a></p>
+
+        <h2>Form:</h2>
+        <form method="post" action="http://localhost:5500/home.html">
+            <p>
+                <label for="idName">Name:</label>
+                <input id="idName" name="Name" type="text" maxlength="25">
+            </p>
+            <p>
+                <label for="idEmail">Email:</label>
+                <input id="idEmail" name="Email" type="email" maxlength="254" placeholder="you@example.com">
+            </p>
+            <p>
+                <label for="idPhone">Phone:</label>
+                <input id="idPhone" name="Phone" type="tel" maxlength="20" placeholder="+34 600 000 000">
+            </p>
+            <p>
+                <label for="idColor">Favorite color:</label>
+                <select id="idColor" name="FavoriteColor">
+                    <optgroup label="Warm Colors">
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="yellow">Yellow</option>
+                    </optgroup>
+                    <optgroup label="Cool Colors">
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                        <option value="purple">Purple</option>
+                    </optgroup>
+                </select>
+            </p>
+            <fieldset>
+                <legend>Preferred contact method</legend>
+                <label for="contactEmail"><input id="contactEmail" type="radio" name="ContactMethod" value="email" checked> Email</label>
+                <label for="contactPhone"><input id="contactPhone" type="radio" name="ContactMethod" value="phone"> Phone</label>
+                <label for="contactSms"><input id="contactSms" type="radio" name="ContactMethod" value="sms"> SMS</label>
+            </fieldset>
+            <p>
+                <label for="idComments">Comments (max 200 chars):</label><br>
+                <textarea id="idComments" name="Comments" maxlength="200" rows="4" cols="50" placeholder="Enter up to 200 characters"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="Submit">
+                <input type="reset" value="Clear">
+            </p>
+        </form>
+
+        <p>This sends you to another page:</p>
+
+        <form method="get" action="dashboard.html">
+            <button type="submit">Dashboard</button>
+        </form>
+    </main>
+    <footer>
+        <p>This is the footer of the home web page.</p>
+        <img src="Test.png" alt="A little problem in the text" width="700">
+        <img src="RequestPost.png" alt="This shows the request post" width="700">
+        <img src="RequestFields.png" alt="This shows the request fields" width="700">
+        <p>With this as raw payload: Name=%C3%81lvaro+Puebla+Ruis%C3%A1nchez&Email=&Phone=%2B344564874152&FavoriteColor=red&ContactMethod=phone&Comments=this+is+the+comment</p>
+    </footer>
+</body>
+</html>

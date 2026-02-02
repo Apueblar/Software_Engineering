@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(pageTitle, bodyContent)">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title th:text="${pageTitle}">Product WEB</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <h1 th:text="${pageTitle}">Default title</h1>
+
+        <nav>
+            <a th:href="@{/}">Products</a> |
+            <a th:href="@{/product/add}">Add Product</a> |
+            <a th:href="@{/category/add}">Add New Category</a> |
+            <a th:href="@{/author}">About Author</a>
+        </nav>
+    </header>
+
+    <section>
+        <div th:insert="${bodyContent}">Default content</div>
+    </section>
+
+    <footer>
+        <p><a th:href="@{/author}">About Author</a></p>
+    </footer>
+</body>
+</html>

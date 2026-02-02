@@ -1,0 +1,426 @@
+/* ----------------------
+   GLOBAL STYLES
+------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    min-height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a1f0fd, #91bfff);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px; /* margin from viewport edges */
+}
+
+/* ----------------------
+   NAVIGATION BAR
+------------------------ */
+nav {
+    width: calc(100% - 40px);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+/* keep a single line and center align items visually */
+nav ul {
+    display: flex;
+    align-items: center;            /* vertical centering */
+    justify-content: center;        /* keep items centered horizontally */
+    list-style: none;
+    padding: 14px 24px;             /* tighten vertical spacing */
+    gap: 28px;                      /* even spacing between items (better than margin hack) */
+    margin: 0;
+}
+
+/* item container */
+nav ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* unified text style for links and greeting */
+nav ul li a,
+nav ul li span p {
+    color: #1f2937;                 /* dark gray */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.03rem;             /* uniform readable size */
+    font-weight: 600;               /* semi-bold like screenshot */
+    text-decoration: none;
+    letter-spacing: 0.2px;
+}
+
+/* hover for links and logout button */
+nav ul li a:hover,
+nav ul li form button:hover,
+nav ul li span p:hover {
+    color: #2563eb;                 /* blue hover */
+}
+
+/* greeting block: stack "Hello," and the email on separate lines, center-aligned */
+nav ul li span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul li span p {
+    margin: 0;
+    line-height: 1;                 /* compact stacking */
+    text-align: center;
+}
+
+/* make the email a little more prominent */
+nav ul li span p b {
+    display: block;                 /* pushes email to its own line */
+    font-weight: 800;
+    font-size: 1.06rem;
+    margin-top: 2px;
+    color: #0f172a;
+}
+
+/* style the logout form button to visually match links but stay a button */
+nav ul li form {
+    margin: 0;
+}
+nav ul li form button {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: #1f2937;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+nav ul li form button:hover {
+    background: rgba(37,99,235,0.06);
+    border-color: #2b6be6;
+    color: #2563eb;
+}
+
+/* slightly reduce left/right spacing on very small screens */
+@media (max-width: 720px) {
+    nav ul { gap: 14px; padding: 10px; }
+    nav ul li a,
+    nav ul li span p { font-size: 0.96rem; }
+    nav ul li span p b { font-size: 0.98rem; }
+}
+
+/* ----------------------
+   HEADER
+------------------------ */
+header {
+    padding: 120px 20px 40px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* ----------------------
+   MAIN CONTENT
+------------------------ */
+.main-content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.centered-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.centered-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------------
+   LOGIN-SIGNING STYLING
+------------------------ */
+.login-container {
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    width: 350px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #6EC1E4;
+    box-shadow: 0 0 5px rgba(110,193,228,0.5);
+    outline: none;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6EC1E4;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #5AA8C9;
+}
+
+.login-container .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-container label {
+    text-align: left;
+    font-weight: 500;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* ----------------------
+   ERROR STYLING
+------------------------ */
+.alert { padding: 10px; margin-bottom: 12px; border-radius: 4px; }
+.alert-error { background: #ffe6e6; color: #900; border: 1px solid #f5c2c2; }
+.alert-success { background: #e6ffe6; color: #046; border: 1px solid #b6e3b6; }
+
+/* ----------------------
+   TABLE STYLING
+------------------------ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background: #66a6ff;
+    color: #fff;
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* ----------------------
+   FORM STYLING
+------------------------ */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 0 auto; /* horizontal centering, no top margin */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #66a6ff;
+    box-shadow: 0 0 5px rgba(102, 166, 255, 0.5);
+}
+
+.form-container button {
+    background: #66a6ff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+    background: #5590e6;
+    transform: translateY(-2px);
+}
+
+/* ----------------------
+   LINK STYLING
+------------------------ */
+a {
+    color: #66a6ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.2s;
+}
+
+a:hover {
+    color: #5590e6;
+    transform: translateY(-2px);
+}
+
+a.button-link {
+    display: inline-block;
+    background: #66a6ff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+a.button-link:hover {
+    background: #5590e6;
+    transform: translateY(-2px);
+}
+
+/* ----------------------
+   FOOTER
+------------------------ */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+/* ----------------------
+   CART INLINE FORM FIX
+------------------------ */
+
+/* inline add-to-cart form */
+.inline-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* quantity input (small + subtle) */
+.inline-form .qty-input {
+    width: 80px;
+    padding: 6px 8px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* small cart button (matches app style, not oversized) */
+.inline-form button,
+.inline-form .small-btn {
+    padding: 6px 12px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    background: #66a6ff;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.inline-form button:hover {
+    background: #5590e6;
+    transform: translateY(-1px);
+}
+
+/* allow button.button-link to look like a.button-link */
+button.button-link {
+    display: inline-block;
+    background: #66a6ff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 8px;
+}
+
+/* hover behavior identical to <a class="button-link"> */
+button.button-link:hover {
+    background: #5590e6;
+    transform: translateY(-2px);
+}

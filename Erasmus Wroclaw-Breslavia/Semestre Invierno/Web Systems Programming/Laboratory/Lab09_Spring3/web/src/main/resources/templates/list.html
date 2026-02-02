@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{layout :: layout('Lists', ~{::content})}">
+<div th:fragment="content">
+
+    <p>Products:
+        <span sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <a th:href="@{/product/add}">Add New Product</a>
+        </span>
+    </p>
+
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Weight</th><th>Price</th><th>Category</th><th>Actions</th></tr>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.weight}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.category.name}"></td>
+            <td>
+                <a th:href="@{|/product/${p.id}|}">Details</a>
+
+                <!-- ADMIN actions -->
+                <span sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    | <a th:href="@{|/product/edit/${p.id}|}">Edit</a>
+                    | <a th:href="@{|/product/delete/${p.id}|}">Remove</a>
+                </span>
+
+                <!-- USER add to cart -->
+                <span sec:authorize="isAuthenticated() and !hasAuthority('ROLE_ADMIN')">
+                    |
+                    <form th:action="@{|/cart/add/${p.id}|}" method="post" class="inline-form">
+                        <input type="number" name="qty" value="1" min="1" class="qty-input" />
+                        <button type="submit">Add</button>
+                    </form>
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- CATEGORIES (ADMIN ONLY) -->
+    <p sec:authorize="hasAuthority('ROLE_ADMIN')">
+        Categories:
+        <a th:href="@{/category/add}">Add New Category</a>
+    </p>
+
+    <!-- Errors: -->
+    <div th:if="${param.error}" sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <div th:switch="${param.error[0]}">
+            <div th:case="'category-in-use'" class="alert alert-error">
+                Category has products and cannot be deleted.
+            </div>
+
+            <div th:case="'category-not-found'" class="alert alert">
+                Category not found.
+            </div>
+
+            <!--Another type of error-->
+            <div th:case="*" class="alert alert-error">
+                An error occurred.
+            </div>
+        </div>
+    </div>
+
+    <table sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <tr><th>ID</th><th>Name</th><th>Code</th><th>Actions</th></tr>
+        <tr th:each="c : ${categories}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.code}"></td>
+            <td>
+                <span sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <a th:href="@{|/category/edit/${c.id}|}">Edit</a> |
+                    <a th:href="@{|/category/delete/${c.id}|}">Remove</a>
+                </span>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</html>

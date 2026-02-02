@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout('Edit Product', ~{::content})}">
+<div th:fragment="content">
+    <div class="form-container">
+        <form th:action="@{|/product/edit/${product.id}|}" th:object="${product}" method="post">
+            <label for="name">Name:</label>
+            <input id="name" th:field="*{name}">
+            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+            <label for="weight">Weight:</label>
+            <input id="weight" th:field="*{weight}" type="number" step="0.01">
+            <div class="error" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
+
+            <label for="price">Price:</label>
+            <input id="price" th:field="*{price}" type="number" step="0.01">
+            <div class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+
+            <label for="category">Category:</label>
+            <select id="category" th:field="*{category.id}">
+                <option th:each="c : ${categories}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('category') or #fields.hasErrors('category.id')}"
+                 th:errors="*{category}">Category error</div>
+
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+            <div class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <a href="/">Back</a>
+</div>
+</html>

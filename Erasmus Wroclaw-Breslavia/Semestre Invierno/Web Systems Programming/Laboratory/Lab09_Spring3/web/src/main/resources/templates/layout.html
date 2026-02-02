@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout(pageTitle, bodyContent)">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Product WEB</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header>
+    <h1 th:text="${pageTitle}">Default title</h1>
+
+    <nav>
+        <ul>
+
+            <!-- Visible to everyone -->
+            <li><a th:href="@{/}">Products</a></li>
+            <li><a th:href="@{/author}">About Author</a></li>
+
+            <!-- NOT LOGGED IN -->
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+            </li>
+
+            <!-- LOGGED IN (any role) -->
+            <li sec:authorize="isAuthenticated()">
+                <span>
+                    <p>Hello, <b sec:authentication="name">user</b></p>
+                </span>
+            </li>
+
+            <!-- ADMIN ONLY -->
+            <li sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <a th:href="@{/product/add}">Add Product</a>
+            </li>
+            <li sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <a th:href="@{/category/add}">Add Category</a>
+            </li>
+
+            <!-- CART ICON: visible to any authenticated user -->
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/cart}" class="nav-cart" title="View cart">
+                    Cart:
+                    <span class="cart-badge" th:text="${cartCount != null ? cartCount : 0}">0</span>
+                </a>
+            </li>
+
+            <!-- LOGOUT -->
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <div th:insert="${bodyContent}">Default content</div>
+</section>
+
+<footer>
+    <p><a th:href="@{/author}">About Author</a></p>
+</footer>
+
+</body>
+</html>

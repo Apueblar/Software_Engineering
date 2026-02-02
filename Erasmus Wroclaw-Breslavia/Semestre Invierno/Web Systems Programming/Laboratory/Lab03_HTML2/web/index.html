@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WSP L03 -- Start</title>
+  <meta name="description" content="WSP-L03 HTML5 start page with semantic layout and links.">
+  <meta name="keywords" content="WSP, HTML5, start, nav, article, section">
+</head>
+<body>
+  <header>
+    <h1>WSP-L03 -- HTML5 part 2 (Start)</h1>
+    <nav aria-label="Main site navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="personal_form.html">Personal Form</a></li>
+        <li><a href="about.html">About / Extras</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header><h2>Project overview</h2></header>
+
+      <section>
+        <h3>Goal</h3>
+        <p>Create a multi-page HTML5 site demonstrating semantic elements:
+          <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>,
+          <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>,
+          <code>&lt;meter&gt;</code>, <code>&lt;details&gt;/&lt;summary&gt;</code>.</p>
+      </section>
+
+      <section>
+        <h3>Quick links</h3>
+        <ol>
+          <li><a href="personal_form.html">Open the Personal Form</a> — includes 10+ input types and validation.</li>
+          <li><a href="about.html">Extras: meter, details, aside</a></li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Progress meter</h3>
+        <p>Completion estimate:</p>
+        <meter id="progress" min="0" max="100" low="30" high="80" optimum="100" value="55">55%</meter>
+      </section>
+    </article>
+
+    <aside>
+      <h4>Notes</h4>
+      <p>Each page uses <code>utf-8</code> and unique meta tags. Validate pages at the W3C validator.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <p>This is the footer of the home web page.</p>
+        <img src="Test.png" alt="A little problem in the text" width="700">
+        <img src="RequestPost.png" alt="This shows the request post" width="700">
+        <img src="RequestFields.png" alt="This shows the request fields" width="700">
+        <p>With this as raw payload: given-name=%C3%81lvaro&family-name=Puebla&birth-month=November&email=UO299874%40UNIOVI.ES&phone=%2B34+112+358+132&arrival=2000-11-06&favcolor=%2300ffcc&happiness=10&lang=english&lang=spanish&education=highschool&site=https%3A%2F%2Fgoogle.com&experience=10&search=Zelda&pwd=thisisthepassword&photo=vivaEspa%C3%B1a.jpg&bio=short+comment+%3A%29&country=es</p>
+  </footer>
+</body>
+</html>

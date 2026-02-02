@@ -1,0 +1,96 @@
+/* Reset and base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+body {
+  line-height: 1.45;
+  color: #222;
+  padding: 1rem;
+  background-image: url("../fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  margin: 0;
+  height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0; */
+  background-color: rgba(255, 255, 255, 0.4); /* or rgba(0,0,0,0.4) for a dark overlay */
+  z-index: -1; /* places it behind text */
+}
+
+.site-header{background:#223;background-image:linear-gradient(90deg,#223,#335);color:#fff;padding:1rem;border-radius:8px}
+.site-header h1{margin:0;font-size:1.5rem}
+.site-footer{background:#444444;background-image:linear-gradient(90deg,#223,#335);color:#fff;padding:1rem;border-radius:8px;position:fixed;bottom:200px;left:100px;height:80px;width:80%;}
+nav ul{list-style:none;padding:0;margin:0;display:flex;gap:0.75rem}
+nav a{color:#fff;text-decoration:none;padding:0.25rem 0.5rem;border-radius:4px}
+nav a:hover{background:rgba(255,255,255,0.08)}
+.back{display:inline-block;margin:0.5rem 0;color:#036;text-decoration:none}
+
+
+/* Typography — different size units (requirement 3) */
+.fs-px{font-size:18px}
+.fs-em{font-size:1.25em}
+.fs-pt{font-size:12pt}
+.fs-percent{font-size:120%}
+.leading{line-height:1.8}
+.demo-letters{letter-spacing:0.05em;word-spacing:0.15em}
+
+
+/* Pseudo-element demo */
+.quote::before{
+    content:"\201C";
+    font-size:2rem;
+    vertical-align:middle;
+    margin-right:0.25rem;
+    color:#888
+}
+
+
+/* Lists */
+ul.a{list-style-type:circle}
+ol.alpha{list-style-type:lower-alpha}
+
+
+/* Complex selectors (requirement 5) */
+.outer p{color:green}
+.outer > p{background:yellow;padding:0.25rem}
+p.important.hard{font-size:larger}
+
+
+/* Box-model & backgrounds (requirement 4 & 6) */
+.outer-box{width:320px;height:220px;background-image:url('assets/placeholder-1.png');background-size:cover;background-repeat:no-repeat;background-position:center top;padding:1rem;margin:1rem;border:1px solid #ccc}
+
+
+/* Demonstrate background repeat and positioning */
+.bg-repeat-demo{background-image:url('assets/placeholder-2.png');background-repeat:repeat-x;background-position:left top;background-attachment:fixed}
+
+
+/* borders */
+.border-sample{border-width:5px;border-style:solid;border-color:#4a90e2}
+
+
+/* Table styling (requirement 9) */
+.styled-table{border-collapse:collapse;width:100%;max-width:780px}
+.styled-table th,.styled-table td{padding:0.5rem;border:1px solid #ddd}
+.styled-table thead th{background:#223;color:#fff}
+.styled-table tbody tr:nth-child(odd){background:#fbfbfb}
+
+
+/* Form styling */
+.demo-form{display:grid;gap:0.5rem;max-width:420px}
+.demo-form input,.demo-form select{padding:0.5rem;border:1px solid #ccc;border-radius:4px}
+.demo-form button{padding:0.6rem 1rem;border-radius:6px;border:none;background:#2a6;cursor:pointer}
+
+
+/* Box model: padding, margin, width, height */
+.d1{margin:50px 80px 100px 20px;border:15px solid aquamarine;padding:30px;height:80px;width:100px}
+
+
+/* Positioning (requirement 6) */
+.relative-demo{position:relative;top:10px;left:15px}
+.absolute-parent{position:relative;height:200px;width:320px;background: #0f7;}
+
+.imageSporting{position:sticky;top:50px;left:50px;width:100px;height:auto;border:2px solid #000;}

@@ -1,0 +1,7 @@
+<nav class="menu">
+  <ul>
+    <li><a href="/articles" class="<%= (request && request.path.startsWith('/articles')) ? 'active' : '' %>">Article list</a></li>
+    <li><a href="/articles/new" class="<%= (request && request.path === '/articles/new') ? 'active' : '' %>">Add new article</a></li>
+    <li><a href="/about" class="<%= (request && request.path === '/about') ? 'active' : '' %>">About</a></li>
+  </ul>
+</nav>

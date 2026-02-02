@@ -1,0 +1,17 @@
+/* Page layout (HTML5 semantic elements present) */
+body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; padding:0;}
+header, nav, main, article, section, aside, footer{padding:1rem;}
+header{background:linear-gradient(90deg,#0b5fa5,#2fa1d6); color:white}
+nav{background:#f3f3f3}
+nav ul{list-style:none; padding:0; margin:0; display:flex; gap:1rem}
+
+/* Table styles */
+table{width:100%; border-collapse:collapse; margin-top:1rem;}
+thead th{background:#0b5fa5; color:white; font-weight:700; padding:10px; border:1px solid #ccc; text-align:left}
+tbody td{padding:8px; border:1px solid #ddd}
+tbody tr:nth-child(odd){background:#fbfbfb}
+tbody tr:nth-child(even){background:#ffffff}
+caption{caption-side:top; font-weight:700; padding:8px}
+
+/* Small responsive touches */
+@media (max-width:600px){ thead th, tbody td{font-size:0.9rem}}

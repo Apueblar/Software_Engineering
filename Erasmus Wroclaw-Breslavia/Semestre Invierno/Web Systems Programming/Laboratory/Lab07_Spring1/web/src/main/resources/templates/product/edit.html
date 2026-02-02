@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout('Edit Product', ~{::content})}">
+    <div th:fragment="content">
+        <form th:action="@{|/product/edit/${product.id}|}" th:object="${product}" method="post">
+            Name: <input th:field="*{name}"><br>
+            <label>Category:</label>
+            <select th:field="*{category}">
+                <option th:each="c : ${categories}"
+                        th:value="${c}"
+                        th:text="${c}">
+                </option>
+            </select>
+            <br>
+            Price: <input th:field="*{price}" type="number" step="0.01"><br>
+            Description: <textarea th:field="*{description}"></textarea><br>
+
+            <button type="submit">Save</button>
+        </form>
+
+        <a href="/product">Back</a>
+    </div>
+</html>

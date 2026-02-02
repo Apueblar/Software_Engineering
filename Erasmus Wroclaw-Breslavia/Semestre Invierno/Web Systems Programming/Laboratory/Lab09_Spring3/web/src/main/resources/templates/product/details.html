@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout('Product Details', ~{::content})}">
+    <div th:fragment="content" class="centered-container">
+        <p><b>Name:</b> <span th:text="${product.name}">Name</span></p>
+        <p><b>Weight:</b> <span th:text="${product.weight}">0.0</span></p>
+        <p><b>Price:</b> <span th:text="${product.price}">0.0</span></p>
+        <p><b>Category:</b> <span th:text="${product.category.name}"/></p>
+        <p><b>Description:</b> <span th:text="${product.description}">Description</span></p>
+
+        <a href="/">Back</a>
+    </div>
+</html>

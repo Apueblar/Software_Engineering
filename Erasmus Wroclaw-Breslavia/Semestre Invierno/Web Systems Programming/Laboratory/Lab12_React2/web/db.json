@@ -1,0 +1,68 @@
+{
+  "categories": [
+    {
+      "name": "Electronics",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Books"
+    },
+    {
+      "id": 3,
+      "name": "Clothing"
+    },
+    {
+      "id": 4,
+      "name": "Home & Garden"
+    },
+    {
+      "id": 5,
+      "name": "Sports"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Laptop HP ProBook",
+      "description": "Professional laptop with 16GB RAM and 512GB SSD",
+      "price": 899.99,
+      "categoryId": 1,
+      "id": 1
+    },
+    {
+      "title": "JavaScript",
+      "description": "A comprehensive guide to JavaScript best practices",
+      "price": 29.99,
+      "categoryId": 2,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "Wireless Mouse",
+      "description": "Ergonomic wireless mouse with USB receiver",
+      "price": 24.99,
+      "categoryId": 1
+    },
+    {
+      "id": 4,
+      "title": "Summer T-Shirt",
+      "description": "Comfortable cotton t-shirt for summer",
+      "price": 19.99,
+      "categoryId": 3
+    },
+    {
+      "id": 5,
+      "title": "Garden Hose",
+      "description": "50ft expandable garden hose with spray nozzle",
+      "price": 34.99,
+      "categoryId": 4
+    },
+    {
+      "id": 6,
+      "title": "Yoga Mat",
+      "description": "Non-slip yoga mat with carrying strap",
+      "price": 39.99,
+      "categoryId": 5
+    }
+  ]
+}

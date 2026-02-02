@@ -1,0 +1,15 @@
+<% layout('layout', { title: 'About', request: request }) %>
+
+<section>
+  <h2>About this application</h2>
+  <p>This simple Articles Manager was implemented for the Web System Programming lab using Node.js, Express, Sequelize and SQLite.</p>
+
+  <h3>Developer</h3>
+  <ul class="about-list">
+    <li><strong>Name</strong>: <%= developer.name %></li>
+    <li><strong>Email</strong>: <%= developer.email %></li>
+    <li><strong>Student ID</strong>: <%= developer.studentId %></li>
+  </ul>
+
+  <p>Return to the <a href="/articles">article list</a>.</p>
+</section>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WSP L03 -- Personal Form</title>
+  <meta name="description" content="Personal form demonstrating 10+ input types, autocomplete and client validation.">
+  <meta name="keywords" content="form, html5, autocomplete, validation, datalist">
+</head>
+<body>
+  <header>
+    <h1>Personal Form (WSP-L03)</h1>
+    <nav aria-label="Form navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h2>Fill your personal data</h2>
+      <p>Required fields: <strong>Last name</strong> and <strong>Email</strong>. After submitting, inspect DevTools → Network to confirm request.</p>
+
+      <form method="post" action="personal_form.html" autocomplete="on">
+        <!-- 1: text (given name) -->
+        <p>
+          <label for="given-name">Name: *</label>
+          <input id="given-name" name="given-name" type="text" autocomplete="given-name" placeholder="e.g. John" autofocus required>
+          <span>First name</span>
+        </p>
+
+        <!-- 2: text (family name) required -->
+        <p>
+          <label for="family-name">Last name: *</label>
+          <input id="family-name" name="family-name" type="text" autocomplete="family-name" placeholder="e.g. Doe" required>
+          <span>Required</span>
+        </p>
+
+        <!-- 3: datalist (month of birth) -->
+        <p>
+          <label for="birth-month">Month of birth:</label>
+          <input id="birth-month" name="birth-month" list="months" placeholder="Select or type" autocomplete="bday-month">
+          <datalist id="months">
+            <option value="January">
+            <option value="February">
+            <option value="March">
+            <option value="April">
+            <option value="May">
+            <option value="June">
+            <option value="July">
+            <option value="August">
+            <option value="September">
+            <option value="October">
+            <option value="November">
+            <option value="December">
+          </datalist>
+          <span>Choose month</span>
+        </p>
+
+        <!-- 4: email required -->
+        <p>
+          <label for="email">E-mail: *</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <span>Required — validated by browser</span>
+        </p>
+
+        <!-- 5: tel with pattern -->
+        <p>
+          <label for="phone">Phone:</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000"
+                 pattern="^\+?[0-9\s\-\(\)]{7,20}$">
+          <span>Pattern: +34 600 000 000 (7-20 digits/chars)</span>
+        </p>
+
+        <!-- 6: date -->
+        <p>
+          <label for="arrival">Date of arriving:</label>
+          <input id="arrival" name="arrival" type="date" autocomplete="bday">
+          <span>Pick a date</span>
+        </p>
+
+        <!-- 7: color -->
+        <p>
+          <label for="favcolor">Favorite color:</label>
+          <input id="favcolor" name="favcolor" type="color" value="#0066cc" autocomplete="off">
+          <span>Color picker</span>
+        </p>
+
+        <!-- 8: range (slider) -->
+        <p>
+          <label for="happiness">Happiness level (0-10):</label>
+          <input id="happiness" name="happiness" type="range" min="0" max="10" value="5" step="1">
+          <span>Slider 0-10</span>
+        </p>
+
+        <!-- 9: checkboxes (languages) -->
+        <fieldset>
+          <legend>Known languages</legend>
+          <p><label><input type="checkbox" name="lang" value="english"> English</label></p>
+          <p><label><input type="checkbox" name="lang" value="spanish"> Spanish</label></p>
+          <p><label><input type="checkbox" name="lang" value="polish"> Polish</label></p>
+          <p><label><input type="checkbox" name="lang" value="other"> Other</label></p>
+        </fieldset>
+
+        <!-- 10: radio (education) -->
+        <fieldset>
+          <legend>Education level</legend>
+          <p><label><input type="radio" name="education" value="highschool" required> High School</label></p>
+          <p><label><input type="radio" name="education" value="bachelor"> Bachelor</label></p>
+          <p><label><input type="radio" name="education" value="master"> Master</label></p>
+          <p><label><input type="radio" name="education" value="phd"> PhD</label></p>
+        </fieldset>
+
+        <!-- 11: url -->
+        <p>
+          <label for="site">Personal webpage (URL):</label>
+          <input id="site" name="site" type="url" autocomplete="url" placeholder="https://example.com">
+          <span>Include http/https</span>
+        </p>
+
+        <!-- 12: number -->
+        <p>
+          <label for="experience">Years of experience:</label>
+          <input id="experience" name="experience" type="number" min="0" max="80" placeholder="0" autocomplete="off">
+          <span>Number 0–80</span>
+        </p>
+
+        <!-- 13: search -->
+        <p>
+          <label for="search">Search term:</label>
+          <input id="search" name="search" type="search" placeholder="search...">
+          <span>Optional</span>
+        </p>
+
+        <!-- 14: password -->
+        <p>
+          <label for="pwd">Password (optional):</label>
+          <input id="pwd" name="pwd" type="password" placeholder="••••••">
+          <span>Password input</span>
+        </p>
+
+        <!-- 15: file (optional) -->
+        <p>
+          <label for="photo">Upload photo (optional):</label>
+          <input id="photo" name="photo" type="file" accept="image/*">
+          <span>File input — if used form must be POST + enctype; here left for demonstration</span>
+        </p>
+
+        <!-- 16: textarea (bio) -->
+        <p>
+          <label for="bio">Short bio (max 200 chars):</label><br>
+          <textarea id="bio" name="bio" maxlength="200" rows="4" cols="40" placeholder="Tell us about yourself (max 200 chars)"></textarea>
+        </p>
+
+        <!-- select with optgroup -->
+        <p>
+          <label for="country">Country:</label>
+          <select id="country" name="country" autocomplete="country">
+            <optgroup label="Europe">
+              <option value="es">Spain</option>
+              <option value="pl">Poland</option>
+              <option value="nl">Netherlands</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="us">United States</option>
+              <option value="other">Other</option>
+            </optgroup>
+          </select>
+          <span>Choose country</span>
+        </p>
+
+        <p>
+          <input type="submit" value="Send form">
+          <input type="reset" value="Clear form">
+        </p>
+      </form>
+    </article>
+
+    <aside>
+      <details>
+        <summary>Form hints</summary>
+        <p>Use browser autocomplete. Required: name, last name and email. Phone validated with pattern. Inspect DevTools → Network after submit.</p>
+      </details>
+    </aside>
+  </main>
+
+  <footer>
+    <p>Form uses method="post" so submitted values appear in the URL (query string) for inspection.</p>
+    <img src="Sporting.png" alt="Sportin Logo" height="50">
+  </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<% layout('layout', { title: (article && article.id) ? 'Edit Article' : 'Add Article', request: request }) %>
+
+<section>
+  <h2><%= (article && article.id) ? 'Edit Article' : 'Add New Article' %></h2>
+
+  <% if (typeof errors !== 'undefined' && errors.length) { %>
+    <div class="errors">
+      <ul>
+        <% errors.forEach(function(e){ %>
+          <li><%= e.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form method="post" action="<%= action %>">
+    <% if (article && article.id) { %>
+      <div class="field">
+        <label>ID</label>
+        <input type="text" value="<%= article.id %>" disabled />
+      </div>
+    <% } %>
+
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" name="name" value="<%= article.name || '' %>" required />
+    </div>
+
+    <div class="field">
+      <label for="category">Category</label>
+      <input id="category" name="category" value="<%= article.category || '' %>" required />
+    </div>
+
+    <div class="field">
+      <label for="price">Price</label>
+      <input id="price" name="price" type="number" step="0.01" min="0" value="<%= (article.price != null) ? article.price : '' %>" required />
+    </div>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea id="description" name="description"><%= article.description || '' %></textarea>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn" type="submit"><%= (article && article.id) ? 'Save changes' : 'Add article' %></button>
+      <a class="btn secondary" href="/articles">Cancel</a>
+    </div>
+  </form>
+</section>
