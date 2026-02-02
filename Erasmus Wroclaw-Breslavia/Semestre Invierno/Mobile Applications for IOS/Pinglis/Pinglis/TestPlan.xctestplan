@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "61EEB4AE-90E1-41A5-9AAA-AC9C2495CA56",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "CoursesPerUserTests",
+        "LeaderboardTests",
+        "LeaderboardTests\/testLeaderboardUpdatesUserScore()",
+        "LessonCompletionTests",
+        "MusicManagerTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Pinglish.xcodeproj",
+        "identifier" : "9F7AAA612ED5CC3F003F288C",
+        "name" : "PinglishTests"
+      }
+    },
+    {
+      "skippedTests" : [
+        "PinglishUITests",
+        "PinglishUITests\/testExample()",
+        "PinglishUITests\/testLaunchPerformance()",
+        "PinglishUITestsLaunchTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Pinglish.xcodeproj",
+        "identifier" : "8876E9DC2F2FD750001A263F",
+        "name" : "PinglishUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
