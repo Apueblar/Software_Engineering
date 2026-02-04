@@ -1,0 +1,84 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            a1:0c:6d:38:51:55:0a:75:2c:c6:f3:cd:2b:f8:60:bc
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=alvaroscar
+        Validity
+            Not Before: Dec  7 20:53:42 2025 GMT
+            Not After : Mar 11 20:53:42 2028 GMT
+        Subject: CN=alvaroscar
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a5:2a:15:99:43:9f:68:65:f6:26:0b:d5:e9:05:
+                    03:33:1e:de:4b:c6:c6:d8:f1:f1:f2:90:18:ac:46:
+                    b5:93:98:4a:f8:45:18:a7:69:96:61:bc:b6:0b:6b:
+                    3c:b1:c4:65:1f:92:39:e1:01:f5:df:37:d2:c6:19:
+                    f8:bb:16:8f:5a:64:14:d1:99:b6:91:92:05:05:4c:
+                    0f:a8:ca:79:e4:45:f6:65:da:9d:e0:86:c1:91:e5:
+                    97:73:80:06:37:29:14:e1:de:c9:12:77:28:5c:c0:
+                    d0:d7:da:8d:54:27:c9:1c:38:45:d9:2e:4a:8c:1a:
+                    58:84:b4:6e:4d:d0:28:9a:b4:5d:63:2f:01:bc:1e:
+                    b5:5d:ad:ed:3e:a0:65:b4:58:51:e3:4f:c0:a2:f3:
+                    67:73:df:21:40:39:26:79:40:39:17:7d:6b:a7:70:
+                    f5:5e:80:2a:5f:5e:c0:65:47:2a:76:fc:41:24:13:
+                    5b:38:1f:f2:75:b4:c2:74:12:95:f2:ba:6f:53:0e:
+                    3a:3b:fc:ba:d7:bc:05:39:bf:66:6b:c0:74:91:2b:
+                    6d:3b:41:9c:71:0b:c5:55:54:8f:a6:cf:af:50:15:
+                    a9:2c:01:ec:cc:67:43:95:8d:0d:a6:69:67:a2:55:
+                    84:ac:93:50:1e:18:e6:f8:c8:f5:e9:3d:9c:c9:74:
+                    3f:d7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                D9:ED:78:D0:BA:74:B0:94:68:F1:A8:27:B6:89:73:F0:39:34:B5:C4
+            X509v3 Authority Key Identifier: 
+                keyid:11:D5:6E:4D:02:74:B1:0D:4B:4A:C9:DB:CD:30:69:79:62:AB:F3:17
+                DirName:/CN=alvaroscar
+                serial:66:BB:C8:BB:92:D1:01:9D:E1:A4:D3:7F:1B:66:E8:17:BE:A2:E1:76
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        b2:37:76:e4:35:e8:9e:02:aa:b4:c7:f8:5d:9f:c0:68:6a:60:
+        5d:cd:a5:94:56:28:07:9c:9d:7a:30:36:9c:9e:1a:36:e2:57:
+        60:d0:6c:91:2a:a4:af:0a:75:9d:a7:ff:b8:91:28:74:0b:2d:
+        8c:74:f7:e1:ae:8d:b0:33:82:ef:85:3c:df:a2:f9:48:2a:e2:
+        e0:e1:2b:1d:44:e6:a6:a6:00:1e:29:d8:27:6d:ba:6f:3b:7e:
+        70:e2:10:ac:d1:dc:f0:5e:7d:19:28:5f:1c:e3:6d:1b:89:56:
+        b9:00:25:9f:7c:f8:fc:ab:26:ce:6a:7f:5a:35:ca:e0:3c:df:
+        22:9f:56:2a:03:43:a1:1f:0b:8e:f0:b1:9e:d0:73:8a:0d:ea:
+        4f:20:17:b7:9d:0b:34:ae:d3:44:62:b0:f4:24:0a:45:d5:bb:
+        90:78:76:75:ae:11:19:d3:66:bb:3c:70:50:5f:f5:d7:8f:83:
+        83:e3:09:61:3a:80:e4:a4:e3:88:c0:a7:3e:a6:cc:13:3f:a4:
+        92:50:30:28:4e:0e:64:bd:83:fc:5e:6d:80:05:8a:89:0f:4c:
+        8f:75:88:0a:d3:fe:eb:bd:4d:fc:d0:4a:89:e2:88:ec:04:3d:
+        18:8f:8a:3e:64:fb:dd:05:77:70:8d:d8:64:1d:83:55:75:3c:
+        56:40:ec:e2
+-----BEGIN CERTIFICATE-----
+MIIDVzCCAj+gAwIBAgIRAKEMbThRVQp1LMbzzSv4YLwwDQYJKoZIhvcNAQELBQAw
+FTETMBEGA1UEAwwKYWx2YXJvc2NhcjAeFw0yNTEyMDcyMDUzNDJaFw0yODAzMTEy
+MDUzNDJaMBUxEzARBgNVBAMMCmFsdmFyb3NjYXIwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQClKhWZQ59oZfYmC9XpBQMzHt5LxsbY8fHykBisRrWTmEr4
+RRinaZZhvLYLazyxxGUfkjnhAfXfN9LGGfi7Fo9aZBTRmbaRkgUFTA+oynnkRfZl
+2p3ghsGR5ZdzgAY3KRTh3skSdyhcwNDX2o1UJ8kcOEXZLkqMGliEtG5N0CiatF1j
+LwG8HrVdre0+oGW0WFHjT8Ci82dz3yFAOSZ5QDkXfWuncPVegCpfXsBlRyp2/EEk
+E1s4H/J1tMJ0EpXyum9TDjo7/LrXvAU5v2ZrwHSRK207QZxxC8VVVI+mz69QFaks
+AezMZ0OVjQ2maWeiVYSsk1AeGOb4yPXpPZzJdD/XAgMBAAGjgaEwgZ4wCQYDVR0T
+BAIwADAdBgNVHQ4EFgQU2e140Lp0sJRo8agntolz8Dk0tcQwUAYDVR0jBEkwR4AU
+EdVuTQJ0sQ1LSsnbzTBpeWKr8xehGaQXMBUxEzARBgNVBAMMCmFsdmFyb3NjYXKC
+FGa7yLuS0QGd4aTTfxtm6Be+ouF2MBMGA1UdJQQMMAoGCCsGAQUFBwMBMAsGA1Ud
+DwQEAwIFoDANBgkqhkiG9w0BAQsFAAOCAQEAsjd25DXongKqtMf4XZ/AaGpgXc2l
+lFYoB5ydejA2nJ4aNuJXYNBskSqkrwp1naf/uJEodAstjHT34a6NsDOC74U836L5
+SCri4OErHUTmpqYAHinYJ226bzt+cOIQrNHc8F59GShfHONtG4lWuQAln3z4/Ksm
+zmp/WjXK4DzfIp9WKgNDoR8LjvCxntBzig3qTyAXt50LNK7TRGKw9CQKRdW7kHh2
+da4RGdNmuzxwUF/114+Dg+MJYTqA5KTjiMCnPqbMEz+kklAwKE4OZL2D/F5tgAWK
+iQ9Mj3WICtP+671N/NBKieKI7AQ9GI+KPmT73QV3cI3YZB2DVXU8VkDs4g==
+-----END CERTIFICATE-----

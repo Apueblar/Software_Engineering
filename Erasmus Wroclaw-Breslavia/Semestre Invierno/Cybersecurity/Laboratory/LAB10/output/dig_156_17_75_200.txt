@@ -1,0 +1,29 @@
+
+; <<>> DiG 9.19.21-1+b1-Debian <<>> -x 156.17.75.200
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39846
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 3
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: d182dd7fe34de397598f6960693c6c38e98460ac8a6f9f12 (good)
+;; QUESTION SECTION:
+;200.75.17.156.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+200.75.17.156.in-addr.arpa. 3536 IN	PTR	host-156-17-75-200.pwr.edu.pl.
+
+;; AUTHORITY SECTION:
+75.17.156.in-addr.arpa.	86336	IN	NS	dns2.pwr.edu.pl.
+75.17.156.in-addr.arpa.	86336	IN	NS	dns.pwr.edu.pl.
+
+;; ADDITIONAL SECTION:
+dns.pwr.edu.pl.		301	IN	A	156.17.18.10
+dns2.pwr.edu.pl.	301	IN	A	156.17.18.11
+
+;; Query time: 0 msec
+;; SERVER: 10.138.0.1#53(10.138.0.1) (UDP)
+;; WHEN: Fri Dec 12 20:25:43 CET 2025
+;; MSG SIZE  rcvd: 195
+

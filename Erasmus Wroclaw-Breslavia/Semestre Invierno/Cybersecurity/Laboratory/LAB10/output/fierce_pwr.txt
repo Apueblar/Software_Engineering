@@ -1,0 +1,292 @@
+NS: dns.pwr.wroc.pl. ns2.net.icm.edu.pl. dns.pwr.edu.pl. dns2.pwr.edu.pl. dns3.pwr.edu.pl. sun2.pwr.wroc.pl. ns1.net.icm.edu.pl. dns4.pwr.edu.pl.
+SOA: dns.pwr.edu.pl. (156.17.18.10)
+Zone: failure
+Wildcard: failure
+Found: ad.pwr.edu.pl. (156.17.75.200)
+Nearby:
+{'156.17.75.195': 'host-156-17-75-195.pwr.edu.pl.',
+ '156.17.75.196': 'host-156-17-75-196.pwr.edu.pl.',
+ '156.17.75.197': 'host-156-17-75-197.pwr.edu.pl.',
+ '156.17.75.198': 'host-156-17-75-198.pwr.edu.pl.',
+ '156.17.75.199': 'host-156-17-75-199.pwr.edu.pl.',
+ '156.17.75.200': 'host-156-17-75-200.pwr.edu.pl.',
+ '156.17.75.201': 'host-156-17-75-201.pwr.edu.pl.',
+ '156.17.75.202': 'host-156-17-75-202.pwr.edu.pl.',
+ '156.17.75.203': 'host-156-17-75-203.pwr.edu.pl.',
+ '156.17.75.204': 'host-156-17-75-204.pwr.edu.pl.',
+ '156.17.75.205': 'host-156-17-75-205.pwr.edu.pl.'}
+Found: ae.pwr.edu.pl. (156.17.193.59)
+Nearby:
+{'156.17.193.59': 'vm-webmin2.wcss.wroc.pl.',
+ '156.17.193.62': 'gw-v119.wask.wroc.pl.'}
+Found: ai.pwr.edu.pl. (104.198.14.52)
+Nearby:
+{'104.198.14.47': '47.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.48': '48.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.49': '49.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.50': '50.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.51': '51.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.52': '52.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.53': '53.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.54': '54.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.55': '55.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.56': '56.14.198.104.bc.googleusercontent.com.',
+ '104.198.14.57': '57.14.198.104.bc.googleusercontent.com.'}
+Found: backup.pwr.edu.pl. (10.25.0.12)
+Found: bb.pwr.edu.pl. (156.17.193.59)
+Found: beta.pwr.edu.pl. (10.25.0.12)
+Found: bg.pwr.edu.pl. (156.17.79.6)
+Nearby:
+{'156.17.79.2': 'proxy.bg.pwr.wroc.pl.',
+ '156.17.79.3': 'pliki.bg.pwr.wroc.pl.',
+ '156.17.79.4': 'smtp.bg.pwr.wroc.pl.',
+ '156.17.79.6': 'd21svw-ndns4.bg.pwr.wroc.pl.'}
+Found: bi.pwr.edu.pl. (10.25.0.12)
+Found: blog.pwr.edu.pl. (10.25.0.12)
+Found: cc.pwr.edu.pl. (156.17.48.211)
+Nearby:
+{'156.17.48.206': 'host-156-17-48-206.pwr.edu.pl.',
+ '156.17.48.207': 'host-156-17-48-207.pwr.edu.pl.',
+ '156.17.48.208': 'host-156-17-48-208.pwr.edu.pl.',
+ '156.17.48.209': 'host-156-17-48-209.pwr.edu.pl.',
+ '156.17.48.210': 'host-156-17-48-210.pwr.edu.pl.',
+ '156.17.48.211': 'host-156-17-48-211.pwr.edu.pl.',
+ '156.17.48.212': 'host-156-17-48-212.pwr.edu.pl.',
+ '156.17.48.213': 'host-156-17-48-213.pwr.edu.pl.',
+ '156.17.48.214': 'host-156-17-48-214.pwr.edu.pl.',
+ '156.17.48.215': 'host-156-17-48-215.pwr.edu.pl.',
+ '156.17.48.216': 'host-156-17-48-216.pwr.edu.pl.'}
+Found: com.pwr.edu.pl. (156.17.75.200)
+Found: crm.pwr.edu.pl. (156.17.75.200)
+Found: cs.pwr.edu.pl. (156.17.7.22)
+Nearby:
+{'156.17.7.17': 'szmaragd.im.pwr.wroc.pl.',
+ '156.17.7.22': 'informatyka.im.pwr.wroc.pl.',
+ '156.17.7.25': 'silnia.im.pwr.wroc.pl.',
+ '156.17.7.26': 'iloczyn.im.pwr.wroc.pl.',
+ '156.17.7.27': 'studiuj.im.pwr.edu.pl.'}
+Found: css.pwr.edu.pl. (156.17.75.200)
+Found: cvs.pwr.edu.pl. (10.25.0.12)
+Found: dns.pwr.edu.pl. (156.17.18.10)
+Nearby:
+{'156.17.18.10': 'dns.pwr.edu.pl.',
+ '156.17.18.11': 'dns2.pwr.edu.pl.',
+ '156.17.18.12': 'host-156-17-18-12.pwr.edu.pl.',
+ '156.17.18.13': 'host-156-17-18-13.pwr.edu.pl.',
+ '156.17.18.14': 'host-156-17-18-14.pwr.edu.pl.',
+ '156.17.18.15': 'host-156-17-18-15.pwr.edu.pl.',
+ '156.17.18.5': 'host-156-17-18-5.pwr.edu.pl.',
+ '156.17.18.6': 'host-156-17-18-6.pwr.edu.pl.',
+ '156.17.18.7': 'host-156-17-18-7.pwr.edu.pl.',
+ '156.17.18.8': 'host-156-17-18-8.pwr.edu.pl.',
+ '156.17.18.9': 'host-156-17-18-9.pwr.edu.pl.'}
+Found: dns1.pwr.edu.pl. (156.17.140.3)
+Nearby:
+{'156.17.140.1': 'host-156-17-140-1.pwr.edu.pl.',
+ '156.17.140.2': 'host-156-17-140-2.pwr.edu.pl.',
+ '156.17.140.3': 'dns1.pwr.edu.pl.',
+ '156.17.140.4': 'dns4.pwr.edu.pl.',
+ '156.17.140.5': 'host-156-17-140-5.pwr.edu.pl.',
+ '156.17.140.6': 'host-156-17-140-6.pwr.edu.pl.',
+ '156.17.140.7': 'host-156-17-140-7.pwr.edu.pl.',
+ '156.17.140.8': 'host-156-17-140-8.pwr.edu.pl.'}
+Found: dns2.pwr.edu.pl. (156.17.18.11)
+Nearby:
+{'156.17.18.16': 'host-156-17-18-16.pwr.edu.pl.'}
+Found: dns3.pwr.edu.pl. (156.17.197.98)
+Nearby:
+{'156.17.197.98': 'dns3.pwr.edu.pl.'}
+Found: e.pwr.edu.pl. (156.17.193.220)
+Nearby:
+{'156.17.193.215': 'f5.e-science.pl.',
+ '156.17.193.216': 'guest.wcss.pl.',
+ '156.17.193.217': 'f5-kdm.wcss.pl.',
+ '156.17.193.218': 'pmsession.pwr.edu.pl.',
+ '156.17.193.219': 'iwc-test.wcss.wroc.pl.',
+ '156.17.193.220': 'e.pwr.edu.pl.',
+ '156.17.193.221': 'f5.azon.e-science.pl.',
+ '156.17.193.222': 'smail.pwr.edu.pl.',
+ '156.17.193.223': 'wybory.samorzad.pwr.edu.pl.',
+ '156.17.193.224': 'isat.pwr.edu.pl.',
+ '156.17.193.225': 'poczta.acz.pl.'}
+Found: echo.pwr.edu.pl. (156.17.193.59)
+Found: engine.pwr.edu.pl. (156.17.193.58)
+Found: erp.pwr.edu.pl. (156.17.75.2)
+Nearby:
+{'156.17.75.1': 'host-156-17-75-1.pwr.edu.pl.',
+ '156.17.75.2': 'host-156-17-75-2.pwr.edu.pl.',
+ '156.17.75.3': 'host-156-17-75-3.pwr.edu.pl.',
+ '156.17.75.4': 'host-156-17-75-4.pwr.edu.pl.',
+ '156.17.75.5': 'host-156-17-75-5.pwr.edu.pl.',
+ '156.17.75.6': 'host-156-17-75-6.pwr.edu.pl.',
+ '156.17.75.7': 'host-156-17-75-7.pwr.edu.pl.'}
+Found: eu.pwr.edu.pl. (156.17.42.67)
+Nearby:
+{'156.17.42.62': 'tardis.ict.pwr.wroc.pl.',
+ '156.17.42.64': 'NET-42-64.ict.pwr.wroc.pl.',
+ '156.17.42.65': 'pong.ict.pwr.wroc.pl.',
+ '156.17.42.66': 'ping.ict.pwr.wroc.pl.',
+ '156.17.42.67': 'idun.ict.pwr.wroc.pl.',
+ '156.17.42.68': 'maly.ict.pwr.wroc.pl.',
+ '156.17.42.69': 'dream.ict.pwr.wroc.pl.',
+ '156.17.42.70': 'crawler.ict.pwr.wroc.pl.'}
+Found: falcon.pwr.edu.pl. (156.17.197.93)
+Found: firewall.pwr.edu.pl. (10.25.0.12)
+Found: forum.pwr.edu.pl. (156.17.75.210)
+Nearby:
+{'156.17.75.206': 'host-156-17-75-206.pwr.edu.pl.',
+ '156.17.75.207': 'host-156-17-75-207.pwr.edu.pl.',
+ '156.17.75.208': 'host-156-17-75-208.pwr.edu.pl.',
+ '156.17.75.209': 'host-156-17-75-209.pwr.edu.pl.',
+ '156.17.75.210': 'host-156-17-75-210.pwr.edu.pl.',
+ '156.17.75.211': 'host-156-17-75-211.pwr.edu.pl.',
+ '156.17.75.212': 'host-156-17-75-212.pwr.edu.pl.',
+ '156.17.75.213': 'host-156-17-75-213.pwr.edu.pl.',
+ '156.17.75.214': 'host-156-17-75-214.pwr.edu.pl.',
+ '156.17.75.215': 'host-156-17-75-215.pwr.edu.pl.'}
+Found: ftp.pwr.edu.pl. (156.17.193.37)
+Nearby:
+{'156.17.193.34': 'z-ftp.wcss.wroc.pl.',
+ '156.17.193.37': 'ftp.pwr.wroc.pl.',
+ '156.17.193.38': 'proxmox.wcss.pl.',
+ '156.17.193.39': 'kangur2.wcss.pl.',
+ '156.17.193.40': 'syzyf.wcss.wroc.pl.',
+ '156.17.193.41': 'biuro.wcss.wroc.pl.'}
+Found: fw.pwr.edu.pl. (10.25.0.12)
+Found: gauss.pwr.edu.pl. (156.17.7.42)
+Nearby:
+{'156.17.7.37': 'jitsi.im.pwr.edu.pl.',
+ '156.17.7.38': 'lab8.im.pwr.wroc.pl.',
+ '156.17.7.39': 'lab9.im.pwr.wroc.pl.',
+ '156.17.7.40': 'lab10.im.pwr.wroc.pl.',
+ '156.17.7.41': 'lab11.im.pwr.wroc.pl.',
+ '156.17.7.42': 'lab12.im.pwr.wroc.pl.',
+ '156.17.7.43': 'lab13.im.pwr.wroc.pl.',
+ '156.17.7.44': 'lab14.im.pwr.wroc.pl.',
+ '156.17.7.45': 'lab15.im.pwr.wroc.pl.',
+ '156.17.7.46': 'lab16.im.pwr.wroc.pl.',
+ '156.17.7.47': 'portal.im.pwr.edu.pl.'}
+Found: guest.pwr.edu.pl. (10.250.13.254)
+Found: hermes.pwr.edu.pl. (156.17.75.200)
+Found: ig.pwr.edu.pl. (156.17.1.117)
+Nearby:
+{'156.17.1.112': 'virtual3.pwr.wroc.pl.',
+ '156.17.1.113': 'virtual4.pwr.wroc.pl.',
+ '156.17.1.114': 'vm-netra-apache2.wcss.wroc.pl.',
+ '156.17.1.115': 'virtual2.wcss.wroc.pl.',
+ '156.17.1.116': 'netra.wcss.wroc.pl.',
+ '156.17.1.117': 'virtual1000.pwr.wroc.pl.',
+ '156.17.1.121': 'doktoranci.pwr.wroc.pl.'}
+Found: im.pwr.edu.pl. (156.17.7.47)
+Nearby:
+{'156.17.7.48': 'stud2.im.pwr.wroc.pl.',
+ '156.17.7.51': 'math217a.im.pwr.wroc.pl.',
+ '156.17.7.52': 'moodle.im.pwr.wroc.pl.'}
+Found: info.pwr.edu.pl. (10.25.0.12)
+Found: intranet.pwr.edu.pl. (156.17.75.210)
+Found: io.pwr.edu.pl. (156.17.10.114)
+Nearby:
+{'156.17.10.109': '156-17-10-109.wiz.pwr.edu.pl.',
+ '156.17.10.110': 'dc01.lab.wit.pwr.edu.pl.',
+ '156.17.10.111': 'dc01.adm.wit.pwr.edu.pl.',
+ '156.17.10.112': 'envy.ii.pwr.wroc.pl.',
+ '156.17.10.113': 'greed.ii.pwr.wroc.pl.',
+ '156.17.10.114': 'lm-3.ii.pwr.wroc.pl.',
+ '156.17.10.116': 'r02.ii.pwr.wroc.pl.',
+ '156.17.10.117': '156-17-10-117.wiz.pwr.edu.pl.',
+ '156.17.10.118': '156-17-10-118.wiz.pwr.edu.pl.',
+ '156.17.10.119': '156-17-10-119.wiz.pwr.edu.pl.'}
+Found: it.pwr.edu.pl. (10.25.0.12)
+Found: ke.pwr.edu.pl. (156.17.75.200)
+Found: kg.pwr.edu.pl. (156.17.75.200)
+Found: ki.pwr.edu.pl. (156.17.7.22)
+Found: km.pwr.edu.pl. (156.17.7.47)
+Found: leo.pwr.edu.pl. (156.17.75.200)
+Found: live.pwr.edu.pl. (156.17.18.5)
+Nearby:
+{'156.17.18.1': 'host-156-17-18-1.pwr.edu.pl.',
+ '156.17.18.2': 'host-156-17-18-2.pwr.edu.pl.',
+ '156.17.18.3': 'host-156-17-18-3.pwr.edu.pl.',
+ '156.17.18.4': 'host-156-17-18-4.pwr.edu.pl.'}
+Found: log.pwr.edu.pl. (156.17.18.129)
+Nearby:
+{'156.17.18.124': 'host-156-17-18-124.pwr.edu.pl.',
+ '156.17.18.125': 'host-156-17-18-125.pwr.edu.pl.',
+ '156.17.18.126': 'host-156-17-18-126.pwr.edu.pl.',
+ '156.17.18.127': 'host-156-17-18-127.pwr.edu.pl.',
+ '156.17.18.128': 'host-156-17-18-128.pwr.edu.pl.',
+ '156.17.18.129': 'host-156-17-18-129.pwr.edu.pl.',
+ '156.17.18.130': 'host-156-17-18-130.pwr.edu.pl.',
+ '156.17.18.131': 'host-156-17-18-131.pwr.edu.pl.',
+ '156.17.18.132': 'host-156-17-18-132.pwr.edu.pl.',
+ '156.17.18.133': 'host-156-17-18-133.pwr.edu.pl.',
+ '156.17.18.134': 'host-156-17-18-134.pwr.edu.pl.'}
+Found: login.pwr.edu.pl. (156.17.1.253)
+Nearby:
+{'156.17.1.251': 'www.dbc.wroc.pl.'}
+Found: m.pwr.edu.pl. (156.17.193.172)
+Nearby:
+{'156.17.193.167': 'pomoc.wcss.pl.',
+ '156.17.193.168': 'monitor.wcss.pl.',
+ '156.17.193.169': 'z-conver.wcss.wroc.pl.',
+ '156.17.193.170': 'panda.wcss.wroc.pl.',
+ '156.17.193.171': 'senat-test.pwr.wroc.pl.',
+ '156.17.193.172': 'm.pwr.edu.pl.',
+ '156.17.193.173': 'monitorstron.pwr.edu.pl.',
+ '156.17.193.174': 'lalus.wcss.wroc.pl.',
+ '156.17.193.175': 'z-multi4.wcss.wroc.pl.',
+ '156.17.193.176': 'z-ms4.wcss.wroc.pl.'}
+Found: mail.pwr.edu.pl. (156.17.193.179)
+Nearby:
+{'156.17.193.178': 'mail.zsa.pwr.edu.pl.',
+ '156.17.193.179': 'mail.pwr.edu.pl.',
+ '156.17.193.180': 'vlan109-f5-local-mieczyk.wcss.wroc.pl.',
+ '156.17.193.181': 'vlan109-f5-local-szpadka.wcss.wroc.pl.',
+ '156.17.193.182': 'vlan109-f5-float.wcss.wroc.pl.',
+ '156.17.193.183': 'mail.pwr.wroc.pl.',
+ '156.17.193.184': 'mail.wcss.wroc.pl.'}
+Found: me.pwr.edu.pl. (156.17.193.59)
+Found: monitor.pwr.edu.pl. (10.25.0.12)
+Found: monitoring.pwr.edu.pl. (10.25.0.12)
+Found: ms.pwr.edu.pl. (156.17.8.14)
+Nearby:
+{'156.17.8.14': 'io.immt.pwr.wroc.pl.',
+ '156.17.8.19': 'DIR-615.immt.pwr.wroc.pl.'}
+Found: multimedia.pwr.edu.pl. (156.17.193.247)
+Nearby:
+{'156.17.193.242': 'adresy.pwr.wroc.pl.',
+ '156.17.193.244': 'uniwirt3.pwr.wroc.pl.',
+ '156.17.193.246': 'uniwirt.pwr.wroc.pl.',
+ '156.17.193.248': 'www.wcss.pl.',
+ '156.17.193.251': 'vlan129-f5-local-mieczyk.wcss.wroc.pl.'}
+Found: mysql.pwr.edu.pl. (156.17.193.237)
+Nearby:
+{'156.17.193.232': 'upload.e-science.pl.',
+ '156.17.193.234': 'kangur.wcss.pl.',
+ '156.17.193.235': 'kalendarz.wcss.pl.',
+ '156.17.193.236': 'mysql.wcss.wroc.pl.',
+ '156.17.193.237': 'mysql.pwr.edu.pl.',
+ '156.17.193.240': 'oracle-0.wcss.wroc.pl.',
+ '156.17.193.241': 'epos.wcss.pl.'}
+Found: na.pwr.edu.pl. (10.25.0.12)
+Found: nas.pwr.edu.pl. (10.25.0.12)
+Found: ntp.pwr.edu.pl. (156.17.18.1)
+Found: old.pwr.edu.pl. (156.17.193.247)
+Found: open.pwr.edu.pl. (156.17.70.100)
+Nearby:
+{'156.17.70.100': 'host-156-17-70-100.pwr.edu.pl.',
+ '156.17.70.101': 'host-156-17-70-101.pwr.edu.pl.',
+ '156.17.70.102': 'host-156-17-70-102.pwr.edu.pl.',
+ '156.17.70.103': 'host-156-17-70-103.pwr.edu.pl.',
+ '156.17.70.104': 'host-156-17-70-104.pwr.edu.pl.',
+ '156.17.70.105': 'host-156-17-70-105.pwr.edu.pl.',
+ '156.17.70.95': 'host-156-17-70-95.pwr.edu.pl.',
+ '156.17.70.96': 'host-156-17-70-96.pwr.edu.pl.',
+ '156.17.70.97': 'host-156-17-70-97.pwr.edu.pl.',
+ '156.17.70.98': 'host-156-17-70-98.pwr.edu.pl.',
+ '156.17.70.99': 'host-156-17-70-99.pwr.edu.pl.'}
+Found: pf.pwr.edu.pl. (10.250.0.177)
+Found: pki.pwr.edu.pl. (10.25.0.12)
+Found: portal.pwr.edu.pl. (156.17.75.200)
+Found: ppp.pwr.edu.pl. (156.17.75.200)
+Found: ps.pwr.edu.pl. (156.17.75.200)

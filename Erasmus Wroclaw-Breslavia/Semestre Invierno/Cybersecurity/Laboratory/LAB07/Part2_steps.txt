@@ -1,0 +1,18 @@
+sudo mkdir -p /home/server
+cd /home/server
+git clone https://github.com/OpenVPN/easy-rsa.git
+cd easy-rsa
+cd ~/easy-rsa/easyrsa3
+chmod +x easyrsa
+cp vars.example vars
+nano vars
+REMOVE THE #of several fields as in word
+./easyrsa init-pki
+./easyrsa build-ca nopass					-> To create the keys. After this you pass me the keys and take a screenshot of the message.
+
+If you want to remove a broken certificate
+./easyrsa revoke <client’s common name>		-> Remove (Only this is NOT Valid)
+./easyrsa gen-crl							-> Confirm remove
+
+
+

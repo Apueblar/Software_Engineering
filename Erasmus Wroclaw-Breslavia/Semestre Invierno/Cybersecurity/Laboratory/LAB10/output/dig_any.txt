@@ -1,0 +1,51 @@
+
+; <<>> DiG 9.19.21-1+b1-Debian <<>> pwr.edu.pl any
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50805
+;; flags: qr rd ra; QUERY: 1, ANSWER: 14, AUTHORITY: 0, ADDITIONAL: 16
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 0cd8f77585fca9f1a95b17cc694003fa0d00976a2bc855fa (good)
+;; QUESTION SECTION:
+;pwr.edu.pl.			IN	ANY
+
+;; ANSWER SECTION:
+pwr.edu.pl.		5086	IN	MX	7 alt2.aspmx.l.google.com.
+pwr.edu.pl.		5086	IN	MX	5 alt1.aspmx.l.google.com.
+pwr.edu.pl.		5086	IN	MX	15 alt4.aspmx.l.google.com.
+pwr.edu.pl.		5086	IN	MX	10 alt3.aspmx.l.google.com.
+pwr.edu.pl.		5086	IN	MX	0 aspmx.l.google.com.
+pwr.edu.pl.		5086	IN	A	156.17.75.200
+pwr.edu.pl.		84286	IN	NS	dns.pwr.wroc.pl.
+pwr.edu.pl.		84286	IN	NS	dns.pwr.edu.pl.
+pwr.edu.pl.		84286	IN	NS	dns4.pwr.edu.pl.
+pwr.edu.pl.		84286	IN	NS	dns2.pwr.edu.pl.
+pwr.edu.pl.		84286	IN	NS	dns3.pwr.edu.pl.
+pwr.edu.pl.		84286	IN	NS	sun2.pwr.wroc.pl.
+pwr.edu.pl.		84286	IN	NS	ns1.net.icm.edu.pl.
+pwr.edu.pl.		84286	IN	NS	ns2.net.icm.edu.pl.
+
+;; ADDITIONAL SECTION:
+alt2.aspmx.l.google.com. 3	IN	A	192.178.163.27
+alt4.aspmx.l.google.com. 3	IN	A	142.250.101.26
+alt1.aspmx.l.google.com. 4	IN	A	108.177.125.27
+aspmx.l.google.com.	4	IN	A	64.233.161.27
+alt3.aspmx.l.google.com. 3	IN	A	172.217.78.26
+dns.pwr.edu.pl.		2358	IN	A	156.17.18.10
+dns3.pwr.edu.pl.	2358	IN	A	156.17.197.98
+ns2.net.icm.edu.pl.	10547	IN	A	193.219.28.51
+dns4.pwr.edu.pl.	5086	IN	A	156.17.140.4
+dns.pwr.wroc.pl.	5086	IN	A	156.17.18.10
+ns1.net.icm.edu.pl.	81558	IN	A	213.135.57.10
+dns2.pwr.edu.pl.	2358	IN	A	156.17.18.11
+sun2.pwr.wroc.pl.	2358	IN	A	156.17.5.2
+ns2.net.icm.edu.pl.	10547	IN	AAAA	2001:6a0:0:2002::51
+ns1.net.icm.edu.pl.	81558	IN	AAAA	2001:6a0:0:2000::10
+
+;; Query time: 4 msec
+;; SERVER: 10.138.0.1#53(10.138.0.1) (TCP)
+;; WHEN: Mon Dec 15 13:50:03 CET 2025
+;; MSG SIZE  rcvd: 630
+

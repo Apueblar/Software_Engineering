@@ -1,0 +1,25 @@
+
+; <<>> DiG 9.19.21-1+b1-Debian <<>> @8.8.8.8 pwr.edu.pl MX
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35306
+;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;pwr.edu.pl.			IN	MX
+
+;; ANSWER SECTION:
+pwr.edu.pl.		1872	IN	MX	10 alt3.aspmx.l.google.com.
+pwr.edu.pl.		1872	IN	MX	5 alt1.aspmx.l.google.com.
+pwr.edu.pl.		1872	IN	MX	7 alt2.aspmx.l.google.com.
+pwr.edu.pl.		1872	IN	MX	0 aspmx.l.google.com.
+pwr.edu.pl.		1872	IN	MX	15 alt4.aspmx.l.google.com.
+
+;; Query time: 23 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (UDP)
+;; WHEN: Fri Dec 12 20:22:45 CET 2025
+;; MSG SIZE  rcvd: 157
+

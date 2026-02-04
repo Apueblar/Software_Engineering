@@ -1,0 +1,52 @@
+
+; <<>> DiG 9.19.21-1+b1-Debian <<>> pwr.edu.pl +trace
+;; global options: +cmd
+.			455485	IN	NS	h.root-servers.net.
+.			455485	IN	NS	f.root-servers.net.
+.			455485	IN	NS	k.root-servers.net.
+.			455485	IN	NS	m.root-servers.net.
+.			455485	IN	NS	g.root-servers.net.
+.			455485	IN	NS	l.root-servers.net.
+.			455485	IN	NS	c.root-servers.net.
+.			455485	IN	NS	i.root-servers.net.
+.			455485	IN	NS	j.root-servers.net.
+.			455485	IN	NS	b.root-servers.net.
+.			455485	IN	NS	e.root-servers.net.
+.			455485	IN	NS	d.root-servers.net.
+.			455485	IN	NS	a.root-servers.net.
+.			455485	IN	RRSIG	NS 8 0 518400 20251224210000 20251211200000 61809 . eCiWEcNRjIFl00E1GlH/NRi4IQUxpID/XVDzv9g8fcWBN3wORGk7ANtc D9bqIIjvl/+zpCXSWeSSvdwPh9hZ7Leg/3uIAHb7QxjTVRWKrMzOSjhj /RsKJpMZMvXlUrm8+TRVkLpLYCiPp9VIAg50r8G12IAigt8o37shY6tm CR31P2q0ZL625vFeXKzwXISdMaj66ey1JB8YF7knGv2Q+SkLG2BC2ZJb Xtb1H66MrwbzGGC+sFxIpN5PeAX2YZ8IINsnoyEJ+RZb3wxwggeZDsjb 1gX6RSXiYnlAXEIc5uCm9yNbyji+bnwHS7TSSEzj4tJ8N4jhotHwYEqY 1/noZA==
+;; Received 1125 bytes from 10.138.0.1#53(10.138.0.1) in 4 ms
+
+pl.			172800	IN	NS	f-dns.pl.
+pl.			172800	IN	NS	b-dns.pl.
+pl.			172800	IN	NS	j-dns.pl.
+pl.			172800	IN	NS	h-dns.pl.
+pl.			172800	IN	NS	d-dns.pl.
+pl.			172800	IN	NS	a-dns.pl.
+pl.			86400	IN	DS	35456 8 2 C1FCC88C73CCBAFAA2D6D68575B01ED753786CD733A4A239324D5609 7F17930B
+pl.			86400	IN	RRSIG	DS 8 1 86400 20251225170000 20251212160000 61809 . rdSZqqiigNoKw6xL14V5FVeHunj01tCEnXkQTWkZ3kBe0J+n6ZG0Ao/X pxkjz/66M569x9He3qrUsS36roRuS9BSDtIlMvw3uFXx/Qpf4KIFrk9w Q5mkOcTEBeo2t4+iVCDe/rXrGeO+zXjqYkINEFTqNafHQSwfVsCLspOF 54v01UpJrCnWIdlzhxENcQUi+zDhvmBbqSEw6kSjbNWsuWUjKa+YvRqV igu0Vx5VMDfuAgOkCkZkMb7SAvsR6xb1ymiuh41gszc8KowH4gsTLFfG 6/DbGGIUp/LZoR3iKr/1SaLWQPRQsIzLG3ovqvyTvR02CmdjJDYfqSIZ tJDjkA==
+;; Received 758 bytes from 198.41.0.4#53(a.root-servers.net) in 16 ms
+
+pwr.edu.pl.		86400	IN	NS	dns3.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	ns1.net.icm.edu.pl.
+pwr.edu.pl.		86400	IN	NS	ns2.net.icm.edu.pl.
+pwr.edu.pl.		86400	IN	NS	dns.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	dns2.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	sun2.pwr.wroc.pl.
+SK240AE8RHU4OP3HI9TS786POE3T266C.edu.pl. 3600 IN NSEC3 1 1 0 D99D35D740BC569E SL5Q188CDI9G1RCI18UOUOHOVVSO1P8E NS SOA RRSIG DNSKEY NSEC3PARAM
+SK240AE8RHU4OP3HI9TS786POE3T266C.edu.pl. 3600 IN RRSIG NSEC3 8 3 3600 20260106120000 20251207120000 32313 edu.pl. XJ6IMuDZIBKPPCUvk7PeM7gr/rvX5tkEEhZyWQEElP7oA4yGP8RiFqgR dp7A4nioCcalgWuTw6iWlZhenpLhQd/LyPgX4YCDAQwgWao0wU0yC0uv d8LCVGwOhobGMP7MrUPbigBD81OscX+XRdAtqZa8pjfaonv9Z8N8dH/E UpYxZLfMFZx9lia9TwlYiM/U0qCU8NqdXqedwfmCTZ5RVD5mp+TZoh3J DbkTCaf2TSuSLnUakIHdncwvdwWWQhoiHNeWeTVF4HR9FuGZDhTWY30b ZmxdrUnqtO1ZPqQ95rBshSiqvFk6upuZoqB96xAFsjKOSn5cxw7jRJ4x pJNmrg==
+MI75L99LQHFS1PTR0I8SNDQ4G13ACTT5.edu.pl. 3600 IN NSEC3 1 1 0 D99D35D740BC569E MJ5QUO61E9BLGPAAULSSHBQ9BOQ52LP9 NS DS RRSIG
+MI75L99LQHFS1PTR0I8SNDQ4G13ACTT5.edu.pl. 3600 IN RRSIG NSEC3 8 3 3600 20260106120000 20251207120000 32313 edu.pl. IvUvZY+Cq6beR6SaDHdcs2FUr5n+pfrBkb5snZY273fSaVP1hjdgTeyG EwN/xk3fdnc4ZbVaduDR52PF/AdA9bPUZn7yEjjoSAOaCb2XhLjY/VQD JILAC/t7VqAny0MatWx4fKvBYMQ7v5p7q/hK1W9uWEOx/lu3Iq9MRFSn CHwPgjg5JK/SxNMtUKRc2if/VOb02HhyiRGPgDs8vXzOk1ZOa1sB80MO dNHm8I+UC9aUm8DcOEsLEvojfCFB3206tSv3msfVDZ1m/MZ/8YVQtUM4 e+T5aSUJmIqspCsl97kQ8GIq1jVm7f2V2aJg91WbtW/lIitNeGyWbo+K 258+6Q==
+;; Received 978 bytes from 185.159.198.48#53(h-dns.pl) in 40 ms
+
+pwr.edu.pl.		7200	IN	A	156.17.75.200
+pwr.edu.pl.		86400	IN	NS	dns3.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	ns1.net.icm.edu.pl.
+pwr.edu.pl.		86400	IN	NS	dns2.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	dns4.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	sun2.pwr.wroc.pl.
+pwr.edu.pl.		86400	IN	NS	dns.pwr.wroc.pl.
+pwr.edu.pl.		86400	IN	NS	dns.pwr.edu.pl.
+pwr.edu.pl.		86400	IN	NS	ns2.net.icm.edu.pl.
+;; Received 320 bytes from 156.17.197.98#53(dns3.pwr.edu.pl) in 4 ms
+

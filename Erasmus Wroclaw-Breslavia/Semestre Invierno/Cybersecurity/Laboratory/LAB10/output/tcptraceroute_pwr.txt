@@ -1,0 +1,2 @@
+traceroute to pwr.edu.pl (156.17.75.200), 30 hops max, 60 byte packets
+ 1  host-156-17-75-200.pwr.edu.pl (156.17.75.200) <syn,ack,mss=1460>  5.679 ms  5.441 ms  7.268 ms

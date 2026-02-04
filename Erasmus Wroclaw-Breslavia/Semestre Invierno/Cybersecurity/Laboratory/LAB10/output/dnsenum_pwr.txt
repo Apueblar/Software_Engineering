@@ -1,0 +1,218 @@
+dnsenum VERSION:1.3.1
+[1;34m
+-----   pwr.edu.pl   -----
+[0m[1;31m
+
+Host's addresses:
+__________________
+
+[0mpwr.edu.pl.                              5758     IN    A        156.17.75.200
+[1;31m
+
+Name Servers:
+______________
+
+[0mdns.pwr.edu.pl.                          3030     IN    A        156.17.18.10
+dns3.pwr.edu.pl.                         3030     IN    A        156.17.197.98
+ns2.net.icm.edu.pl.                      11219    IN    A        193.219.28.51
+dns4.pwr.edu.pl.                         5758     IN    A        156.17.140.4
+dns.pwr.wroc.pl.                         5758     IN    A        156.17.18.10
+ns1.net.icm.edu.pl.                      82230    IN    A        213.135.57.10
+dns2.pwr.edu.pl.                         3030     IN    A        156.17.18.11
+sun2.pwr.wroc.pl.                        3030     IN    A        156.17.5.2
+[1;31m
+
+Mail (MX) Servers:
+___________________
+
+[0malt2.aspmx.l.google.com.                 262      IN    A        192.178.163.27
+alt4.aspmx.l.google.com.                 262      IN    A        142.250.101.26
+alt1.aspmx.l.google.com.                 262      IN    A        108.177.125.27
+aspmx.l.google.com.                      262      IN    A        64.233.162.26
+alt3.aspmx.l.google.com.                 262      IN    A        172.217.78.27
+[1;31m
+
+Trying Zone Transfers and getting Bind Versions:
+_________________________________________________
+
+[0m
+Trying Zone Transfer for pwr.edu.pl on sun2.pwr.wroc.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on ns2.net.icm.edu.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on dns3.pwr.edu.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on dns2.pwr.edu.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on ns1.net.icm.edu.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on dns.pwr.wroc.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on dns.pwr.edu.pl ... 
+
+Trying Zone Transfer for pwr.edu.pl on dns4.pwr.edu.pl ... 
+[1;31m
+
+Brute forcing with /usr/share/dnsenum/dns.txt:
+_______________________________________________
+
+[0mautodiscover.pwr.edu.pl.                 5759     IN    A        156.17.66.175
+backup.pwr.edu.pl.                       5758     IN    CNAME    di.pwr.wroc.pl.
+di.pwr.wroc.pl.                          5758     IN    A        10.25.0.12
+beta.pwr.edu.pl.                         5758     IN    CNAME    di.pwr.wroc.pl.
+di.pwr.wroc.pl.                          5758     IN    A        10.25.0.12
+blog.pwr.edu.pl.                         5758     IN    CNAME    di.pwr.wroc.pl.
+di.pwr.wroc.pl.                          5758     IN    A        10.25.0.12
+di.pwr.edu.pl.                           5759     IN    A        156.17.75.200
+dns.pwr.edu.pl.                          3028     IN    A        156.17.18.10
+dns1.pwr.edu.pl.                         5759     IN    A        156.17.140.3
+dns2.pwr.edu.pl.                         3028     IN    A        156.17.18.11
+dns3.pwr.edu.pl.                         3028     IN    A        156.17.197.98
+e.pwr.edu.pl.                            5760     IN    A        156.17.193.220
+emc.pwr.edu.pl.                          5759     IN    A        156.17.193.59
+eportal.pwr.edu.pl.                      765      IN    A        156.17.70.219
+forum.pwr.edu.pl.                        5759     IN    A        156.17.75.210
+ftp.pwr.edu.pl.                          5760     IN    A        156.17.193.37
+hermes.pwr.edu.pl.                       5760     IN    A        156.17.75.200
+ib.pwr.edu.pl.                           5760     IN    A        156.17.193.59
+intranet.pwr.edu.pl.                     5759     IN    A        156.17.75.210
+it.pwr.edu.pl.                           5759     IN    CNAME    di.pwr.wroc.pl.
+di.pwr.wroc.pl.                          5756     IN    A        10.25.0.12
+kbo.pwr.edu.pl.                          5760     IN    A        156.17.75.200
+live.pwr.edu.pl.                         5760     IN    A        156.17.18.5
+log.pwr.edu.pl.                          5761     IN    A        156.17.18.129
+mail.pwr.edu.pl.                         5761     IN    A        156.17.193.179
+ntp.pwr.edu.pl.                          5761     IN    A        156.17.18.1
+old.pwr.edu.pl.                          5761     IN    A        156.17.193.247
+portal.pwr.edu.pl.                       5761     IN    A        156.17.75.200
+repository.pwr.edu.pl.                   5762     IN    A        156.17.79.16
+sos.pwr.edu.pl.                          5763     IN    A        156.17.66.16
+ssc.pwr.edu.pl.                          5763     IN    A        156.17.193.59
+stats.pwr.edu.pl.                        5763     IN    A        156.17.16.244
+transport.pwr.edu.pl.                    5762     IN    A        156.17.197.36
+vpn.pwr.edu.pl.                          5763     IN    A        156.17.33.70
+www.pwr.edu.pl.                          5763     IN    A        156.17.75.200
+[1;31m
+
+pwr.edu.pl class C netranges:
+______________________________
+
+[0m 156.17.16.0/24
+ 156.17.18.0/24
+ 156.17.33.0/24
+ 156.17.66.0/24
+ 156.17.70.0/24
+ 156.17.75.0/24
+ 156.17.79.0/24
+ 156.17.140.0/24
+ 156.17.193.0/24
+ 156.17.197.0/24
+[1;31m
+
+Performing reverse lookup on 2560 ip addresses:
+________________________________________________
+
+[0m118.33.17.156.in-addr.arpa.              3600     IN    PTR      pwr-wifi.pwr.edu.pl.
+30.66.17.156.in-addr.arpa.               3600     IN    PTR      srvlsi.pwr.edu.pl.
+33.66.17.156.in-addr.arpa.               3600     IN    PTR      wifi.pwr.edu.pl.
+175.66.17.156.in-addr.arpa.              3600     IN    PTR      cas.pwr.edu.pl.
+200.66.17.156.in-addr.arpa.              3600     IN    PTR      avamar-ds.pwr.edu.pl.
+201.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-10.pwr.edu.pl.
+202.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-11.pwr.edu.pl.
+203.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-12.pwr.edu.pl.
+204.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-13.pwr.edu.pl.
+205.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-14.pwr.edu.pl.
+206.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-15.pwr.edu.pl.
+207.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-16.pwr.edu.pl.
+208.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-17.pwr.edu.pl.
+209.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-18.pwr.edu.pl.
+210.66.17.156.in-addr.arpa.              3600     IN    PTR      avm-19.pwr.edu.pl.
+220.66.17.156.in-addr.arpa.              3600     IN    PTR      dps.pwr.edu.pl.
+111.70.17.156.in-addr.arpa.              3600     IN    PTR      del-tools.pwr.edu.pl.
+199.70.17.156.in-addr.arpa.              3600     IN    PTR      adsender.pwr.edu.pl.
+217.70.17.156.in-addr.arpa.              3600     IN    PTR      del-services-test.pwr.edu.pl.
+218.70.17.156.in-addr.arpa.              3600     IN    PTR      eportal-gw1.pwr.edu.pl.
+219.70.17.156.in-addr.arpa.              3600     IN    PTR      eportal-gw2.pwr.edu.pl.
+220.70.17.156.in-addr.arpa.              3600     IN    PTR      lms.cabcin.pwr.edu.pl.
+221.70.17.156.in-addr.arpa.              3600     IN    PTR      alo-gw1.pwr.edu.pl.
+245.70.17.156.in-addr.arpa.              3600     IN    PTR      mail.demo101.pwr.edu.pl.
+44.79.17.156.in-addr.arpa.               3600     IN    PTR      poczta.bg.pwr.edu.pl.
+51.79.17.156.in-addr.arpa.               3600     IN    PTR      wiki.bg.pwr.edu.pl.
+110.79.17.156.in-addr.arpa.              3600     IN    PTR      normy.bg.pwr.edu.pl.
+112.79.17.156.in-addr.arpa.              3600     IN    PTR      normy-test.bg.pwr.edu.pl.
+19.193.17.156.in-addr.arpa.              172800   IN    PTR      www.whitehats.pwr.edu.pl.
+19.193.17.156.in-addr.arpa.              172800   IN    PTR      whitehats.pwr.edu.pl.
+72.193.17.156.in-addr.arpa.              172800   IN    PTR      m.pwr.edu.pl.
+172.193.17.156.in-addr.arpa.             172800   IN    PTR      m.pwr.edu.pl.
+173.193.17.156.in-addr.arpa.             172800   IN    PTR      monitorstron.pwr.edu.pl.
+178.193.17.156.in-addr.arpa.             172800   IN    PTR      mail.zsa.pwr.edu.pl.
+179.193.17.156.in-addr.arpa.             172800   IN    PTR      mail.pwr.edu.pl.
+186.193.17.156.in-addr.arpa.             172800   IN    PTR      student.pwr.edu.pl.
+203.193.17.156.in-addr.arpa.             172800   IN    PTR      sd.pwr.edu.pl.
+204.193.17.156.in-addr.arpa.             172800   IN    PTR      login.pwr.edu.pl.
+205.193.17.156.in-addr.arpa.             172800   IN    PTR      f5-virtual2.pwr.edu.pl.
+209.193.17.156.in-addr.arpa.             172800   IN    PTR      kmail.pwr.edu.pl.
+211.193.17.156.in-addr.arpa.             172800   IN    PTR      f5-virtual.pwr.edu.pl.
+212.193.17.156.in-addr.arpa.             172800   IN    PTR      psc2020.pwr.edu.pl.
+218.193.17.156.in-addr.arpa.             172800   IN    PTR      pmsession.pwr.edu.pl.
+220.193.17.156.in-addr.arpa.             172800   IN    PTR      e.pwr.edu.pl.
+222.193.17.156.in-addr.arpa.             172800   IN    PTR      smail.pwr.edu.pl.
+223.193.17.156.in-addr.arpa.             172800   IN    PTR      wybory.samorzad.pwr.edu.pl.
+224.193.17.156.in-addr.arpa.             172800   IN    PTR      isat.pwr.edu.pl.
+230.193.17.156.in-addr.arpa.             172800   IN    PTR      poczta.zsa.pwr.edu.pl.
+237.193.17.156.in-addr.arpa.             172800   IN    PTR      mysql.pwr.edu.pl.
+33.197.17.156.in-addr.arpa.              86400    IN    PTR      vm-rejestracja.pwr.edu.pl.
+34.197.17.156.in-addr.arpa.              86400    IN    PTR      vm-payu-missi.pwr.edu.pl.
+98.197.17.156.in-addr.arpa.              86400    IN    PTR      dns3.pwr.edu.pl.
+110.197.17.156.in-addr.arpa.             86400    IN    PTR      bcc.pwr.edu.pl.
+119.197.17.156.in-addr.arpa.             86400    IN    PTR      listy.pwr.edu.pl.
+122.197.17.156.in-addr.arpa.             86400    IN    PTR      list.pwr.edu.pl.
+
+54 results out of 2560 IP addresses.
+[1;31m
+
+pwr.edu.pl ip blocks:
+______________________
+
+[0m 156.17.33.118/32
+ 156.17.66.30/32
+ 156.17.66.33/32
+ 156.17.66.175/32
+ 156.17.66.200/29
+ 156.17.66.208/31
+ 156.17.66.210/32
+ 156.17.66.220/32
+ 156.17.70.111/32
+ 156.17.70.199/32
+ 156.17.70.217/32
+ 156.17.70.218/31
+ 156.17.70.220/31
+ 156.17.70.245/32
+ 156.17.79.44/32
+ 156.17.79.51/32
+ 156.17.79.110/32
+ 156.17.79.112/32
+ 156.17.193.19/32
+ 156.17.193.72/32
+ 156.17.193.172/31
+ 156.17.193.178/31
+ 156.17.193.186/32
+ 156.17.193.203/32
+ 156.17.193.204/31
+ 156.17.193.209/32
+ 156.17.193.211/32
+ 156.17.193.212/32
+ 156.17.193.218/32
+ 156.17.193.220/32
+ 156.17.193.222/31
+ 156.17.193.224/32
+ 156.17.193.230/32
+ 156.17.193.237/32
+ 156.17.197.33/32
+ 156.17.197.34/32
+ 156.17.197.98/32
+ 156.17.197.110/32
+ 156.17.197.119/32
+ 156.17.197.122/32
+
+done.

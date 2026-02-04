@@ -1,0 +1,29 @@
+DOMAIN NAME:                    pwr.edu.pl
+registrant type:                organization
+nameservers:                    dns.pwr.edu.pl. [156.17.18.10]
+                                dns2.pwr.edu.pl. [156.17.18.11]
+                                dns3.pwr.edu.pl. [156.17.197.98]
+                                ns1.net.icm.edu.pl. 
+                                ns2.net.icm.edu.pl. 
+                                sun2.pwr.wroc.pl. [156.17.5.2]
+created:                        2004.12.17 06:30:20
+last modified:                  2025.12.09 15:54:05
+renewal date:                   2027.12.16 13:00:00
+
+option:                         no
+
+dnssec:                         Unsigned
+
+REGISTRAR:
+cyber_Folks S.A.
+ul. Wierzbięcice 1B
+61-569 Poznań
+Polska/Poland
+Tel: +48.122963663
+https://cyberfolks.pl/
+domeny@cyberfolks.pl
+
+WHOIS database responses:       https://dns.pl/en/whois
+
+WHOIS displays data with a delay not exceeding 15 minutes in relation to the .pl Registry system
+
