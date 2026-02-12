@@ -1,0 +1,69 @@
+:root {
+    /* --- COLORS --- */
+    --accent: #0b5cff;
+    --bg-red: #c62828;
+    --bg-red-2: #b71c1c;
+    --alert-green: #6ee7b7;
+    --alert-green-dark: #4dff7a;
+    --alert-red: #e49191;
+    --alert-red-dark: #872b2b;
+    --header-bg: #0b0b0b;
+    --header-black: var(--header-bg);
+    --background-black: var(--header-bg);
+    --card-dark: #2f2f33;
+    --white: #ffffff;
+    --text-on-header: var(--white);
+    --muted-white: rgba(255, 255, 255, 0.85);
+    --muted: #999;
+    --muted-strong: rgba(255, 255, 255, 0.75);
+    --muted-subtle: rgba(255, 255, 255, 0.72);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+
+    /* --- SIZING / LAYOUT --- */
+    --container-max: 980px;
+    --gutter: 16px;
+
+    --header-min-height: 56px;
+    --header-max-height: 120px;
+    --header-scale: 3.5vw;
+    --header-height-clamp: clamp(var(--header-min-height), var(--header-scale), var(--header-max-height));
+    --header-height-mobile: 56px;
+    --header-height: var(--header-height-clamp);
+    --header-title-gap: 8px;
+    --panel-gap: 16px;
+
+    --logo-min-width: 40px;
+    --logo-max-width: 140px;
+    --logo-scale: 8vw;
+    --logo-width-scale: var(--logo-scale);
+
+    /* --- NAV / GAPS --- */
+    --nav-gap: 8px;
+    --nav-gap-wide: 12px;
+
+    /* --- ICONS / RADII / MOTION --- */
+    --icon-small: 18px;
+    --icon-medium: 20px;
+    --icon-container: 34px;
+    --icon-container-wide: 36px;
+    --icon-container-mobile: 32px;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.6);
+    --shadow-header: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+    --transition-fast: 150ms ease;
+    --focus-ring: rgba(11, 92, 255, 0.18);
+
+    /* --- TYPOGRAPHY --- */
+    --brand-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui;
+    --title-size: clamp(0.95rem, 1.2vw, 1.25rem);
+
+    /* scan.css local fallbacks / helpers */
+    --radius: 10px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --gutter: 16px;
+    --panel-bg: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.92));
+}

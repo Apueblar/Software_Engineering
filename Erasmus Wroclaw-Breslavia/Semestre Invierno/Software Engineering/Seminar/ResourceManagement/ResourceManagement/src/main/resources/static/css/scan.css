@@ -1,0 +1,404 @@
+/*scan.css*/
+/* Header */
+.scan-header h1 {
+    margin: 0 0 6px 0;
+    font-size: 1.25rem;
+    color: var(--white);
+}
+
+.lead {
+    margin: 0 0 16px 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+/* Main sections layout */
+.scan-page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* Live camera section */
+.live-scan {
+    padding: 20px;
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
+
+.live-scan h2 {
+    margin: 0 0 16px 0;
+    font-size: 1.1rem;
+    color: var(--white);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 16px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 4/3;
+}
+
+#qr-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.scan-status {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.scan-status.success {
+    background: rgba(46, 125, 50, 0.15);
+    color: #a5d6a7;
+    border-left: 4px solid rgba(46, 125, 50, 0.9);
+}
+
+.scan-status.error {
+    background: rgba(198, 40, 40, 0.12);
+    color: #ffdddd;
+    border-left: 4px solid rgba(198, 40, 40, 0.9);
+}
+
+/* Upload section */
+.scan-panel {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    align-items: start;
+}
+
+.scan-panel h2 {
+    grid-column: 1 / -1;
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    color: var(--white);
+}
+
+@media (max-width: 880px) {
+    .scan-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* App-consistent link styling */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration: underline;
+}
+
+a.muted {
+    color: var(--muted-white);
+    font-weight: 600;
+}
+
+a.danger {
+    color: #ffb3b3;
+}
+
+/* -------------------------------------------------------------------------
+   Dropzone
+   ------------------------------------------------------------------------- */
+.dropzone {
+    position: relative;
+    border-radius: var(--radius);
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.dropzone:hover {
+    transform: translateY(-4px);
+}
+
+.dropzone.is-dragover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(11, 92, 255, 0.12);
+}
+
+.dropzone .file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.dropzone-content {
+    text-align: center;
+    pointer-events: none;
+}
+
+.icon-camera {
+    width: 48px;
+    height: 48px;
+    fill: var(--muted-white);
+    opacity: 0.95;
+    display: block;
+    margin: 0 auto 12px auto;
+}
+
+.drop-instruction {
+    margin: 0;
+    color: var(--muted-white);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.link-like {
+    background: none;
+    border: none;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0;
+    font-size: 1rem;
+}
+
+/* Note */
+.note {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* -------------------------------------------------------------------------
+   Preview area
+   ------------------------------------------------------------------------- */
+.preview-area {
+    margin-top: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-sizing: border-box;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.preview-inner {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.04);
+    min-height: 160px;
+}
+
+.preview-inner img {
+    max-width: 100%;
+    max-height: 360px;
+    border-radius: 6px;
+    display: block;
+}
+
+/* -------------------------------------------------------------------------
+   Error
+   ------------------------------------------------------------------------- */
+.error {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(198, 40, 40, 0.12);
+    color: #ffdddd;
+    border-left: 4px solid rgba(198, 40, 40, 0.9);
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   Buttons / actions
+   ------------------------------------------------------------------------- */
+.form-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-sizing: border-box;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn.primary:hover:not(:disabled) {
+    background: #0952e6;
+    transform: translateY(-1px);
+}
+
+.btn.neutral {
+    background: transparent;
+    color: var(--muted-white);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.btn.neutral:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn.small {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------------------------
+   Help aside
+   ------------------------------------------------------------------------- */
+.help {
+    padding: 14px;
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.help h3 {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.help ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.help li {
+    margin-bottom: 6px;
+}
+
+/* -------------------------------------------------------------------------
+   Utilities & responsive
+   ------------------------------------------------------------------------- */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Keep options readable if native dropdowns appear on dark panels */
+select option,
+.filter-panel select option,
+.dropzone select option {
+    background: #000;
+    color: #fff;
+}
+
+/* Responsive tweaks for very small screens */
+@media (max-width: 520px) {
+    .scan-page {
+        padding: 0 12px;
+    }
+
+    .live-scan,
+    .dropzone,
+    .help,
+    .preview-area {
+        padding: 14px;
+    }
+
+    .dropzone {
+        min-height: 150px;
+    }
+
+    .preview-inner {
+        min-height: 120px;
+        padding: 8px;
+    }
+
+    .video-container {
+        aspect-ratio: 3/4;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .drop-instruction {
+        font-size: 0.9rem;
+    }
+
+    .note {
+        font-size: 0.85rem;
+    }
+}

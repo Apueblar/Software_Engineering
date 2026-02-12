@@ -1,0 +1,68 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: resourcemanagement-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/start.sh:/start.sh:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - resource-net
+    mem_limit: 256m
+    command: /bin/sh /start.sh
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: resourcemanagement-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: /bin/sh -c "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;"
+    networks:
+      - resource-net
+
+  mysql:
+    image: mysql:8
+    container_name: resourcemanagement-db
+    environment:
+      MYSQL_DATABASE: resourcemanagement
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: strongpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql/conf/my.cnf:/etc/mysql/my.cnf:ro
+    networks:
+      - resource-net
+    restart: unless-stopped
+    mem_limit: 512m
+
+  backend:
+    build:
+      context: ./ResourceManagement
+      dockerfile: Dockerfile
+    container_name: resourcemanagement-app
+    expose:
+      - "8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/resourcemanagement?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: app_user
+      SPRING_DATASOURCE_PASSWORD: strongpassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+    networks:
+      - resource-net
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1.0
+
+networks:
+  resource-net:
+    driver: bridge

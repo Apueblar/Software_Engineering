@@ -1,0 +1,95 @@
+<!-- templates/layout.html -->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:fragment="layout(pageTitle, bodyContent)">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title th:text="${pageTitle}">WUST Resource Management</title>
+
+	<link rel="icon" type="image/png" th:href="@{/img/WUST.png}" />
+	<link rel="stylesheet" th:href="@{/css/variables.css}">
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/index.css}" th:if="${page == 'main'}">
+	<link rel="stylesheet" th:href="@{/css/layout.css}">
+
+	<link rel="stylesheet" th:href="@{/css/admin.css}" th:if="${page == 'admin'}" />
+	<link rel="stylesheet" th:href="@{/css/login.css}" th:if="${page == 'login'}">
+	<link rel="stylesheet" th:href="@{/css/resource.css}" th:if="${page == 'resource'}">
+	<link rel="stylesheet" th:href="@{/css/error.css}" th:if="${page == 'error'}">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+
+<body class="app-root">
+	<!-- header -->
+	<header th:fragment="header" class="site-header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+		<div class="header-inner container">
+			<a th:href="@{/}" class="logo-wrap" aria-label="WUST home">
+				<img th:src="@{/img/WUST.png}" alt="WUST" class="logo" />
+				<span class="site-title">WUST</span>
+			</a>
+
+			<nav class="header-nav" aria-label="Main navigation">
+				<!-- Login link visible only when NOT authenticated -->
+				<a th:href="@{/login}" sec:authorize="!isAuthenticated()" class="nav-link">Login</a>
+
+				<!-- Admin link visible only to users with ADMIN role -->
+				<a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" class="nav-link">Admin</a>
+
+				<!-- Authenticated: Camera icon -->
+				<a th:href="@{/scan}" sec:authorize="isAuthenticated()" title="Scan" class="nav-icon"
+					aria-hidden="true">
+					<svg class="camera-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+						xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M4 7H7L9 4H15L17 7H20C21.1 7 22 7.9 22 9V19C22 20.1 21.1 21 20 21H4C2.9 21 2 20.1 2 19V9C2 7.9 2.9 7 4 7Z"
+							stroke="currentColor" />
+						<circle cx="12" cy="13" r="3" stroke="currentColor" />
+					</svg>
+				</a>
+
+
+				<!-- Authenticated: User icon button that triggers logout -->
+				<div sec:authorize="isAuthenticated()" class="nav-user-wrap">
+					<button type="button" class="user-btn" title="Account" aria-label="Account and logout"
+						onclick="document.getElementById('logout-form').submit()">
+						<svg class="user-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+							xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z"
+								stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+								stroke-linejoin="round" />
+							<path d="M4 20c0-3.314 2.686-6 6-6h4c3.314 0 6 2.686 6 6" stroke="currentColor"
+								stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+						<span class="nav-user"><b sec:authentication="name">user</b></span>
+					</button>
+
+					<!-- Hidden logout form (POST with CSRF) -->
+					<form id="logout-form" th:action="@{/logout}" method="post" style="display:none;">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					</form>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+	<!-- main: insert the page body passed by the caller exactly here -->
+	<main class="main-content">
+		<div class="container" th:insert="${bodyContent}"></div>
+	</main>
+
+	<!-- footer -->
+	<footer class="site-footer">
+		<div class="container">
+			<p>&copy; WUST - Resource Management</p>
+		</div>
+	</footer>
+
+	<!-- single script inclusion -->
+	<script th:src="@{/js/main.js}" defer></script>
+</body>
+
+</html>

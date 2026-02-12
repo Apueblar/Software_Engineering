@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layout :: layout('WUST Resource Management - Edit Reservation', ~{::body})}">
+<div th:fragment="body">
+    <section class="container resource-page">
+
+        <!-- Header -->
+        <header class="page-header">
+            <h2>Edit Reservation</h2>
+            <p class="availability">
+                Resource:
+                <span
+                    th:text="${reservation.resource instanceof T(g3.t1.resourcemanagement.entity.Book) ? 'Book' :
+                               (reservation.resource instanceof T(g3.t1.resourcemanagement.entity.Room) ? 'Room' : 'Resource')} + ' #' + ${reservation.resource.id}"></span>
+            </p>
+        </header>
+
+        <!-- Current Reservation Details -->
+        <section class="card resource-details">
+            <h3>Current Reservation Details</h3>
+
+            <!-- Resource info -->
+            <div th:if="${reservation.resource instanceof T(g3.t1.resourcemanagement.entity.Book)}">
+                <p><strong>Resource:</strong> <span th:text="${reservation.resource.title}"></span></p>
+                <p><strong>Author:</strong> <span th:text="${reservation.resource.author}"></span></p>
+            </div>
+
+            <div th:if="${reservation.resource instanceof T(g3.t1.resourcemanagement.entity.Room)}">
+                <p><strong>Resource:</strong> <span th:text="${reservation.resource.name}"></span></p>
+                <p><strong>Room Code:</strong> <span th:text="${reservation.resource.roomCode}"></span></p>
+            </div>
+
+            <p><strong>Status:</strong>
+                <span class="status-badge" th:classappend="${reservation.status == 'ACTIVE' ? 'status-active' :
+                                      reservation.status == 'CANCELLED' ? 'status-cancelled' :
+                                      'status-other'}" th:text="${reservation.status}">
+                </span>
+            </p>
+            <p><strong>Current Start:</strong>
+                <span th:text="${#temporals.format(reservation.startTime, 'yyyy-MM-dd HH:mm')}"></span>
+            </p>
+            <p><strong>Current End:</strong>
+                <span th:text="${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd HH:mm')}"></span>
+            </p>
+            <p th:if="${reservation.notes}"><strong>Current Notes:</strong>
+                <span th:text="${reservation.notes}"></span>
+            </p>
+        </section>
+
+        <!-- Reservation Schedule -->
+        <section class="card reservation-schedule">
+            <h3>Reservation Schedule for This Resource</h3>
+
+            <div th:if="${#lists.isEmpty(upcomingReservations)}" class="no-reservations">
+                <p>No other upcoming reservations for the next month. This resource is available!</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(upcomingReservations)}">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="res : ${upcomingReservations}"
+                            th:classappend="${res.startTime.isBefore(now) and res.id.endTime.isAfter(now)} ? 'current-reservation' : ''"
+                            th:data-is-current="${res.id.resourceId == reservation.id.resourceId and res.id.endTime == reservation.id.endTime}">
+                            <td th:text="${#temporals.format(res.startTime, 'yyyy-MM-dd HH:mm')}"></td>
+                            <td th:text="${#temporals.format(res.id.endTime, 'yyyy-MM-dd HH:mm')}"></td>
+                            <td>
+                                <span class="status-badge" th:classappend="${res.status == 'ACTIVE' ? 'status-active' :
+                                                  res.status == 'CANCELLED' ? 'status-cancelled' :
+                                                  'status-other'}" th:text="${res.status}">
+                                </span>
+                            </td>
+                            <td
+                                th:text="${T(java.time.Duration).between(res.startTime, res.id.endTime).toHours()} + 'h ' +
+                                      ${T(java.time.Duration).between(res.startTime, res.id.endTime).toMinutesPart()} + 'm'">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="schedule-note">
+                    <small>Showing reservations for the next 30 days.
+                        <span class="current-indicator">●</span> indicates current reservation (being edited).
+                    </small>
+                </p>
+            </div>
+        </section>
+
+        <!-- Edit Form - MATCHING resource.html STRUCTURE EXACTLY -->
+        <section class="card reservation-form">
+            <h3>Update Your Reservation</h3>
+
+            <form th:action="@{'/resources/' + ${reservation.resource.id} + '/' +
+                             ${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd''T''HH:mm')} + '/edit'}"
+                th:object="${reservationForm}" method="post" novalidate>
+
+                <div th:if="${#fields.hasErrors()}" class="form-errors">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Error</li>
+                    </ul>
+                </div>
+
+                <!-- CHANGED: Use same label text as resource.html -->
+                <label>
+                    From
+                    <input type="datetime-local" th:field="*{startTime}" required />
+                    <div class="field-error" th:errors="*{startTime}"></div>
+                </label>
+
+                <label>
+                    To
+                    <input type="datetime-local" th:field="*{endTime}" required />
+                    <div class="field-error" th:errors="*{endTime}"></div>
+                </label>
+
+                <label>
+                    Notes
+                    <textarea th:field="*{notes}" maxlength="2000"></textarea>
+                    <div class="field-error" th:errors="*{notes}"></div>
+                </label>
+
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="btn primary">Update Reservation</button>
+                    <a th:href="@{/}" class="btn secondary">Cancel</a>
+                </div>
+            </form>
+        </section>
+
+        <!-- Info section -->
+        <section class="card info-section">
+            <p class="info-text">
+                <strong>Note:</strong> You can only modify the start time, end time, and notes of your reservation.
+                The resource cannot be changed. If you need to reserve a different resource, please cancel this
+                reservation and create a new one.
+            </p>
+            <p class="info-text" th:if="${reservation.admin != null}">
+                <strong>Admin Note:</strong> This reservation was created by an administrator.
+            </p>
+        </section>
+
+    </section>
+
+    <script th:src="@{/js/resources.js}" defer></script>
+</div>
+
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout('Edit Reservation - WUST Admin', ~{::body})}">
+<div th:fragment="body">
+    <main class="admin-form-page">
+        <header class="form-header">
+            <h1>✏️ Edit Reservation</h1>
+            <p class="lead">Modify reservation time details.</p>
+        </header>
+
+        <form th:action="@{'/admin/reservations/' + ${reservation.resource.id} + '/' + ${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd''T''HH:mm')} + '/edit'}"
+              th:object="${reservationForm}" method="post" class="admin-form" novalidate>
+
+            <!-- Global form errors -->
+            <div th:if="${#fields.hasErrors('global')}" class="alert alert-error" role="alert">
+                <strong>Error!</strong>
+                <ul>
+                    <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Error message</li>
+                </ul>
+            </div>
+
+            <!-- General errors -->
+            <div th:if="${#fields.hasErrors()}" class="alert alert-error" role="alert">
+                <strong>Error!</strong>
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Error message</li>
+                </ul>
+            </div>
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <!-- Hidden fields for resource and client IDs (required but not editable) -->
+            <input type="hidden" th:field="*{resourceId}" />
+            <input type="hidden" th:field="*{clientId}" />
+
+            <!-- Current Reservation Info -->
+            <section class="form-section">
+                <h2 class="section-title">📋 Current Reservation</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Resource:</span>
+                        <span class="info-value" th:text="${reservation.resource.class.simpleName == 'Book' ? reservation.resource.title : reservation.resource.name}">Resource</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Client:</span>
+                        <span class="info-value" th:text="${reservation.client.name + ' (' + reservation.client.email + ')'}">Client</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span class="reservation-status"
+                              th:classappend="${reservation.status}"
+                              th:text="${reservation.status}">Status</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Current Start:</span>
+                        <span class="info-value" th:text="${#temporals.format(reservation.startTime, 'yyyy-MM-dd HH:mm')}">Start</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Current End:</span>
+                        <span class="info-value" th:text="${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd HH:mm')}">End</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reservation Schedule -->
+            <section class="form-section">
+                <h2 class="section-title">📅 Reservation Schedule for This Resource</h2>
+
+                <div th:if="${#lists.isEmpty(upcomingReservations)}" class="info-message">
+                    <p>No other upcoming reservations for the next month. This resource is available!</p>
+                </div>
+
+                <div th:unless="${#lists.isEmpty(upcomingReservations)}" style="overflow-x: auto;">
+                    <table class="resources-table" style="margin: 0;">
+                        <thead>
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="res : ${upcomingReservations}"
+                            th:classappend="${res.id.resourceId == reservation.id.resourceId and res.id.endTime == reservation.id.endTime} ? 'admin-created' : ''">
+                            <td th:text="${#temporals.format(res.startTime, 'yyyy-MM-dd HH:mm')}"></td>
+                            <td th:text="${#temporals.format(res.id.endTime, 'yyyy-MM-dd HH:mm')}"></td>
+                            <td>
+                                    <span class="reservation-status"
+                                          th:classappend="${res.status}"
+                                          th:text="${res.status}">Status</span>
+                            </td>
+                            <td th:text="${T(java.time.Duration).between(res.startTime, res.id.endTime).toHours()} + 'h ' +
+                                      ${T(java.time.Duration).between(res.startTime, res.id.endTime).toMinutesPart()} + 'm'">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="margin-top: 1rem; color: var(--muted-white); font-size: 0.85rem;">
+                        <small>Showing reservations for the next 30 days.
+                            <span style="color: var(--accent); font-weight: 700;">Highlighted row</span> indicates current reservation (being edited).
+                        </small>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Edit Form - TIMES ONLY -->
+            <section class="form-section">
+                <h2 class="section-title">⏰ Update Reservation Times</h2>
+
+                <p class="info-message" style="margin-bottom: 1.5rem;">
+                    <strong>Note:</strong> You can only modify the start time, end time, and notes.
+                    The resource and client cannot be changed. If you need to change those, please cancel this reservation and create a new one.
+                </p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startTime">Start Time <span class="required">*</span></label>
+                        <div class="datetime-wrapper">
+                            <input type="datetime-local" id="startTime" th:field="*{startTime}"
+                                   class="form-input" th:classappend="${#fields.hasErrors('startTime')} ? 'error' : ''"
+                                   required />
+                        </div>
+                        <span class="field-error" th:if="${#fields.hasErrors('startTime')}"
+                              th:errors="*{startTime}">Error</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endTime">End Time <span class="required">*</span></label>
+                        <div class="datetime-wrapper">
+                            <input type="datetime-local" id="endTime" th:field="*{endTime}"
+                                   class="form-input" th:classappend="${#fields.hasErrors('endTime')} ? 'error' : ''"
+                                   required />
+                        </div>
+                        <span class="field-error" th:if="${#fields.hasErrors('endTime')}"
+                              th:errors="*{endTime}">Error</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" th:field="*{notes}"
+                              class="form-textarea" th:classappend="${#fields.hasErrors('notes')} ? 'error' : ''"
+                              rows="4" maxlength="2000"
+                              placeholder="Optional notes about this reservation..."></textarea>
+                    <span class="field-error" th:if="${#fields.hasErrors('notes')}"
+                          th:errors="*{notes}">Error</span>
+                    <span class="field-hint">Maximum 2000 characters</span>
+                </div>
+            </section>
+
+            <!-- Preview section -->
+            <section class="form-section preview-section">
+                <h2 class="section-title">👁️ Preview</h2>
+                <div class="preview-card">
+                    <div class="preview-item">
+                        <span class="preview-label">Resource:</span>
+                        <span class="preview-value" id="preview-resource" th:text="${reservation.resource.class.simpleName == 'Book' ? reservation.resource.title : reservation.resource.name}">Resource</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-label">Client:</span>
+                        <span class="preview-value" id="preview-client" th:text="${reservation.client.name}">Client</span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-label">Duration:</span>
+                        <span class="preview-value" id="preview-duration">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info section -->
+            <section class="form-section" style="background: rgba(11, 92, 255, 0.05); border-color: rgba(11, 92, 255, 0.2);">
+                <p style="margin: 0; color: var(--muted-white); font-size: 0.95rem;">
+                    <strong style="color: var(--white);">Admin Note:</strong> Resource and client fields have been removed from this form.
+                    Only time and notes can be modified to prevent accidental changes to core reservation details.
+                </p>
+                <p th:if="${reservation.admin != null}" style="margin: 0.75rem 0 0 0; color: var(--muted-white); font-size: 0.95rem;">
+                    <strong style="color: var(--white);">Originally created by:</strong> Admin
+                </p>
+            </section>
+
+            <!-- Form actions -->
+            <div class="form-actions">
+                <button type="submit" class="btn primary" id="submitBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Update Reservation
+                </button>
+                <a th:href="@{/admin}" class="btn neutral">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <script th:src="@{/js/admin.js}" src="/js/admin.js" defer></script>
+</div>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout('WUST Resource Management - Resource', ~{::body})}">
+<div th:fragment="body">
+    <section class="container resource-page">
+
+        <!-- Header -->
+        <header class="page-header">
+            <h2 th:text="${resource.class.simpleName} + ' #' + ${resource.id}">
+                Resource
+            </h2>
+
+            <p class="availability">
+                Status:
+                <span th:text="${resource.available} ? 'Available' : 'Unavailable'"
+                      th:classappend="${resource.available} ? 'status-available' : 'status-unavailable'">
+                    Available
+                </span>
+            </p>
+        </header>
+
+        <!-- Query Parameter Messages -->
+        <div th:if="${param.reserved}" class="alert alert-success">
+            Reservation created successfully!
+        </div>
+        <div th:if="${param.conflict}" class="alert alert-error">
+            The selected time slot is no longer available. Please choose a different time.
+        </div>
+        <div th:if="${param.error}" class="alert alert-error">
+            An error occurred. Please try again.
+        </div>
+        <div th:if="${param.notfound}" class="alert alert-error">
+            Resource not found.
+        </div>
+
+        <!-- Resource details -->
+        <section class="card resource-details">
+
+            <!-- Book fields -->
+            <div th:if="${resource.class.simpleName == 'Book'}">
+                <p><strong>Title:</strong> <span th:text="${resource.title}">Book Title</span></p>
+                <p><strong>Author:</strong> <span th:text="${resource.author}">Author Name</span></p>
+                <p><strong>ISBN:</strong> <span th:text="${resource.isbn}">ISBN Number</span></p>
+            </div>
+
+            <!-- Room fields -->
+            <div th:if="${resource.class.simpleName == 'Room'}">
+                <p><strong>Name:</strong> <span th:text="${resource.name}">Room Name</span></p>
+                <p><strong>Room code:</strong> <span th:text="${resource.roomCode}">Room Code</span></p>
+                <p><strong>Capacity:</strong> <span th:text="${resource.capacity}">Capacity</span></p>
+            </div>
+
+        </section>
+
+        <!-- Reservation Schedule -->
+        <section class="card reservation-schedule">
+            <h3>Reservation Schedule</h3>
+
+            <div th:if="${#lists.isEmpty(upcomingReservations)}" class="no-reservations">
+                <p>No upcoming reservations for the next month. This resource is available!</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(upcomingReservations)}">
+                <table class="schedule-table">
+                    <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reservation : ${upcomingReservations}"
+                        th:classappend="${reservation.startTime.isBefore(now) and reservation.id.endTime.isAfter(now)} ? 'current-reservation' : ''">
+                        <td th:text="${#temporals.format(reservation.startTime, 'yyyy-MM-dd HH:mm')}">Start</td>
+                        <td th:text="${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd HH:mm')}">End</td>
+                        <td>
+                                <span class="status-badge" th:classappend="${reservation.status == 'ACTIVE' ? 'status-active' :
+							      reservation.status == 'CANCELLED' ? 'status-cancelled' :
+							      'status-other'}" th:text="${reservation.status}">
+                                    Status
+                                </span>
+                        </td>
+                        <td th:text="${T(java.time.Duration).between(reservation.startTime, reservation.id.endTime).toHours()} + 'h ' +
+					      ${T(java.time.Duration).between(reservation.startTime, reservation.id.endTime).toMinutesPart()} + 'm'">
+                            Duration
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="schedule-note">
+                    <small>Showing reservations for the next 30 days.
+                        <span class="current-indicator">●</span> indicates current reservation.
+                    </small>
+                </p>
+            </div>
+        </section>
+
+        <!-- Reservation form -->
+        <section th:if="${userType == 'client'}" class="card reservation-form">
+            <h3>Reserve this resource</h3>
+
+            <form th:action="@{'/resources/' + ${resource.id} + '/reserve'}" th:object="${reservationForm}"
+                  method="post" novalidate>
+
+                <!-- Form validation errors -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-error form-errors">
+                    <p><strong>Please correct the following errors:</strong></p>
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Error</li>
+                    </ul>
+                </div>
+
+                <label>
+                    From
+                    <input type="datetime-local" th:field="*{startTime}" required/>
+                    <div class="field-error" th:errors="*{startTime}"></div>
+                </label>
+
+                <label>
+                    To
+                    <input type="datetime-local" th:field="*{endTime}" required/>
+                    <div class="field-error" th:errors="*{endTime}"></div>
+                </label>
+
+                <label>
+                    Notes
+                    <textarea th:field="*{notes}" maxlength="2000"
+                              placeholder="Optional notes for your reservation"></textarea>
+                    <div class="field-error" th:errors="*{notes}"></div>
+                </label>
+
+                <button type="submit" id="submitBtn" class="btn primary" th:disabled="${!resource.available}">
+                    <span th:if="${resource.available}">Reserve</span>
+                    <span th:unless="${resource.available}">Unavailable</span>
+                </button>
+
+                <p th:unless="${resource.available}" class="help-text">
+                    This resource is currently unavailable for reservations.
+                </p>
+            </form>
+        </section>
+
+        <section th:if="${userType == 'guest'}" class="card">
+            <p>Please <a th:href="@{/login}">log in</a> to reserve this resource.</p>
+        </section>
+
+    </section>
+
+    <script th:src="@{/js/resources.js}" defer></script>
+</div>
+
+</html>

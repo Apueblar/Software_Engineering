@@ -1,0 +1,159 @@
+ResourceManagement/
+│
+├── .idea/
+│   └── workspace.xml
+├── mysql/
+│   └── conf/
+│		└── my.cnf
+├── nginx/
+│   ├── start.sh
+│   └── conf.d/
+│		└── resourcemanagement.conf
+├──	ResourceManagement
+│	├── .gradle/
+│	├── .idea/
+│	├── bin/
+│	├── build/
+│	│
+│	├── gradle/
+│	│   └── wrapper/
+│	│		├── gradle-wrapper.jar
+│	│		└── gradle-wrapper.properties
+│	│
+│	├── src/
+│	│   ├── main/
+│	│   │   ├── java/
+│	│   │   │   └── g3/
+│	│   │   │		└── t1/
+│	│   │   │	    	└── resourcemanagement/
+│	│   │   │				├── entity/
+│	│   │   │		    	│	├── User.java
+│	│   │   │		    	│	├── Client.java
+│	│   │   │		    	│	├── Admin.java
+│	│   │   │		    	│	├── AccountStatus.java
+│	│   │   │		    	│	├── EndAfterStart.java
+│	│   │   │		    	│	├── EndAfterStartValidator.java
+│	│   │   │		    	│	├── Resource.java
+│	│   │   │		    	│	├── Book.java
+│	│   │   │		    	│	├── Room.java
+│	│   │   │		    	│	├── ReservationId.java
+│	│   │   │		    	│	└── Reservation.java
+│	│   │   │		    	├── repository/
+│	│   │   │		    	│	├── UserRepository.java
+│	│   │   │		    	│	├── ClientRepository.java
+│	│   │   │		    	│	├── AdminRepository.java
+│	│   │   │		    	│	├── ResourceRepository.java
+│	│   │   │		    	│	├── BookRepository.java
+│	│   │   │		    	│	├── RoomRepository.java
+│	│   │   │		    	│	└── ReservationRepository.java
+│	│   │   │		    	├── service/
+│	│   │   │		    	│	├── QRService.java
+│	│   │   │		    	│	├── UserService.java
+│	│   │   │		    	│	├── ResourceService.java
+│	│   │   │		    	│	└── ReservationService.java
+│	│   │   │		    	├── security/
+│	│   │   │		    	│	├── JpaUserDetailsService.java
+│	│   │   │		    	│	├── UserValidationFilter.java
+│	│   │   │		    	│	└── SecurityConfig.java
+│	│   │   │		    	├── controller/
+│	│   │   │		    	│	├── AdminController.java
+│	│   │   │		    	│	├── MyErrorController.java
+│	│   │   │		    	│	├── HomeController.java
+│	│   │   │		    	│	├── ScannerController.java
+│	│   │   │		    	│	└── ResourceController.java
+│	│   │   │		    	├── web/
+│	│   │   │		    	│	├── AdminReservationForm.java
+│	│   │   │		    	│	├── UserForm.java
+│	│   │   │		    	│	├── ResourceForm.java
+│	│   │   │		    	│	└── ReservationForm.java
+│	│   │   │		    	└── ResourceManagementApplication.java
+│	│   │   └── resources/
+│	│   │		├── init/
+│	│   │		│   └── data.sql		   # Initial content of db
+│	│   │		├── static/		  # static web assets
+│	│   │		│   ├── js/
+│	│   │		│   │	├── admin.js
+│	│   │		│   │	├── scan.js
+│	│   │		│   │	├── index.js
+│	│   │		│	│	├── resources.js
+│	│   │		│	│	└── main.js
+│	│   │		│   ├── img/
+│	│   │		│	│	└── WUST.png # Image of the top left (pdf s3)
+│	│   │		│	└── css/
+│	│   │		│		├── admin.css
+│	│   │		│		├── app.css
+│	│   │		│		├── error.css
+│	│   │		│		├── index.css
+│	│   │		│		├── layout.css
+│	│   │		│		├── variables.css
+│	│   │		│		├── login.css
+│	│   │		│		├── resource.css
+│	│   │		│		├── header.css
+│	│   │		│		├── footer.css
+│	│   │		│		└── scan.css
+│	│   │		├── templates/	      # template files (HTML/TypeScript)
+│	│   │		│	├── admin
+│	│   │		│	│   ├── dashboard.html
+│	│   │		│	│   ├── resources.html
+│	│   │		│	│   ├── reservation_edit.html
+│	│   │		│	│   ├── resource_form.html
+│	│   │		│	│   ├── user_form.html
+│	│   │		│	│   └── reservation_form.html
+│	│   │		│	├── scan.html
+│	│   │		│	├── error.html
+│	│   │		│	├── layout.html
+│	│   │		│	├── index.html
+│	│   │		│	├── reservation-edit.html
+│	│   │		│	├── resource.html
+│	│   │		│	└── login.html
+│	│   │		└── application.properties
+│	│   │
+│	│   └── test/
+│	│		├── java/
+│	│		│    └── g3/
+│	│		│	    └── t1/
+│	│		│	        └── resourcemanagement/
+│	│		│			    ├── controller/
+│	│		│			    │	├── AdminControllerTest.java
+│	│		│			    │	├── HomeControllerTest.java
+│	│		│			    │	├── ScannerControllerTest.java
+│	│		│			    │	└── ResourceControllerTest.java
+│	│   	│				├── entity/
+│	│		│			    │	├── EndAfterStartValidatorTest.java
+│	│		│			    │	└── EntityValidationTest.java
+│	│		│			    ├── repository/
+│	│		│			    │	└── RepositoryIntegrationTest.java
+│	│		│			    ├── security/
+│	│		│			    │	└── SecurityConfigTest.java
+│	│		│			    ├── service/
+│	│		│			    │	├── QRServiceTest.java
+│	│		│			    │	├── UserServiceTest.java
+│	│		│			    │	├── ResourceServiceTest.java
+│	│		│			    │	└── ReservationServiceTest.java
+│	│		│				└── FullIntegrationTest.java
+│	│		└── resources/
+│	│   		├── init/
+│	│   		│   └── data.sql		   # Initial content of db TESTS
+│	│   		├── static/		  # static web assets
+│	│   		│	└── img/
+│	│   		│		├── notvalidqr.png
+│	│   		│		└── validqr.png
+│	│   		└── application.properties
+│	├── .gitattributes
+│	├── .gitignore
+│	├── app.log
+│	├── build.gradle
+│	├── Dockerfile
+│	├── gradlew
+│	├── gradlew.bat
+│	├── HELP.md
+│	└── settings.gradle
+│
+├── .git/
+├── .gitignore
+├── .gitattributes
+├── docker-compose.yml		 # Orchestrates frontend, backend, and Postgres containers
+├── setup-https.sh
+├── LICENSE
+├── README.md
+└── Structure.txt

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout('WUST Resource Management - Home', ~{::body})}">
+<div th:fragment="body">
+	<section class="container">
+		<header class="page-header">
+			<h2>Available resources</h2>
+
+			<!-- Not Found Alert -->
+			<div th:if="${param.notfound != null}" class="alert alert-error" role="alert"
+				style="margin-bottom: 1.5rem;">
+				<strong>Resource not found!</strong>
+				<p style="margin: 0.5rem 0 0 0;">The QR code you scanned does not correspond to any existing resource.
+					Please try scanning a different code.</p>
+			</div>
+
+			<div th:if="${param.reserved != null}" class="alert alert-success" role="alert"
+				style="margin-bottom: 1.5rem;">
+				<strong>Success!</strong>
+				<p style="margin: 0.5rem 0 0 0;">Your reservation has been created successfully!</p>
+			</div>
+
+			<div th:if="${#strings.equals(param.error, 'notfound')}" class="alert alert-error" role="alert"
+				style="margin-bottom: 1.5rem;">
+				<strong>Reservation not found!</strong>
+				<p style="margin: 0.5rem 0 0 0;">The reservation you ar trying to access is not in the system.</p>
+			</div>
+
+			<div th:if="${#strings.equals(param.error, 'unauthorized')}" class="alert alert-error" role="alert"
+				style="margin-bottom: 1.5rem;">
+				<strong>Unauthorized!</strong>
+				<p style="margin: 0.5rem 0 0 0;">You don't have permission to modify this reservation.</p>
+			</div>
+
+			<!-- User reservations Section -->
+			<div id="reservations-container" th:if="${userType == 'client'}" class="reservations-container"
+				style="display: none;" aria-hidden="true">
+				<!-- Empty state -->
+				<div id="reservations-empty" class="alert" style="text-align: center; padding: 2rem;">
+					<p style="margin: 0; color: #666;">You don't have any active reservations yet.</p>
+				</div>
+
+				<!-- Reservations list -->
+				<div id="reservations-list" class="reservations-list" style="display: none;">
+					<div th:each="reservation : ${userReservations}" class="reservation-card card"
+						th:attr="data-resource-id=${reservation.resource.id}, data-end-time=${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd''T''HH:mm')}">
+
+						<div
+							style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+							<div>
+								<h4 style="margin: 0 0 0.25rem 0;">
+									<span th:text="${reservation.resource.class.simpleName}">Type</span>
+									<span> #</span>
+									<span th:text="${reservation.resource.id}">0</span>
+								</h4>
+								<p class="meta" style="margin: 0;">
+									<strong th:if="${reservation.resource.class.simpleName == 'Book'}">Title:</strong>
+									<strong th:if="${reservation.resource.class.simpleName == 'Room'}">Name:</strong>
+									<span
+										th:text="${reservation.resource.class.simpleName == 'Book' ? reservation.resource.title :
+                                          (reservation.resource.class.simpleName == 'Room' ? reservation.resource.name :
+                                          (reservation.resource.code != null ? reservation.resource.code : '—'))}">Resource
+										Name</span>
+								</p>
+							</div>
+							<span class="avail-pill"
+								th:classappend="${reservation.status == 'ACTIVE' ? 'available' : 'unavailable'}"
+								th:text="${reservation.status}">ACTIVE</span>
+						</div>
+
+						<div style="margin-bottom: 0.75rem;">
+							<p class="meta" style="margin: 0 0 0.25rem 0;">
+								<span class="label">Start:</span>
+								<span
+									th:text="${#temporals.format(reservation.startTime, 'dd/MM/yyyy HH:mm')}">01/01/2024
+									10:00</span>
+							</p>
+							<p class="meta" style="margin: 0;">
+								<span class="label">End:</span>
+								<span
+									th:text="${#temporals.format(reservation.id.endTime, 'dd/MM/yyyy HH:mm')}">01/01/2024
+									12:00</span>
+							</p>
+						</div>
+
+						<div class="card-actions" style="display: flex; gap: 0.5rem;">
+							<a th:href="@{'/resources/' + ${reservation.resource.id}}" class="btn small">
+								View Resource
+							</a>
+							<a th:href="@{'/resources/' + ${reservation.resource.id} + '/' + ${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd''T''HH:mm')} + '/edit'}"
+								class="btn small" th:if="${reservation.status == 'ACTIVE'}">
+								Modify
+							</a>
+							<form
+								th:action="@{'/resources/' + ${reservation.resource.id} + '/' + ${#temporals.format(reservation.id.endTime, 'yyyy-MM-dd''T''HH:mm')} + '/cancel'}"
+								method="post" style="display: inline;" th:if="${reservation.status == 'ACTIVE'}"
+								onsubmit="return confirm('Are you sure you want to cancel this reservation?');">
+								<button type="submit" class="btn small"
+									style="background-color: #dc3545; border-color: #dc3545;">
+									Cancel
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Filters / search -->
+			<div class="filters" id="filters-root" role="region" aria-label="Resource filters">
+
+				<!-- LEFT: interval form -->
+				<div class="filters-left" aria-hidden="false">
+					<form id="filters-form" class="interval-form" method="get" th:action="@{/}">
+						<div class="interval-title-row">
+							<strong class="interval-title">Select your interval:</strong>
+						</div>
+
+						<div class="interval-grid">
+							<div class="interval-row">
+								<label for="filter-start">Start time</label>
+								<input id="filter-start" name="startTime" type="datetime-local"
+									th:value="${startTimeString}" aria-label="Filter by start time" />
+							</div>
+
+							<div class="interval-row">
+								<label for="filter-end">End time</label>
+								<input id="filter-end" name="endTime" type="datetime-local" th:value="${endTimeString}"
+									aria-label="Filter by end time" />
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<!-- CENTER: type controls (centered) -->
+				<div class="filters-center" role="group" aria-label="Resource types">
+					<div class="type-controls" style="align-items:center;">
+						<label for="type-bar" class="sr-only">Select resource types:</label>
+						<div id="type-bar" class="type-bar" role="tablist" aria-label="Resource types"></div>
+					</div>
+				</div>
+
+				<!-- RIGHT: filter toggle / extra options -->
+				<div class="filters-right" aria-hidden="false">
+					<button id="filter-toggle" type="button" class="btn small" aria-haspopup="dialog"
+						aria-expanded="false">
+						Filters
+						<span class="chev" aria-hidden="true">▾</span>
+					</button>
+
+					<div id="filter-panel" class="filter-panel" role="dialog" aria-label="Additional filters"
+						aria-hidden="true">
+						<form id="filter-panel-form" class="filter-panel-form" onsubmit="return false;">
+							<div class="filter-row">
+								<label for="filter-text">Text</label>
+								<input id="filter-text" type="search" placeholder="Title, author, room name..."
+									aria-label="Search by text" />
+							</div>
+
+							<div class="filter-row" id="filter-row-2">
+								<label for="filter-isbn">ISBN</label>
+								<input id="filter-isbn" type="search" placeholder="ISBN (books only)"
+									aria-label="Search by ISBN" />
+							</div>
+
+							<div class="filter-row" id="filter-row-3">
+								<label for="filter-capacity">Capacity</label>
+								<select id="filter-capacity" aria-label="Filter by capacity">
+									<option value="">Any</option>
+									<option value="0">> 0</option>
+									<option value="5">> 5</option>
+									<option value="10">> 10</option>
+									<option value="20">> 20</option>
+									<option value="custom">Custom...</option>
+								</select>
+								<input id="filter-capacity-custom" type="number" min="0" placeholder="Custom"
+									aria-label="Custom capacity" style="display:none; width:90px; margin-left:8px;" />
+							</div>
+
+							<div class="filter-row filter-row-inline">
+								<label class="filter-inline" style="margin:0;">
+									<input id="filter-available" type="checkbox" checked />
+									<span>Show only available</span>
+								</label>
+
+								<button id="filter-clear" type="button" class="btn small">Clear</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- Container with all resource cards (rendered server-side as data attributes) -->
+		<div id="resources-root" class="resources-root" aria-hidden="true">
+			<div th:each="res : ${resources}" class="resource-item card" th:attr="
+		      data-id=${res.id},
+		      data-type=${res.class.simpleName},
+		      data-available=${res.available},
+		      data-title=${res.class.simpleName == 'Book' ? res.title : (res.class.simpleName == 'Room' ? res.name : '')},
+		      data-isbn=${res.class.simpleName == 'Book' ? res.isbn : ''},
+		      data-author=${res.class.simpleName == 'Book' ? res.author : ''},
+		      data-roomcode=${res.class.simpleName == 'Room' ? res.roomCode : ''},
+		      data-capacity=${res.class.simpleName == 'Room' ? res.capacity : ''}">
+				<h3 class="card-title">
+					<span th:text="${res.class.simpleName}">Type</span>
+					<span> #</span>
+					<span th:text="${res.id}">0</span>
+				</h3>
+
+				<p class="meta">
+					<strong th:if="${res.class.simpleName == 'Book'}">Title:</strong>
+					<strong th:if="${res.class.simpleName == 'Room'}">Name:</strong>
+					<span
+						th:text="${res.class.simpleName == 'Book' ? res.title : (res.class.simpleName == 'Room' ? res.name : (res.code != null ? res.code : '—'))}">Title</span>
+				</p>
+
+				<p class="meta" th:if="${res.class.simpleName == 'Book'}">
+					<span class="label">Author:</span>
+					<span th:text="${res.author}">Author</span>
+					<span class="label" style="margin-left:8px;">ISBN:</span>
+					<span th:text="${res.isbn}">ISBN</span>
+				</p>
+
+				<p class="meta" th:if="${res.class.simpleName == 'Room'}">
+					<span class="label">Room code:</span>
+					<span th:text="${res.roomCode}">Room</span>
+					<span class="label" style="margin-left:8px;">Capacity:</span>
+					<span th:text="${res.capacity}">0</span>
+				</p>
+
+				<p class="meta">
+					<strong>Availability:</strong>
+					<span class="avail-pill" th:classappend="${res.available} ? ' available' : ' unavailable'">
+						<span th:text="${res.available} ? 'Available' : 'Unavailable'">Available</span>
+					</span>
+				</p>
+
+				<div class="card-actions">
+					<a th:href="@{'/resources/' + ${res.id}}" class="btn view-btn"
+						th:classappend="${res.available} ? '' : ' disabled'"
+						th:attr="aria-disabled=${res.available} ? null : 'true', tabindex=${res.available} ? null : -1">
+						View
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Sections container (JS will create per-type sections and move cards into them) -->
+		<div id="sections-container" class="sections-container" aria-live="polite">
+			<!-- JS will create <section class="type-section" data-type="Book"> ... </section> -->
+		</div>
+	</section>
+
+	<!-- Client-side script to group, build type bar and filter -->
+	<script th:src="@{/js/index.js}" defer></script>
+</div>
+
+</html>

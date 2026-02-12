@@ -1,0 +1,1035 @@
+/* ==========================================================================
+   Controls: buttons, inputs, forms
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.btn.small {
+    padding: 6px 8px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+
+.btn.primary {
+    background: var(--white);
+    color: var(--card-dark);
+}
+
+.btn.full {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--white);
+    box-sizing: border-box;
+    outline: none;
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(11, 92, 255, 0.12);
+    border-color: rgba(11, 92, 255, 0.9);
+}
+
+/* ==========================================================================
+   Page container and header
+   ========================================================================== */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: calc(var(--gutter) * 1.25);
+    box-sizing: border-box;
+    color: var(--muted-white);
+    font-family: var(--brand-font);
+    line-height: 1.35;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 6px 0 16px;
+    padding: 6px 0;
+}
+
+.page-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--white);
+    font-weight: 700;
+}
+
+/* Screen-reader helper (label for type-bar is intentionally visible) */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Make the type-bar label always visible and styled */
+label[for="type-bar"].sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 0 6px 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    border: 0 !important;
+    display: block !important;
+    color: var(--muted-white);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+/* ==========================================================================
+   Filters layout
+   ========================================================================== */
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gutter);
+    width: 100%;
+    padding: 8px 0;
+    position: relative;
+    /* positioning context for the panel */
+    overflow: visible;
+}
+
+/* Left: interval form */
+.filters-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: clamp(220px, 320px, 420px);
+    flex: 0 0 auto;
+    min-width: 220px;
+}
+
+.interval-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.interval-title {
+    font-size: 0.95rem;
+    color: var(--white);
+    margin: 0 0 2px 0;
+}
+
+.interval-grid {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.interval-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+    box-sizing: border-box;
+}
+
+.interval-row input[type="datetime-local"] {
+    min-width: 140px;
+    max-width: 100%;
+}
+
+/* Center: type controls */
+.filters-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 320px;
+    min-width: 0;
+}
+
+.type-controls {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.type-bar {
+    display: inline-flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 6px;
+    justify-content: center;
+    width: 100%;
+    max-width: 720px;
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+.type-btn {
+    padding: 0.45rem 0.9rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    color: var(--white);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 120ms ease, background 160ms ease, box-shadow 160ms ease;
+    white-space: nowrap;
+}
+
+.type-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.type-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(11, 92, 255, 0.10);
+    border-color: rgba(11, 92, 255, 0.9);
+}
+
+.type-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(11, 92, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Right: filters button and panel anchor */
+.filters-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+/* Filter toggle chevron */
+.chev {
+    margin-left: 6px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   Filter panel (anchored to the right with margin; viewport-safe)
+   ========================================================================== */
+.filter-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    /* consistent right margin */
+    left: auto;
+    z-index: 12000;
+
+    width: min(360px, calc(100vw - 48px));
+    max-width: calc(100vw - 48px);
+    box-sizing: border-box;
+
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.92));
+    color: var(--muted-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    transform-origin: top right;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    pointer-events: none;
+    display: none;
+}
+
+/* Force-open anchored to right: ensure stylesheet prevents JS accidental off-screen placement */
+.filter-panel.open {
+    display: block !important;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+    right: 16px !important;
+    left: auto !important;
+}
+
+/* When script sets position: fixed inline, prefer stylesheet anchored-right behavior (avoids off-screen) */
+.filter-panel[style*="position: fixed"] {
+    right: 16px !important;
+    left: auto !important;
+    position: fixed !important;
+    /* keep top as computed by script if present; otherwise fall back to default */
+}
+
+/* Small-screen fallback: fixed and inset from edges */
+@media (max-width: 720px) {
+    .filter-panel {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        top: 12vh;
+        bottom: 12vh;
+        width: auto;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 24vh);
+        border-radius: 10px;
+        display: none;
+        overflow: auto;
+        z-index: 10000;
+        padding: 12px;
+    }
+
+    .filter-panel.open {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+}
+
+/* Accessibility: focus ring for keyboard users */
+.filter-panel:focus {
+    outline: none;
+    box-shadow: 0 0 0 6px var(--focus-ring);
+}
+
+/* ==========================================================================
+   Filter panel content and form rows
+   ========================================================================== */
+.filter-panel .filter-panel-form {
+    display: block;
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+    padding: 4px 0;
+}
+
+.filter-panel-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.filter-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.filter-panel input[type="search"],
+.filter-panel input[type="number"],
+.filter-panel select {
+    flex: 1 1 auto;
+    min-width: 160px;
+    padding: 0.45rem 0.75rem;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    color: var(--white);
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.filter-panel input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.filter-panel input:focus,
+.filter-panel select:focus,
+.filter-panel input[type="search"]:focus,
+.filter-panel input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--focus-ring);
+    border-color: rgba(11, 92, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Styled select arrow */
+.filter-panel-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 36px;
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted-white) 50%), linear-gradient(135deg, var(--muted-white) 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 13px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    height: 38px;
+}
+
+/* Make native select dropdowns visible on dark backgrounds as much as possible */
+.filter-panel select option,
+.filter-panel option {
+    background: #000;
+    color: #fff;
+}
+
+/* Inline checkbox row */
+.filter-row-inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+label.filter-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--muted-white);
+    font-weight: 600;
+}
+
+label.filter-inline input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--accent);
+}
+
+/* Clear button styling */
+#filter-clear {
+    background: transparent;
+    color: var(--muted-white);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+#filter-clear:hover {
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+#filter-clear:active {
+    transform: translateY(0);
+}
+
+.filter-panel .filter-row+.filter-row {
+    margin-top: 4px;
+}
+
+.filter-panel[aria-hidden="true"] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+}
+
+/* ==========================================================================
+   Capacity row specific styles
+   ========================================================================== */
+#filter-row-3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+#filter-capacity {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.45rem 0.9rem;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    color: var(--white);
+    font-weight: 700;
+    min-width: 160px;
+    flex: 1 1 auto;
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted-white) 50%),
+        linear-gradient(135deg, var(--muted-white) 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 13px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+#filter-capacity:hover {
+    transform: translateY(-1px);
+}
+
+#filter-capacity:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--focus-ring);
+    border-color: rgba(11, 92, 255, 0.9);
+}
+
+/* Custom capacity input: visible by default in CSS (script will set display:none when it should be hidden).
+   This approach makes the JS behavior (`style.display = ''` to show, `style.display = 'none'` to hide)
+   work reliably without needing the JS to add classes. */
+#filter-capacity-custom {
+    display: inline-block;
+    /* default visible in CSS; script will explicitly hide when appropriate */
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), width var(--transition-fast);
+    padding: 0.35rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #000;
+    /* ensure visible on dark theme and when native styling applied */
+    color: #fff;
+    font-weight: 600;
+    width: 90px;
+    min-width: 70px;
+    margin-left: 8px;
+    box-sizing: border-box;
+}
+
+/* Keep placeholder color readable on custom input */
+#filter-capacity-custom::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Backwards-compatible class path (if some code adds this class, keep previous animation behavior) */
+.filter-row.custom-active #filter-capacity-custom {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#filter-row-3>label+* {
+    margin-left: 0;
+}
+
+/* ==========================================================================
+   Cards, grid and sections
+   ========================================================================== */
+.type-section {
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.type-heading {
+    margin: 0 0 8px 0;
+    font-size: 1.05rem;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.type-heading .count {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.12));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.card-title {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.meta {
+    margin: 0.25rem 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+}
+
+.card-actions {
+    margin-top: 0.6rem;
+}
+
+.card--interactive {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    will-change: transform;
+}
+
+.card--interactive:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.resource-item.card {
+    display: block;
+}
+
+.view-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--white);
+    font-weight: 700;
+    border: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn.disabled,
+.view-btn.disabled,
+.btn[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Availability pills */
+.avail-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.avail-pill.available {
+    background: rgba(34, 197, 94, 0.95);
+}
+
+.avail-pill.unavailable {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Empty state */
+.empty-placeholder {
+    padding: 18px;
+    text-align: center;
+    color: var(--muted-subtle);
+    font-weight: 700;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    margin-top: 8px;
+}
+
+/* ==========================================================================
+   Resources root and sections container
+   ========================================================================== */
+.resources-root {
+    display: none;
+    gap: 1rem;
+}
+
+.sections-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Accessibility and utilities
+   ========================================================================== */
+.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* Keyboard focus visible */
+.filter-panel :focus-visible,
+.type-btn:focus,
+.view-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* Forced-colors adjustments */
+@media (forced-colors: active) {
+
+    .filter-panel,
+    .card {
+        background: Window;
+        color: WindowText;
+        border-color: WindowText;
+    }
+
+    a,
+    button {
+        color: LinkText;
+    }
+
+    .avail-pill.available {
+        background: Highlight;
+        color: HighlightText;
+    }
+
+    .avail-pill.unavailable {
+        background: Window;
+        color: WindowText;
+        border-color: WindowText;
+    }
+
+    .filter-panel input,
+    .filter-panel select,
+    .filter-panel button {
+        background: Window;
+        color: WindowText;
+        border-color: WindowText;
+    }
+
+    .filter-panel label {
+        color: WindowText;
+    }
+}
+
+/* ==========================================================================
+   Responsive tweaks
+   ========================================================================== */
+@media (min-width: 721px) {
+    .page-header {
+        gap: 6px;
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+
+    .type-controls {
+        flex: 0 1 auto;
+    }
+
+    .filters-right {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 721px) and (max-width: 920px) {
+    .filters {
+        align-items: center;
+        gap: 12px;
+    }
+
+    .filters-left {
+        width: clamp(220px, 300px, 380px);
+        flex: 0 0 auto;
+    }
+
+    .filters-center {
+        flex: 1 1 auto;
+        min-width: 180px;
+        max-width: calc(100% - (var(--gutter) * 2) - 300px);
+    }
+
+    .interval-grid {
+        gap: 8px;
+    }
+
+    .interval-row input[type="datetime-local"] {
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 720px) {
+    .page-header {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 6px;
+    }
+
+    .filters {
+        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 6px 0;
+    }
+
+    .filters-left,
+    .filters-center,
+    .filters-right {
+        width: 100%;
+        flex: 0 0 auto;
+        margin-left: 0;
+    }
+
+    .filters-center {
+        order: 2;
+        display: flex;
+        justify-content: center;
+    }
+
+    .filters-right {
+        order: 3;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .interval-grid {
+        gap: 8px;
+        flex-direction: column;
+    }
+
+    .interval-row input[type="datetime-local"] {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .type-bar {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .filter-panel {
+        position: fixed;
+        left: 8px;
+        right: 8px;
+        top: 12vh;
+        bottom: 12vh;
+        width: auto;
+        max-width: calc(100vw - 16px);
+        max-height: calc(100vh - 24vh);
+        overflow: auto;
+        display: none;
+        z-index: 10000;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .filter-panel.open {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    .page-header {
+        gap: 8px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .type-heading {
+        font-size: 0.98rem;
+    }
+
+    .type-bar {
+        gap: 0.4rem;
+        padding: 6px 4px;
+    }
+}
+
+@media (max-width: 520px) {
+    .card {
+        padding: 0.6rem;
+    }
+
+    .filters {
+        gap: 6px;
+    }
+
+    #filter-isbn,
+    #filter-capacity {
+        min-width: 120px;
+    }
+
+    .filter-row label {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+    }
+
+    #filter-capacity {
+        min-width: 100%;
+    }
+
+    #filter-capacity-custom {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .filter-panel {
+        left: 8px;
+        right: 8px;
+        width: calc(100% - 16px);
+    }
+
+    .filter-panel .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-panel .filter-row label {
+        min-width: 0;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 720px) {
+
+    /* push panel below header (uses CSS var from variables.css) */
+    .filter-panel {
+        /* keep inset from sides but sit under header */
+        left: 8px;
+        right: 8px;
+        top: calc(var(--header-height) + 12px);
+        /* a little lower than header */
+        bottom: 12vh;
+        width: auto;
+        max-width: calc(100vw - 16px);
+        /* ensure panel leaves room for visible results */
+        max-height: calc(100vh - var(--header-height) - 32px);
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .filter-panel.open {
+        display: block !important;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    /* Make rows wrap so long controls (capacity + custom) don't overflow horizontally */
+    .filter-panel .filter-row,
+    #filter-row-3 {
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        min-width: 0;
+        /* allow children to shrink */
+    }
+
+    /* Allow selects and inputs to shrink and fill available width */
+    #filter-capacity,
+    #filter-capacity-custom,
+    #filter-isbn,
+    #filter-text {
+        min-width: 0;
+        max-width: 100%;
+        flex: 1 1 auto;
+        box-sizing: border-box;
+    }
+
+    /* When there is space, keep capacity select and custom input on the same row.
+	When not, they will stack thanks to flex-wrap. */
+    #filter-capacity {
+        flex-basis: 56%;
+        min-width: 120px;
+    }
+
+    #filter-capacity-custom {
+        flex-basis: 38%;
+        width: auto;
+        margin-left: 8px;
+    }
+
+    /* Very short viewports: give the panel a smaller top inset so user can still see results */
+    @media (max-height: 520px) {
+        .filter-panel {
+            top: calc(var(--header-height) + 8px);
+            max-height: calc(100vh - var(--header-height) - 16px);
+            bottom: 8px;
+        }
+    }
+}

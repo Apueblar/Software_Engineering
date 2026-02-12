@@ -1,0 +1,8 @@
+# SSL Certificates and data
+certbot/
+nginx/ssl/
+mysql-data/
+
+# Keep conf.d directory structure but not generated configs
+!nginx/conf.d/
+nginx/conf.d/default.conf

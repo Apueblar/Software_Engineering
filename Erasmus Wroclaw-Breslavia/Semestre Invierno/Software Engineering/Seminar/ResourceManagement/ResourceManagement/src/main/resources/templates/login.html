@@ -1,0 +1,57 @@
+<!-- templates/login.html -->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout('WUST Resource Management - Login', ~{::body})}">
+<!-- only the fragment named "body" — no <head> or <body> here -->
+<div th:fragment="body">
+	<section class="login-hero">
+		<div class="login-card-wrapper">
+			<div class="login-card" role="form" aria-labelledby="login-title">
+				<h2 id="login-title">Please log in</h2>
+
+				<!-- Success messages -->
+				<div th:if="${param.logout != null}" class="alert alert-success" role="alert">
+					You have been logged out successfully.
+				</div>
+
+				<!-- Error messages -->
+				<div th:if="${param.error != null}" class="alert alert-error" role="alert">
+					Invalid email or password. Please try again.
+				</div>
+
+				<div th:if="${param.deleted != null}" class="alert alert-error" role="alert">
+					<strong>Account Removed</strong><br>
+					Your account has been deleted from the system. Please contact an administrator if you believe this is an error.
+				</div>
+
+				<div th:if="${param.blocked != null}" class="alert alert-error" role="alert">
+					<strong>Account Blocked</strong><br>
+					Your account has been blocked or suspended. Please contact an administrator for more information.
+				</div>
+
+				<form th:action="@{/login}" method="post" class="login-form">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+					<label class="field">
+						<span class="label-text">Email</span>
+						<input type="email" name="username" placeholder="you@example.com" required />
+					</label>
+
+					<label class="field">
+						<span class="label-text">Password</span>
+						<input type="password" name="password" placeholder="••••••••" required />
+					</label>
+
+					<button type="submit" class="btn primary full">Sign In</button>
+
+					<p>Don't have an account? Contact your administrator.</p>
+					<!--		      <div class="login-links">-->
+					<!--			   <a th:href="@{/forgot-password}" class="muted">Forgot password?</a>-->
+					<!--		      </div>-->
+				</form>
+			</div>
+		</div>
+	</section>
+</div>
+
+</html>
