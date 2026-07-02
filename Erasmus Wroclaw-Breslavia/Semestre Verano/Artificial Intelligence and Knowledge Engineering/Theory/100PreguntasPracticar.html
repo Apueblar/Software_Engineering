@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence & Knowledge Engineering — 100 Question Exam Practice</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--purple);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+.badge-pink { background: var(--pink-dim); color: var(--pink); border-color: var(--pink); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--purple); border-color: var(--purple); background: var(--purple-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── EXAM SECTION ── */
+.exam-section {
+  background: var(--surface2);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.exam-header {
+  background: var(--amber-dim);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exam-header-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.exam-body { padding: 14px 18px; }
+
+/* ── QUESTION ── */
+.exam-q {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.exam-q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.exam-q-text {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  font-family: var(--sans);
+  flex: 1;
+}
+
+/* MULTI badge */
+.multi-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--purple-dim);
+  color: var(--purple);
+  border: 1px solid var(--purple);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+
+/* ── CLASSIC MODE ── */
+.mode-classic .exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+}
+.mode-classic .exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.mode-classic .exam-opt.opt-selected { border-color: var(--blue); background: var(--blue-dim); color: var(--blue); }
+.mode-classic .exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.mode-classic .exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.mode-classic .exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.mode-classic .exam-opt.revealed-wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); opacity: 0.6; }
+
+/* ── MULTI-SELECT MODE ── */
+.mode-multi .exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+  position: relative;
+}
+.mode-multi .exam-opt:hover { border-color: var(--purple); background: var(--purple-dim); color: var(--purple); }
+.mode-multi .exam-opt.multi-checked {
+  border-color: var(--purple);
+  background: var(--purple-dim);
+  color: var(--purple);
+}
+.mode-multi .exam-opt.multi-checked::before {
+  content: '✓';
+  position: absolute;
+  right: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--purple);
+}
+.mode-multi .exam-opt.multi-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.mode-multi .exam-opt.multi-wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.mode-multi .exam-opt.multi-missed { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── BUTTONS ── */
+.btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.show-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+.check-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--purple);
+  background: var(--purple-dim);
+  border: 1px solid var(--purple);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.check-btn:hover { background: var(--purple); color: #fff; }
+.check-btn:disabled { opacity: 0.4; cursor: default; }
+
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+/* ── MODE TOGGLE BAR ── */
+.mode-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.mode-bar-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.mode-toggle {
+  display: flex;
+  gap: 6px;
+}
+.mode-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+  background: transparent;
+  color: var(--text2);
+}
+.mode-btn.active-classic { border-color: var(--amber); background: var(--amber-dim); color: var(--amber); }
+.mode-btn.active-multi { border-color: var(--purple); background: var(--purple-dim); color: var(--purple); }
+.mode-desc {
+  font-size: 12px;
+  color: var(--text3);
+  font-family: var(--serif);
+  margin-left: auto;
+}
+
+@media (max-width: 800px) {
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+  .mode-desc { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">🧠 Artificial Intelligence · Knowledge Engineering</div>
+  <h1>Exam Practice — 100 Questions</h1>
+  <div class="header-sub">Interactive question bank covering all 12 topic blocks — multiple-choice with multi-answer support</div>
+  <div class="badges">
+    <span class="badge badge-purple">12 Topic Sections</span>
+    <span class="badge badge-teal">Interactive Exam Practice</span>
+    <span class="badge badge-amber">100 Practice Questions</span>
+    <span class="badge badge-pink">Multi-answer Mode</span>
+    <span class="badge badge-blue">Classic + Review Modes</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+  <a href="#t1">Search</a>
+  <a href="#t2">Games</a>
+  <a href="#t3">CSP</a>
+  <a href="#t4">Planning</a>
+  <a href="#t5">Logic</a>
+  <a href="#t6">ML &amp; Trees</a>
+  <a href="#t7">CBR &amp; Clustering</a>
+  <a href="#t8">Naïve Bayes</a>
+  <a href="#t9">Neural Nets</a>
+  <a href="#t10">RL</a>
+  <a href="#t11">LLMs</a>
+  <a href="#t12">RAG &amp; Agents</a>
+</nav>
+
+<div class="container">
+
+<!-- MODE BAR -->
+<div class="mode-bar">
+  <span class="mode-bar-label">Answer Mode</span>
+  <div class="mode-toggle">
+    <button class="mode-btn active-classic" id="btn-classic" onclick="setMode('classic')">⚡ Classic</button>
+    <button class="mode-btn" id="btn-multi" onclick="setMode('multi')">☑ Multi-select</button>
+  </div>
+  <span class="mode-desc" id="mode-desc-text">Classic: click one option, then reveal answer · Multi-select: tick options then check your selection (green = correct, red = wrong)</span>
+</div>
+
+<!-- ───────────────────────────── TOPIC 1 ───────────────────────────── -->
+<div class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🔍</span>
+    <h2>Problem Solving by Searching</h2>
+    <span class="topic-tag badge badge-purple">10 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Search algorithms: BFS, DFS, A*, IDA*, SMA*, local search</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q1" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">1. Which of the following statements about BFS are correct?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>It explores nodes level by level and is complete if the state space is finite.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Its memory usage is O(b^d), making it inefficient for large spaces.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It is optimal when all step costs are equal.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>It never visits the same state more than once in any implementation.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q1')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q1')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q1-exp"><div class="exam-explanation">✅ Correct answer: B) Its memory usage is O(b^d), making it inefficient for large spaces.</div></div>
+      </div>
+
+      <div class="exam-q" id="q2" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">2. Which properties distinguish DFS from BFS?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>DFS is not complete in infinite search spaces or those with cycles.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>DFS expands the deepest nodes in the search tree first.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>DFS has memory usage of O(b·m), much lower than BFS.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>DFS guarantees finding the optimal solution if costs are uniform.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q2')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q2')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q2-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q3" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">3. Which of the following statements about A* are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>A* cannot be used if the state space has cycles.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>A* is complete if the state space is finite or costs are positive.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>A* expands the node with the lowest f(n) = g(n) + h(n).</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>A* is optimal if the heuristic is admissible, i.e., it never overestimates the true cost.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q3')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q3')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q3-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q4" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">4. What advantages does Iterative Deepening DFS (ID-DFS) offer over BFS and DFS?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>It eliminates the cost of re-expanding nodes visited in previous iterations.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Its memory usage is O(b·d), comparable to standard DFS.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It combines the completeness and optimality of BFS with the low memory usage of DFS.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It is preferable to A* when no admissible heuristic is available.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q4')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q4')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q4-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q5" data-correct="a,b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">5. About local search (Hill Climbing), which of these statements are true?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It is used when the final state matters but the path to reach it does not.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It can become trapped in local optima and never escape them.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It keeps only the current state and its immediate neighbours in memory.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>It always finds the global optimum if the objective function is convex.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q5')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q5')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q5-exp"><div class="exam-explanation">✅ Correct answers: A, B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q6" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">6. Which mechanisms allow escaping local optima in local search?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Simulated annealing accepts worsening moves with a probability that decreases over time.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Increasing the search depth always resolves local optima.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Random restart can escape local optima by starting from different points.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Tabu search maintains a list of visited states to avoid revisiting them.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q6')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q6')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q6-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q7" data-correct="b" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">7. When is a heuristic admissible and why is it important for A*?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>A heuristic is admissible if it is consistent, but the converse is not necessarily true.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>A heuristic that always returns 0 is admissible but not very informative.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>A heuristic is admissible if it never overestimates the true cost to the goal.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Admissibility guarantees that A* finds the lowest-cost solution.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q7')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q7')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q7-exp"><div class="exam-explanation">✅ Correct answer: B) A heuristic that always returns 0 is admissible but not very informative.</div></div>
+      </div>
+
+      <div class="exam-q" id="q8" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">8. Which of these statements about IDA* are true?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>IDA* is a memory-efficient version of A*.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>IDA* re-expands states already visited in previous iterations.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>IDA* maintains a complete record of all expanded nodes.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>IDA* uses the f(n) value as the cutoff threshold in each iteration.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q8')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q8')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q8-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q9" data-correct="c" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">9. Which statements about SMA* are correct?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>SMA* uses all available memory and forgets the shallowest, highest-cost nodes when memory fills.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>SMA* is preferable to A* when available memory is limited.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>When forgetting a node, SMA* stores its cost in the ancestor node for possible recovery.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>SMA* never re-expands nodes, unlike IDA*.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q9')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q9')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q9-exp"><div class="exam-explanation">✅ Correct answer: C) When forgetting a node, SMA* stores its cost in the ancestor node for possible recovery.</div></div>
+      </div>
+
+      <div class="exam-q" id="q10" data-correct="b" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">10. Can any problem be formulated as a state space search?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>No, because some problems have an infinite branching factor and cannot be represented.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Yes, since complex operations can be decomposed into combinations of simpler operators.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>No, because not all problems allow defining inverse transition operators between states.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Yes, because symbolic-arithmetic operations can be represented as operators on a computational graph.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q10')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q10')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q10-exp"><div class="exam-explanation">✅ Correct answer: B) Yes, since complex operations can be decomposed into combinations of simpler operators.</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 2 ───────────────────────────── -->
+<div class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">♟️</span>
+    <h2>Game Playing &amp; Adversarial Search</h2>
+    <span class="topic-tag badge badge-purple">7 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Min-Max, alpha-beta pruning, evaluation functions, game types</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q11" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">11. Which properties of the Min-Max algorithm are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It assumes the opponent plays optimally (always minimises the value).</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The MAX player chooses the move that maximises the evaluation of the resulting state.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Its complexity is O(b^d), making it impractical for complex games.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>With alpha-beta pruning, the need to explore the tree can be completely eliminated.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q11')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q11')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q11-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q12" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">12. Which statements about alpha-beta pruning are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Alpha-beta pruning changes the final result of the Min-Max algorithm.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The parameter α represents the best value MAX can guarantee so far.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The efficiency of pruning depends on the order in which nodes are explored.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>In the optimal case, it reduces complexity from O(b^d) to O(b^(d/2)), doubling the effective depth.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q12')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q12')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q12-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q13" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">13. Which of the following are correct properties of the evaluation function in games?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It can be a linear combination of features describing the game state.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It must be consistent with the payoff function at terminal nodes of the tree.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>It returns exactly 0 at terminal nodes regardless of the game outcome.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>It should estimate the probability of winning for intermediate non-terminal states.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q13')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q13')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q13-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q14" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">14. What is the horizon problem in games?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>The horizon is caused by the inability to store all tree nodes in memory.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The evaluation function may see a seemingly stable state that is about to change dramatically.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It occurs when the algorithm stops the search before dramatic board changes occur.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Quiescent positions are defined precisely as those beyond the horizon.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q14')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q14')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q14-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q15" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">15. When is a position considered quiescent (stable) in the game tree?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>When there are no immediate captures or tactical moves that drastically alter the state.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>When the position is balanced between players, according to the evaluation function.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>When the position is at a greater depth than the horizon limit.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>When the evaluation function value does not vary significantly in the next few moves.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q15')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q15')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q15-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q16" data-correct="a,b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">16. About game types in game theory, which of these classifications are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>In a zero-sum game, one player's gain is exactly the other's loss.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Poker is a stochastic and imperfect-information game.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Chess is a zero-sum, deterministic, perfect-information game.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Non-zero-sum games, like the prisoner's dilemma, always have cooperative solutions.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q16')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q16')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q16-exp"><div class="exam-explanation">✅ Correct answers: A, B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q17" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">17. Which statements about Deep Blue (IBM, 1997) are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It incorporated a 700,000-game database to guide the search.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Its evaluation function used only simple features based on piece positions.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It employed a two-level architecture: software search near the root and hardware search near the leaves.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It used Min-Max with alpha-beta pruning and an extensive opening book of 4,000 positions.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q17')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q17')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q17-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 3 ───────────────────────────── -->
+<div class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">🔗</span>
+    <h2>Constraint Satisfaction Problems (CSP)</h2>
+    <span class="topic-tag badge badge-purple">6 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">CSP definition, arc consistency, heuristics, backtracking, tree CSPs</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q18" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">18. How is a CSP formally defined?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>A solution is a complete and consistent assignment that satisfies all constraints.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>By a set of variables, the domains of values for each variable, and a set of constraints.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Constraints can be unary, binary, or n-ary depending on the variables involved.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>By an initial state, a set of operators, and a goal test.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q18')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q18')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q18-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q19" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">19. Which statements about arc consistency (AC-3) are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>AC-3 dynamically reduces the effective size of variable domains.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Arc consistency is equivalent to k-consistency with k = 3.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It guarantees that for every pair of constrained variables, all values in each domain have at least one compatible value in the other.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>When a value is deleted from the domain of Xᵢ, all arcs pointing to Xᵢ must be rechecked.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q19')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q19')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q19-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q20" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">20. What are the heuristics used in CSP search and what do they do?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>The MRV heuristic is also known as the most constrained variable.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>MRV (Minimum Remaining Values) selects the variable with the fewest legal values left.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The degree heuristic chooses the variable involved in the most constraints on unassigned variables.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>The least constraining value chooses the value that eliminates the most values from neighbouring domains.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q20')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q20')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q20-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q21" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">21. How does constraint propagation affect the efficiency of the CSP algorithm?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Forward checking removes from the domain values inconsistent with the current assignment.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It dynamically reduces the effective size of variable domains during the search.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>MAC maintains arc consistency after each variable assignment.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>It is a complete alternative to backtracking that replaces it in all cases.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q21')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q21')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q21-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q22" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">22. Which of these statements about backtracking in CSP are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It is a complete algorithm: if a solution exists, it will find it.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Its efficiency does not depend on the order in which variables or values are selected.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Backtracking with constraint propagation is always more efficient than without it.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It assigns values to variables one at a time and backtracks when a constraint is violated.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q22')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q22')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q22-exp"><div class="exam-explanation">✅ Correct answers: A, B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q23" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">23. What advantages do tree-structured CSPs have over general graphs?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Tree-structured CSPs can be solved in O(n·d²), linear in the number of variables.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>General constraint graphs can be reduced to trees by removing or collapsing nodes.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Tree structure guarantees that there are no constraints between non-adjacent variables.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>A tree-structured CSP does not need constraint propagation to be efficient.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q23')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q23')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q23-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 4 ───────────────────────────── -->
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">📋</span>
+    <h2>Planning &amp; STRIPS</h2>
+    <span class="topic-tag badge badge-purple">5 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">STRIPS, ADL, POP, FF, LAMA, Fast Downward</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q24" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">24. What is the STRIPS representation of actions based on?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Actions have ADD lists (literals made true) and DELETE lists (literals made false).</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>States are represented as conjunctions of ground literals.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>STRIPS uses the open-world assumption: what is not mentioned is unknown.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Each action has preconditions (literals that must be true before the action).</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q24')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q24')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q24-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q25" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">25. What are the differences between STRIPS and ADL?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>STRIPS and ADL are equivalent in expressiveness but differ only in syntax.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>STRIPS only allows positive literals in states, while ADL also allows negative literals.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>STRIPS uses the closed-world assumption; ADL uses the open-world assumption.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>ADL allows conditional effects and quantified goals, while STRIPS does not.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q25')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q25')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q25-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q26" data-correct="b" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">26. What is the Partial Order Planning (POP) algorithm based on?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Threats (clobberers) are resolved by promotion or demotion of the conflicting action.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It only imposes ordering constraints between actions when strictly necessary.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>A partial order plan is always converted to a total order plan before execution.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It uses the least commitment principle, leaving actions unordered when not required.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q26')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q26')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q26-exp"><div class="exam-explanation">✅ Correct answer: B) It only imposes ordering constraints between actions when strictly necessary.</div></div>
+      </div>
+
+      <div class="exam-q" id="q27" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">27. What distinguishes planning algorithms from pure heuristic search?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Planning algorithms like FF or LAMA use heuristics derived from delete relaxation.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Pure heuristic search does not use the structure of operators, only a heuristic function.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Planning algorithms cannot operate on discrete state spaces.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Planning algorithms exploit knowledge from the symbolic representation of operators.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q27')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q27')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q27-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q28" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">28. What are characteristics of modern planning systems (FF, LAMA, Fast Downward)?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>LAMA combines landmark heuristics with FF-style relaxation heuristics.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>All these systems require the domain to be specified in PDDL language.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Fast Downward uses A* and is oriented towards finding optimal plans.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>FF uses forward hill-climbing and searches for satisficing solutions, not necessarily optimal.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q28')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q28')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q28-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 5 ───────────────────────────── -->
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">🧮</span>
+    <h2>Logical Inference &amp; Knowledge Representation</h2>
+    <span class="topic-tag badge badge-purple">5 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">FOL, semantic networks, chaining, deductive AI</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q29" data-correct="b" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">29. Which of the following types of inference are correctly described?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Induction goes from specific to general and is the basis of machine learning.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Deduction goes from general to specific and is the foundation of rule-based systems.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Abduction reasons about probable causes and is always logically valid.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Modus Ponens is a deduction rule: if p → q and p are true, infer q.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q29')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q29')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q29-exp"><div class="exam-explanation">✅ Correct answer: B) Deduction goes from general to specific and is the foundation of rule-based systems.</div></div>
+      </div>
+
+      <div class="exam-q" id="q30" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">30. Which statements about First-Order Logic (FOL) are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>FOL extends propositional logic with constants, variables, functions, and predicates.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The quantifiers ∀ and ∃ allow expressing propositions about all objects or some object.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>FOL cannot represent relationships between more than two objects simultaneously.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Resolution is a proof method in FOL that works by converting everything to CNF.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q30')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q30')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q30-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q31" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">31. Which are correct characteristics of semantic networks?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Edges represent relations such as has, has_part, is_a, or instance between nodes.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Semantic networks are equivalent in expressiveness to First-Order Logic.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The is_a and instance relations allow property inheritance between nodes.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>They are labelled directed graphs where nodes represent objects or concepts.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q31')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q31')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q31-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q32" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">32. Which statements about forward and backward chaining are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Backward chaining starts from the goal and works backwards to known facts.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Forward chaining is goal-driven.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Backward chaining is top-down, while forward chaining is bottom-up.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Forward chaining starts from known facts and applies rules until the goal is reached.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q32')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q32')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q32-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q33" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">33. Is there a place for deductive approaches in contemporary AI?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Yes, they can be integrated with modern LLMs as sources of structured knowledge.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Yes, systems like LINC demonstrate the combination of neurosymbolic reasoning with LLMs.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>No, practically all current systems are based on machine learning.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Yes, deductive methods allow expressing verified knowledge in the form of rules and ontologies.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q33')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q33')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q33-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 6 ───────────────────────────── -->
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">🌳</span>
+    <h2>Machine Learning &amp; Decision Trees</h2>
+    <span class="topic-tag badge badge-purple">7 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">ID3, C4.5, overfitting, cross-validation, continuous attributes</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q34" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">34. Which are correct characteristics of the ID3 algorithm for decision trees?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>ID3 performs backtracking to find the globally optimal tree.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It selects the attribute with the highest information gain at each node.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Entropy H(S) measures the impurity or disorder of a set of examples.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>ID3 can overfit the training set if the tree grows too deep.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q34')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q34')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q34-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q35" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">35. What are the differences between ID3 and C4.5?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>C4.5 does not allow handling missing attribute values in training data.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>C4.5 incorporates post-pruning to reduce overfitting.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>C4.5 can handle continuous attributes through statistically optimal split thresholds.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>C4.5 uses Gain Ratio instead of Information Gain to correct the bias toward attributes with many values.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q35')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q35')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q35-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q36" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">36. Which of the following techniques prevent overfitting in decision trees?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Increasing the maximum tree depth always improves generalisation.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Reduced-error pruning removes branches if validation performance does not worsen.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The MDL (Minimum Description Length) criterion stops expansion when encoding is minimal.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Early stopping halts expansion before perfectly fitting the training data.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q36')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q36')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q36-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q37" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">37. Which statements about overfitting are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Overfitting occurs only in decision trees, not in other ML models.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Techniques like dropout, regularisation, and early stopping help prevent overfitting.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>An overfitted model has good training performance but poor performance on new data.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>As tree depth increases, training performance increases monotonically.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q37')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q37')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q37-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q38" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">38. What is the inductive learning hypothesis and what are its implications?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>The inductive hypothesis implies that it is always better to use the entire dataset for training, without validation.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Any hypothesis that approximates the target function well on training data will also approximate it on new data, if the set is large.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The inductive bias of an algorithm determines which hypothesis is preferred among those consistent with the data.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Induction goes from specific to general, the opposite of deduction.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q38')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q38')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q38-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q39" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">39. What is k-fold cross-validation and how is it used correctly?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Data is divided into k parts; training is done on k-1 and validation on 1, repeated k times.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The test set must be kept hidden during the entire cross-validation process.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>With k = n (leave-one-out), the most biased estimate of actual performance is obtained.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Results from the k iterations are averaged to obtain an estimate of performance.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q39')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q39')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q39-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q40" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">40. How are decision trees adapted to handle continuous numeric attributes?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Continuous attributes can only appear once in the tree, with a single threshold.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Split thresholds are determined statistically from the training data.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>A continuous attribute can appear multiple times in the tree with different thresholds.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>A threshold tᵢ is sought that maximises information gain by splitting the data into two ranges.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q40')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q40')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q40-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 7 ───────────────────────────── -->
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">🗂️</span>
+    <h2>Case-Based Reasoning &amp; Unsupervised Learning</h2>
+    <span class="topic-tag badge badge-purple">6 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">k-NN, k-Means, hierarchical clustering, cluster evaluation</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q41" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">41. Which are correct characteristics of the k-NN algorithm?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It classifies a new example by finding the k nearest neighbours in the training set.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>k must be an even number to avoid ties in class voting.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The assigned class is the most frequent among the k neighbours found.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It allows making assumptions about unknown object properties using a similarity measure.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q41')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q41')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q41-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q42" data-correct="c" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">42. What problems affect the k-NN algorithm?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>The curse of dimensionality means exponentially more data is needed as the number of attributes grows.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>k-NN always requires normalising attributes to the [0, 1] range to work correctly.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Irrelevant attributes distort distances and can degrade classification.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Scale differences between attributes can dominate distance calculations.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q42')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q42')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q42-exp"><div class="exam-explanation">✅ Correct answer: C) Irrelevant attributes distort distances and can degrade classification.</div></div>
+      </div>
+
+      <div class="exam-q" id="q43" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">43. Which statements about the k-Means algorithm are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>The choice of k and sensitivity to initialisation are known limitations of k-Means.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Centroids are recalculated as the mean of the examples assigned to each cluster.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It initialises k centroids and iteratively assigns each example to the nearest centroid.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>k-Means always converges to the global optimum regardless of initialisation.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q43')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q43')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q43-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q44" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">44. What are the differences between k-NN and k-Means?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>k-NN can be used for classification and regression; k-Means only for clustering.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>k-Means can be used to discover the optimal number of classes k in the data.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>k-NN needs class labels in the training data; k-Means does not.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>k-NN is a supervised learning algorithm; k-Means is unsupervised.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q44')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q44')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q44-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q45" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">45. Which are correct characteristics of agglomerative hierarchical clustering?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Once merged, clusters cannot be separated again in subsequent steps.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>It requires specifying the number of clusters k before starting the algorithm.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It starts with each example as its own cluster and iteratively merges the two closest clusters.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>The result is a dendrogram showing the hierarchy of merges.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q45')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q45')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q45-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q46" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">46. How are clustering results evaluated?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>External evaluation compares the obtained clusters with known ground truth class labels.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>External evaluation is always preferable to internal evaluation because it is more objective.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Internal evaluation uses measures like the silhouette coefficient or Dunn index.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Purity and entropy are external clustering evaluation metrics.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q46')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q46')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q46-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 8 ───────────────────────────── -->
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">📊</span>
+    <h2>Naïve Bayes &amp; Statistical Classification</h2>
+    <span class="topic-tag badge badge-purple">4 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Naïve Bayes, Laplace smoothing, feature selection</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q47" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">47. What is the Naïve Bayes classifier based on?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>The conditional independence assumption always holds in real-world data.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It applies Bayes' theorem assuming conditional independence between attributes given the class.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>The multinomial model uses word frequencies and generally outperforms the binomial model.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It classifies an example into the class that maximises P(class) · Π P(attribute|class).</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q47')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q47')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q47-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q48" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">48. Which statements about Naïve Bayes posterior probabilities are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Naïve Bayes posterior probabilities are always close to 0.5 for balanced classes.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>The posterior probabilities estimated by Naïve Bayes are numerically unreliable when independence is violated.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The probabilities are often close to 0 or 1 due to violated independence in practice.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Despite unreliable probabilities, classification decisions are usually correct.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q48')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q48')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q48-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q49" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">49. Why is Laplace smoothing applied in Naïve Bayes?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Laplace smoothing introduces expert knowledge about word distributions.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>To avoid zero probabilities when a word from the vocabulary does not appear in training data.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Without smoothing, a single word not seen in training would make the entire document probability zero.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>It adds 1 to each word count before calculating conditional probabilities.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q49')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q49')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q49-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q50" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">50. Which statements about feature selection in statistical classification are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Using only the most frequent terms can perform up to 90% as well as sophisticated methods.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Performing feature selection on the test set does not introduce bias.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Chi-square (χ²) measures the statistical confidence in the association between term and category.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Mutual Information (MI) measures the association between a term and a category.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q50')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q50')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q50-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 9 ───────────────────────────── -->
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">🧠</span>
+    <h2>Neural Networks &amp; Deep Learning</h2>
+    <span class="topic-tag badge badge-purple">7 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">MLP, activations, CNNs, Transformers, training techniques</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q51" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">51. Which are correct properties of the Multilayer Perceptron (MLP)?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>An MLP with a single hidden layer can approximate any continuous function (universal approximation theorem).</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Gradient descent always converges to the global minimum of the loss function.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It computes a weighted sum of the inputs and applies a non-linear activation function.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>The backpropagation algorithm computes gradients using the chain rule.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q51')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q51')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q51-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q52" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">52. Which activation functions are used in deep neural networks and why?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>ReLU is popular because it avoids the vanishing gradient problem in deep layers.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The sigmoid function saturates at extreme values, which can hinder training of deep networks.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Softmax is used in the output layer for multi-class classification and produces probabilities that sum to 1.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>All activation functions must be linear for backpropagation to work correctly.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q52')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q52')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q52-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q53" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">53. Which of the following techniques prevent overfitting in neural networks?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Early stopping halts training when validation error stops improving.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Increasing the number of parameters always reduces overfitting in deep networks.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>L2 regularisation penalises large weights by adding a term to the loss function.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Dropout randomly deactivates neurons during training to prevent co-adaptation.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q53')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q53')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q53-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q54" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">54. Which are correct characteristics of Convolutional Neural Networks (CNNs)?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>CNNs cannot be applied to text data or audio signals, only to images.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>CNNs are especially suitable for image and shape recognition.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>They extract hierarchical features progressively in successive layers.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>They use spatially shared weights, allowing detection of features regardless of position.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q54')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q54')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q54-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q55" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">55. Which are the main characteristics of the Transformer architecture?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Multi-head attention allows the model to attend to different aspects of the sequence simultaneously.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The attention mechanism assigns weights to each position in the sequence based on mutual relevance.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It uses self-attention mechanisms to process sequences in parallel, without recurrence.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Transformers were designed exclusively for computer vision tasks.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q55')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q55')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q55-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q56" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">56. Which statements about neural network training are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Batch normalisation stabilises training by normalising activations of each layer.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>The vanishing gradient problem mainly affects layers closest to the output.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Stochastic Gradient Descent (SGD) updates weights using mini-batches, not the full dataset.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>A learning rate that is too high can cause training to diverge or fail to converge.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q56')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q56')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q56-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q57" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">57. For which types of tasks is a CNN more suitable than a standard MLP?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>For text classification, as long as a word vector representation is used.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>For pattern recognition in images, due to spatially shared weights.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>For extracting local hierarchical features in signals with spatial or temporal structure.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>For tabular data without spatial structure, where a standard MLP has an advantage.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q57')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q57')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q57-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 10 ───────────────────────────── -->
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">🎮</span>
+    <h2>Reinforcement Learning</h2>
+    <span class="topic-tag badge badge-purple">3 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">RL components, Q-Learning, exploration-exploitation</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q58" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">58. Which are correct components of a reinforcement learning problem?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>An agent that interacts with an environment, receiving observations and rewards.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Reinforcement learning requires a labelled dataset to function.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The value function Q(s, a) estimates the expected reward from taking action a in state s.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>The agent must learn a policy that maximises long-term cumulative reward.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q58')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q58')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q58-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q59" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">59. Which are correct properties of the Q-Learning algorithm?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Q-Learning only works in environments with small, discrete state and action spaces.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It is an off-policy algorithm that can learn the optimal policy without directly following it.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It updates Q-values using the Bellman equation based on the observed reward.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>With sufficient iterations, Q-Learning converges to the optimal Q-values under certain conditions.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q59')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q59')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q59-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q60" data-correct="d" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">60. What distinguishes reinforcement learning from supervised and unsupervised learning?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Reinforcement learning always requires a complete model of the environment (model-based).</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>There is no predefined training set; the agent generates its own experience by interacting.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>In reinforcement learning, the agent learns through reward signals from the environment, not fixed labels.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>The exploration-exploitation dilemma is exclusive to reinforcement learning.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q60')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q60')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q60-exp"><div class="exam-explanation">✅ Correct answer: D) The exploration-exploitation dilemma is exclusive to reinforcement learning.</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 11 ───────────────────────────── -->
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">💬</span>
+    <h2>Large Language Models &amp; Prompt Engineering</h2>
+    <span class="topic-tag badge badge-purple">5 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">LLMs, prompting, fine-tuning, CoT, hallucinations</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q61" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">61. Which are correct characteristics of modern Transformer-based LLMs?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>They are pre-trained on large text corpora using token prediction (autoregressive or masked).</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>RLHF (Reinforcement Learning from Human Feedback) is used to align LLMs with human preferences.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Fine-tuning adapts the pre-trained model to specific tasks or domains.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>LLMs cannot perform logical or mathematical reasoning under any circumstances.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q61')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q61')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q61-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q62" data-correct="a,b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">62. Which statements about prompting techniques are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Chain-of-Thought (CoT) prompting induces the model to reason step by step before giving the final answer.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Few-shot prompting provides input-output examples in the prompt to guide the model.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Zero-shot prompting requires at least three examples in the prompt to work correctly.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Well-designed prompts can significantly improve performance on complex tasks.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q62')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q62')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q62-exp"><div class="exam-explanation">✅ Correct answers: A, B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q63" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">63. Which are correct types of LLM fine-tuning or adaptation?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>SFT (Supervised Fine-Tuning) trains the model on high-quality instruction-response pairs.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>RLHF uses human rewards to align the model with desired values and preferences.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>LoRA (Low-Rank Adaptation) enables efficient fine-tuning by modifying only low-dimensional matrices.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Fine-tuning always requires retraining all model parameters from scratch.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q63')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q63')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q63-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q64" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">64. Which are known problems with LLMs that should be considered?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>The context window limit restricts the amount of information the model can process at once.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Biases in training data may be reflected in the model's outputs.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Hallucinations: the model generates factually incorrect information with apparent confidence.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>LLMs always produce deterministic, identical results for the same input.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q64')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q64')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q64-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q65" data-correct="a,b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">65. Which statements about CoT (Chain-of-Thought) with reflection are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Explicit step-by-step reasoning reduces error rates in complex multi-step tasks.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The &lt;reflection&gt; tag allows the model to detect and correct errors in its own reasoning.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>CoT with reflection only works on coding tasks and not on natural language tasks.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Structured tags like &lt;thinking&gt;, &lt;reflection&gt;, and &lt;output&gt; are used to separate reasoning and output.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q65')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q65')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q65-exp"><div class="exam-explanation">✅ Correct answers: A, B, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────── TOPIC 12 ───────────────────────────── -->
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">🤖</span>
+    <h2>Semantic Retrieval, RAG &amp; LLM-Based Agents</h2>
+    <span class="topic-tag badge badge-purple">35 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">BM25, RAG, agents, ReAct, Reflexion, ColBERT, ToRA — plus depth &amp; integration questions</span></div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q66" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">66. What are the differences between BM25 and semantic retrieval?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Semantic retrieval can find relevant documents even when they do not share vocabulary with the query.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>BM25 performs exact lexical matching; semantic retrieval uses embeddings to capture meaning.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>BM25 always outperforms semantic retrieval in general information retrieval tasks.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>BM25 uses TF-IDF weighting with document length normalisation.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q66')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q66')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q66-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q67" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">67. Which are correct differences between cross-encoder and bi-encoder in information retrieval?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>A cross-encoder (like monoBERT) jointly encodes the query and document for higher accuracy.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The cross-encoder is slower but more accurate; the bi-encoder is faster but slightly less accurate.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>A bi-encoder encodes query and document separately, enabling faster retrieval.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>ColBERT is a cross-encoder that uses cross-attention between query and document.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q67')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q67')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q67-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q68" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">68. Which are correct characteristics of the Naive RAG system?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>It does not include query rewriting or re-ranking of retrieved documents.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Naive RAG always produces higher quality answers than Advanced RAG.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It follows the flow: query → retrieve documents → generate answer with LLM.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Document segmentation directly affects retrieval quality in RAG.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q68')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q68')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q68-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q69" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">69. What improvements does Advanced RAG introduce over Naive RAG?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Analysis and summarisation of the generated response to reduce noise in the final output.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>The LLM generator in Advanced RAG always has more parameters than in Naive RAG.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Re-ranking of retrieved documents to filter the most relevant ones.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Query rewriting before retrieval to improve document relevance.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q69')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q69')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q69-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q70" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">70. Which are correct retrieval strategies in advanced RAG systems?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Iterative retrieval: retrieve → generate → evaluate → repeat to progressively add context.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Recursive retrieval decomposes the query between retrieve-generate cycles.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Adaptive retrieval evaluates whether retrieval is needed before each step and acts accordingly.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Adaptive retrieval always retrieves documents before every step, without prior evaluation.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q70')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q70')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q70-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q71" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">71. Which are the four main components of an LLM-based agent?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Planning and reasoning: the agent's ability to decompose problems and decide actions.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Memory: short-term (prompt context) and long-term (persistent external databases).</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Tools: external functions, APIs, and programs the agent can invoke through calls.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Environment: the decision-making space where the agent operates (code, web, simulation, etc.).</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q71')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q71')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q71-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q72" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">72. Which are correct differences between ReAct and Reflexion as LLM agent reasoning strategies?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>ReAct interleaves Thought, Action, and Observation in a single cycle.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Reflexion generates an initial answer, self-critiques it, and refines it without necessarily taking new actions.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Reflexion is a cyclical process: generate → critique → refine, implemented as a prompt cycle.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>ReAct cannot use external tools like web search or APIs.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q72')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q72')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q72-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q73" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">73. Which are correct characteristics of LLM agent memory?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Long-term memory in LLM agents is exactly equivalent to the model's parameters.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Long-term memory is stored externally (vector stores, graphs, databases) and persists.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Memory retrieval can use classifiers to select the appropriate source based on query type.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Short-term memory lives in the prompt context and is ephemeral between sessions.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q73')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q73')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q73-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q74" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">74. Which statements about ColBERT as a retrieval system are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Scoring in ColBERT is calculated by summing the maximum similarities between query and document tokens.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>ColBERT is faster than a cross-encoder because it does not process all query-document pairs together.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>It uses separate encoders for query and document, but with late interaction (MaxSim).</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>ColBERT sacrifices all accuracy compared to monoBERT to gain speed.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q74')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q74')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q74-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q75" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">75. Which statements about ToRA (Tool-Integrated Reasoning Agent) are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>ToRA uses exclusively GPT-4 as a symbolic computation tool.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>It combines natural language reasoning (CoT) with code execution (PAL) to solve mathematical problems.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Its training has two phases: imitation learning and output space shaping.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>SymPy is the dominant tool in ToRA's ecosystem for symbolic mathematics.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q75')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q75')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q75-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q76" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">76. Which statements about comparison between search algorithms are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>BFS is complete and optimal with uniform costs; DFS is memory-efficient but not complete in infinite spaces.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>A* guarantees optimality with an admissible heuristic; Greedy Best-First does not.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>ID-DFS combines BFS completeness with DFS memory efficiency.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Uniform Cost Search and BFS always produce exactly the same path in any graph.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q76')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q76')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q76-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q77" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">77. Which are correct differences between planning and pure heuristic search?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>STRIPS and PDDL are representation languages used in planning, not in general heuristic search.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Planning exploits the symbolic structure of operators to derive heuristics.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Pure heuristic search uses only a heuristic function without exploiting operator structure.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Planning is always more efficient than heuristic search in all domains.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q77')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q77')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q77-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q78" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">78. Which are correct differences between supervised, unsupervised, and reinforcement learning?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Reinforcement learning has no predefined training data; the agent generates its own experience.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Classification and regression are supervised learning tasks.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Supervised learning uses labelled data; unsupervised learning discovers structure without labels; reinforcement learning learns from rewards.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Clustering is a supervised learning task because it requires knowing classes in advance.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q78')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q78')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q78-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q79" data-correct="a,b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">79. Which statements are correct when comparing Naive Bayes with decision trees?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Both can overfit the training set if regularisation techniques are not applied.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Naive Bayes assumes conditional independence between attributes; decision trees do not make this assumption.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Naive Bayes always outperforms decision trees in text classification.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Decision trees are self-explainable (their classification logic can be interpreted directly).</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q79')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q79')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q79-exp"><div class="exam-explanation">✅ Correct answers: A, B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q80" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">80. Which are correct differences between a standard MLP and a CNN?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>An MLP treats each pixel independently without exploiting local spatial relationships.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>CNNs use spatially shared weights, making them much more efficient for spatially structured data.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>CNNs cannot be used for classification, only for feature extraction.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>CNNs extract local hierarchical features progressively through convolution and pooling layers.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q80')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q80')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q80-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q81" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">81. Which are correct differences between k-NN and Naïve Bayes for classification?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>k-NN is instance-based (does not build an explicit model); Naïve Bayes builds a probability model.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>k-NN always produces better results than Naïve Bayes on text document classification.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Both algorithms can be used for classification with multiple classes.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Naïve Bayes requires conditional independence between attributes; k-NN makes no distributional assumptions.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q81')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q81')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q81-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q82" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">82. Which statements about knowledge representation in AI are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Ontologies formalise shared conceptualisations of a domain and enable automated reasoning.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>RDF graphs (like DBpedia) cannot be used alongside modern LLMs.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Triples &lt;Object, Attribute, Value&gt; are the basic unit of semantic representation.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>N-ary relations can be reduced to nested binary relations by introducing auxiliary variables.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q82')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q82')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q82-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q83" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">83. Which of the following are correct statements about classical logic and its extensions?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Classical logic is monotonic: adding new facts never retracts previous conclusions.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Fuzzy logic cannot be integrated with machine learning-based AI systems.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Non-monotonic logic allows revising beliefs when new contradictory information is added.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Temporal logic allows reasoning about properties that change over time.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q83')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q83')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q83-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q84" data-correct="a,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">84. Which statements about LLMs and deductive methods are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Systems like LINC demonstrate the combination of neurosymbolic reasoning with LLMs.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>LLMs have made rule-based expert systems completely obsolete.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Deductive methods encode verified knowledge that can complement LLMs.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Ontologies and knowledge graphs can serve as information sources for LLMs through RAG.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q84')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q84')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q84-exp"><div class="exam-explanation">✅ Correct answers: A, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q85" data-correct="c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">85. Which are correct differences between Naive RAG and Advanced RAG?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Naive RAG is always preferable due to its lower complexity and computational cost.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>Advanced RAG reduces noise in retrieval through analysis and summarisation of the generated response.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>In Advanced RAG, the re-ranking component improves the quality of documents passed to the LLM.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Naive RAG retrieves once and generates; Advanced RAG adds query rewriting and re-ranking.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q85')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q85')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q85-exp"><div class="exam-explanation">✅ Correct answers: C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q86" data-correct="a,b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">86. Which are correct properties of the Min-Max algorithm with alpha-beta pruning?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Node ordering is critical for maximising the efficiency of alpha-beta pruning.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Alpha-beta pruning does not change the result that Min-Max without pruning would return.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Alpha-beta pruning is less efficient than basic Min-Max in the worst case.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>In the optimal case, alpha-beta pruning has complexity O(b^(d/2)), doubling the explorable depth.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q86')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q86')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q86-exp"><div class="exam-explanation">✅ Correct answers: A, B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q87" data-correct="d" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">87. Which statements about Bayes' theorem and MAP are correct?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Maximum Likelihood (ML) is a special case of MAP when all hypotheses are equally likely.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>The likelihood P(D|h) represents the probability of the observed data given hypothesis h.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>The prior P(h) has no effect on the MAP classifier when data is sufficient.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>MAP (Maximum A Posteriori) maximises P(h|D) = P(D|h) · P(h) / P(D) with respect to h.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q87')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q87')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q87-exp"><div class="exam-explanation">✅ Correct answer: D) MAP (Maximum A Posteriori) maximises P(h|D) = P(D|h) · P(h) / P(D) with respect to h.</div></div>
+      </div>
+
+      <div class="exam-q" id="q88" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">88. Which are correct statements about the attention mechanism in Transformers?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Transformers process the sequence sequentially, position by position, like RNNs.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Self-attention assigns weights to each position in the sequence based on mutual relevance between positions.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The Transformer architecture allows processing sequences in parallel, eliminating the temporal dependence of RNNs.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Multi-head attention allows the model to capture different types of relationships simultaneously.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q88')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q88')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q88-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q89" data-correct="a,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">89. Which are correct differences between tabu search and simulated annealing?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Tabu search maintains a list of forbidden states or moves to avoid cycles.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Simulated annealing accepts worsening moves with a probability that decreases with "temperature".</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Both are local search methods designed to escape local optima.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Tabu search guarantees finding the global optimum in all cases if run sufficiently long.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q89')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q89')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q89-exp"><div class="exam-explanation">✅ Correct answers: A, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q90" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">90. Which statements about k-consistency in CSP are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Path consistency is equivalent to 3-consistency.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Arc consistency (AC) is equivalent to 2-consistency.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Achieving k-consistency always eliminates all need for backtracking in search.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>A CSP is k-consistent if for any consistent assignment to k-1 variables, there is always a value for the k-th.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q90')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q90')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q90-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q91" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">91. Which are correct characteristics of n-gram language models?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>n-gram models can completely replace Transformers in all NLP tasks.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>A unigram model estimates P(sequence) as the product of individual word probabilities.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>A bigram model conditions the probability of each word on the previous word.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>n-gram models require much more training data as n increases.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q91')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q91')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q91-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q92" data-correct="a,b" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">92. Which statements about distance and similarity in k-NN are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>A valid distance must satisfy: non-negativity, symmetry, d(x,x) = 0, and triangle inequality.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Not every similarity measure is a valid metric distance.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Hamming distance is used for continuous attributes and Euclidean distance for binary attributes.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Weighted k-NN assigns higher weight to closer neighbours, generally using wᵢ = 1/dᵢ.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q92')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q92')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q92-exp"><div class="exam-explanation">✅ Correct answers: A, B</div></div>
+      </div>
+
+      <div class="exam-q" id="q93" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">93. Which are correct characteristics of the MMOA-RAG multi-agent architecture?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Agents are trained with reinforcement learning against the correct answer reward.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>MMOA-RAG is equivalent in performance to Naive RAG but easier to implement.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>Each RAG component (rewriter, retriever, selector, generator) is a separately trained agent.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Each agent has its own reward function, optimised against the shared final reward.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q93')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q93')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q93-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q94" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">94. Which statements about STRIPS and the closed-world assumption are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>The closed-world assumption in STRIPS prevents the planner from reasoning about uncertainty.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>STRIPS only allows positive literals in states, while ADL also allows negative literals.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>The closed-world assumption states that everything not explicitly mentioned is false.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>ADL uses the open-world assumption: what is not mentioned is unknown, not necessarily false.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q94')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q94')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q94-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q95" data-correct="b" data-multi="false">
+        <div class="exam-q-header"><div class="exam-q-text">95. Which are correct differences between Recurrent Neural Networks (RNNs) and Transformers?</div></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>Transformers have largely replaced RNNs in modern NLP tasks.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>RNNs suffer from the vanishing gradient problem on long sequences; Transformers mitigate it with attention.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>RNNs process sequences step by step; Transformers process the entire sequence in parallel.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>Transformers cannot handle variable-length sequences, unlike RNNs.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q95')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q95')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q95-exp"><div class="exam-explanation">✅ Correct answer: B) RNNs suffer from the vanishing gradient problem on long sequences; Transformers mitigate it with attention.</div></div>
+      </div>
+
+      <div class="exam-q" id="q96" data-correct="b,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">96. Which are correct properties of the Gain Ratio used in C4.5?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Gain Ratio always selects the same attribute as pure Information Gain.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Gain Ratio may prefer attributes with fewer values if they have greater relative discriminative power.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>GainRatio(S, A) = IG(S, A) / SplitInfo(S, A), where SplitInfo penalises attributes with many branches.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Gain Ratio corrects the bias of Information Gain towards attributes with many distinct values.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q96')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q96')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q96-exp"><div class="exam-explanation">✅ Correct answers: B, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q97" data-correct="a,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">97. Which are correct differences between ReAct, Reflexion, and CoT+ in LLM agents?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>ReAct alternates between reasoning and external action (search, tools) in a Thought-Action-Observation cycle.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="false"><span class="opt-letter">B</span>CoT+ uses structured tags (&lt;thinking&gt;, &lt;reflection&gt;, &lt;output&gt;) to separate reasoning and correction.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="false"><span class="opt-letter">C</span>The three strategies are equivalent and produce the same results on all tasks.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Reflexion critiques and refines the generated answer without necessarily invoking new external tools.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q97')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q97')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q97-exp"><div class="exam-explanation">✅ Correct answers: A, D</div></div>
+      </div>
+
+      <div class="exam-q" id="q98" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">98. Which are correct statements about document segmentation in RAG?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>Optimal segmentation is always exactly one paragraph per document, with no exceptions.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Segmentation strategy is one of the key design decisions in RAG systems.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Segment granularity affects retrieval precision: very long segments add noise.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Segments that are too short may lose context necessary for correct answering.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q98')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q98')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q98-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q99" data-correct="b,c" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">99. Which are correct statements about inference in CSP systems with MAC?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="true"><span class="opt-letter">A</span>If MAC detects that a domain becomes empty, it triggers backtracking immediately.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>MAC is more aggressive than simple forward checking in constraint propagation.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>MAC (Maintaining Arc Consistency) runs AC-3 after each variable assignment during search.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="false"><span class="opt-letter">D</span>MAC guarantees that the solution found is always optimal in terms of cost.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q99')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q99')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q99-exp"><div class="exam-explanation">✅ Correct answers: B, C</div></div>
+      </div>
+
+      <div class="exam-q" id="q100" data-correct="b,c,d" data-multi="true">
+        <div class="exam-q-header"><div class="exam-q-text">100. Which of the following statements about symbolic and sub-symbolic AI are correct?</div><span class="multi-badge">MULTI</span></div>
+        <div class="exam-options">
+          <div class="exam-opt" data-letter="a" data-is-correct="false"><span class="opt-letter">A</span>The combination of both approaches (neurosymbolic) has not demonstrated practical utility to date.</div>
+          <div class="exam-opt" data-letter="b" data-is-correct="true"><span class="opt-letter">B</span>Sub-symbolic AI (neural networks, ML) learns implicit representations from data.</div>
+          <div class="exam-opt" data-letter="c" data-is-correct="true"><span class="opt-letter">C</span>Symbolic AI (logic, planning, CSP) explicitly represents knowledge in symbols and rules.</div>
+          <div class="exam-opt" data-letter="d" data-is-correct="true"><span class="opt-letter">D</span>Modern LLMs can be integrated with symbolic systems through RAG, agents, and tool calls.</div>
+        </div>
+        <div class="btn-row">
+          <button class="show-btn" onclick="revealClassic('q100')">Show Answer</button>
+          <button class="check-btn" onclick="checkMulti('q100')" style="display:none">Check Selection</button>
+        </div>
+        <div class="exam-reveal" id="q100-exp"><div class="exam-explanation">✅ Correct answers: B, C, D</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);color:var(--text3);text-align:center;padding:20px;font-family:var(--mono);font-size:11px;letter-spacing:0.5px;">
+  ARTIFICIAL INTELLIGENCE &amp; KNOWLEDGE ENGINEERING · 100-QUESTION EXAM PRACTICE · MULTI-ANSWER EDITION
+</footer>
+
+<script>
+// ── STATE ──
+let currentMode = 'classic';
+
+// ── MODE SWITCHING ──
+function setMode(mode) {
+  currentMode = mode;
+
+  const btnClassic = document.getElementById('btn-classic');
+  const btnMulti   = document.getElementById('btn-multi');
+  const descEl     = document.getElementById('mode-desc-text');
+
+  btnClassic.className = 'mode-btn' + (mode === 'classic' ? ' active-classic' : '');
+  btnMulti.className   = 'mode-btn' + (mode === 'multi'   ? ' active-multi'   : '');
+
+  if (mode === 'classic') {
+    descEl.textContent = 'Classic: click one option to see instant feedback, then reveal the answer.';
+  } else {
+    descEl.textContent = 'Multi-select: tick as many options as you think are correct, then click Check Selection.';
+  }
+
+  document.querySelectorAll('.exam-q').forEach(q => {
+    // Reset visual state
+    resetQuestion(q.id);
+    // Show / hide correct button
+    q.querySelector('.show-btn').style.display = '';
+    const checkBtn = q.querySelector('.check-btn');
+    if (mode === 'multi') {
+      checkBtn.style.display = '';
+      checkBtn.disabled = false;
+    } else {
+      checkBtn.style.display = 'none';
+    }
+    // Apply mode class to options wrapper
+    const opts = q.querySelector('.exam-options');
+    opts.className = 'exam-options ' + (mode === 'classic' ? 'mode-classic' : 'mode-multi');
+    // Bind click handlers
+    q.querySelectorAll('.exam-opt').forEach(opt => {
+      opt.onclick = () => handleOptClick(opt, q.id, mode);
+    });
+  });
+}
+
+// ── RESET ──
+function resetQuestion(qId) {
+  const q = document.getElementById(qId);
+  if (!q) return;
+  q.querySelectorAll('.exam-opt').forEach(opt => {
+    opt.classList.remove(
+      'opt-selected','correct','wrong','revealed-correct','revealed-wrong',
+      'multi-checked','multi-correct','multi-wrong','multi-missed'
+    );
+  });
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.remove('show');
+  const checkBtn = q.querySelector('.check-btn');
+  if (checkBtn) checkBtn.disabled = false;
+}
+
+// ── CLICK HANDLER ──
+function handleOptClick(opt, qId, mode) {
+  if (mode === 'classic') {
+    classicClick(opt, qId);
+  } else {
+    multiToggle(opt, qId);
+  }
+}
+
+// ── CLASSIC MODE ──
+function classicClick(opt, qId) {
+  // Ignore if already answered
+  if (opt.classList.contains('correct') || opt.classList.contains('wrong')) return;
+  const isCorrect = opt.dataset.isCorrect === 'true';
+  opt.classList.add(isCorrect ? 'correct' : 'wrong');
+}
+
+// ── MULTI-SELECT MODE ──
+function multiToggle(opt, qId) {
+  // Ignore if already graded
+  if (opt.classList.contains('multi-correct') || opt.classList.contains('multi-wrong') || opt.classList.contains('multi-missed')) return;
+  opt.classList.toggle('multi-checked');
+}
+
+function checkMulti(qId) {
+  const q = document.getElementById(qId);
+  const opts = q.querySelectorAll('.exam-opt');
+  const checkBtn = q.querySelector('.check-btn');
+  checkBtn.disabled = true;
+
+  opts.forEach(opt => {
+    const isCorrect = opt.dataset.isCorrect === 'true';
+    const isChecked = opt.classList.contains('multi-checked');
+    opt.classList.remove('multi-checked');
+
+    if (isChecked && isCorrect) {
+      opt.classList.add('multi-correct');   // ✅ ticked correctly
+    } else if (isChecked && !isCorrect) {
+      opt.classList.add('multi-wrong');     // ❌ ticked incorrectly
+    } else if (!isChecked && isCorrect) {
+      opt.classList.add('multi-missed');    // ⚠️ should have ticked
+    }
+    // !isChecked && !isCorrect → no class, stays neutral
+  });
+
+  // Auto-show explanation
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.add('show');
+}
+
+// ── REVEAL (classic "show answer") ──
+function revealClassic(qId) {
+  const q = document.getElementById(qId);
+  if (!q) return;
+  q.querySelectorAll('.exam-opt').forEach(opt => {
+    const isCorrect = opt.dataset.isCorrect === 'true';
+    if (isCorrect) {
+      opt.classList.remove('wrong');
+      opt.classList.add('revealed-correct');
+    } else if (!opt.classList.contains('wrong') && !opt.classList.contains('correct')) {
+      opt.classList.add('revealed-wrong');
+    }
+  });
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.add('show');
+}
+
+// ── NAV SMOOTH SCROLL ──
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - 65;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ── INIT ──
+setMode('classic');
+</script>
+</body>
+</html>

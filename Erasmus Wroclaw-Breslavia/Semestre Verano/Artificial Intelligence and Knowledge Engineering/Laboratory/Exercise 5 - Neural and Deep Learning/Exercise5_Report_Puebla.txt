@@ -1,0 +1,915 @@
+\documentclass[12pt,a4paper]{article}
+
+% -- Encoding & language ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% -- Mathematics ------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+
+% -- Tables -----------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% -- Figures ----------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+% -- Listings (source code) -------------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{orange!70!black},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!20},
+  backgroundcolor=\color{gray!6},
+  showstringspaces=false,
+  tabsize=4,
+}
+
+% -- Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue,
+}
+
+% -- Page geometry ----------------------------------------------------------
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% -- Miscellaneous ----------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
+\setlength{\headheight}{13.6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Exercise 5 -- AI \& Knowledge Engineering}
+\lhead{\small Polish Sentiment Classification with LLMs}
+\cfoot{\footnotesize\textit{Some of the comments in the code were written with AI assistance (ChatGPT) :)}}
+\rfoot{\thepage}
+
+% Convenience commands
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\best}[1]{\textbf{\color{blue!70!black}#1}}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+
+{\LARGE\bfseries\color{blue!70!black}
+ARTIFICIAL INTELLIGENCE AND\\[6pt]
+KNOWLEDGE ENGINEERING}
+
+\vspace{14pt}
+
+{\Large\bfseries\color{blue!70!black}
+REPORT -- EXERCISE 5}
+
+\vspace{10pt}
+
+{\large\bfseries Polish Sentiment Classification\\[4pt]
+Encoder-only and Decoder-only Language Models}
+
+\vspace{8pt}
+
+{\small Álvaro Puebla Ruisánchez}\\[12pt]
+
+\vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{\underline{Introduction and Goal}}
+% =============================================================================
+
+The objective of this exercise is to familiarise ourselves with the capabilities
+of modern language models by tackling a classic NLP task: \textbf{text
+classification} (sentiment analysis).  The study applies two paradigmatically
+different types of neural language models to the same classification problem
+and systematically compares their behaviour.
+
+The work covers the following steps:
+\begin{itemize}
+  \item \textbf{Data Mining} -- loading and exploring the PolEmo2.0-IN dataset,
+        including class balance and text-length statistics.
+  \item \textbf{Encoder-only classification} -- using a pre-trained
+        Polish-language sentiment model (\code{Voicelab/herbert-base-cased-sentiment})
+        with no task-specific fine-tuning.
+  \item \textbf{Encoder exploration} -- comparing a second encoder model
+        (\code{cardiffnlp/twitter-\allowbreak xlm-\allowbreak roberta-\allowbreak base-\allowbreak sentiment}) and a
+        multilingual distilled model
+        (\code{lxyuan/\allowbreak distilbert-\allowbreak base-\allowbreak multilingual-\allowbreak cased-\allowbreak sentiments-\allowbreak student})
+        to understand how model choice affects results.
+  \item \textbf{Decoder-only LLM classification} -- using
+        \code{Qwen/Qwen2.5-1.5B-Instruct} in a zero-shot prompt-based
+        classification scheme via LangChain.
+  \item \textbf{LLM exploration} -- investigating the effect of generation
+        temperature, prompt design (JSON output parsing), and model scale
+        (1.5B vs.\ 3B parameters) on classification performance.
+\end{itemize}
+
+All experiments were executed in the Google Colab environment with a
+NVIDIA T4 GPU.  The implementation uses \code{transformers}~\cite{wolf2020},
+\code{datasets}~\cite{lhoest2021}, and \code{langchain}~\cite{langchain2023}.
+
+% =============================================================================
+\newpage
+\section{\underline{Theoretical Background}}
+% =============================================================================
+
+The theoretical foundations are covered in the assignment sheet.  This section
+briefly recaps the key concepts applied in the experiments.
+
+\subsection{Text Classification and Sentiment Analysis}
+
+Text classification is one of the fundamental tasks in Natural Language
+Processing (NLP).  It consists in automatically assigning a label $c \in C$
+to an unstructured text $t$ using a classifier $f$, formally:
+\[
+  f(t) \;\to\; c.
+\]
+In \emph{sentiment analysis}, the target set $C$ typically includes values
+such as \emph{positive}, \emph{negative}, \emph{neutral}, and \emph{ambiguous}.
+Modern approaches represent text as dense real-valued vectors that encode
+semantic meaning.
+
+\subsection{Encoder-only Models (BERT family)}
+
+Before the era of generative LLMs, the standard for classification was
+\textbf{encoder-only} models~\cite{devlin2019bert}, whose most popular
+representative is BERT.  These models:
+\begin{itemize}
+  \item transform an input sequence into a dense vector (via the \code{[CLS]}
+        token embedding), which is then passed to a lightweight classification
+        head;
+  \item are bidirectional -- each token attends to all others;
+  \item are significantly smaller and faster than generative models, making
+        them ideal for high-throughput classification.
+\end{itemize}
+
+The mathematical foundation is the \textbf{self-attention} mechanism:
+\[
+  \text{Attention}(Q,K,V) = \operatorname{softmax}\!\left(
+    \frac{QK^\top}{\sqrt{d_k}}
+  \right)V,
+\]
+where $Q$, $K$, $V$ are query, key, and value matrices derived from the input
+embedding, and $d_k$ is the key dimension.
+
+\subsection{Decoder-only LLMs}
+
+Large Language Models (LLMs) based on the decoder-only Transformer
+architecture (GPT family, Qwen, Llama, etc.) are trained to predict the
+next token given a left-to-right context.  For classification they are used
+in \textbf{zero-shot} mode: a carefully worded \emph{prompt} instructs the
+model to generate the class name rather than free text.
+
+Key tuning levers include:
+\begin{itemize}
+  \item \textbf{Temperature} $\tau$: scales the logits before softmax,
+        controlling output randomness.  $\tau \to 0$ yields greedy (argmax)
+        decoding; $\tau = 1$ is the unmodified distribution.
+  \item \textbf{Prompt design}: the structure, instructions, and examples
+        provided to the model heavily influence output quality.
+  \item \textbf{Quantisation}: reducing numerical precision (e.g., 4-bit NF4)
+        shrinks memory footprint, enabling larger models to run on consumer GPUs.
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+
+For a multi-class imbalanced problem the macro-averaged metrics are used:
+\[
+  \text{Accuracy} = \frac{\sum_i \mathbf{1}[\hat{y}_i = y_i]}{N},
+\]
+\[
+  F_1^{\text{macro}} = \frac{1}{|C|}\sum_{c \in C}
+    \frac{2\,\text{TP}_c}{2\,\text{TP}_c + \text{FP}_c + \text{FN}_c}.
+\]
+Macro-F1 treats every class equally regardless of support, which is
+important given the imbalanced nature of the PolEmo2.0 dataset.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 1 -- Data Mining}}
+% =============================================================================
+
+\subsection{Dataset Overview}
+
+The \textbf{PolEmo2.0-IN} dataset~\cite{kocon2019polemo} contains Polish-language
+online reviews from two domains: medicine and hospitality.  It is part of the
+KLEJ benchmark for evaluating Polish NLP models.
+
+\vspace{-5pt}
+\begin{table}[H]
+\centering
+\caption{Class distribution in the full PolEmo2.0-IN test split.}
+\vspace{-4pt}
+\label{tab:class_dist_full}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Label} & \textbf{Meaning} & \textbf{Count} & \textbf{Proportion} \\
+\midrule
+\code{minus}   & Unambiguously negative  & 300 & 41.6\% \\
+\code{plus}    & Unambiguously positive  & 197 & 27.3\% \\
+\code{neutral} & Descriptive / no affect  & 117 & 16.2\% \\
+\code{amb}     & Mixed (positive + negative) & 108 & 15.0\% \\
+\midrule
+\textbf{Total} & & 722 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{-10pt}
+As instructed, all subsequent experiments use only the three unambiguous classes
+(\emph{plus}, \emph{minus}, \emph{neutral}), removing the 108 \code{amb} samples.
+
+\vspace{-2pt}
+\begin{table}[H]
+\centering
+\caption{Working subset (no \code{amb} class): class distribution and
+         text-length statistics.}
+\vspace{-9pt}
+\label{tab:class_dist_work}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Class} & \textbf{Count} & \textbf{Prop.} &
+\textbf{Avg len (chars)} & \textbf{Min} & \textbf{Max} \\
+\midrule
+\code{minus}   & 300 & 48.9\% & 779 & 189 & 2\,469 \\
+\code{plus}    & 197 & 32.1\% & 673 & 243 & 2\,350 \\
+\code{neutral} & 117 & 19.1\% & 855 &  29 & 1\,605 \\
+\midrule
+\textbf{Total} & 614 & 100\% & -- & 29 & 2\,469 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{-15pt}
+\textbf{Key observations:}
+\begin{itemize}[topsep=2pt, itemsep=1pt, parsep=0pt]
+  \item The class distribution is moderately imbalanced: a majority-class
+        baseline that always predicts \code{minus} achieves 48.9\% accuracy,
+        a meaningful lower bound.
+  \item Text lengths are right-skewed -- a small number of very long reviews
+        exist in all classes, which may challenge models with limited context
+        windows (HerBERT: 512 tokens).
+  \item Neutral reviews tend to be slightly longer on average, suggesting
+        descriptive text is more verbose than clearly polar opinions.
+\end{itemize}
+
+\begin{figure}[H]
+  \vspace{-2pt}
+  \centering
+  \includegraphics[width=0.92\textwidth]{fig_task1_stats.pdf}
+  \caption{Left: class balance after removing \code{amb} samples.
+           Right: character-length distribution by sentiment class.}
+  \label{fig:task1}
+\end{figure}
+
+% =============================================================================
+\newpage
+\section{\underline{Task 2 -- Encoder-only Classification}}
+% =============================================================================
+
+\subsection{Model: \code{Voicelab/herbert-base-cased-sentiment}}
+
+The first classifier is a Polish-language sentiment model built on top of
+HerBERT~\cite{mroczkowski2021herbert}, a BERT-style encoder pre-trained on a
+large Polish text corpus.  The \code{herbert-\allowbreak base-\allowbreak cased-
+\allowbreak sentiment} variant fine-tunes the base model on a Polish sentiment 
+dataset and exposes a three-class classification head with labels \emph{positive}, \emph{negative},
+\emph{neutral}.
+
+Loading and inference is done with the \code{pipeline} abstraction from
+\code{transformers}:
+
+\begin{lstlisting}[style=python, basicstyle=\ttfamily\scriptsize, caption={Loading and running the encoder-only sentiment model.}]
+from transformers import pipeline
+import torch
+
+ENCODER_MODEL = "Voicelab/herbert-base-cased-sentiment"
+DEVICE = 0 if torch.cuda.is_available() else -1
+sentiment_pipe = pipeline(
+    "text-classification",
+    model=ENCODER_MODEL,
+    device=DEVICE,
+    truncation=True,
+    max_length=512,
+)
+# Map model labels -> dataset labels
+ENCODER_LABEL_MAP = {
+    "positive": "plus",
+    "negative": "minus",
+    "neutral":  "neutral",
+}
+raw = sentiment_pipe(texts, batch_size=32)
+preds = [ENCODER_LABEL_MAP.get(r["label"].lower(), "neutral") for r in raw]
+\end{lstlisting}
+
+\vspace{-10pt}
+\subsection{Results}
+
+\begin{table}[H]
+\centering
+\caption{HerBERT-base classification results on the full 614-sample test split.}
+\vspace{-5pt}
+\label{tab:enc_default}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{Support} \\
+\midrule
+\code{minus}   & 0.97 & 0.85 & 0.91 & 300 \\
+\code{neutral} & 0.34 & 0.14 & 0.20 & 117 \\
+\code{plus}    & 0.64 & 0.98 & 0.78 & 197 \\
+\midrule
+\textit{macro avg}    & 0.65 & 0.66 & 0.63 & 614 \\
+\textit{weighted avg} & 0.74 & 0.76 & 0.73 & 614 \\
+\midrule
+\textbf{Accuracy} & \multicolumn{4}{c}{\textbf{0.759}} \\
+\textbf{Macro-F1} & \multicolumn{4}{c}{\textbf{0.626}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{-10pt}
+\textbf{Key observations:}
+\begin{itemize}[topsep=2pt, itemsep=1pt, parsep=0pt]
+  \item The model performs very well on the \code{minus} class (F1 = 0.91) and
+        reasonably on \code{plus} (F1 = 0.78), reflecting that it was fine-tuned
+        on similar Polish sentiment data.
+  \item The \code{neutral} class is by far the hardest: recall of only 0.14
+        means the vast majority of neutral reviews are misclassified, most often
+        as \code{plus}.  This is a known challenge -- neutral opinions often
+        share vocabulary with both polar classes.
+  \item Overall accuracy of 75.9\% and macro-F1 of 62.6\% represent a reasonable
+        baseline given the zero-shot nature of this evaluation, though the
+        macro-F1 is dragged down significantly by the poor neutral performance.
+\end{itemize}
+
+% =============================================================================
+\newpage
+\section{\underline{Task 3 -- Encoder Model Exploration}}
+% =============================================================================
+
+\subsection{Alternative Models}
+
+Two additional encoder-only models were evaluated to understand how model
+choice and language coverage affect classification quality.
+
+\paragraph{Model A: \code{lxyuan/distilbert-base-multilingual-cased-sentiments-student}}
+A distilled multilingual sentiment model (DistilBERT backbone) covering 7
+languages including Polish.  Smaller and faster than HerBERT, but not
+specifically optimised for Polish.
+
+\paragraph{Model B: \code{cardiffnlp/twitter-xlm-roberta-base-sentiment}}
+An XLM-RoBERTa model~\cite{conneau2020xlmr} fine-tuned on multilingual Twitter
+data for sentiment.  Larger than DistilBERT but trained predominantly on
+short, informal social-media text rather than reviews.
+
+\subsection{Results}
+
+\begin{table}[H]
+\centering
+\caption{Encoder model comparison (full 614-sample test split).
+         Best result per metric highlighted.}
+\label{tab:enc_comparison}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Parameters} \\
+\midrule
+\best{HerBERT-base (Task 2)}    & \best{0.759} & \best{0.626} & $\sim$125M \\
+XLM-RoBERTa-twitter             & 0.697        & 0.694        & $\sim$278M \\
+DistilBERT-multilingual         & 0.622        & 0.437        & $\sim$66M  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Per-class F1 scores for the three encoder models.}
+\label{tab:enc_perclass}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Class} & \textbf{HerBERT-base} & \textbf{DistilBERT-multi} & \textbf{XLM-RoBERTa} \\
+\midrule
+\code{minus}   & \best{0.91} & 0.75 & 0.74 \\
+\code{neutral} & 0.20 & 0.02 & \best{0.58} \\
+\code{plus}    & \best{0.78} & 0.54 & 0.76 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{-4pt}
+\textbf{Key observations:}
+\begin{itemize}[topsep=2pt, itemsep=1pt, parsep=0pt]
+  \item \textbf{HerBERT leads on accuracy} (75.9\%) and has the strongest
+        polar-class performance, benefiting from Polish-specific pre-training
+        and fine-tuning.  However, its macro-F1 of 62.6\% is barely above
+        the other models, dragged down by near-zero neutral recall.
+  \item \textbf{XLM-RoBERTa} achieves the highest macro-F1 (69.4\%) despite
+        lower accuracy (69.7\%), because it distributes errors more evenly
+        across classes and achieves a neutral F1 of 0.58 -- far better than
+        HerBERT's 0.20.  This illustrates how accuracy alone can be misleading
+        on imbalanced datasets.
+  \item \textbf{DistilBERT-multi} shows the cost of distillation and
+        language generalisation: accuracy drops to 62.2\% and its neutral
+        F1 collapses to just 0.02, running approximately $2\times$ faster
+        due to its smaller size.
+  \item All three models struggle most with the \code{neutral} class,
+        confirming that neutrality is the hardest sentiment to capture with
+        off-the-shelf models on this dataset.
+\end{itemize}
+
+% =============================================================================
+\newpage
+\section{\underline{Task 4 -- Decoder-only LLM Classification}}
+% =============================================================================
+
+\subsection{Model: \code{Qwen/Qwen2.5-1.5B-Instruct}}
+
+The decoder-only approach uses \code{Qwen/Qwen2.5-1.5B-Instruct}~\cite{qwen2024},
+a 1.5-billion-parameter instruction-tuned generative model.  Rather than a
+classification head, the model is prompted in natural language and generates
+a class name as its completion.
+
+The LangChain~\cite{langchain2023} abstraction is used to compose a reusable
+prompt-chain:
+
+\begin{lstlisting}[style=python, caption={Loading the LLM and composing a zero-shot sentiment chain.}]
+from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
+from langchain_huggingface import HuggingFacePipeline
+from langchain_core.prompts import PromptTemplate
+import torch
+
+LLM_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
+tokenizer = AutoTokenizer.from_pretrained(LLM_MODEL)
+model = AutoModelForCausalLM.from_pretrained(
+    LLM_MODEL,
+    torch_dtype=torch.float16,
+    device_map="auto",
+)
+
+hf_pipeline = pipeline(
+    "text-generation", model=model, tokenizer=tokenizer,
+    max_new_tokens=8, temperature=0.1, do_sample=True,
+    pad_token_id=tokenizer.eos_token_id, return_full_text=False,
+)
+llm = HuggingFacePipeline(pipeline=hf_pipeline)
+
+TEMPLATE = """Classify the sentiment of the following Polish review into
+exactly one of these three classes: plus (positive), minus (negative), neutral.
+Respond with ONLY the class name and nothing else.
+
+Review: {text}
+Class:"""
+
+chain = PromptTemplate.from_template(TEMPLATE) | llm
+\end{lstlisting}
+
+\subsection{Label Parsing}
+
+Generative models do not always output a clean class label; a robust
+post-processing step is essential:
+
+\begin{lstlisting}[style=python, caption={Robust label extractor from raw LLM output.}]
+def parse_llm_label(raw: str) -> str:
+    raw = raw.strip().lower()
+    if "plus" in raw or "positive" in raw:
+        return "plus"
+    if "minus" in raw or "negative" in raw:
+        return "minus"
+    return "neutral"   # default fallback
+\end{lstlisting}
+
+\subsection{Results (200-sample subset)}
+
+\begin{table}[H]
+\centering
+\caption{Qwen2.5-1.5B baseline results (200-sample subset).}
+\label{tab:llm_baseline}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{Support} \\
+\midrule
+\code{minus}   & 0.90 & 0.94 & 0.92 &  89 \\
+\code{neutral} & 1.00 & 0.11 & 0.19 &  47 \\
+\code{plus}    & 0.62 & 0.98 & 0.76 &  64 \\
+\midrule
+\textit{macro avg}    & 0.84 & 0.68 & 0.62 & 200 \\
+\midrule
+\textbf{Accuracy} & \multicolumn{4}{c}{\textbf{0.760}} \\
+\textbf{Macro-F1} & \multicolumn{4}{c}{\textbf{0.625}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 1.5B parameters and with a simple prompt, the LLM achieves 76.0\% accuracy,
+which is comparable to HerBERT (75.9\%) but with a lower macro-F1 of 62.5\%.
+As expected, the \code{neutral} class is the hardest (F1 = 0.19), with the
+model almost entirely failing to predict it.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 5 -- LLM Parameter Exploration}}
+% =============================================================================
+
+Three dimensions were explored: generation \textbf{temperature}, \textbf{prompt
+design} (with JSON output parsing), and \textbf{model scale}.
+
+\subsection{Temperature Sweep}
+
+The generation temperature $\tau$ was varied over four values.  For $\tau = 0$
+(greedy decoding), \code{do\_sample=False} was used.
+
+\begin{table}[H]
+\centering
+\caption{Effect of temperature on classification performance
+         (Qwen2.5-1.5B, 200 samples, baseline prompt).}
+\label{tab:temperature}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Temperature} & \textbf{Accuracy} & \textbf{Macro-F1} \\
+\midrule
+Greedy ($\tau = 0$)  & \best{0.765} & \best{0.638} \\
+$\tau = 0.1$         & 0.755        & 0.621        \\
+$\tau = 0.5$         & 0.765        & 0.629        \\
+$\tau = 1.0$         & 0.775        & 0.654        \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\textwidth]{fig_temperature_sweep.pdf}
+  \caption{Classification accuracy and macro-F1 as a function of
+           generation temperature (Qwen2.5-1.5B, baseline prompt).}
+  \label{fig:temp_sweep}
+\end{figure}
+
+\textbf{Interpretation:} Unlike the expected monotonic trend, the results show
+no clear degradation with higher temperature for this model and prompt.
+Accuracy is relatively flat across temperatures (0.755--0.775), and macro-F1
+actually peaks at $\tau = 1.0$ (0.654).  This suggests that for this
+particular baseline prompt the model's output is already dominated by the
+structural problem of ignoring neutral samples, and temperature variation alone
+does not address that bottleneck.  For structured output tasks, greedy or
+near-greedy decoding remains a safe default, but the benefit is task-dependent.
+
+\newpage
+\subsection{Improved Prompt with JSON Output Parsing}
+
+A richer prompt was designed that: (1) explicitly defines the task and target
+vocabulary; (2) provides in-context examples; and (3) instructs the model to
+output a JSON object rather than a bare label.  The
+\code{langchain\_core.output\_parsers.JsonOutputParser} was used together with
+a \code{Pydantic} schema:
+
+\begin{lstlisting}[style=python, caption={Improved prompt with JSON output and Pydantic schema.}]
+from langchain_core.output_parsers import JsonOutputParser
+from pydantic import BaseModel, Field
+
+class SentimentOutput(BaseModel):
+    sentiment: str = Field(
+        description="Sentiment class: plus, minus, or neutral"
+    )
+
+IMPROVED_TEMPLATE = """\
+You are a sentiment analysis expert. Read the Polish review and respond ONLY \
+with a JSON object containing a single key "sentiment" whose value is one of: \
+"plus", "minus", or "neutral".
+
+Examples:
+Review: "Jestem bardzo zadowolony z obslugi." -> {"sentiment": "plus"}
+Review: "Tragiczna obsluga, nie polecam."     -> {"sentiment": "minus"}
+Review: "Bylem tam w srode."                  -> {"sentiment": "neutral"}
+
+Review: {text}
+Response:"""
+
+json_parser = JsonOutputParser(pydantic_object=SentimentOutput)
+improved_chain = PromptTemplate.from_template(IMPROVED_TEMPLATE) | llm
+\end{lstlisting}
+
+A two-stage parser first attempts JSON extraction with a regex; if that
+fails it falls back to the keyword-matching parser from Task 4.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of baseline vs.\ improved prompt for Qwen2.5-1.5B
+         (200 samples).}
+\label{tab:prompt_comparison}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Prompt variant} & \textbf{Accuracy} & \textbf{Macro-F1} \\
+\midrule
+Baseline (Task 4)              & 0.760 & 0.625 \\
+\best{Improved (JSON + examples)} & \best{0.885} & \best{0.868} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The improved prompt raises accuracy by \textbf{12.5 pp} and macro-F1 by
+\textbf{24.3 pp}.  The few-shot examples significantly help the model map
+Polish sentiment to the exact label vocabulary, and crucially enable much
+better neutral class detection (F1 rising from 0.19 to 0.79).  JSON
+structuring also reduces parsing ambiguity: the model rarely produces
+off-schema output when explicitly shown the desired format.
+
+\subsection{Model Scale: 1.5B vs.\ 3B Parameters}
+
+The 3B-parameter variant (\code{Qwen/Qwen2.5-3B-Instruct}) was loaded with
+4-bit NF4 quantisation (via \code{bitsandbytes}) to fit within Colab's 16 GB
+VRAM budget:
+
+\begin{lstlisting}[style=python, caption={4-bit quantisation with BitsAndBytesConfig.}]
+from transformers import BitsAndBytesConfig
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+    bnb_4bit_quant_type="nf4",
+)
+model_large = AutoModelForCausalLM.from_pretrained(
+    "Qwen/Qwen2.5-3B-Instruct",
+    quantization_config=bnb_config,
+    device_map="auto",
+)
+\end{lstlisting}
+
+\begin{table}[H]
+\centering
+\caption{Model size comparison with the improved prompt (200 samples,
+         $\tau = 0.1$).}
+\label{tab:model_scale}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Params} & \textbf{Accuracy} & \textbf{Macro-F1} \\
+\midrule
+\best{Qwen2.5-1.5B-Instruct (fp16)}    & 1.5B & \best{0.885} & \best{0.868} \\
+Qwen2.5-3B-Instruct (4-bit) & 3B   & 0.790 & 0.744        \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Interestingly, the larger 3B model with 4-bit quantisation underperforms the
+full-precision 1.5B model on this task (79.0\% vs.\ 88.5\% accuracy).
+This suggests that the quantisation overhead at this scale, combined with
+the specific prompt format, may offset the benefit of additional parameters.
+The result highlights that scaling is not always monotonically beneficial,
+especially when quantisation is applied.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 4--5 Evaluation and Confusion Matrices}}
+% =============================================================================
+
+\subsection{Confusion Matrices}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{fig_conf_matrices.pdf}
+  \caption{Confusion matrices on the 200-sample subset for (left) the best
+           encoder (HerBERT-base) and (right) the best LLM configuration
+           (Qwen2.5-1.5B, improved prompt, $\tau = 0.1$).}
+  \label{fig:conf}
+\end{figure}
+
+Reading Figure~\ref{fig:conf}:
+\begin{itemize}
+  \item HerBERT shows a strong bias towards predicting \code{plus}: it
+        correctly classifies 194/197 \code{plus} samples but misclassifies
+        95 out of 117 neutral reviews as \code{plus}, resulting in very
+        low neutral recall.
+  \item The LLM with the improved prompt handles all three classes much
+        more evenly, with neutral recall improving substantially (33/47
+        correctly classified vs.\ 16/117 for HerBERT on its respective split).
+  \item Both models show very few \code{minus}/\code{plus} confusions,
+        suggesting polar sentiment is reliably distinguishable.
+\end{itemize}
+
+\subsection{Overall Model Comparison}
+
+\begin{table}[H]
+\centering
+\caption{Summary of all model configurations.  Encoder models were evaluated
+         on the full 614-sample split; LLM models on a 200-sample subset.}
+\label{tab:final_summary}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{Split} & \textbf{Accuracy} & \textbf{Macro-F1} \\
+\midrule
+HerBERT-base                     & Encoder & full   & 0.759        & 0.626        \\
+XLM-RoBERTa-twitter              & Encoder & full   & 0.697        & 0.694        \\
+DistilBERT-multilingual          & Encoder & full   & 0.622        & 0.437        \\
+\midrule
+Qwen2.5-1.5B baseline            & Decoder & subset & 0.760        & 0.625        \\
+Qwen2.5-1.5B greedy ($\tau{=}0$) & Decoder & subset & 0.765        & 0.638        \\
+Qwen2.5-1.5B $\tau{=}0.1$        & Decoder & subset & 0.755        & 0.621        \\
+Qwen2.5-1.5B $\tau{=}0.5$        & Decoder & subset & 0.765        & 0.629        \\
+Qwen2.5-1.5B $\tau{=}1.0$        & Decoder & subset & 0.775        & 0.654        \\
+\best{Qwen2.5-1.5B improved prompt} & Decoder & subset & \best{0.885} & \best{0.868} \\
+Qwen2.5-3B 4-bit improved        & Decoder & subset & 0.790        & 0.744        \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============================================================================
+\newpage
+\section{\underline{Conclusions}}
+% =============================================================================
+
+\subsection{Summary of Results}
+
+All experiments confirmed that Polish sentiment classification on the
+PolEmo2.0-IN dataset is a well-defined three-class problem with a known
+weak spot -- the \emph{neutral} class -- that challenges all model families.
+
+The main findings are:
+
+\begin{enumerate}
+  \item \textbf{Language-specific fine-tuning helps for polar classes but
+        not for neutral.}
+        HerBERT-base achieves the highest accuracy (75.9\%) but its macro-F1
+        (62.6\%) is comparable to the baseline LLM, because it almost entirely
+        fails on the neutral class (F1 = 0.20).
+
+  \item \textbf{Prompt engineering provides the largest single improvement.}
+        Moving from a bare instruction to a JSON-formatted prompt with three
+        in-context examples adds 12.5 pp in accuracy and 24.3 pp in macro-F1,
+        making the improved 1.5B LLM the overall best-performing configuration
+        (88.5\% accuracy, 86.8\% macro-F1).
+
+  \item \textbf{Temperature has a minor and non-monotonic effect here.}
+        Accuracy varies by at most 2 pp across temperatures 0--1.0, and macro-F1
+        actually peaks at $\tau = 1.0$ (0.654).  The bottleneck with the
+        baseline prompt is structural (failure on neutral), not stochasticity.
+
+  \item \textbf{Model scale does not guarantee improvement with quantisation.}
+        The 3B model with 4-bit NF4 quantisation (79.0\% accuracy) underperforms
+        the full-precision 1.5B model with the improved prompt (88.5\%).
+        Quantisation overhead can offset the benefit of additional parameters
+        at this scale.
+
+  \item \textbf{Balanced macro-F1 is more informative than accuracy.}
+        XLM-RoBERTa achieves the highest macro-F1 (69.4\%) among encoders
+        despite a lower accuracy than HerBERT (69.7\% vs.\ 75.9\%), because it
+        distributes errors more evenly.  Accuracy alone would give a misleading
+        picture on this imbalanced dataset.
+\end{enumerate}
+
+\subsection{Limitations and Future Work}
+
+\begin{itemize}
+  \item The LLM comparisons were conducted on a 200-sample subset due to
+        inference time constraints.  Results on the full split could differ,
+        particularly in variance.
+
+  \item \textbf{Neutral class performance} remains below 80\% F1 across all
+        models except the best LLM configuration.  Techniques such as data
+        augmentation for neutral reviews or class-weighted loss functions during
+        fine-tuning could address this.
+
+  \item Larger generative models (7B+ parameters) with Polish instruction
+        tuning (e.g.\ \code{speakleash/Bielik-7B-Instruct}) would likely
+        further improve performance and are a natural next step.
+
+  \item \textbf{Few-shot prompting} with 5--10 examples per class is expected
+        to further improve LLM performance and is a natural next step.
+\end{itemize}
+
+% =============================================================================
+\newpage
+\section{\underline{Implementation Notes}}
+% =============================================================================
+
+\subsection{Libraries Used}
+
+\begin{table}[H]
+\centering
+\caption{Python libraries used in the implementation.}
+\begin{tabular}{lll}
+\toprule
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\midrule
+\code{transformers}        & $\geq$4.40  & Model loading, tokenisation, \code{pipeline} \\
+\code{datasets}            & $\geq$2.18  & PolEmo2.0-IN dataset loading (Hugging Face Hub) \\
+\code{langchain}           & $\geq$0.2   & Prompt templates, chains, output parsers \\
+\code{langchain-huggingface} & $\geq$0.0.3 & \code{HuggingFacePipeline} wrapper \\
+\code{bitsandbytes}        & $\geq$0.43  & 4-bit NF4 quantisation \\
+\code{accelerate}          & $\geq$0.30  & Multi-device model placement \\
+\code{pydantic}            & $\geq$2.0   & JSON output schema for \code{JsonOutputParser} \\
+\code{scikit-learn}        & $\geq$1.3   & Classification metrics (accuracy, F1, report) \\
+\code{pandas}              & $\geq$2.0   & Data manipulation and statistics \\
+\code{matplotlib}          & $\geq$3.7   & Figures and confusion matrices \\
+\code{torch}               & $\geq$2.2   & Backend tensor operations, \code{fp16} inference \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data Source}
+
+The dataset was loaded directly from the Hugging Face Hub using:
+
+\begin{lstlisting}[style=python, caption={PolEmo2.0-IN test split loading.}]
+from datasets import load_dataset
+
+dataset = load_dataset("allegro/klej-polemo2-in", split="test")
+\end{lstlisting}
+
+This is the official \textbf{PolEmo2.0}~\cite{kocon2019polemo} in-domain
+test partition, which covers medical and hospitality reviews.  The four
+internal label identifiers are:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Internal label} & \textbf{Human-readable class} \\
+\midrule
+\code{\_\_label\_\_meta\_plus\_m}  & \code{plus} (positive) \\
+\code{\_\_label\_\_meta\_minus\_m} & \code{minus} (negative) \\
+\code{\_\_label\_\_meta\_zero}     & \code{neutral} \\
+\code{\_\_label\_\_meta\_amb}      & \code{amb} (ambiguous, excluded) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =============================================================================
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{kocon2019polemo}
+J.~Koco\'{n}, A.~Mi\l{}kowski, and M.~Zasko-Zielinska,
+\textit{Multi-Level Sentiment Analysis of PolEmo 2.0: Extended Corpus of
+Multi-Domain Consumer Reviews Annotated with Fine-Grained Sentiment},
+in \textit{Proceedings of the 23rd Conference on Computational Natural
+Language Learning (CoNLL)}, 2019.\\
+\url{https://huggingface.co/datasets/allegro/klej-polemo2-in}
+
+\bibitem{devlin2019bert}
+J.~Devlin, M.-W.~Chang, K.~Lee, and K.~Toutanova,
+\textit{BERT: Pre-training of Deep Bidirectional Transformers for Language
+Understanding},
+in \textit{Proceedings of NAACL-HLT}, 2019.
+
+\bibitem{mroczkowski2021herbert}
+R.~Mroczkowski, P.~Rybak, A.~Wr\'{o}blewska, and I.~Gawlik,
+\textit{HerBERT: Efficiently Pretrained Transformer-based Language Model
+for Polish},
+in \textit{Proceedings of the 8th Workshop on Balto-Slavic NLP}, 2021.
+
+\bibitem{conneau2020xlmr}
+A.~Conneau, K.~Khandelwal, N.~Goyal, V.~Chaudhary, G.~Wenzek, F.~Guzm\'{a}n,
+E.~Grave, M.~Ott, L.~Zettlemoyer, and V.~Stoyanov,
+\textit{Unsupervised Cross-Lingual Representation Learning at Scale},
+in \textit{Proceedings of ACL}, 2020.
+
+\bibitem{qwen2024}
+Qwen Team,
+\textit{Qwen2.5 Technical Report},
+Alibaba Group, 2024.\\
+\url{https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct}
+
+\bibitem{wolf2020}
+T.~Wolf et al.,
+\textit{Transformers: State-of-the-Art Natural Language Processing},
+in \textit{Proceedings of EMNLP (System Demonstrations)}, 2020.
+
+\bibitem{lhoest2021}
+Q.~Lhoest et al.,
+\textit{Datasets: A Community Library for Natural Language Processing},
+in \textit{Proceedings of EMNLP (System Demonstrations)}, 2021.
+
+\bibitem{langchain2023}
+H.~Chase,
+\textit{LangChain},
+GitHub repository, 2023.\\
+\url{https://github.com/langchain-ai/langchain}
+
+\end{thebibliography}
+
+\end{document}

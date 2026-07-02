@@ -1,0 +1,778 @@
+\documentclass[12pt,a4paper]{article}
+
+% -- Encoding & language ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% -- Mathematics ------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+
+% -- Algorithms -------------------------------------------------------------
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% -- Tables -----------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% -- Figures ----------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{trees, positioning, arrows.meta}
+
+% -- Listings (source code) -------------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{orange!70!black},
+  commentstyle=\color{gray}\itshape,
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!20},
+  backgroundcolor=\color{gray!10},
+  showstringspaces=false,
+  tabsize=4,
+}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\footnotesize\color{white},
+  backgroundcolor=\color{black!85},
+  frame=single,
+  rulecolor=\color{black},
+  breaklines=true,
+  showstringspaces=false,
+  numbers=none,
+}
+
+\lstdefinestyle{bash}{
+  language=bash,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  backgroundcolor=\color{gray!10},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  showstringspaces=false,
+}
+
+% -- Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue,
+}
+
+% -- Page geometry ----------------------------------------------------------
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% -- Miscellaneous ----------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Exercise 2 - AI \& Knowledge Engineering}
+\lhead{\small Breakthrough: Minimax with Alpha-Beta Pruning}
+\cfoot{\footnotesize\textit{Some of the comments in the code were written with AI assistance (ChatGPT) :)}}
+\rfoot{\thepage}
+
+% ---------------------------------------------------------------------------
+% Title block (Puebla-style: bold centered header)
+% ---------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+
+{\LARGE\bfseries\color{blue!70!black}
+ARTIFICIAL INTELLIGENCE AND\\[6pt]
+KNOWLEDGE ENGINEERING}
+
+\vspace{14pt}
+
+{\Large\bfseries\color{blue!70!black}
+REPORT -- EXERCISE 2}
+
+\vspace{5pt}
+
+{\small Álvaro Puebla Ruisánchez}\\[12pt]
+
+\vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{\underline{Introduction and Goal}}
+% =============================================================================
+
+The goal of this exercise is to implement the two-player board game
+\emph{Breakthrough} using the Minimax decision algorithm with alpha-beta pruning.
+The program accepts a board from a file supplied with \texttt{--board FILE} or
+uses the built-in starting position via \texttt{--default-board}. It also
+supports multiple heuristic evaluation functions and allows two independent
+agents to play against each other with different configurations.
+
+Breakthrough was designed by Dan Troyka (2000)~\cite{breakthrough_wiki}.
+Its simple rules but rich strategy make it an ideal testbed for classic
+game-tree search algorithms.
+
+% =============================================================================
+\newpage
+\section{\underline{Theoretical Background}}
+% =============================================================================
+
+\subsection{Two-Player Zero-Sum Games}
+
+A two-player zero-sum game is a tuple $\langle S, A, T, u \rangle$ where
+$S$ is a set of states, $A$ is a set of actions,
+$T : S \times A \to S$ is a deterministic transition function, and
+$u : S \to \mathbb{R}$ is a utility function such that the gain of one player
+equals the loss of the other~\cite{nisan2007}.
+
+Breakthrough satisfies all these conditions: information is perfect and complete,
+moves are deterministic, and exactly one player wins (utility $+1$ for the
+winner, $-1$ for the loser).
+
+\subsection{Minimax Algorithm}
+
+Let $s$ denote the current state, $d$ the remaining search depth, and $P$
+the player to move. The minimax value $V(s,d)$ is defined recursively:
+
+\begin{equation}
+  V(s,d) =
+  \begin{cases}
+    u(s) & \text{if } s \text{ is terminal or } d = 0\\[4pt]
+    \max_{a \in A(s)} V(T(s,a),\, d-1) & \text{if } P = \text{MAX}\\[4pt]
+    \min_{a \in A(s)} V(T(s,a),\, d-1) & \text{if } P = \text{MIN}
+  \end{cases}
+\end{equation}
+
+When the depth limit is reached before a terminal state, a heuristic function
+$h : S \to \mathbb{R}$ approximates the position's value.
+
+\subsection{Alpha-Beta Pruning}
+
+Alpha-beta pruning~\cite{knuth1975} maintains two running bounds:
+$\alpha$ (best score MAX can guarantee, initially $-\infty$) and
+$\beta$ (best score MIN can guarantee, initially $+\infty$).
+A branch is pruned whenever $\alpha \geq \beta$:
+
+\begin{itemize}
+  \item \textbf{$\beta$-cutoff} at a MAX node: the MIN ancestor will not
+        allow a value exceeding $\beta$.
+  \item \textbf{$\alpha$-cutoff} at a MIN node: the MAX ancestor already has
+        a guaranteed value of at least $\alpha$.
+\end{itemize}
+
+With perfect move ordering the effective branching factor drops from $b$ to
+$\sqrt{b}$, doubling the reachable depth for the same budget~\cite{knuth1975}.
+
+The pseudocode matching the actual implementation is given below.
+
+\begin{algorithm}[H]
+\caption{Minimax with Alpha-Beta Pruning (as implemented)}
+\label{alg:ab}
+\begin{algorithmic}[1]
+\Function{minimax}{$s$, $d$, $\alpha$, $\beta$, \textit{maximizing}, $me$, $opp$, $h$}
+  \State $w \gets \textsc{CheckWinner}(s)$
+  \If{$w = me$}
+    \Return $(\text{WIN} + d,\ \textbf{None})$
+  \ElsIf{$w = opp$}
+    \Return $(\text{LOSS} - d,\ \textbf{None})$
+  \EndIf
+  \State $\text{current} \gets me$ \textbf{ if } \textit{maximizing} \textbf{ else } $opp$
+  \State $M \gets \textsc{GetMoves}(s, \text{current})$
+  \If{$d = 0$ \textbf{ or } $M = \emptyset$}
+    \Return $(h(s, me),\ \textbf{None})$
+  \EndIf
+  \State $\text{best} \gets \textbf{None}$
+  \If{\textit{maximizing}}
+    \State $v \gets -\infty$
+    \For{$m \in M$}
+      \State $\text{score},\_ \gets \textsc{minimax}(\textsc{ApplyMove}(s,m), d{-}1, \alpha, \beta, \mathbf{false}, me, opp, h)$
+      \If{$\text{score} > v$}
+        \State $v \gets \text{score}$
+        \State $\text{best} \gets m$
+      \EndIf
+      \State $\alpha \gets \max(\alpha, v)$
+      \If{$\alpha \geq \beta$}
+        \State \textbf{break} \Comment{$\beta$-cutoff}
+      \EndIf
+    \EndFor
+  \Else
+    \State $v \gets +\infty$
+    \For{$m \in M$}
+      \State $\text{score},\_ \gets \textsc{minimax}(\textsc{ApplyMove}(s,m), d{-}1, \alpha, \beta, \mathbf{true}, me, opp, h)$
+      \If{$\text{score} < v$}
+        \State $v \gets \text{score}$
+        \State $\text{best} \gets m$
+      \EndIf
+      \State $\beta \gets \min(\beta, v)$
+      \If{$\alpha \geq \beta$}
+        \State \textbf{break} \Comment{$\alpha$-cutoff}
+      \EndIf
+    \EndFor
+  \EndIf
+  \Return $(v,\ \text{best})$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+% =============================================================================
+\newpage
+\section{\underline{Formal Problem Formulation}}
+% =============================================================================
+
+\subsection{Game State}
+
+A \textbf{game state} is a tuple $\sigma = \langle G, P \rangle$ where:
+\begin{itemize}
+  \item $G \in \{B, W, \_, o\}^{m \times n}$ is the board - an $m \times n$
+        matrix of cell values.
+  \item $P \in \{B, W\}$ is the player whose turn it is to move.
+\end{itemize}
+
+In the default configuration $m = n = 8$. The cell symbols are:
+$B$ (first player's piece), $W$ (second player's piece), $\_$ (empty),
+and $o$ (the square vacated by the most recent move - treated as empty for
+move generation).
+
+\textbf{Initial state:} Player $B$ occupies rows $0$ and $1$; player $W$
+occupies rows $m{-}2$ and $m{-}1$. All remaining cells are empty.
+\textbf{White ($W$) moves first.}
+
+\textbf{Terminal states:}
+\begin{align}
+  \text{Win for } B &: \exists\, c \in \{0,\ldots,n{-}1\} \text{ s.t. } G[m{-}1][c] = B \\
+  \text{Win for } W &: \exists\, c \in \{0,\ldots,n{-}1\} \text{ s.t. } G[0][c] = W
+\end{align}
+
+\subsection{Legal Moves}
+
+Let $dr = +1$ for player $B$ and $dr = -1$ for player $W$.
+From a piece at $(r, c)$ the target squares $(r', c')$ are:
+
+\begin{enumerate}
+  \item \textbf{Straight forward}: $(r', c') = (r + dr,\, c)$, provided
+        $G[r'][c'] \in \{\_,\, o\}$ (empty or last-move marker).
+  \item \textbf{Diagonal forward}: $(r', c') = (r + dr,\, c \pm 1)$, provided
+        $0 \le c \pm 1 < n$ and $G[r'][c'] \ne P$ (empty, last-move marker, or
+        occupied by the opponent - i.e.\ capturing is allowed diagonally).
+\end{enumerate}
+
+\subsection{State Transition}
+
+Applying move $m = \bigl((r, c) \to (r', c')\bigr)$:
+\begin{enumerate}
+  \item A fresh copy of the board is made.
+  \item All cells equal to $o$ are reset to $\_$.
+  \item $G[r][c] \leftarrow o$; $G[r'][c'] \leftarrow P$ (capturing any opponent piece there).
+  \item The active player toggles: $P \leftarrow \overline{P}$.
+\end{enumerate}
+
+\subsection{Decision Tree}
+
+The decision tree is rooted at the current state $\sigma_0$.
+Nodes at even depth are MAX nodes (the agent to optimise); nodes at odd depth
+are MIN nodes (the opponent). Leaves are states at depth $d_{\max}$ or terminal
+states. On the default 8×8 board, the effective branching factor is
+approximately 30-35 in the opening.
+
+\subsection{Constraints}
+
+\begin{enumerate}
+  \item The board size $n \times m$ is a parameter; default is $8 \times 8$.
+  \item The maximum search depth $d$ is a parameter (CLI flag \texttt{-d}).
+  \item Pieces may only move \emph{forward} (toward the opponent's back rows).
+  \item Straight-ahead capture is forbidden; diagonal capture is the only way to remove an opponent piece.
+  \item The player who first places a piece on the opposite back row wins.
+\end{enumerate}
+
+% =============================================================================
+\newpage
+\section{\underline{Heuristic Evaluation Functions}}
+% =============================================================================
+
+All five heuristics are implemented in the file \texttt{breakthrough.py} and
+are selected via the CLI flag \texttt{-H} (for player $B$) and \texttt{-H2}
+(for player $W$). A positive score favours the perspective player.
+
+\subsection{H1 - Piece Count (\texttt{piece})}
+
+\[
+  h_1(\sigma, P) = |\text{own pieces}| - |\text{opponent pieces}|
+\]
+
+Rewards captures and penalises losses. Fast to compute but ignores position.
+
+\subsection{H2 - Cumulative Advancement (\texttt{advance})}
+
+\[
+  h_2(\sigma, B) = \sum_{(r,c):\,G[r][c]=B} r \;-\;
+                   \sum_{(r,c):\,G[r][c]=W} (m-1-r)
+\]
+
+Each piece contributes its distance from its own starting edge, encouraging
+forward progress.
+
+\subsection{H3 - Proximity Threat (\texttt{threat})}
+
+\[
+  h_3(\sigma, B) =
+    \sum_{(r,c):\,G[r][c]=B} \max(0,\, r - \lfloor m/2 \rfloor)
+    \;-\;
+    \sum_{(r,c):\,G[r][c]=W} \max(0,\, (m{-}1{-}r) - \lfloor m/2 \rfloor)
+\]
+
+Pieces that have crossed the midline receive a bonus proportional to their
+remaining distance to the goal. This aggressively rewards pieces close to winning.
+
+\subsection{H4 - Column Centrality (\texttt{central})}
+
+\[
+  h_4(\sigma, B) =
+    \sum_{(r,c):\,G[r][c]=B} \!\Bigl(\lfloor n/2 \rfloor - |c - (n{-}1)/2|\Bigr)
+    - \sum_{(r,c):\,G[r][c]=W} (\cdots)
+\]
+
+Central columns provide more diagonal attack and evasion options. This heuristic
+gives a small bonus to centrally placed pieces.
+
+\subsection{H5 - Weighted Combination (\texttt{combined})}
+
+\[
+  h_5 = 10 \cdot h_1 + 3 \cdot h_2 + 5 \cdot h_3 + 1 \cdot h_4
+\]
+
+A linear combination of all four heuristics. Weights were chosen empirically:
+piece count matters most (10), followed by threats (5), advancement (3), and
+centrality (1). This is the \textbf{default heuristic}.
+
+\begin{table}[H]
+\centering
+\caption{Summary of heuristic evaluation functions.}
+\label{tab:heuristics}
+\begin{tabular}{cllc}
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Key idea} & \textbf{CLI key} \\
+\midrule
+H1 & Piece count  & Maximise army size              & \texttt{piece}    \\
+H2 & Advancement  & Maximise forward progress       & \texttt{advance}  \\
+H3 & Threat       & Reward pieces near the goal     & \texttt{threat}   \\
+H4 & Centrality   & Prefer central columns          & \texttt{central}  \\
+H5 & Combined     & Weighted sum of H1-H4           & \texttt{combined} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =============================================================================
+\newpage
+\section{\underline{Implementation}}
+% =============================================================================
+
+\subsection{Board Representation}
+
+The board is a Python \texttt{List[List[str]]}. Each cell holds one of the four
+symbols \texttt{B}, \texttt{W}, \texttt{\_}, \texttt{o}. Copying is trivial:
+
+\begin{lstlisting}[style=python, caption={Board copy - O(mn).}]
+def board_copy(board):
+    return [row[:] for row in board]
+\end{lstlisting}
+
+\subsection{Move Generation (\texttt{get\_moves})}
+
+The function iterates over all cells, identifies the current player's pieces,
+and validates up to three target squares per piece (straight, left diagonal,
+right diagonal). \texttt{is\_free} treats both \texttt{\_} and \texttt{o}
+as empty.
+
+\begin{lstlisting}[style=python, caption={Move generation - straight and diagonal.}]
+def get_moves(board, player):
+    m, n = len(board), len(board[0])
+    dr = 1 if player == B else -1
+    opponent = OPP[player]
+    moves = []
+    for r in range(m):
+        for c in range(n):
+            if board[r][c] != player:
+                continue
+            nr = r + dr
+            if not (0 <= nr < m):
+                continue
+            if is_free(board[nr][c]):          # straight forward
+                moves.append(((r, c), (nr, c)))
+            for dc in (-1, 1):                 # diagonals
+                nc = c + dc
+                if 0 <= nc < n:
+                    target = board[nr][nc]
+                    if is_free(target) or target == opponent:
+                        moves.append(((r, c), (nr, nc)))
+    return moves
+\end{lstlisting}
+
+\subsection{State Transition (\texttt{apply\_move})}
+
+The board is never modified in place. \texttt{apply\_move} always returns a
+new board, clearing old \texttt{o} markers before setting the new one.
+
+\begin{lstlisting}[style=python, caption={Immutable state transition.}]
+def apply_move(board, move, player):
+    board = board_copy(board)
+    (r1, c1), (r2, c2) = move
+    for r in range(len(board)):
+        for c in range(len(board[0])):
+            if board[r][c] == LAST:
+                board[r][c] = EMPTY
+    board[r1][c1] = LAST
+    board[r2][c2] = player
+    return board
+\end{lstlisting}
+
+\subsection{Minimax with Alpha-Beta}
+
+The recursive \texttt{minimax} function directly implements
+Algorithm~\ref{alg:ab}. A global counter \texttt{\_nodes\_visited} is
+incremented at every call and reported on \texttt{stderr} at the end.
+
+\begin{lstlisting}[style=python, caption={Core minimax with alpha-beta pruning.}]
+_nodes_visited = 0
+
+def minimax(board, depth, alpha, beta, maximizing, me, opp, hfn):
+    global _nodes_visited
+    _nodes_visited += 1
+
+    w = check_winner(board)
+    if w == me:
+        return WIN + depth, None   # faster win = higher score
+    if w == opp:
+        return LOSS - depth, None  # faster loss = lower score
+
+    current = me if maximizing else opp
+    moves = get_moves(board, current)
+
+    if depth == 0 or not moves:
+        return hfn(board, me), None
+
+    best_move = None
+    if maximizing:
+        v = float('-inf')
+        for mv in moves:
+            child = apply_move(board, mv, current)
+            score, _ = minimax(child, depth-1, alpha, beta, False, me, opp, hfn)
+            if score > v:
+                v, best_move = score, mv
+            alpha = max(alpha, v)
+            if alpha >= beta:
+                break              # beta-cutoff
+        return v, best_move
+    else:
+        v = float('inf')
+        for mv in moves:
+            child = apply_move(board, mv, current)
+            score, _ = minimax(child, depth-1, alpha, beta, True, me, opp, hfn)
+            if score < v:
+                v, best_move = score, mv
+            beta = min(beta, v)
+            if alpha >= beta:
+                break              # alpha-cutoff
+        return v, best_move
+\end{lstlisting}
+
+\subsection{Extended Mode and Agent Protocol}
+
+The program supports two extended modes:
+
+\textbf{Single-process extended mode:} The flags \texttt{-d2} and \texttt{-H2}
+set a different depth and heuristic for player $W$. Both agents run within
+the same Python process.
+
+\begin{lstlisting}[style=bash, caption={Two agents with different strategies, single process.}]
+python3 breakthrough.py --default-board -d 4 -H combined -d2 3 -H2 advance
+\end{lstlisting}
+
+\textbf{Two-process agent mode:} The flag \texttt{--agent B/W} makes the
+program load a board from \texttt{--board FILE}, compute exactly one move,
+write the updated board, and exit. An external orchestrator can coordinate two
+such invocations by reusing the board file between turns:
+
+\begin{lstlisting}[style=bash, caption={File-based orchestration of two independent agents.}]
+python3 breakthrough.py --agent B -d 4 -H combined --board board.txt
+python3 breakthrough.py --agent W -d 3 -H advance --board board.txt
+\end{lstlisting}
+
+\subsection{Adaptive Strategy}
+
+The combined heuristic \textbf{H5} adapts implicitly: the threat bonus grows as
+pieces approach the goal, naturally shifting the agent from piece-count-oriented
+play in the opening toward a rush strategy in the endgame - without requiring
+any explicit phase detection.
+
+% =============================================================================
+\newpage
+\section{\underline{How to Run the Program}}
+% =============================================================================
+
+All modes combine a board source with AI settings and optional extras. The
+board source must be either the default starting position or an explicit board
+file supplied with \texttt{--board FILE}.
+
+\begin{lstlisting}[style=bash, caption={Quick-start examples.}]
+# AI vs AI (default board, depth 3, combined heuristic)
+python3 breakthrough.py --default-board -d 3 -H combined
+
+# Watch AI play step by step
+python3 breakthrough.py --default-board -d 3 -H combined --visual --step
+
+# Human (White) vs AI (Black)
+python3 breakthrough.py --default-board --human W -d 3 -H combined
+
+# Two agents with different configs
+python3 breakthrough.py --default-board -d 4 -H combined -d2 3 -H2 advance
+
+# Agent mode (compute one move for B)
+python3 breakthrough.py --agent B -d 4 -H combined --board board.txt
+
+# Custom board from file
+python3 breakthrough.py --board board.txt -d 3 -H combined
+\end{lstlisting}
+
+\subsection{Board Input}
+
+\begin{table}[H]
+\centering
+\caption{Supported board input modes.}
+\label{tab:board-input}
+\begin{tabular}{llp{8.5cm}}
+\toprule
+\textbf{Option} & \textbf{Arguments} & \textbf{Description} \\
+\midrule
+\texttt{--default-board} & none &
+Uses the built-in $8 \times 8$ starting position. The board dimensions may be adjusted with \texttt{--rows} and \texttt{--cols}. \\
+\texttt{--board FILE} & \texttt{FILE} &
+Loads the board from the specified file. This is the only file-based custom-board mode supported by the program. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.5em}
+\noindent Sample output written to \texttt{stdout} and \texttt{stderr} after a game:
+
+\begin{lstlisting}[style=terminal]
+==============================================
+  GAME OVER
+==============================================
+   a b c d e f g h
+ 8 _ _ _ _ _ _ _ _
+ 7 _ _ _ _ _ _ _ _
+ ...
+ 1 _ _ _ _ _ _ _ _
+Rounds played: 31  |  Winner: B
+
+Nodes visited : 1842503       <- stderr
+Execution time: 4.2731 s      <- stderr
+\end{lstlisting}
+
+% =============================================================================
+\newpage
+\section{\underline{Worked Example}}
+% =============================================================================
+
+Consider a simplified $4 \times 4$ board after several moves, shown in
+Figure~\ref{fig:example}. It is Black's turn.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.7]
+  \draw[step=1cm,gray!40,very thin] (0,0) grid (4,4);
+  % Black pieces (bottom, moving upward)
+  \foreach \col in {1,2,3} \filldraw[black!80] (\col+0.5, 0.5) circle (0.35cm);
+  \filldraw[black!80] (0.5, 2.5) circle (0.35cm);
+  % White pieces (top, moving downward)
+  \foreach \col in {1,2,3} \filldraw[white,draw=black,line width=1pt] (\col+0.5, 3.5) circle (0.35cm);
+  \filldraw[white,draw=black,line width=1pt] (2.5, 1.5) circle (0.35cm);
+  % Labels
+  \foreach \x/\l in {0/a, 1/b, 2/c, 3/d}
+    \node[below] at (\x+0.5, 0) {\small\l};
+  \foreach \y/\l in {0/1, 1/2, 2/3, 3/4}
+    \node[left]  at (0, \y+0.5) {\small\l};
+\end{tikzpicture}
+\caption{Example $4 \times 4$ board state (Black $\bullet$ to move).
+Black has pieces on b1, c1, d1, a3; White $\circ$ has pieces on b4, c4, d4, c2.}
+\label{fig:example}
+\end{figure}
+With search depth $d = 2$:
+\begin{enumerate}
+  \item Black generates moves from all its pieces. The piece at a3 can move
+        straight to a4 (which is the last row) --- an immediate win.
+  \item Minimax evaluates this branch: the resulting state is terminal with
+        Black winning, returning score $\text{WIN} + 2 = 1\,000\,002$.
+  \item All other branches return lower scores. The algorithm selects a3$\to$a4.
+\end{enumerate}
+The depth bonus $+d$ (remaining depth) is key: a win found closer to the root
+scores \emph{higher}, so the agent always picks the \textbf{fastest} available win.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    every node/.style={draw, rounded corners, minimum width=2.2cm, minimum height=0.7cm,
+                        align=center, font=\small},
+    level distance=2.0cm,
+    level 1/.style={sibling distance=5.5cm},
+    level 2/.style={sibling distance=2.5cm},
+    edge from parent/.style={draw, -{Stealth}}
+  ]
+  \node[fill=blue!10] {MAX: Black's turn\\$d=2$}
+    child {
+      node[fill=green!20] {a3$\to$a4\\WIN $+2 = 1\,000\,002$}
+    }
+    child {
+      node[fill=blue!10] {d1$\to$d2\\MIN: White\\$d=1$}
+        child { node[fill=red!10] {b4$\to$b3\\$h_5(\cdots)$} }
+        child { node[fill=red!10] {c4$\to$c3\\$h_5(\cdots)$} }
+    };
+\end{tikzpicture}
+\caption{Partial decision tree (depth 2). The winning branch is selected immediately.}
+\label{fig:tree}
+\end{figure}
+
+% =============================================================================
+\newpage
+\section{\underline{Libraries Used}}
+% =============================================================================
+
+The implementation relies exclusively on Python's standard library - no
+third-party packages are required:
+
+\begin{itemize}
+  \item \textbf{\texttt{sys}} - writing to \texttt{stderr} and exiting cleanly.
+  \item \textbf{\texttt{time}} - wall-clock timing for performance reporting.
+  \item \textbf{\texttt{argparse}} - command-line argument parsing (all flags
+        described in Section~6 are handled here).
+\end{itemize}
+
+The code has been tested with Python 3.10 and later.
+
+% =============================================================================
+\newpage
+\section{\underline{Conclusion and Implementation Issues}}
+% =============================================================================
+
+\subsection{Summary}
+
+The program correctly implements the full Breakthrough game with:
+legal move generation (including capture semantics and the \texttt{o} marker),
+five heuristic evaluation functions (H1-H5),
+minimax search with alpha-beta pruning,
+basic mode (both players share depth and heuristic) and extended mode
+(independent agents with configurable \texttt{-d2}/\texttt{-H2} flags),
+human vs.\ AI mode, visual step-by-step playback, and
+\texttt{--agent} one-shot mode for file-based orchestration.
+Node count and execution time are reported to \texttt{stderr} after every run.
+
+\subsection{Issues Encountered}
+
+\begin{enumerate}
+  \item \textbf{Board immutability.}
+        Early versions mutated the board in place and used an undo stack.
+        This caused subtle bugs when move generation read partially-modified state.
+        Switching to copy-on-write semantics (\texttt{apply\_move} always
+        returns a new object) eliminated the entire bug class at a modest
+        memory cost.
+
+  \item \textbf{The \texttt{o} marker.}
+        The assignment requires marking the source square of the last move with
+        \texttt{o}. Initially, \texttt{get\_moves} treated \texttt{o} as
+        occupied, incorrectly blocking straight-forward moves back to that
+        square. The fix was to make \texttt{is\_free} return \texttt{True}
+        for both \texttt{\_} and \texttt{o}.
+
+  \item \textbf{Win-score depth bonus sign.}
+        The bonus must be applied to \emph{remaining} depth, not elapsed depth.
+        Higher remaining depth means the win is found closer to the root -
+        correctly preferring faster wins. An earlier version added depth to
+        losses too, accidentally making the agent \emph{seek} faster losses.
+
+  \item \textbf{Branching factor and depth.}
+        At depth 5 on an 8×8 board the node count can exceed $10^7$, causing
+        runtimes of tens of seconds. Depth 3-4 gives the best balance of
+        play quality and speed. Move ordering (e.g.\ placing captures first)
+        could further improve alpha-beta efficiency but was not implemented.
+
+  \item \textbf{Extended-mode protocol.}
+        Designing a clean two-process protocol required careful coordination of
+        the evolving board file and the \texttt{Winner:} detection line.
+        The \texttt{--agent} flag ensures the process exits after a single
+        move, making it straightforward to compose with any external orchestrator.
+\end{enumerate}
+
+% =============================================================================
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{shannon1950}
+C.~E. Shannon,
+\textit{Programming a Computer for Playing Chess},
+Philosophical Magazine, Ser.~7, Vol.~41, No.~314, 1950.
+
+\bibitem{vonneumann1944}
+J.~von Neumann and O.~Morgenstern,
+\textit{Theory of Games and Economic Behavior},
+Princeton University Press, 1944.
+
+\bibitem{knuth1975}
+D.~E. Knuth and R.~W. Moore,
+\textit{An Analysis of Alpha-Beta Pruning},
+Artificial Intelligence, Vol.~6, No.~4, pp.~293-326, 1975.
+
+\bibitem{nisan2007}
+N.~Nisan, T.~Roughgarden, E.~Tardos, and V.~V. Vazirani (Eds.),
+\textit{Algorithmic Game Theory},
+Cambridge University Press, 2007.
+
+\bibitem{maschler2013}
+M.~Maschler, E.~Solan, and S.~Zamir,
+\textit{Game Theory},
+Cambridge University Press, 2013.
+
+\bibitem{osborne2004}
+M.~J. Osborne,
+\textit{An Introduction to Game Theory},
+Oxford University Press, 2004.
+
+\bibitem{nordstrom}
+J.~F. Nordstr\"{o}m,
+\textit{Introduction to Game Theory},
+Lecture notes, course materials.
+
+\bibitem{breakthrough_wiki}
+Wikipedia contributors,
+\textit{Breakthrough (board game)},
+Wikipedia, The Free Encyclopedia,
+\url{https://en.wikipedia.org/wiki/Breakthrough_(board_game)},
+accessed March 2026.
+
+\bibitem{breakthrough_rules}
+\textit{Breakthrough - opis zasad} (Rules description),
+course materials.
+
+\end{thebibliography}
+
+\end{document}

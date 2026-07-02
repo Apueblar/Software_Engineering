@@ -1,0 +1,854 @@
+\documentclass[12pt,a4paper]{article}
+
+% -- Encoding & language ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% -- Mathematics ------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+
+% -- Tables -----------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% -- Figures ----------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+% -- Listings (source code) -------------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{orange!70!black},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!20},
+  backgroundcolor=\color{gray!6},
+  showstringspaces=false,
+  tabsize=4,
+}
+
+% -- Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue,
+}
+
+% -- Page geometry ----------------------------------------------------------
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% -- Miscellaneous ----------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
+\setlength{\headheight}{13.6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Exercise 4 -- AI \& Knowledge Engineering}
+\lhead{\small Cirrhosis Patient Survival Prediction}
+\cfoot{\footnotesize\textit{Some of the comments in the code were written with AI assistance (ChatGPT) :)}}
+\rfoot{\thepage}
+
+% Convenience commands
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\best}[1]{\textbf{\color{blue!70!black}#1}}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+
+{\LARGE\bfseries\color{blue!70!black}
+ARTIFICIAL INTELLIGENCE AND\\[6pt]
+KNOWLEDGE ENGINEERING}
+
+\vspace{14pt}
+
+{\Large\bfseries\color{blue!70!black}
+REPORT -- EXERCISE 4}
+
+\vspace{10pt}
+
+{\large\bfseries Cirrhosis Patient Survival Prediction\\[4pt]
+Machine Learning Classification}
+
+\vspace{8pt}
+
+{\small Álvaro Puebla Ruisánchez}\\[12pt]
+
+\vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{\underline{Introduction and Goal}}
+% =============================================================================
+
+The goal of this exercise is to build a complete machine learning pipeline
+for a real-world medical classification problem: predicting the survival
+outcome of patients diagnosed with liver cirrhosis.
+The dataset originates from a Mayo Clinic clinical study conducted between
+1974 and 1984~\cite{dickson1989}, published in the UCI Machine Learning
+Repository.
+
+The work covers the full ML project lifecycle:
+\begin{itemize}
+  \item \textbf{Data Mining} -- exploratory analysis of features and labels.
+  \item \textbf{Data Preparation} -- train/validation/test split, missing
+        value imputation, and preprocessing experiments (standardization,
+        normalisation, PCA).
+  \item \textbf{Classification} -- Naive Bayes and Decision Tree classifiers
+        with systematic hyperparameter tuning.
+  \item \textbf{Evaluation} -- comparison of all configurations using
+        accuracy, precision, recall, and macro F1-score.
+  \item \textbf{Bonus} -- Random Forest and cost-complexity pruning as an
+        overfitting mitigation technique.
+\end{itemize}
+
+All experiments were implemented in Python using \code{scikit-learn}~\cite{sklearn}.
+The dataset was accessed via the \code{statsmodels} R-dataset mirror of the
+well-known \code{pbc} (Primary Biliary Cirrhosis) survival study dataset.
+
+% =============================================================================
+\newpage
+\section{\underline{Theoretical Background}}
+% =============================================================================
+
+The theoretical foundations are covered in the assignment sheet.  This section
+briefly recaps the key concepts applied in the experiment.
+
+\subsection{Supervised Classification}
+
+Given a labelled dataset $\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$
+where $\mathbf{x}_i \in \mathbb{R}^d$ and $y_i \in \mathcal{Y}$, supervised
+classification aims to learn a mapping $f : \mathbb{R}^d \to \mathcal{Y}$
+that minimises misclassification on unseen data.
+
+\subsection{Naive Bayes Classifier}
+
+The Naive Bayes classifier applies Bayes' theorem under the \emph{conditional
+independence assumption}:
+
+\[
+  P(y \mid \mathbf{x}) \;\propto\; P(y)\prod_{i=1}^{d} P(x_i \mid y).
+\]
+
+The \emph{Gaussian} variant (used here) models each $P(x_i \mid y)$ as a
+Gaussian distribution $\mathcal{N}(\mu_{iy}, \sigma^2_{iy})$.  The
+\emph{variance smoothing} hyperparameter $\varepsilon$ adds a fraction of
+the largest feature variance to all per-feature variances, preventing
+singular covariance and acting as a regulariser:
+
+\[
+  \hat{\sigma}^2_{iy} = \sigma^2_{iy} + \varepsilon \cdot \max_j \sigma^2_j.
+\]
+
+\subsection{Decision Tree (ID3 / C4.5 principle)}
+
+A decision tree recursively partitions the feature space by choosing the
+split that maximises \emph{Information Gain}:
+
+\[
+  G(A) = H(S) - \sum_{v \in \text{Values}(A)} \frac{|S_v|}{|S|}\,H(S_v),
+\]
+
+where $H(S) = -\sum_{x \in \mathcal{X}} p(x)\log_2 p(x)$ is the Shannon
+entropy.  Deeper trees fit training data increasingly well but tend to
+\textbf{overfit}: the gap between training and validation accuracy grows
+with depth.
+
+\subsection{Evaluation Metrics}
+
+For a three-class problem the macro-averaged variants are used:
+
+\[
+  \text{ACC} = \frac{\text{TP}+\text{TN}}{N}, \qquad
+  \text{Precision} = \frac{\text{TP}}{\text{TP}+\text{FP}}, \qquad
+  \text{Recall} = \frac{\text{TP}}{\text{TP}+\text{FN}},
+\]
+\[
+  F_1 = \frac{2\,\text{TP}}{2\,\text{TP}+\text{FP}+\text{FN}}.\]
+
+\subsection{PCA}
+
+Principal Component Analysis rotates the feature space so that the new axes
+(principal components) are ordered by decreasing variance.  Retaining the
+top $k$ components that explain 95\% of the total variance reduces
+dimensionality while preserving most information.
+
+\subsection{Cost-Complexity Pruning}
+
+Post-hoc pruning controls overfitting by penalising tree complexity.  A
+subtree $T_t$ is replaced by a leaf when its \emph{effective alpha}
+$\alpha_{\text{eff}} = \frac{R(t) - R(T_t)}{|T_t|-1}$ falls below a tunable
+threshold $\alpha_{\text{ccp}}$, where $R(\cdot)$ denotes the misclassification
+cost.  Higher values of $\alpha_{\text{ccp}}$ produce smaller, more general trees.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 1 -- Data Mining}}
+% =============================================================================
+
+\subsection{Dataset Overview}
+
+The \textbf{Cirrhosis Patient Survival Prediction} dataset~\cite{dickson1989}
+contains \textbf{418 patients} described by \textbf{17 features} and a
+3-valued target label \code{Status}.
+
+\begin{table}[H]
+\centering
+\caption{Target class distribution.}
+\label{tab:target_dist}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Label} & \textbf{Meaning} & \textbf{Count} & \textbf{Proportion} \\
+\midrule
+C  & Censored (alive or lost to follow-up) & 232 & 55.5\% \\
+D  & Death & 161 & 38.5\% \\
+CL & Censored (liver transplant)           &  25 &  6.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The target is \textbf{severely imbalanced}: the \code{CL} class represents
+only 6\% of all samples.  This poses a challenge for all classifiers and
+explains why macro-averaged metrics (especially for the minority class) will
+be lower than overall accuracy.
+
+\subsection{Feature Description}
+
+\begin{table}[H]
+\centering
+\caption{Feature summary (categorical and numerical).}
+\label{tab:features}
+\small
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Feature} & \textbf{Type} & \textbf{Description / Values} \\
+\midrule
+Drug         & Categorical & D-penicillamine / Placebo \\
+Age          & Numerical   & Age in days (range: 9\,598--28\,650) \\
+Sex          & Categorical & F / M (predominantly female: 89\%) \\
+Ascites      & Categorical & Y / N \\
+Hepatomegaly & Categorical & Y / N \\
+Spiders      & Categorical & Y / N \\
+Edema        & Ordinal     & N (none) / S (treated or mild) / Y (severe) \\
+Bilirubin    & Numerical   & mg/dl; mean = 3.22, right-skewed \\
+Cholesterol  & Numerical   & mg/dl; mean = 369.5 \\
+Albumin      & Numerical   & gm/dl; mean = 3.50 \\
+Copper       & Numerical   & $\mu$g/day; mean = 97.7 \\
+Alk\_Phos   & Numerical   & U/liter; highly variable (std = 2140) \\
+SGOT         & Numerical   & U/ml; mean = 122.6 \\
+Tryglicerides& Numerical   & count; mean = 124.7 \\
+Platelets    & Numerical   & $\times 10^3$/ml; mean = 257 \\
+Prothrombin  & Numerical   & seconds; mean = 10.7 \\
+Stage        & Ordinal     & Histologic stage 1--4; mean = 3.02 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Missing Values}
+
+\begin{table}[H]
+\centering
+\caption{Features with missing values.}
+\label{tab:missing}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature} & \textbf{Missing} & \textbf{\%} \\
+\midrule
+Tryglicerides & 136 & 32.5\% \\
+Cholesterol   & 134 & 32.1\% \\
+Copper        & 108 & 25.8\% \\
+Drug, Ascites, Hepatomegaly, Spiders, Alk\_Phos, SGOT & 106 each & 25.4\% \\
+Stage         &   6 &  1.4\% \\
+Platelets     &  11 &  2.6\% \\
+Prothrombin   &   2 &  0.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The large blocks of \code{Drug}, \code{Ascites}, etc.\ (106 each) correspond
+to the 106 patients who were not part of the randomised clinical trial and
+consequently have no record for trial-specific measurements.
+
+\textbf{Key observations:}
+\begin{itemize}
+  \item Numerical features such as Bilirubin, Alk\_Phos, and Copper are
+        heavily right-skewed, which motivates standardisation.
+  \item The class imbalance ($\sim$55\% / 38\% / 6\%) means a baseline
+        classifier that always predicts \emph{C} achieves 55.5\% accuracy---
+        a meaningful lower bound.
+  \item Stage (histologic stage 1--4) is a strong domain indicator of
+        disease progression and expected to be among the most informative
+        features.
+\end{itemize}
+
+% =============================================================================
+\newpage
+\section{\underline{Task 2 -- Data Preparation}}
+% =============================================================================
+
+\subsection{Categorical Encoding}
+
+Before modelling, categorical features were encoded as integers:
+
+\begin{itemize}
+  \item Binary features (\code{Sex}, \code{Ascites}, \code{Hepatomegaly},
+        \code{Spiders}, \code{Drug}): mapped to 0/1.
+  \item Ordinal feature \code{Edema}: N$\to$0, S$\to$1, Y$\to$2.
+  \item Target \code{Status}: label-encoded alphabetically as
+        C$\to$0, CL$\to$1, D$\to$2.
+\end{itemize}
+
+\subsection{Missing Value Imputation}
+
+All missing values were imputed using the \textbf{median strategy} for
+numerical features (robust to skewed distributions and outliers) and the
+\textbf{most-frequent strategy} for categorical/binary features.  Imputation
+statistics were computed on the training set and applied to validation and
+test sets to avoid data leakage.
+
+\begin{lstlisting}[style=python, caption={Missing value imputation with scikit-learn.}]
+from sklearn.impute import SimpleImputer
+
+num_imputer = SimpleImputer(strategy="median")
+X_imputed_num = num_imputer.fit_transform(X_train[num_feats])
+\end{lstlisting}
+
+After imputation the dataset contained \textbf{zero} missing values.
+
+\subsection{Data Splitting}
+
+The 418 samples were split into three disjoint sets using stratified sampling
+(to preserve class ratios):
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Set} & \textbf{Size} & \textbf{Proportion} \\
+\midrule
+Training   & 250 & 59.8\% \\
+Validation & 84  & 20.1\% \\
+Test       & 84  & 20.1\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Stratification ensures each split mirrors the full 55\%/39\%/6\% class ratio.
+With only 25 \code{CL} samples, this ratio is critical to maintain.
+
+\newpage
+\subsection{Preprocessing Variants}
+
+Four preprocessing pipelines were compared to study their effect on
+classification:
+
+\begin{enumerate}
+  \item \textbf{None} -- raw imputed features (integer-encoded categoricals,
+        numerical values at their original scale).
+  \item \textbf{Standardization} -- zero mean, unit variance via
+        \code{StandardScaler}.  Appropriate for Gaussian NB (removes scale
+        bias in variance estimation) and distance-based methods.
+  \item \textbf{Normalization} -- L2 row-normalization via
+        \code{Normalizer}. Maps each sample to the unit sphere.
+  \item \textbf{PCA} -- applied on top of standardized features; retains
+        \textbf{15 principal components} that together explain
+        $\geq 95\%$ of variance.
+\end{enumerate}
+
+Figure~\ref{fig:pca} shows the explained variance per component; the first
+component alone accounts for about 18\% of total variance, while 15
+components are needed to reach 95\%.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.58\textwidth]{figures/fig_pca.pdf}
+  \caption{PCA explained variance. Dashed line at 95\%.  15 components
+           are retained, reducing from 17 to 15 dimensions.}
+  \label{fig:pca}
+\end{figure}
+
+\textbf{Impact on Naive Bayes:} Standardization significantly affects GNB
+because the model assumes feature independence and uses per-feature variance
+estimates.  Without standardization, highly variable features (Alk\_Phos,
+std = 2140) dominate the likelihood computations.
+
+\textbf{Impact on Decision Trees:} Decision trees are scale-invariant (they
+use only rank-order of feature values for splits), so standardization and
+normalization produce identical trees.  PCA, however, changes the feature
+space and therefore changes the splits.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 3 -- Classification}}
+% =============================================================================
+
+\subsection{Naive Bayes -- Hyperparameter Tuning}
+
+The \code{GaussianNB} classifier has one principal hyperparameter:
+\textbf{var\_smoothing} ($\varepsilon$), which controls the amount of
+variance added to the Gaussian estimates.  Four values were tested across all
+four preprocessing pipelines (Table~\ref{tab:nb_results}).
+
+\begin{table}[H]
+\centering
+\caption{Naive Bayes validation results across preprocessing methods.
+         Best F1 per preprocessing highlighted in bold.}
+\label{tab:nb_results}
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Variant} & \textbf{Preprocessing} &
+\textbf{Train Acc} & \textbf{Val Acc} & \textbf{Val Prec} &
+\textbf{Val F1} \\
+\midrule
+NB (default, $\varepsilon{=}10^{-9}$) & None          & 0.724 & 0.643 & 0.444 & 0.437 \\
+NB ($\varepsilon{=}10^{-5}$)           & None          & 0.636 & 0.643 & 0.448 & 0.417 \\
+NB ($\varepsilon{=}10^{-2}$)           & None          & 0.588 & 0.583 & 0.401 & 0.322 \\
+\midrule
+NB (default, $\varepsilon{=}10^{-9}$) & Standardized  & 0.428 & 0.345 & 0.484 & 0.351 \\
+NB ($\varepsilon{=}10^{-5}$)           & Standardized  & 0.652 & 0.524 & 0.508 & 0.462 \\
+\best{NB ($\varepsilon{=}10^{-2}$)}    & \best{Standardized} & \best{0.712} & \best{0.643} & \best{0.528} & \best{0.524} \\
+\midrule
+NB (default, $\varepsilon{=}10^{-9}$) & Normalized    & 0.688 & 0.560 & 0.492 & 0.472 \\
+NB ($\varepsilon{=}10^{-2}$)           & Normalized    & 0.584 & 0.571 & 0.386 & 0.309 \\
+\midrule
+NB (default, $\varepsilon{=}10^{-9}$) & PCA           & 0.760 & 0.714 & 0.477 & 0.483 \\
+NB ($\varepsilon{=}10^{-5}$)           & PCA           & 0.760 & 0.714 & 0.477 & 0.483 \\
+NB ($\varepsilon{=}10^{-2}$)           & PCA           & 0.752 & 0.702 & 0.469 & 0.473 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key observations:}
+\begin{itemize}
+  \item With \emph{no preprocessing}, the default $\varepsilon{=}10^{-9}$
+        already achieves val\_acc = 0.643.  Increasing $\varepsilon$ to
+        $10^{-2}$ hurts performance (over-smoothing).
+  \item With \emph{standardization}, large $\varepsilon$ ($10^{-2}$) is
+        needed because the standardized variances are near 1 and small
+        smoothing causes near-zero variance for low-variance features,
+        yielding degenerate likelihoods.  The best NB result overall is
+        \textbf{val\_acc = 0.643, F1 = 0.524} (\code{NB-vs=1e-2},
+        Standardized).
+  \item With \emph{PCA}, the default smoothing works well (val\_acc = 0.714)
+        because PCA components are orthogonal and of comparable scale,
+        making variance estimation more uniform.
+\end{itemize}
+
+\newpage
+\subsection{Decision Tree -- Hyperparameter Tuning}
+
+Five configurations of \code{DecisionTreeClassifier} were evaluated.  The
+key hyperparameters are \code{max\_depth} (limits tree depth, main defence
+against overfitting) and \code{min\_samples\_leaf} (minimum samples per leaf).
+
+\begin{table}[H]
+\centering
+\caption{Decision tree validation results.  DT is scale-invariant so None
+         and Standardized results are identical; only None and PCA are shown
+         for brevity.  Best F1 highlighted.}
+\label{tab:dt_results}
+\footnotesize
+\begin{tabular}{p{4.2cm}lcccc}
+\toprule
+\textbf{Variant} & \textbf{Prep.} &
+\textbf{Tr.Acc} & \textbf{V.Acc} & \textbf{V.Prec} & \textbf{V.F1} \\
+\midrule
+DT (no limit)          & None & 1.000 & 0.679 & 0.463 & 0.470 \\
+DT (depth=3)           & None & 0.780 & 0.714 & 0.501 & 0.503 \\
+DT (depth=5)           & None & 0.884 & 0.702 & 0.492 & 0.486 \\
+DT (depth=10)          & None & 0.972 & 0.667 & 0.460 & 0.462 \\
+DT (d=5, min\_leaf=10) & None & 0.788 & 0.702 & 0.493 & 0.488 \\
+\midrule
+DT (no limit)          & PCA  & 1.000 & 0.667 & 0.468 & 0.469 \\
+\best{DT (depth=3)}    & \best{PCA} & \best{0.788} & \best{0.786} & \best{0.648} & \best{0.616} \\
+DT (depth=5)           & PCA  & 0.868 & 0.762 & 0.676 & 0.606 \\
+DT (depth=10)          & PCA  & 0.984 & 0.643 & 0.451 & 0.452 \\
+DT (d=5, min\_leaf=10) & PCA  & 0.792 & 0.762 & 0.631 & 0.601 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key observations:}
+\begin{itemize}
+  \item The unlimited-depth tree achieves perfect training accuracy (1.000)
+        while the validation accuracy drops to 0.679 -- a clear sign of
+        \textbf{overfitting}.
+  \item Limiting depth to 3 achieves the best bias-variance trade-off on
+        PCA features: \textbf{val\_acc = 0.786, F1 = 0.616}, the best
+        configuration across both classifiers.
+  \item Depths beyond 5 consistently hurt generalisation on this dataset.
+  \item PCA preprocessing improves DT substantially (F1: 0.616 vs.\ 0.503
+        at depth=3), likely because PCA removes correlated features and
+        creates a cleaner split structure.
+\end{itemize}
+
+\subsection{Bonus -- Random Forest}
+
+Random Forest~\cite{breiman2001} builds an ensemble of decision trees, each
+trained on a bootstrap sample with random feature subsets, and aggregates by
+majority vote.  It inherently reduces variance compared to a single tree.
+
+\begin{table}[H]
+\centering
+\caption{Random Forest validation results.}
+\label{tab:rf_results}
+\footnotesize
+\begin{tabular}{p{4.5cm}lcccc}
+\toprule
+\textbf{Variant} & \textbf{Prep.} &
+\textbf{Tr.Acc} & \textbf{V.Acc} & \textbf{V.Prec} & \textbf{V.F1} \\
+\midrule
+RF (100 trees)          & None         & 1.000 & 0.786 & -- & 0.532 \\
+\best{RF (200, depth=5)} & \best{None} & \best{0.892} & \best{0.798} & -- & \best{0.539} \\
+RF (50, depth=10)       & None         & 0.988 & 0.774 & -- & 0.529 \\
+RF (50, depth=10)       & Std.         & 0.988 & 0.786 & -- & 0.538 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+With 200 trees and \code{max\_depth=5}, the Random Forest achieves
+\textbf{val\_acc = 0.798, F1 = 0.539} -- the best validation accuracy
+overall.  Depth limiting also reduces the train/val gap from
+$1.000/0.786$ to $0.892/0.798$.
+
+\subsection{Bonus -- Overfitting Mitigation via Cost-Complexity Pruning}
+
+Post-hoc \emph{minimal cost-complexity pruning} was applied to the
+unlimited decision tree (trained on standardized features).  The pruning
+path yields a monotonically decreasing tree size as $\alpha_{\text{ccp}}$
+increases.
+
+\begin{table}[H]
+\centering
+\caption{Cost-complexity pruning effect on overfitting.}
+\label{tab:pruning}
+\begin{tabular}{ccc}
+\toprule
+$\alpha_{\text{ccp}}$ & \textbf{Train Acc} & \textbf{Val Acc} \\
+\midrule
+0.00000 & 1.000 & 0.679 \\
+0.00512 & 0.972 & 0.679 \\
+0.00655 & 0.940 & 0.679 \\
+0.00720 & 0.884 & 0.702 \\
+0.01200 & 0.812 & 0.690 \\
+0.02039 & 0.732 & 0.702 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:pruning} shows the overfitting gap narrowing as
+$\alpha_{\text{ccp}}$ increases: at $\alpha{=}0.02$, training accuracy
+falls from 1.000 to 0.732 while validation accuracy rises to 0.702.
+This confirms that pruning is an effective regularisation strategy,
+though the best test performance is still achieved by the shallow
+depth-limited tree with PCA.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/fig_pruning.pdf}
+  \caption{Training vs.\ validation accuracy as a function of
+           cost-complexity pruning parameter $\alpha_{\text{ccp}}$.
+           The train-val gap shrinks as pruning becomes more aggressive.}
+  \label{fig:pruning}
+\end{figure}
+
+% =============================================================================
+\newpage
+\section{\underline{Task 4 -- Classification Evaluation}}
+% =============================================================================
+
+\subsection{Best Model Selection}
+
+Based on validation F1-score, the best configuration for each family was:
+
+\begin{center}
+\begin{tabular}{lllcc}
+\toprule
+\textbf{Classifier} & \textbf{Config} & \textbf{Preprocessing} &
+\textbf{Val Acc} & \textbf{Val Macro F1} \\
+\midrule
+Naive Bayes    & $\varepsilon{=}10^{-2}$   & Standardized & 0.643 & 0.524 \\
+Decision Tree  & \code{max\_depth=3} & PCA          & 0.786 & 0.616 \\
+Random Forest* & 200 trees, depth=5 & None         & 0.798 & 0.539 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize * bonus classifier}
+\end{tabular}
+\end{center}
+
+\subsection{Test Set Results}
+
+Each best model was retrained on the training set and evaluated once on the
+held-out test set (84 samples).
+
+\begin{table}[H]
+\centering
+\caption{Test set performance of the three best models (macro-averaged).}
+\label{tab:test_results}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Classifier} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+Naive Bayes ($\varepsilon{=}10^{-2}$, Std.)  & 0.631 & 0.484 & 0.479 & 0.470 \\
+Decision Tree (depth=3, PCA)                   & 0.726 & 0.604 & 0.565 & 0.578 \\
+Random Forest (200 trees, depth=5)*            & 0.762 & 0.513 & 0.530 & 0.519 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize * bonus}
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Per-class test performance (precision / recall / F1) for each best model.}
+\label{tab:per_class}
+\small
+\begin{tabular}{l|ccc|ccc|ccc}
+\toprule
+& \multicolumn{3}{c|}{\textbf{Naive Bayes}} &
+  \multicolumn{3}{c|}{\textbf{Decision Tree}} &
+  \multicolumn{3}{c}{\textbf{Random Forest*}} \\
+\textbf{Class} & Prec & Rec & F1 & Prec & Rec & F1 & Prec & Rec & F1 \\
+\midrule
+C  (n=47) & 0.71 & 0.83 & 0.76 & 0.75 & 0.81 & 0.78 & 0.75 & 0.87 & 0.80 \\
+CL (n=5)  & 0.13 & 0.20 & 0.15 & 0.33 & 0.20 & 0.25 & 0.00 & 0.00 & 0.00 \\
+D  (n=32) & 0.62 & 0.41 & 0.49 & 0.73 & 0.69 & 0.71 & 0.79 & 0.72 & 0.75 \\
+\midrule
+\textit{weighted} & 0.64 & 0.63 & 0.62 & 0.72 & 0.73 & 0.72 & 0.72 & 0.76 & 0.74 \\
+\bottomrule
+\multicolumn{10}{l}{\footnotesize * bonus; \quad support: C=47, CL=5, D=32 out of 84 test samples}
+\end{tabular}
+\end{table}
+
+\subsection{Confusion Matrices}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/fig_conf_matrices.pdf}
+  \caption{Confusion matrices on the test set for (left) Naive Bayes,
+           (centre) Decision Tree, and (right) Random Forest.}
+  \label{fig:conf}
+\end{figure}
+
+\noindent
+Reading Figure~\ref{fig:conf}:
+\begin{itemize}
+  \item \textbf{Class CL} (5 test samples) is the hardest to classify
+        across all models.  NB misclassifies 3 as C and 1 as D; DT
+        misclassifies 4 as C; RF misclassifies all 5 as C.  This is a direct
+        consequence of the severe class imbalance (only 25 CL patients in
+        the whole dataset, $\sim$3 in training).
+  \item \textbf{Class C} is predicted best by all models (F1 = 0.76--0.80),
+        benefiting from its dominant presence (55\% of data).
+  \item \textbf{Class D} is predicted substantially better by DT and RF
+        (F1 = 0.71 and 0.75) than by NB (0.49).
+\end{itemize}
+
+\subsection{Preprocessing Impact Summary}
+
+\begin{table}[H]
+\centering
+\caption{Effect of preprocessing on validation accuracy (best hyperparameter
+         per preprocessing, for each classifier family).}
+\label{tab:prep_impact}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Classifier} & \textbf{None} & \textbf{Standardized} & \textbf{Normalized} & \textbf{PCA} \\
+\midrule
+Naive Bayes   & 0.643 & \textbf{0.643} & 0.595 & 0.714 \\
+Decision Tree & 0.714 & 0.714          & 0.750 & \textbf{0.786} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+  \item For \textbf{Naive Bayes}, PCA achieves the best accuracy (0.714)
+        but standardization achieves the best F1 (0.524), because PCA with
+        default smoothing struggles to separate class D from C despite high
+        accuracy.
+  \item For \textbf{Decision Trees}, PCA is clearly the best preprocessing
+        (+7.2 pp over None in accuracy, +11.3 pp in F1).  The
+        decorrelation of features by PCA helps the tree find cleaner,
+        more informative splits.
+  \item Normalization (L2 row-wise) is generally the weakest preprocessing:
+        it encodes information about the relative proportions of features
+        within a sample rather than their absolute values, which is less
+        meaningful for clinical tabular data.
+\end{itemize}
+
+\subsection{Validation Accuracy Charts}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/fig_val_accuracy.pdf}
+  \caption{Validation accuracy of all hyperparameter configurations for
+           Naive Bayes (left) and Decision Tree (right), across
+           preprocessing methods.}
+  \label{fig:val_acc}
+\end{figure}
+
+% =============================================================================
+\newpage
+\section{\underline{Conclusions}}
+% =============================================================================
+
+\subsection{Summary of Results}
+
+All experiments confirmed that predicting survival outcome from the Mayo
+Clinic PBC dataset is a moderately difficult 3-class problem, primarily
+due to severe class imbalance in the \code{CL} category.
+
+The main findings are:
+
+\begin{enumerate}
+  \item \textbf{PCA} is the most beneficial preprocessing step for both
+        classifier families.  It removes multicollinearity among clinical
+        measurements, reduces from 17 to 15 dimensions, and creates a
+        feature space more amenable to splitting.
+
+  \item \textbf{Decision Tree with depth=3 and PCA} is the best single
+        classifier:  test accuracy 72.6\%, macro F1 = 0.578.  Shallow
+        trees generalise much better than deep ones: the unlimited tree
+        overfits perfectly (train acc = 1.000) while achieving only
+        67.9\% on the validation set.
+
+  \item \textbf{Naive Bayes} is inferior to DT on this dataset
+        (test acc = 63.1\%, F1 = 0.470), likely because the conditional
+        independence assumption is violated -- clinical biomarkers are
+        strongly correlated (e.g.\ Bilirubin, Copper, and Stage all
+        increase together with disease severity).
+
+  \item \textbf{Random Forest} (bonus) achieves the best overall accuracy
+        (test acc = 76.2\%) while suffering on \code{CL} recall due to
+        the imbalance.
+
+  \item \textbf{Cost-complexity pruning} (bonus) effectively reduces
+        the train/val accuracy gap by 20+ percentage points, confirming
+        its value as an overfitting countermeasure.
+\end{enumerate}
+
+\subsection{Limitations and Future Work}
+
+\begin{itemize}
+  \item The \code{CL} class (only 25 samples, $\sim$3 in training) is
+        effectively unlearnable with standard algorithms.  Techniques
+        such as SMOTE oversampling, class-weight balancing, or a
+        two-stage classifier (first binary D vs.\ not-D, then CL vs.\ C)
+        could address this.
+  \item With only 418 samples, cross-validation (e.g.\ 5-fold) would
+        give more robust hyperparameter estimates than a single 80/20
+        split.
+  \item Gradient Boosting (XGBoost, LightGBM) would likely outperform
+        Random Forest on this tabular dataset.
+\end{itemize}
+
+% =============================================================================
+\newpage
+\section{\underline{Implementation Notes}}
+% =============================================================================
+
+\subsection{Libraries Used}
+
+\begin{table}[H]
+\centering
+\caption{Python libraries used in the implementation.}
+\begin{tabular}{lll}
+\toprule
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\midrule
+\code{scikit-learn} & $\geq$1.3 & Classifiers, preprocessing, metrics \\
+\code{pandas}       & $\geq$2.0 & Data loading and manipulation \\
+\code{numpy}        & $\geq$1.24 & Numerical operations \\
+\code{matplotlib}   & $\geq$3.7 & Plots and figures \\
+\code{seaborn}      & $\geq$0.12 & Statistical visualisation \\
+\code{statsmodels}  & $\geq$0.14 & Access to R's \code{pbc} dataset \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data Source}
+
+The dataset was accessed via \code{statsmodels.datasets.get\_rdataset("pbc", "survival")},
+which mirrors the \code{pbc} dataset from the R \code{survival} package.
+This is the identical dataset published to the UCI ML Repository by
+Dickson et al.~\cite{dickson1989}, containing the original 418 patients
+from the Mayo Clinic PBC study (1974--1984).
+
+Column mapping from the R version to the assignment specification
+is shown below:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{R column} & \textbf{Assignment column} \\
+\midrule
+\code{trt} & \code{Drug} (1=D-penicillamine, 2=Placebo) \\
+\code{hepato} & \code{Hepatomegaly} \\
+\code{bili}, \code{chol} & \code{Bilirubin}, \code{Cholesterol} \\
+\code{ast}, \code{protime} & \code{SGOT}, \code{Prothrombin} \\
+\code{trig} & \code{Tryglicerides} \\
+\code{age} (years) & \code{Age} (days, $\times 365.25$) \\
+\code{status} 0/1/2 & C / CL / D \\
+\code{edema} 0/0.5/1 & N / S / Y \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =============================================================================
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{dickson1989}
+E.~Dickson, P.~Grambsch, T.~Fleming, L.~Fisher, and A.~Langworthy,
+\textit{Cirrhosis Patient Survival Prediction},
+UCI Machine Learning Repository, 1989.\\
+\url{https://doi.org/10.24432/C5R02G}.
+
+\bibitem{sklearn}
+F.~Pedregosa et al.,
+\textit{Scikit-learn: Machine Learning in Python},
+Journal of Machine Learning Research, Vol.~12, pp.~2825--2830, 2011.
+
+\bibitem{breiman2001}
+L.~Breiman,
+\textit{Random Forests},
+Machine Learning, Vol.~45, No.~1, pp.~5--32, 2001.
+
+\bibitem{quinlan1993}
+J.~R.~Quinlan,
+\textit{C4.5: Programs for Machine Learning},
+Morgan Kaufmann, 1993.
+
+\bibitem{mitchellml}
+T.~M.~Mitchell,
+\textit{Machine Learning},
+McGraw-Hill, 1997.
+
+\end{thebibliography}
+
+\end{document}

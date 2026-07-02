@@ -1,0 +1,187 @@
+Test Cases — Assignment 1 (AI&KE)
+The following test cases allow you to verify the correctness of your implementation. Each test targets a specific aspect of GTFS data processing and the algorithms. A solution that passes these tests should also handle harder edge cases.
+
+Reference date: Unless stated otherwise, all tests assume the date 2026-03-04 (Wednesday) — a regular weekday within the timetable validity period.
+
+Task 1 — Shortest Path A → B
+Test S1.1 — Direct connection (sanity check)
+Aspect: Basic route search, graph construction.
+
+A:         Wrocław Główny
+B:         Jelenia Góra
+Criterion: t
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+The earliest direct train is line D6 departing at 06:10 from platform V (stop_id: 1474651).
+Route: Wrocław Główny → Wrocław Grabiszyn → Wrocław Zachodni → Mokronos Górny → Smolec → Sadowice Wrocławskie → Kąty Wrocławskie → Mietków → Imbramowice → Żarów → Jaworzyna Śląska → Świebodzice → Wałbrzych Szczawienko → Wałbrzych Miasto → Wałbrzych Centrum → Wałbrzych Fabryczny → Wałbrzych Główny → Boguszów-Gorce Wschód → Boguszów-Gorce → Boguszów-Gorce Zachód → Witków Śląski → Sędzisław → Marciszów → Ciechanowice → Janowice Wielkie → Trzcińsko → Wojanów → Jelenia Góra.
+Arrival: 08:26, travel time: ~146 min (including 10 min wait for the train), transfers: 0.
+What it checks: If this test fails, verify: (1) whether the graph is correctly built from stop_times.txt, (2) whether the stop "Wrocław Główny" is properly mapped to its platforms (7 different stop_id values with parent_station = 1413380).
+
+Test S1.2 — Multiple platforms at a single station
+Aspect: Handling parent_station and transfers between platforms.
+
+A:         Wrocław Główny
+B:         Legnica
+Criterion: t
+Start time: 07:40:00
+Date:      2026-03-04
+Hints:
+
+At 07:40, several trains depart from Wrocław Główny, including D20 (to Zielona Góra) and D40 (to Bielawa) — none of them go to Legnica.
+Line D1 departs at 07:45 towards Lubań Śląski — it passes through Legnica.
+Wrocław Główny has 7 platforms, Legnica has 5 platforms — both use parent_station.
+What it checks: Whether the algorithm correctly identifies a station by name and considers all its platforms. If you match by exact stop_id, you will never find "Wrocław Główny" — you must match via parent_station or stop_name.
+
+Test S1.3 — Departure time ≠ arrival time at a stop (dwell time)
+Aspect: Correct travel time calculation when a train stops for an extended period.
+
+A:         Trutnov hl. n.
+B:         Kamienna Góra
+Criterion: t
+Start time: 13:30:00
+Date:      2026-03-04
+Hints:
+
+Trip D66 (37148513_397009): departs at 13:37 from Trutnov hl. n.
+At station Kralovec, the train has an 11-minute stop (arrival 14:02, departure 14:13).
+Arrival at Kamienna Góra: 14:31.
+Total travel time from start: 61 minutes (13:30→14:31, including 7 min wait for the train).
+On-train time: 54 minutes (13:37→14:31), not 43! — the dwell time at Kralovec is included.
+What it checks: If the on-train time is 43 minutes, the algorithm ignores the difference between departure_time and arrival_time within a trip. The 11-min stop at Kralovec (14:02→14:13) is part of the journey. Edge cost (i, i+1) = arrival_time[i+1] - departure_time[i], but the total trip time must include dwell times (arrival_time[last] - departure_time[first] = 54 min, not sum(arr[i+1]-dep[i]) = 43 min).
+
+Test S1.4 — Filtering services by date (calendar)
+Aspect: Correct implementation of calendar.txt.
+
+A:         Wrocław Główny
+B:         Kąty Wrocławskie
+Criterion: t
+Start time: 07:50:00
+Date A:    2026-03-04 (Wednesday)
+Date B:    2026-03-07 (Saturday)
+Hints:
+
+The D6 train at 07:50 to Kąty Wrocławskie — check the service_id of this trip in calendar.txt.
+Some service_id entries have saturday=0 — those trips do not run on Saturdays.
+The results for Wednesday and Saturday should differ (different set of available trips).
+What it checks: Whether the algorithm filters trips by day of the week and date range from calendar.txt. If the results are identical, filtering is not working.
+
+Test S1.5 — Transfer minimization criterion (p)
+Aspect: Switching the optimization criterion and the heuristic.
+
+A:         Wrocław Główny
+B:         Jelenia Góra
+Criterion: p
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+There are direct connections (0 transfers) — e.g., D6 at 06:10 or D60 at other times.
+The algorithm with criterion p should return a route with 0 transfers.
+If it returns a route with transfers (that happens to be faster), the criterion has not been switched correctly.
+What it checks: Whether the A algorithm changes both the heuristic and the cost function g(n) when the criterion changes. For criterion p, g(n) = number of transfers (not time), and a distance-based heuristic *is not admissible. Expected heuristic: based on line structure (e.g., h=0 if n lies on a line reaching the goal, h=1 otherwise; or BFS on the line graph) — see heurystyki.md.
+
+Task 2 — TSP (Tabu Search)
+Test S2.1 — Two stops on one line
+Aspect: Correct evaluation of a TSP solution cost.
+
+A:         Wrocław Główny
+L:         Wrocław Grabiszyn;Kąty Wrocławskie
+Criterion: t
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+Both stops lie on line D6: Wrocław Główny → Wrocław Grabiszyn → Kąty Wrocławskie.
+Optimal route: travel to Kąty Wrocławskie (visiting Grabiszyn on the way), then return to Wrocław.
+2! = 2 permutations — you can manually verify one of them.
+What it checks: Whether the solution cost evaluation (sum of segment travel times + waiting for connections) is correct. If this test fails — debug the route cost calculation.
+
+Test S2.2 — Three stops in different directions
+Aspect: Correct neighbourhood generation and permutation evaluation.
+
+A:         Wrocław Główny
+L:         Jelenia Góra;Legnica;Brzeg
+Criterion: t
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+The stops are in three different directions from Wrocław:
+Jelenia Góra: west/south (D6, ~92 km)
+Legnica: west (D1, ~62 km)
+Brzeg: east (D5, ~41 km)
+3! = 6 permutations — you can manually compute the cost of each and compare with the Tabu Search result.
+Swap neighbourhood: C(3,2) = 3 neighbours — easy to trace step by step.
+What it checks: Whether Tabu Search correctly explores the neighbourhood and retains the best solution found. For 3 cities, brute-force is feasible — compare results.
+
+Test S2.3 — Cost asymmetry
+Aspect: Time-dependent costs (time-dependent TSP).
+
+A:         Wrocław Główny
+L:         Legnica;Wałbrzych Główny
+Criterion: t
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+Compare two orderings:
+Wrocław → Legnica → Wałbrzych Główny → Wrocław
+Wrocław → Wałbrzych Główny → Legnica → Wrocław
+The travel times will not be symmetric, because:
+The waiting time for a train from Legnica to Wałbrzych depends on the arrival time at Legnica.
+Legnica ↔ Wałbrzych have no direct connection (transfer required at Jaworzyna Śl. or Wrocław).
+What it checks: If both orderings yield the same cost, the algorithm is probably using a static distance matrix instead of computing segment costs based on arrival time. In a correct implementation, the cost depends on the moment of arrival at each station.
+
+Test S2.4 — Tabu list verification
+Aspect: Correct operation of the Tabu mechanism.
+
+A:         Wrocław Główny
+L:         Jelenia Góra;Legnica;Wałbrzych Główny
+Criterion: t
+Start time: 06:00:00
+Date:      2026-03-04
+Hints:
+
+3! = 6 permutations, C(3,2) = 3 neighbours (swap).
+Run the algorithm with logging: at each iteration, print the current Tabu list state and the selected neighbour.
+After a few iterations, check:
+Does the algorithm not return to a solution from 2 steps ago (cycle)?
+Does the Tabu list grow (task 2a) / get trimmed (task 2b)?
+What it checks: Whether the Tabu list is properly updated and blocks revisits. If the algorithm cycles, |T| is too small or the Tabu list stores incorrect data.
+
+Test S2.5 — Transfer criterion
+Aspect: TSP with criterion p.
+
+A:         Wrocław Główny
+L:         Jelenia Góra;Legnica
+Criterion: p
+Start time: 08:00:00
+Date:      2026-03-04
+Hints:
+
+Wrocław → Jelenia Góra: 0 transfers (D6 direct).
+Wrocław → Legnica: 0 transfers (D1 direct).
+Jelenia Góra → Legnica: ≥1 transfer (no direct connection).
+Legnica → Jelenia Góra: ≥1 transfer.
+Compare:
+Wrocław → JG → Legnica → Wrocław: 0 + ≥1 + 0 = ≥1 transfer
+Wrocław → Legnica → JG → Wrocław: 0 + ≥1 + 0 = ≥1 transfer
+Both orderings have a similar transfer cost — but the waiting time for the transfer (and the possible 2-transfer variant) may differ.
+What it checks: Whether the algorithm correctly counts transfers on each segment and sums them. Common mistake: counting transfers only on the segment with the highest number, instead of summing across the entire route.
+
+Implementation checklist
+If all tests pass, your implementation handles:
+
+[ ] S1.1 — Graph construction, mapping stations to platforms
+[ ] S1.2 — parent_station, multi-platform stations
+[ ] S1.3 — Dwell time (departure_time ≠ arrival_time)
+[ ] S1.4 — Filtering by calendar.txt (day of week + date range)
+[ ] S1.5 — Switching criterion t ↔ p, heuristic admissibility
+[ ] S2.1 — TSP route cost evaluation
+[ ] S2.2 — Neighbourhood and Tabu Search exploration
+[ ] S2.3 — Cost asymmetry (time-dependent)
+[ ] S2.4 — Tabu list mechanism
+[ ] S2.5 — Transfer criterion in TSP
+Once all tests pass, proceed to harder edge cases: post-midnight times (24:xx:xx), pickup_type=1, calendar_dates.txt (holiday exceptions), no-solution scenarios, and station names with diacritics.

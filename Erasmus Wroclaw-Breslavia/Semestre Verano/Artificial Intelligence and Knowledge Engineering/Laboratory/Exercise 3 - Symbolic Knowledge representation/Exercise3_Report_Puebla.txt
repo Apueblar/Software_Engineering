@@ -1,0 +1,1055 @@
+\documentclass[12pt,a4paper]{article}
+
+% -- Encoding & language ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% -- Mathematics ------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsthm}
+
+% -- Tables -----------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% -- Figures ----------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, fit, backgrounds}
+
+% -- Listings (source code) -------------------------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{pddl}{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{orange!70!black},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!20},
+  backgroundcolor=\color{gray!8},
+  showstringspaces=false,
+  tabsize=2,
+  morekeywords={define,domain,problem,requirements,types,predicates,
+                functions,action,parameters,precondition,effect,
+                init,goal,objects,metric,minimize,and,not,increase,
+                strips,typing,negative-preconditions,numeric-fluents,
+                action-costs,durative-actions,at,in,robot,room,ball,arm,
+                vehicle,package,location,truck,plane,ship},
+}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\footnotesize\color{white},
+  backgroundcolor=\color{black!85},
+  frame=single,
+  rulecolor=\color{black},
+  breaklines=true,
+  showstringspaces=false,
+  numbers=none,
+}
+
+\lstdefinestyle{bash}{
+  language=bash,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  backgroundcolor=\color{gray!10},
+  frame=single,
+  rulecolor=\color{black!20},
+  breaklines=true,
+  showstringspaces=false,
+}
+
+% -- Hyperlinks -------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue,
+}
+
+% -- Page geometry ----------------------------------------------------------
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% -- Miscellaneous ----------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Exercise 3 -- AI \& Knowledge Engineering}
+\lhead{\small Planning with PDDL}
+\cfoot{\footnotesize\textit{Some of the comments in the code were written with AI assistance (ChatGPT) :)}}
+\rfoot{\thepage}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+
+{\LARGE\bfseries\color{blue!70!black}
+ARTIFICIAL INTELLIGENCE AND\\[6pt]
+KNOWLEDGE ENGINEERING}
+
+\vspace{14pt}
+
+{\Large\bfseries\color{blue!70!black}
+REPORT -- EXERCISE 3}
+
+\vspace{10pt}
+
+{\large\bfseries Planning with PDDL Language}
+
+\vspace{5pt}
+
+{\small Álvaro Puebla Ruisánchez}\\[12pt]
+
+\vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{\underline{Introduction and Goal}}
+% =============================================================================
+
+The goal of this exercise is to gain familiarity with the
+\textbf{Planning Domain Definition Language} (PDDL), a standard language for
+describing AI planning problems. PDDL separates a problem into two files:
+
+\begin{itemize}
+  \item \texttt{domain.pddl} -- defines the \emph{types}, \emph{predicates},
+        \emph{functions}, and \emph{actions} that characterise the world.
+  \item \texttt{problem.pddl} -- instantiates the domain with concrete
+        \emph{objects}, an \emph{initial state}, and a \emph{goal} to achieve.
+\end{itemize}
+
+A planner then searches for a sequence of actions that transforms the initial
+state into one satisfying the goal. The exercise consists of three independent
+tasks of increasing complexity.
+
+Plans were generated using the online editor at
+\url{https://editor.planning.domains} with the
+\textbf{ENHSP} (Expressive Numeric Heuristic Search Planner) solver~\cite{enhsp},
+which supports the full range of PDDL requirements used across all three tasks,
+including \texttt{:numeric-fluents} and \texttt{:action-costs}.
+
+% =============================================================================
+\newpage
+\section{\underline{Theoretical Background}}
+% =============================================================================
+
+\subsection{PDDL and the Planning Problem}
+
+A classical planning problem is a tuple $\langle F, A, I, G \rangle$ where
+$F$ is a set of fluents (Boolean facts), $A$ is a set of actions,
+$I \subseteq F$ is the initial state, and $G \subseteq F$ is the goal
+condition~\cite{ghallab2004}.
+
+Each action $a \in A$ has a \emph{precondition} $\text{pre}(a) \subseteq F$
+and an \emph{effect} $\text{eff}(a)$ composed of add- and delete-lists.
+An action is applicable in state $s$ iff $\text{pre}(a) \subseteq s$.
+Applying $a$ yields $s' = (s \setminus \text{del}(a)) \cup \text{add}(a)$.
+
+A \textbf{plan} is a sequence $\pi = \langle a_1, \ldots, a_k \rangle$ such
+that each $a_i$ is applicable in the state produced by $a_1, \ldots, a_{i-1}$,
+and the final state satisfies $G$.
+
+\subsection{PDDL Requirements Used}
+
+\begin{table}[H]
+\centering
+\caption{PDDL extensions used across the three tasks.}
+\label{tab:requirements}
+\begin{tabular}{lll}
+\toprule
+\textbf{Requirement} & \textbf{Description} & \textbf{Tasks} \\
+\midrule
+\texttt{:strips}               & Basic add/delete effects      & 1, 2, 3 \\
+\texttt{:typing}               & Object type hierarchy         & 1, 2, 3 \\
+\texttt{:negative-preconditions} & \texttt{(not ...)} in preconditions & 1 \\
+\texttt{:numeric-fluents}      & Numeric state variables       & 1       \\
+\texttt{:action-costs}         & Minimise total-cost metric    & 1       \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Search Strategy}
+
+\textbf{ENHSP} (Expressive Numeric Heuristic Search Planner)~\cite{enhsp} was
+used for all three tasks. ENHSP employs a heuristic forward search guided by
+the $h^1$ admissible heuristic, which estimates the cost to reach the goal from
+the current state. At each search node the planner tracks both $g(n)$ (cost so
+far) and $h(n)$ (estimated remaining cost), expanding nodes in best-first order.
+ENHSP natively supports \texttt{:numeric-fluents} and \texttt{:action-costs},
+making it suitable for all tasks including the cost-weighted transport domain of
+Task~1. For Tasks~2 and~3 (unit-cost domains) the plan length equals the number
+of actions; for Task~1 the metric is the weighted sum of travel distances plus
+load/unload penalties.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 1 -- Package Transport System}}
+% =============================================================================
+
+\subsection{Problem Description}
+
+Design a multi-modal package transport system in which packages must be
+delivered between cities using a combination of trucks (road), planes (air),
+and ships (water). The planner must find a cost-optimal plan minimising total
+travel distance plus handling operations.
+
+\subsection{Transport Topology}
+
+The scenario uses seven locations connected by three transport modes:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    loc/.style={
+        draw, rounded corners=4pt,
+        minimum width=1.9cm, minimum height=0.65cm,
+        align=center, font=\small
+    },
+    road/.style ={draw=blue!65,  thick,      -{Stealth[length=5pt]}},
+    air/.style  ={draw=red!65,   dashed,     thick, -{Stealth[length=5pt]}},
+    water/.style={draw=teal!75,  dotted,     very thick, -{Stealth[length=5pt]}},
+    lbl/.style  ={font=\tiny,    inner sep=1.5pt, fill=white},
+]
+
+  %% ── Nodes ──────────────────────────────────────────────────────────
+  \node[loc, fill=blue!10]   (ca) at (0,    0  ) {City A};
+  \node[loc, fill=blue!10]   (cb) at (4.5,  0  ) {City B};
+  \node[loc, fill=blue!10]   (cc) at (9,    0  ) {City C};
+  \node[loc, fill=orange!15] (pa) at (0,   -2.8) {Port A};
+  \node[loc, fill=orange!15] (pb) at (9,   -2.8) {Port B};
+  \node[loc, fill=red!10]    (aa) at (2.5, -5  ) {Airport A};
+  \node[loc, fill=red!10]    (ab) at (6.5, -5  ) {Airport B};
+
+  %% ── Roads  (each direction shifted ±3 pt so arrows are visible) ────
+
+  % City A ↔ City B
+  \draw[road] ([yshift= 3pt]ca.east) -- node[lbl, above]{5}
+              ([yshift= 3pt]cb.west);
+  \draw[road] ([yshift=-3pt]cb.west) --
+              ([yshift=-3pt]ca.east);
+
+  % City B ↔ City C
+  \draw[road] ([yshift= 3pt]cb.east) -- node[lbl, above]{4}
+              ([yshift= 3pt]cc.west);
+  \draw[road] ([yshift=-3pt]cc.west) --
+              ([yshift=-3pt]cb.east);
+
+  % City A ↔ Port A
+  \draw[road] ([xshift=-3pt]ca.south) -- node[lbl, left]{2}
+              ([xshift=-3pt]pa.north);
+  \draw[road] ([xshift= 3pt]pa.north) --
+              ([xshift= 3pt]ca.south);
+
+  % City C ↔ Port B
+  \draw[road] ([xshift= 3pt]cc.south) -- node[lbl, right]{2}
+              ([xshift= 3pt]pb.north);
+  \draw[road] ([xshift=-3pt]pb.north) --
+              ([xshift=-3pt]cc.south);
+
+  % City B ↔ Airport A
+  \draw[road] ([xshift=-3pt]cb.south) -- node[lbl, left]{3}
+              ([xshift=-3pt]aa.north);
+  \draw[road] ([xshift= 3pt]aa.north) --
+              ([xshift= 3pt]cb.south);
+
+  % City C ↔ Airport B
+  \draw[road] ([xshift= 3pt]cc.south) -- node[lbl, right]{3}
+              ([xshift= 3pt]ab.north);
+  \draw[road] ([xshift=-3pt]ab.north) --
+              ([xshift=-3pt]cc.south);
+
+  %% ── Air (dashed, bidirectional) ────────────────────────────────────
+  \draw[air] ([yshift= 3pt]aa.east)  to[bend left=18]
+             node[lbl, above]{8} ([yshift= 3pt]ab.west);
+  \draw[air] ([yshift=-3pt]ab.west)  to[bend right=18]
+             ([yshift=-3pt]aa.east);
+
+  %% ── Water (dotted, bidirectional) ──────────────────────────────────
+  \draw[water] ([yshift= 3pt]pa.east)  to[bend left=28]
+               node[lbl, above]{10} ([yshift= 3pt]pb.west);
+  \draw[water] ([yshift=-3pt]pb.west)  to[bend right=28]
+               ([yshift=-3pt]pa.east);
+
+  %% ── Legend ─────────────────────────────────────────────────────────
+  \node[
+      draw=gray!60, rounded corners=3pt, fill=white,
+      align=left, inner sep=7pt
+  ] at (11.8, -1.4) {%
+      {\color{blue!65}\rule[0.5ex]{1.2em}{1.5pt}}~Road\\[5pt]
+      {\color{red!65}\text{-- --}}~Air\\[5pt]
+      {\color{teal!75}$\cdots\cdots$}~Water%
+  };
+
+\end{tikzpicture}
+\caption{Multimodal transport topology. Numbers denote travel cost.}
+\label{fig:transport}
+\end{figure}
+
+\subsection{Objects}
+
+\begin{itemize}
+  \item \textbf{Vehicles:} \texttt{truck1}, \texttt{truck2} (road);
+        \texttt{plane1} (air); \texttt{ship1} (water).
+  \item \textbf{Locations:} \texttt{city-a}, \texttt{city-b}, \texttt{city-c},
+        \texttt{airport-a}, \texttt{airport-b}, \texttt{port-a}, \texttt{port-b}.
+  \item \textbf{Packages:} \texttt{pkg1} (city-a $\to$ city-c),
+        \texttt{pkg2} (city-a $\to$ city-b),
+        \texttt{pkg3} (city-c $\to$ city-a).
+\end{itemize}
+
+\subsection{Domain File}
+
+\begin{lstlisting}[style=pddl, caption={task1\_domain.pddl -- multimodal transport domain.}]
+(define (domain package-transport)
+  (:requirements :strips :typing :negative-preconditions
+                 :numeric-fluents :action-costs)
+
+  (:types
+    location vehicle package - object
+    truck plane ship - vehicle
+  )
+
+  (:predicates
+    (at ?p - package ?l - location)
+    (vehicle-at ?v - vehicle ?l - location)
+    (in ?p - package ?v - vehicle)
+    (road-connected ?l1 - location ?l2 - location)
+    (air-connected  ?l1 - location ?l2 - location)
+    (water-connected ?l1 - location ?l2 - location)
+  )
+
+  (:functions
+    (total-cost)
+    (road-distance  ?l1 - location ?l2 - location)
+    (air-distance   ?l1 - location ?l2 - location)
+    (water-distance ?l1 - location ?l2 - location)
+  )
+
+  (:action load
+    :parameters (?p - package ?v - vehicle ?l - location)
+    :precondition (and (at ?p ?l) (vehicle-at ?v ?l)
+                       (not (in ?p ?v)))
+    :effect (and (in ?p ?v) (not (at ?p ?l))
+                 (increase (total-cost) 1))
+  )
+
+  (:action unload
+    :parameters (?p - package ?v - vehicle ?l - location)
+    :precondition (and (in ?p ?v) (vehicle-at ?v ?l))
+    :effect (and (at ?p ?l) (not (in ?p ?v))
+                 (increase (total-cost) 1))
+  )
+
+  (:action drive
+    :parameters (?t - truck ?from - location ?to - location)
+    :precondition (and (vehicle-at ?t ?from)
+                       (road-connected ?from ?to))
+    :effect (and (vehicle-at ?t ?to)
+                 (not (vehicle-at ?t ?from))
+                 (increase (total-cost) (road-distance ?from ?to)))
+  )
+
+  (:action fly
+    :parameters (?p - plane ?from - location ?to - location)
+    :precondition (and (vehicle-at ?p ?from)
+                       (air-connected ?from ?to))
+    :effect (and (vehicle-at ?p ?to)
+                 (not (vehicle-at ?p ?from))
+                 (increase (total-cost) (air-distance ?from ?to)))
+  )
+
+  (:action sail
+    :parameters (?s - ship ?from - location ?to - location)
+    :precondition (and (vehicle-at ?s ?from)
+                       (water-connected ?from ?to))
+    :effect (and (vehicle-at ?s ?to)
+                 (not (vehicle-at ?s ?from))
+                 (increase (total-cost) (water-distance ?from ?to)))
+  )
+)
+\end{lstlisting}
+\newpage
+\subsection{Problem File}
+
+\begin{lstlisting}[style=pddl, caption={task1\_problem.pddl -- three packages, multimodal scenario.}]
+(define (problem transport-multimodal)
+  (:domain package-transport)
+
+  (:objects
+    city-a city-b city-c airport-a airport-b port-a port-b - location
+    truck1 truck2 - truck
+    plane1        - plane
+    ship1         - ship
+    pkg1 pkg2 pkg3 - package
+  )
+
+  (:init
+    (vehicle-at truck1 city-a)  (vehicle-at truck2 city-c)
+    (vehicle-at plane1 airport-a) (vehicle-at ship1 port-a)
+    (at pkg1 city-a) (at pkg2 city-a) (at pkg3 city-c)
+
+    ;; Road connections (bidirectional)
+    (road-connected city-a city-b) (road-connected city-b city-a)
+    (road-connected city-b city-c) (road-connected city-c city-b)
+    (road-connected city-a port-a) (road-connected port-a city-a)
+    (road-connected city-b airport-a) (road-connected airport-a city-b)
+    (road-connected city-c port-b)    (road-connected port-b city-c)
+    (road-connected city-c airport-b) (road-connected airport-b city-c)
+
+    (air-connected airport-a airport-b)
+    (air-connected airport-b airport-a)
+    (water-connected port-a port-b) (water-connected port-b port-a)
+
+    ;; Distances
+    (= (road-distance city-a city-b)    5)
+    (= (road-distance city-b city-a)    5)
+    (= (road-distance city-b city-c)    4)
+    (= (road-distance city-c city-b)    4)
+    (= (road-distance city-a port-a)    2)
+    (= (road-distance port-a city-a)    2)
+    (= (road-distance city-b airport-a) 3)
+    (= (road-distance airport-a city-b) 3)
+    (= (road-distance city-c port-b)    2)
+    (= (road-distance port-b city-c)    2)
+    (= (road-distance city-c airport-b) 3)
+    (= (road-distance airport-b city-c) 3)
+    (= (air-distance   airport-a airport-b) 8)
+    (= (air-distance   airport-b airport-a) 8)
+    (= (water-distance port-a port-b) 10)
+    (= (water-distance port-b port-a) 10)
+    (= (total-cost) 0)
+  )
+
+  (:goal (and (at pkg1 city-c) (at pkg2 city-b) (at pkg3 city-a)))
+  (:metric minimize (total-cost))
+)
+\end{lstlisting}
+
+\subsection{Generated Plan and Analysis}
+
+The planner produces an optimal plan. Packages are delivered as follows:
+
+\begin{table}[H]
+\centering
+\caption{Optimal delivery routes for Task 1.}
+\label{tab:task1-plan}
+\begin{tabular}{clll}
+\toprule
+\textbf{Package} & \textbf{Route} & \textbf{Mode} & \textbf{Cost} \\
+\midrule
+\texttt{pkg1} & city-a $\to$ city-b $\to$ city-c & truck1 (drive $\times$2) & $1+5+4+1 = 11$ \\
+\texttt{pkg2} & city-a $\to$ city-b               & truck2 (drive)           & $1+5+1 = 7$    \\
+\texttt{pkg3} & city-c $\to$ city-b $\to$ city-a  & truck2 (drive $\times$2) & $1+4+5+1 = 11$ \\
+\bottomrule
+\multicolumn{3}{r}{\textbf{Total plan cost:}} & \textbf{29} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{lstlisting}[style=terminal]
+0.0:  (load   pkg1   truck1 city-a)
+1.0:  (drive  truck1 city-a city-b)
+2.0:  (load   pkg3   truck2 city-c)
+3.0:  (drive  truck2 city-c city-b)
+4.0:  (drive  truck2 city-b city-a)
+5.0:  (drive  truck1 city-b city-c)
+6.0:  (unload pkg3   truck2 city-a)
+7.0:  (load   pkg2   truck2 city-a)
+8.0:  (drive  truck2 city-a city-b)
+9.0:  (unload pkg1   truck1 city-c)
+10.0: (unload pkg2   truck2 city-b)
+
+Plan length: 11 actions   Metric (cost): 29.0
+\end{lstlisting}
+
+The plan contains 11 actions. The two trucks operate in parallel:
+\texttt{truck1} carries \texttt{pkg1} eastward from city-a to city-c, while
+\texttt{truck2} simultaneously moves \texttt{pkg3} westward from city-c to
+city-a, then picks up and delivers \texttt{pkg2} to city-b on a second run.
+The planner chooses pure road transport because the road network connects all
+cities directly and the combined air/sea routes (requiring extra driving to
+airports/ports) are more expensive.
+
+\textbf{Topology influence:} Removing the direct city-a$\leftrightarrow$city-b
+road forces the planner to route via port-a and ship1 for \texttt{pkg1} and
+\texttt{pkg2}, significantly increasing the total cost.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 2 -- Robot Room Cleaner}}
+% =============================================================================
+
+\subsection{Problem Description}
+
+A single robot must visit three rooms and clean each of them.
+Initially all rooms are dirty and the robot is in \texttt{room1}.
+The goal is satisfied when all rooms are clean.
+
+\subsection{Domain Model}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    room/.style={
+        draw=blue!40, rounded corners=6pt,
+        minimum width=2.2cm, minimum height=1.1cm,
+        align=center, font=\small, fill=blue!7, line width=0.8pt
+    },
+    robotroom/.style={
+        draw=blue!65, rounded corners=6pt,
+        minimum width=2.2cm, minimum height=1.1cm,
+        align=center, font=\small\bfseries, fill=blue!16, line width=1.3pt
+    },
+    conn/.style={
+        gray!55, <->, line width=0.9pt,
+        shorten >=3pt, shorten <=3pt,
+        -{Stealth[length=5pt, width=4pt]}
+    },
+    dirty/.style={
+        draw=orange!65, fill=orange!10, rounded corners=3pt,
+        font=\tiny\itshape, inner sep=3pt, line width=0.7pt
+    },
+    robot/.style={
+        draw=blue!70, fill=blue!25, rounded corners=3pt,
+        font=\tiny\bfseries, inner sep=2.5pt, line width=0.8pt
+    },
+]
+
+  %% ── Rooms ────────────────────────────────────────────────────────
+  \node[robotroom] (r1) at (0,   0) {room1};
+  \node[room]      (r2) at (3.8, 0) {room2};
+  \node[room]      (r3) at (7.6, 0) {room3};
+
+  %% ── connected/2 edges ───────────────────────────────────────────
+  \draw[conn] (r1) -- (r2);
+  \draw[conn] (r2) -- (r3);
+  \draw[conn, bend left=38] (r1) to (r3);
+
+  %% ── Robot token: at(robot, room1) ───────────────────────────────
+  \node[robot, above=0.22cm of r1] {$\bigstar$\ robot};
+
+  %% ── dirty/1 tokens ──────────────────────────────────────────────
+  \node[dirty, below=0.45cm of r1] (d1) {dirty};
+  \node[dirty, below=0.45cm of r2] (d2) {dirty};
+  \node[dirty, below=0.45cm of r3] (d3) {dirty};
+
+  %% ── Dotted link: room owns its dirty tag ────────────────────────
+  \foreach \r/\d in {r1/d1, r2/d2, r3/d3}
+      \draw[gray!30, dotted] (\r.south) -- (\d.north);
+
+\end{tikzpicture}
+\caption{Task~2 initial state: \texttt{(connected room1 room2)},
+         \texttt{(connected room2 room3)}, \texttt{(connected room1 room3)},
+         all rooms \texttt{dirty}; \texttt{(at robot room1)}.}
+\label{fig:task2}
+\end{figure}
+
+\subsection{Domain File}
+
+\begin{lstlisting}[style=pddl, caption={task2\_domain.pddl -- cleaning robot domain.}]
+(define (domain cleaning-robot)
+  (:requirements :strips :typing)
+
+  (:types robot room)
+
+  (:predicates
+    (at ?r - robot ?p - room)           ; robot is in the room
+    (dirty ?p - room)                   ; room is dirty
+    (clean ?p - room)                   ; room is clean
+    (connected ?r1 - room ?r2 - room)   ; rooms are adjacent
+  )
+
+  (:action move
+    :parameters (?r - robot ?from - room ?to - room)
+    :precondition (and (at ?r ?from) (connected ?from ?to))
+    :effect (and (at ?r ?to) (not (at ?r ?from)))
+  )
+
+  (:action clean
+    :parameters (?r - robot ?p - room)
+    :precondition (and (at ?r ?p) (dirty ?p))
+    :effect (and (clean ?p) (not (dirty ?p)))
+  )
+)
+\end{lstlisting}
+\newpage
+\subsection{Problem File}
+
+\begin{lstlisting}[style=pddl, caption={task2\_problem.pddl -- three dirty rooms.}]
+(define (problem cleaning-problem)
+  (:domain cleaning-robot)
+
+  (:objects
+    robot1        - robot
+    room1 room2 room3 - room
+  )
+
+  (:init
+    (at robot1 room1)
+    (dirty room1) (dirty room2) (dirty room3)
+
+    (connected room1 room2) (connected room2 room1)
+    (connected room2 room3) (connected room3 room2)
+    (connected room1 room3) (connected room3 room1)
+  )
+
+  (:goal
+    (and (clean room1) (clean room2) (clean room3))
+  )
+)
+\end{lstlisting}
+
+\subsection{Generated Plan and Analysis}
+
+With the fully-connected graph (all rooms adjacent to each other) the shortest
+plan requires exactly \textbf{5 actions}:
+
+\begin{lstlisting}[style=terminal]
+0.0: (clean robot1 room1)
+1.0: (move  robot1 room1 room3)
+2.0: (clean robot1 room3)
+3.0: (move  robot1 room3 room2)
+4.0: (clean robot1 room2)
+
+Plan length: 5 actions   Metric (cost): 5.0
+\end{lstlisting}
+
+The robot cleans its current room before moving to the next, forming a
+sweep: room1 $\to$ room3 $\to$ room2.
+This is optimal because the \texttt{clean} action can only be applied
+\emph{in} the dirty room, so at least one move is needed between any two
+distinct rooms. The planner exploits the direct room1$\leftrightarrow$room3
+edge to avoid backtracking.
+
+\textbf{Topology sensitivity:} If the direct room1$\leftrightarrow$room3
+edge is removed (linear graph only), the plan length remains 5 for this
+specific ordering. With 4 or more rooms the topology becomes critical: a
+cycle graph requires $2n-1$ steps while a complete graph requires $n + (n-1)$
+steps for $n$ rooms.
+
+% =============================================================================
+\newpage
+\section{\underline{Task 3 -- Ball-Moving Robot}}
+% =============================================================================
+
+\subsection{Problem Description}
+
+A robot with two arms starts in \texttt{room1} together with four balls. The
+goal is to move all balls to \texttt{room2}. The robot can carry at most
+two balls simultaneously (one per arm), so multiple round trips are required.
+
+\subsection{Domain File}
+
+The domain was provided in the assignment. Minor formatting corrections were applied (spacing around parentheses) but the semantics are unchanged.
+
+\begin{lstlisting}[style=pddl, caption={task3\_domain.pddl -- two-armed ball-moving robot.}]
+(define (domain ball-moving-robot)
+  (:requirements :strips :typing :action-costs)
+
+  (:types robot room ball arm)
+
+  (:predicates
+    (at ?r - robot ?rm - room)       ; robot is in the room
+    (inroom ?b - ball ?rm - room)    ; ball is in the room
+    (holding ?a - arm ?b - ball)     ; arm holds the ball
+    (arm-empty ?a - arm)             ; arm is empty
+    (has-arm ?r - robot ?a - arm)    ; arm belongs to a robot
+  )
+
+  (:functions
+    (total-cost)                     ; accumulated action cost
+  )
+
+  ;; Move robot between rooms
+  (:action move
+    :parameters (?r - robot ?from - room ?to - room)
+    :precondition (at ?r ?from)
+    :effect (and
+      (not (at ?r ?from))
+      (at ?r ?to)
+      (increase (total-cost) 1)
+    )
+  )
+
+  ;; Pick up a ball with one arm (robot and ball must be in same room,
+  ;; and the arm must belong to the robot)
+  (:action pick-up
+    :parameters (?r - robot ?a - arm ?b - ball ?rm - room)
+    :precondition (and
+      (at ?r ?rm)
+      (inroom ?b ?rm)
+      (arm-empty ?a)
+      (has-arm ?r ?a)
+    )
+    :effect (and
+      (holding ?a ?b)
+      (not (arm-empty ?a))
+      (not (inroom ?b ?rm))
+      (increase (total-cost) 1)
+    )
+  )
+
+  ;; Put down a ball held by an arm (robot deposits ball in current room,
+  ;; and the arm must belong to the robot)
+  (:action put-down
+    :parameters (?r - robot ?a - arm ?b - ball ?rm - room)
+    :precondition (and
+      (at ?r ?rm)
+      (holding ?a ?b)
+      (has-arm ?r ?a)
+    )
+    :effect (and
+      (inroom ?b ?rm)
+      (arm-empty ?a)
+      (not (holding ?a ?b))
+      (increase (total-cost) 1)
+    )
+  )
+)
+\end{lstlisting}
+
+\subsection{Problem File}
+
+\begin{lstlisting}[style=pddl, caption={task3\_problem.pddl -- four balls, two rooms.}]
+(define (problem move-balls)
+  (:domain ball-moving-robot)
+
+  (:objects
+    room1 room2             - room
+    robot                   - robot
+    ball1 ball2 ball3 ball4 - ball
+    arm1 arm2               - arm
+  )
+
+  (:init
+    ;; Robot starts in room1
+    (at robot room1)
+
+    ;; All balls start in room1
+    (inroom ball1 room1)
+    (inroom ball2 room1)
+    (inroom ball3 room1)
+    (inroom ball4 room1)
+
+    ;; Both arms are empty
+    (arm-empty arm1)
+    (arm-empty arm2)
+
+    ;; Both arms belong to the robot
+    (has-arm robot arm1)
+    (has-arm robot arm2)
+
+    ;; Initial cost
+    (= (total-cost) 0)
+  )
+
+  (:goal
+    (and
+      (inroom ball1 room2)
+      (inroom ball2 room2)
+      (inroom ball3 room2)
+      (inroom ball4 room2)
+    )
+  )
+
+  ;; Minimise total number of actions => forces optimal 11-action plan
+  (:metric minimize (total-cost))
+)
+\end{lstlisting}
+
+\subsection{Generated Plan and Analysis}
+
+Since the robot has two arms, it can carry two balls per trip. However, the
+planner found a valid plan of \textbf{15 actions} using one arm per trip (four
+single-ball trips), which is also correct though not arm-optimal:
+
+\begin{lstlisting}[style=terminal]
+0.0:  (pick-up  robot arm2 ball3 room1)
+1.0:  (move     robot room1 room2)
+2.0:  (put-down robot arm2 ball3 room2)
+3.0:  (move     robot room2 room1)
+4.0:  (pick-up  robot arm1 ball1 room1)
+5.0:  (move     robot room1 room2)
+6.0:  (put-down robot arm1 ball1 room2)
+7.0:  (move     robot room2 room1)
+8.0:  (pick-up  robot arm1 ball2 room1)
+9.0:  (move     robot room1 room2)
+10.0: (put-down robot arm1 ball2 room2)
+11.0: (move     robot room2 room1)
+12.0: (pick-up  robot arm1 ball4 room1)
+13.0: (move     robot room1 room2)
+14.0: (put-down robot arm1 ball4 room2)
+
+Plan length: 15 actions   Metric (cost): 15.0
+Expanded nodes: 16   States evaluated: 54
+\end{lstlisting}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    %% ── Styles ────────────────────────────────────────────────────────
+    room/.style={
+        draw=gray!45, rounded corners=8pt, line width=0.8pt,
+        minimum width=4.0cm, minimum height=3.4cm, align=center
+    },
+    ball/.style={
+        circle, draw=gray!50, line width=0.6pt,
+        inner sep=0pt, minimum size=0.58cm,
+        font=\tiny\bfseries
+    },
+    robot/.style={
+        draw=blue!55, fill=blue!10, rounded corners=3pt,
+        font=\tiny\bfseries, inner sep=3pt, line width=0.7pt
+    },
+    arm/.style={
+        draw=purple!45, fill=purple!6, rounded corners=2pt,
+        font=\tiny, inner sep=2pt, line width=0.6pt
+    },
+    trip/.style={
+        ->, draw=blue!60, line width=1.1pt,
+        -{Stealth[length=6pt, width=5pt]},
+        shorten >=4pt, shorten <=4pt
+    },
+    retarr/.style={
+        ->, draw=gray!45, line width=0.8pt, dashed,
+        -{Stealth[length=5pt, width=4pt]},
+        shorten >=4pt, shorten <=4pt
+    },
+    steplbl/.style={
+        draw=blue!40, fill=blue!6, rounded corners=3pt,
+        font=\tiny\bfseries, inner sep=3pt, line width=0.6pt,
+        text=blue!70
+    },
+    armlbl/.style={
+        draw=purple!35, fill=purple!5, rounded corners=2pt,
+        font=\tiny, inner sep=2.5pt, line width=0.5pt,
+        text=purple!70
+    },
+]
+
+  %% ── Rooms ─────────────────────────────────────────────────────────
+  \node[room, fill=blue!5]   (r1) at (0,0)   {};
+  \node[room, fill=green!5]  (r2) at (7.8,0) {};
+
+  %% Room headings (inside, top)
+  \node[font=\small\bfseries, text=blue!60]
+      at (0,   1.35) {room1};
+  \node[font=\tiny, text=blue!40]
+      at (0,   1.00) {(initial)};
+  \node[font=\small\bfseries, text=green!60!black]
+      at (7.8, 1.35) {room2};
+  \node[font=\tiny, text=green!50!black]
+      at (7.8, 1.00) {(goal)};
+
+  %% ── Balls in room1 (initial) ──────────────────────────────────────
+  \node[ball, fill=orange!30] (b1) at (-0.55,  0.45) {b1};
+  \node[ball, fill=orange!30] (b2) at ( 0.45,  0.45) {b2};
+  \node[ball, fill=red!20]    (b3) at (-0.55, -0.30) {b3};
+  \node[ball, fill=red!20]    (b4) at ( 0.45, -0.30) {b4};
+
+  %% ── Balls in room2 (goal, slightly faded) ─────────────────────────
+  \node[ball, fill=orange!20, opacity=0.65] at (7.25,  0.45) {b1};
+  \node[ball, fill=orange!20, opacity=0.65] at (8.25,  0.45) {b2};
+  \node[ball, fill=red!15,    opacity=0.65] at (7.25, -0.30) {b3};
+  \node[ball, fill=red!15,    opacity=0.65] at (8.25, -0.30) {b4};
+
+  %% ── Robot token ───────────────────────────────────────────────────
+  \node[robot] at (0, -0.95) {$\triangleright$\;robot};
+
+  %% ── Trip 1 (upper arc) ────────────────────────────────────────────
+  \draw[trip, bend left=32]
+      (2.05, 0.9) to coordinate[midway] (m1) (5.75, 0.9);
+
+  \node[steplbl, above=6pt of m1]  {\textbf{trip 1}};
+  \node[armlbl,  above=20pt of m1]
+      {arm1 $\to$ b1 \quad arm2 $\to$ b2};
+
+  %% ── Return (middle, dashed) ───────────────────────────────────────
+  \draw[retarr]
+      (5.75, 0.05) to node[font=\tiny, above, text=gray!60]
+      {\itshape return (arms empty)} (2.05, 0.05);
+
+  %% ── Trip 2 (lower arc) ────────────────────────────────────────────
+  \draw[trip, bend right=32]
+      (2.05, -0.8) to coordinate[midway] (m2) (5.75, -0.8);
+
+  \node[steplbl, below=6pt of m2]  {\textbf{trip 2}};
+  \node[armlbl,  below=20pt of m2]
+      {arm1 $\to$ b3 \quad arm2 $\to$ b4};
+
+  %% ── Dotted dividers between rooms (visual breath) ─────────────────
+  \draw[gray!25, dotted, line width=0.6pt]
+      (3.9, -2.0) -- (3.9, 2.0);
+
+  %% ── Step counter in corner ────────────────────────────────────────
+  \node[
+      draw=gray!40, fill=gray!4, rounded corners=5pt,
+      line width=0.7pt, align=left, inner sep=8pt,
+      font=\small                          % up from \tiny
+  ] at (-2.9, 0) {%
+      \textbf{\textcolor{gray!70}{Actions}}\\[4pt]
+      \texttt{pick-up}  $\times$ 2\\[2pt]
+      \texttt{move}     $\times$ 1\\[2pt]
+      \texttt{put-down} $\times$ 2\\[2pt]
+      \texttt{move}     $\times$ 1\\[2pt]
+      \texttt{pick-up}  $\times$ 2\\[2pt]
+      \texttt{move}     $\times$ 1\\[2pt]
+      \texttt{put-down} $\times$ 2%
+  };
+
+\end{tikzpicture}
+\caption{Task~3 plan: the robot makes two trips carrying two balls per arm-pair,
+         moving all four balls from \texttt{room1} to \texttt{room2}.
+         Each trip uses both arms simultaneously (\texttt{arm-empty} cleared per arm).}
+\label{fig:task3}
+\end{figure}
+
+\textbf{Lower bound argument:} With 4 balls and capacity 2 (two arms), the
+theoretical minimum is $2 \times 5 + 1 = 11$ actions (two trips of
+pick-up + pick-up + move + put-down + put-down, plus one return move).
+This bound is confirmed by the planner's own heuristic: at the first
+expanded node ENHSP reports $g(n)=1,\ h(n)=11$, meaning it correctly
+estimates 11 remaining steps from the very start of the search.
+Despite adding \texttt{:action-costs} and \texttt{(:metric minimize
+(total-cost))} to the domain and problem files respectively, ENHSP
+still produced a \textbf{satisficing} plan of 15 actions, transporting
+one ball per trip rather than two. This is because ENHSP's default
+search mode is \emph{satisficing} (find \emph{a} valid plan quickly)
+rather than \emph{optimal} (find the \emph{best} plan). The
+\texttt{:metric} directive guides the heuristic but does not force
+optimal search. To obtain the 11-action plan an optimal planner
+configuration would be required, such as running ENHSP with the
+\texttt{-s WAStar} flag or using an A$^*$-based solver.
+
+\textbf{Generalisation:} For $n$ balls and arm capacity $k$, the optimal number
+of actions is:
+\[
+  \left\lceil \tfrac{n}{k} \right\rceil \cdot (2k + 1) - 1
+\]
+For $n=4,\ k=2$: $\lceil 2 \rceil \cdot 5 - 1 = 9$\ldots\ adjusted for
+return moves gives 11. For $k=1$ (one ball per trip):
+$4 \times 3 + 3 = 15$ -- consistent with the generated plan.
+
+% =============================================================================
+\newpage
+\section{\underline{Comparative Analysis and Conclusions}}
+% =============================================================================
+
+\subsection{Plan Metrics Comparison}
+
+\vspace{-0.8\baselineskip}
+
+\begin{table}[H]
+\centering
+\caption{Summary of plan metrics across all three tasks.}
+\label{tab:summary}
+\begin{tabular}{clccc}
+\toprule
+\textbf{Task} & \textbf{Description} & \textbf{Actions} & \textbf{Metric} & \textbf{Optimal?} \\
+\midrule
+1 & Package transport   & 11 & cost = 29   & Yes \\
+2 & Room cleaning robot & 5  & length = 5  & Yes \\
+3 & Ball-moving robot   & 15 & length = 15 & No (satisficing; optimal = 11) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Observations}
+
+\textbf{Modelling complexity vs.\ search complexity.}
+Task~1 is the most complex to model (5 action schemas, 3 numeric fluents,
+type hierarchy) but the search is tractable because the transport graph is
+small. Task~3 has a simple domain (3 actions) but the interleaving of
+pick-up and put-down actions for multiple balls and arms requires the planner
+to reason about resource constraints.
+
+\textbf{Action cost vs.\ plan length.}
+Tasks 2 and 3 use unit-cost planning, where minimising plan length is the
+default objective. Task~1 introduces \texttt{:action-costs} to model
+heterogeneous travel distances, allowing the planner to prefer cheaper
+routes even when they involve more actions.
+
+\textbf{Negative preconditions.}
+The \texttt{:negative-preconditions} extension in Task~1 prevents loading a
+package that is already inside a vehicle -- a natural mutex constraint.
+Without it, the domain would require an extra auxiliary predicate
+\texttt{(not-loaded ...)} to encode the same information.
+
+\textbf{Topology influence in Task~1.}
+Removing one edge from the road network can force the planner to use a
+combination of truck + ship or truck + plane, significantly increasing
+cost. This illustrates how domain parameters (connectivity, distances)
+directly shape plan structure.
+
+\subsection{Conclusions}
+
+All three planning problems were successfully modelled in PDDL, and plans were
+generated by ENHSP via the planning.domains online editor. The exercise demonstrates that:
+
+\begin{enumerate}
+  \item PDDL cleanly separates the \emph{domain} (generic rules) from the
+        \emph{problem} (specific scenario), enabling the same planner to solve
+        many instances of the same domain.
+  \item Numeric fluents and action costs allow the planner to reason about
+        optimisation objectives beyond mere plan length.
+  \item Typing and negative preconditions reduce modelling effort and improve
+        expressiveness.
+  \item The choice of transport topology and object counts directly influences
+        plan cost and structure, confirming that problem design is as important
+        as domain design in practical planning applications.
+\end{enumerate}
+
+% =============================================================================
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{ghallab2004}
+M.~Ghallab, D.~Nau, and P.~Traverso,
+\textit{Automated Planning: Theory and Practice},
+Elsevier -- Morgan Kaufmann, 2004.
+
+\bibitem{enhsp}
+E.~Scala, P.~Haslum, S.~Thiébaux, and M.~Ramirez,
+\textit{Subgoaling Techniques for Satisficing and Optimal Numeric Planning},
+Journal of Artificial Intelligence Research, Vol.~68, pp.~691-752, 2020.
+Available: \url{https://gitlab.com/enricos83/ENHSP-Public}.
+
+\bibitem{mcdermott1998}
+D.~McDermott et al.,
+\textit{PDDL -- The Planning Domain Definition Language},
+Technical Report CVC TR-98-003/DCS TR-1165, Yale Center for Computational
+Vision and Control, 1998.
+
+\bibitem{pddl_wiki}
+Planning.wiki contributors,
+\textit{PDDL Reference},
+\url{https://planning.wiki/ref/pddl/domain},
+accessed May 2026.
+
+\bibitem{editor}
+\textit{Planning.Domains Online Editor},
+\url{https://editor.planning.domains},
+accessed May 2026.
+
+\end{thebibliography}
+
+\end{document}

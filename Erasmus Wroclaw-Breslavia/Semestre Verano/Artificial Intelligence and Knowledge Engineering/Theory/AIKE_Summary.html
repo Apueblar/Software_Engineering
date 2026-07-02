@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence & Knowledge Engineering — Study Summary</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SUMMARY BOX ── */
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+/* ── TWO / THREE COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+/* ── INFO CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card ul li strong { color: var(--text); }
+
+/* ── DEFINITION TABLE ── */
+.def-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: 600;
+}
+.def-table td strong { color: var(--text); }
+.def-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--teal);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--text2);
+}
+
+/* ── EXAM QUESTIONS ── */
+.exam-section {
+  background: var(--surface2);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.exam-header {
+  background: var(--amber-dim);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exam-header-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.exam-body { padding: 14px 18px; }
+.exam-q {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+}
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+.show-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px;
+}
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── SEPARATOR ── */
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── WARN / TIP BOX ── */
+.warn-box {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.warn-box strong { color: var(--red); }
+.tip-box {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--teal); }
+
+/* ── COMPARE GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.compare-col { padding: 16px; }
+.compare-col:first-child { border-right: 1px solid var(--border); }
+.compare-col-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.compare-col ul { list-style: none; }
+.compare-col li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.compare-col li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+
+svg text { font-family: 'Syne', sans-serif; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">🤖 Artificial Intelligence &amp; Knowledge Engineering · WUST · Maciej Piasecki, Halina Kwaśnicka</div>
+  <h1>AI &amp; Knowledge Engineering<br>Complete Study Summary</h1>
+  <div class="header-sub">All 12 topics · Interactive exam practice · Real exam questions from 2025</div>
+  <div class="badges">
+    <span class="badge badge-blue">12 Core Topics</span>
+    <span class="badge badge-teal">Interactive Exam Practice</span>
+    <span class="badge badge-amber">17+ Real Exam Questions</span>
+    <span class="badge badge-purple">Search · Planning · ML · Deep Learning</span>
+    <span class="badge badge-green">RL · LLMs · Prompt Engineering</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+  <a href="#t1">Search</a>
+  <a href="#t2">Game Playing</a>
+  <a href="#t3">CSP</a>
+  <a href="#t4">Planning</a>
+  <a href="#t5">Logic</a>
+  <a href="#t6">Decision Trees</a>
+  <a href="#t7">CBR &amp; Clustering</a>
+  <a href="#t8">Naïve Bayes</a>
+  <a href="#t9">Neural Networks</a>
+  <a href="#t10">Reinforcement RL</a>
+  <a href="#t11">LLMs &amp; Prompting</a>
+  <a href="#t12">RAG &amp; Agents</a>
+  <a href="#exam">Exam Practice</a>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 1: SEARCH -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🔍</span>
+    <h2>Problem Solving by Searching</h2>
+    <span class="topic-tag badge badge-blue">Foundational</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A <strong>search problem</strong> is defined by: an <strong>initial state</strong>, a set of <strong>operators</strong> (actions), a <strong>goal test</strong>, and a <strong>path cost</strong>. Every problem can be formulated as state-space search — complex operations become combinations of simpler operators. The key distinction is between <strong>uninformed</strong> (blind) and <strong>informed</strong> (heuristic) strategies.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🧭 Uninformed Search</div>
+      <ul>
+        <li><strong>BFS</strong> — level by level; complete &amp; optimal (uniform cost); memory O(b<sup>d</sup>)</li>
+        <li><strong>DFS</strong> — depth first; low memory O(bm); not optimal, incomplete in ∞ spaces</li>
+        <li><strong>Uniform Cost Search</strong> — expands cheapest node; optimal if step cost &gt; 0</li>
+        <li><strong>ID-DFS</strong> — iterative deepening; combines DFS memory + BFS completeness; optimal for uniform costs</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">✨ Informed (Heuristic) Search</div>
+      <ul>
+        <li><strong>h(n)</strong> — estimated cost from node n to goal</li>
+        <li><strong>Greedy Best-First</strong> — lowest h(n); fast but not optimal</li>
+        <li><strong>A*</strong> — f(n) = g(n) + h(n); optimal &amp; complete if h admissible</li>
+        <li><strong>IDA*</strong> — A* with iterative deepening; memory-efficient; re-expands states</li>
+        <li><strong>SMA*</strong> — uses bounded memory; forgets shallowest highest-cost leaves</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Admissible heuristic:</strong> never overestimates the true cost — this guarantees A* optimality. It "does not hide the problem." Example: straight-line distance for route finding is admissible.
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="color:var(--amber);">⛰ Local Search (path doesn't matter)</div>
+    <ul>
+      <li><strong>Hill Climbing</strong> — move to neighbour with lowest loss; gets stuck in local optima</li>
+      <li><strong>Tabu Search</strong> — allows worsening moves; maintains tabu list of visited states</li>
+      <li><strong>Simulated Annealing</strong> — probabilistically accepts worse moves; probability decreases over time</li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠ IDA* drawback:</strong> re-expands already visited states (no memory of them). Trade-off for low memory usage.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 2: GAME PLAYING -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">♟</span>
+    <h2>Game Playing (Adversarial Search)</h2>
+    <span class="topic-tag badge badge-purple">Adversarial</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Game playing is a structured conflict where each player maximises their own payoff. The game tree models all possible moves. <strong>Min-Max</strong> assumes optimal opponent play. <strong>Alpha-Beta pruning</strong> eliminates branches that would never be chosen, halving the effective search depth. The <strong>evaluation function</strong> must be consistent with the payoff at terminal nodes.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🎮 Game Types</div>
+      <ul>
+        <li><strong>Zero-sum</strong> — one's win = other's loss (chess, Go)</li>
+        <li><strong>Non-zero-sum</strong> — prisoner's dilemma</li>
+        <li><strong>Deterministic</strong> — chess; <strong>Stochastic</strong> — poker</li>
+        <li><strong>Perfect info</strong> — chess; <strong>Imperfect</strong> — poker</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">⚡ Alpha-Beta Pruning</div>
+      <ul>
+        <li><strong>α (alpha)</strong> — best value MAX can guarantee so far (lower bound)</li>
+        <li><strong>β (beta)</strong> — best value MIN can guarantee so far (upper bound)</li>
+        <li>Prune branch if <strong>α ≥ β</strong></li>
+        <li>Optimistic complexity: <strong>O(b<sup>d/2</sup>)</strong> — doubles effective depth</li>
+        <li>Node ordering is critical for efficiency</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Concepts — Game Playing</div>
+    <table class="def-table">
+      <tr><td>Evaluation Function</td><td>Must <strong>agree with payoff</strong> at terminal nodes and <strong>estimate it</strong> for all intermediate states. Often a linear combination of features.</td></tr>
+      <tr><td>Horizon Problem</td><td>Stopping search <strong>before board conditions change dramatically</strong>. The algorithm returns a misleadingly calm evaluation just before a major capture.</td></tr>
+      <tr><td>Quiescent Positions</td><td>States where the evaluation function is <strong>unlikely to change significantly</strong> in the next few moves — safe to stop search here.</td></tr>
+      <tr><td>Deep Blue (1997)</td><td>Defeated Kasparov using α-β Min-Max + 8,000 patterns + opening book (4,000 positions) + 700,000-game database.</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 3: CSP -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">🔗</span>
+    <h2>Constraint Satisfaction Problems (CSP)</h2>
+    <span class="topic-tag badge badge-teal">Core</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A CSP is defined by <strong>Variables</strong> X, <strong>Domains</strong> D (possible values per variable), and <strong>Constraints</strong> (restrictions on combinations). A solution is a complete, consistent assignment. Constraint propagation <strong>dynamically reduces domain sizes</strong>, making it the key to CSP efficiency.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔄 Arc Consistency (AC-3)</div>
+      <ul>
+        <li>For every arc (Xᵢ, Xⱼ): every value in Dᵢ has ≥1 compatible value in Dⱼ</li>
+        <li>If a value is deleted from Dᵢ, all arcs pointing to Xᵢ must be re-checked</li>
+        <li><strong>MAC</strong> — maintains arc consistency after each assignment during search</li>
+        <li>Arc consistency = 2-consistency; path consistency = 3-consistency</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🧠 CSP Heuristics</div>
+      <ul>
+        <li><strong>MRV</strong> — minimum remaining values; most constrained variable first</li>
+        <li><strong>Degree Heuristic</strong> — variable in most constraints on remaining vars</li>
+        <li><strong>Least Constraining Value</strong> — value ruling out fewest neighbours</li>
+        <li><strong>Forward Checking</strong> — after assigning X, remove inconsistent values from others</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Key exam answer:</strong> Constraint propagation <strong>dynamically reduces the effective size of variable domains</strong>. It is not an alternative to backtracking — it runs alongside it.
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="color:var(--purple);">🌳 Problem Structure</div>
+    <ul>
+      <li><strong>Tree-structured CSPs</strong> — solvable in O(nd²), linear in number of variables</li>
+      <li>General graphs can be reduced to trees by removing or collapsing nodes</li>
+      <li><strong>Backtracking</strong> — assign one variable at a time, backtrack on constraint violation</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 4: PLANNING -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">📋</span>
+    <h2>Planning &amp; STRIPS</h2>
+    <span class="topic-tag badge badge-amber">Symbolic AI</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Planning = searching for a sequence of actions to go from an <strong>initial state</strong> to a <strong>goal state</strong>. Planning algorithms differ from pure heuristic search because they <strong>exploit knowledge from the symbolic representation of operators</strong> (preconditions, effects). STRIPS uses a closed-world assumption; ADL is more expressive.
+  </div>
+
+  <div class="def-wrap" style="margin-bottom:20px;">
+    <div class="def-wrap-title">STRIPS Action = Name + Preconditions + ADD list + DELETE list</div>
+    <table class="def-table">
+      <tr><td>STRIPS</td><td>Positive literals only, closed-world (unlisted = false), goal = ground literals &amp; conjunctions, no conditional effects</td></tr>
+      <tr><td>ADL</td><td>Positive &amp; negative literals, open world, quantified goals, conditional effects, typed variables</td></tr>
+      <tr><td>PDDL</td><td>Standard language for planning systems; defines domains (predicates, actions) and problems (objects, init, goal)</td></tr>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔀 Partial Order Planning (POP)</div>
+      <ul>
+        <li><strong>Least commitment principle</strong> — only order steps when necessary</li>
+        <li>Causal links: Sᵢ → Sⱼ (Sᵢ achieves condition c needed by Sⱼ)</li>
+        <li><strong>Threats (clobbering)</strong> — action C deletes a needed condition</li>
+        <li>Resolve threats via <strong>demotion</strong> (C before achiever) or <strong>promotion</strong> (C after consumer)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 Planning Heuristics</div>
+      <ul>
+        <li><strong>Delete relaxation</strong> — ignore delete effects; use relaxed plan length</li>
+        <li><strong>Landmarks</strong> — facts/actions that must occur in every solution</li>
+        <li><strong>Abstraction</strong> — merge states to simplify the problem</li>
+        <li>FF (fast forward), LAMA, Fast Downward (A*, optimal)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam key:</strong> Partial Order Planning uses <strong>only the necessary ordering constraints</strong> (least commitment). Planning differs from heuristic search by <strong>utilizing knowledge from the symbolic representation of state-change operators</strong>.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 5: LOGIC -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">🧮</span>
+    <h2>Logical Inference &amp; Knowledge Representation</h2>
+    <span class="topic-tag badge badge-purple">Logic</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    AI uses three inference types: <strong>deduction</strong> (general→specific, sound), <strong>induction</strong> (specific→general, basis of ML), and <strong>abduction</strong> (probable causes). Deductive methods remain relevant as sources of <strong>verified knowledge for LLMs</strong>. FOL extends propositional logic with predicates and quantifiers.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 Propositional Logic</div>
+      <ul>
+        <li><strong>p → q</strong> ≡ ¬p ∨ q</li>
+        <li>False only when p=T, q=F</li>
+        <li><strong>Modus Ponens:</strong> (p→q) ∧ p → q</li>
+        <li>Forward chaining: data-driven</li>
+        <li>Backward chaining: goal-driven</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔬 First-Order Logic (FOL)</div>
+      <ul>
+        <li>Constants, Variables, Functions</li>
+        <li>Predicates: IsOpen(CB, Line4)</li>
+        <li>∀ (for all), ∃ (there exists)</li>
+        <li><strong>Resolution:</strong> add ¬goal, convert to CNF, resolve to empty clause</li>
+        <li>Unification: binding variables to match terms</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🕸 Knowledge Representation</div>
+      <ul>
+        <li><strong>Semantic networks</strong> — labelled digraph; is_a, instance relations</li>
+        <li><strong>&lt;Object, Attribute, Value&gt;</strong> triples</li>
+        <li><strong>Ontologies</strong> — formal shared conceptualisations</li>
+        <li><strong>RDF graphs</strong> — DBpedia, Freebase</li>
+        <li>Non-monotonic logic — allows belief revision</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam key:</strong> Deductive AI is still relevant — deductive methods encode verified knowledge and can be integrated with LLMs (e.g., LINC — neurosymbolic theorem proving). Classical logic is <strong>monotonic</strong>; new facts never retract old conclusions.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 6: DECISION TREES -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">🌳</span>
+    <h2>Introduction to ML &amp; Decision Trees</h2>
+    <span class="topic-tag badge badge-green">Supervised ML</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A system <strong>learns</strong> from experience E on tasks T, measured by P, if performance on T improves with E. Decision trees induct attribute tests via <strong>information gain</strong> (entropy reduction). The order of attributes root-to-leaf reflects the reduction of uncertainty. Continuous attributes need <strong>statistical quantization</strong> into intervals.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📊 ID3 / C4.5 Algorithm</div>
+      <ul>
+        <li><strong>Entropy:</strong> H(S) = −Σ pᵢ log₂(pᵢ)</li>
+        <li><strong>Info Gain:</strong> IG(S,A) = H(S) − Σ (|Sᵥ|/|S|)·H(Sᵥ)</li>
+        <li><strong>Gain Ratio</strong> (C4.5) = IG / SplitInfo — corrects bias toward many-valued attributes</li>
+        <li>C4.5 also handles continuous attributes, missing values, post-pruning</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red);">⚠ Overfitting Prevention</div>
+      <ul>
+        <li><strong>Early stopping</strong> — stop before perfect training fit</li>
+        <li><strong>Post-pruning</strong> — build full tree, then prune (reduced-error pruning)</li>
+        <li><strong>Chi-square test</strong> — stop if further splits only help training</li>
+        <li><strong>MDL</strong> — stop when encoding is minimal</li>
+        <li>Training ↑ with depth; test ↓ after a point</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam keys:</strong>
+    Attribute order in each root-to-leaf path = <strong>reduction of uncertainty</strong>. To handle numerical values: <strong>quantize (bin) them statistically per attribute from training data</strong>. Decision trees are self-explainable — rare in ML.
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="color:var(--purple);">📐 Evaluation</div>
+    <ul>
+      <li><strong>k-fold Cross-Validation</strong> — split into k folds; train on k-1, test on 1; average k results</li>
+      <li>Training / Dev (tuning) / Test sets — test set kept hidden during all training</li>
+      <li><strong>Inductive Learning Hypothesis</strong> — good fit on large training set ≈ good generalisation</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 7: CBR & CLUSTERING -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">🔵</span>
+    <h2>Case-Based Reasoning &amp; Unsupervised Learning</h2>
+    <span class="topic-tag badge badge-teal">Instance-Based</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    <strong>k-NN</strong> classifies by finding k nearest neighbours in training data — it allows making <strong>assumptions about selected properties of unknown objects</strong> based on a similarity measure. <strong>Unsupervised learning</strong> explores similarities to determine equivalence classes (clusters) without labels. k-NN is for supervised inference; k-Means is for discovering groups.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">👥 k-Nearest Neighbours (k-NN)</div>
+      <ul>
+        <li>Find k nearest neighbours, assign most frequent class</li>
+        <li>k should be <strong>odd</strong> to avoid ties</li>
+        <li><strong>Euclidean:</strong> d(x,y) = √Σ(xᵢ−yᵢ)²</li>
+        <li><strong>Weighted k-NN:</strong> wᵢ = 1/dᵢ (closer = higher weight)</li>
+        <li>Normalise attributes to [0,1] — scale differences distort distances</li>
+        <li><strong>Curse of dimensionality</strong> — data needed grows exponentially with attributes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔵 k-Means Clustering</div>
+      <ul>
+        <li>1. Initialise k centroids randomly</li>
+        <li>2. Assign each example to nearest centroid</li>
+        <li>3. Recalculate centroids (average of members)</li>
+        <li>4. Repeat until stable</li>
+        <li>Sensitive to initialisation; k must be chosen</li>
+        <li><strong>Internal evaluation:</strong> Silhouette, Dunn index</li>
+        <li><strong>Hierarchical:</strong> dendrogram; merge closest clusters iteratively</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam key:</strong> k-NN allows <strong>making assumptions about the selected properties of unknown objects based on a similarity measure</strong>. It does NOT discover the number of classes (that's k-Means). Unsupervised learning <strong>explores similarities to determine equivalence classes</strong>.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 8: NAIVE BAYES -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">📊</span>
+    <h2>Naïve Bayes &amp; Statistical Classification</h2>
+    <span class="topic-tag badge badge-amber">Statistical ML</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Bayes' Theorem: <strong>P(h|D) = P(D|h)·P(h) / P(D)</strong>. Naïve Bayes assumes <strong>conditional independence of features given the class</strong>. Despite violated independence in practice, classification decisions are usually correct — because we only compare ratios, not estimate absolute probabilities.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 Naïve Bayes Classifier</div>
+      <ul>
+        <li>P(cⱼ|D) ∝ P(cⱼ) · Π P(xᵢ|cⱼ)</li>
+        <li><strong>Multivariate Binomial</strong> — word present/absent</li>
+        <li><strong>Multinomial</strong> — word frequencies; generally better</li>
+        <li><strong>Laplace smoothing:</strong> P(xᵢ|cⱼ) = (count + 1) / (count(cⱼ) + |V|)</li>
+        <li>Avoids zero probabilities for unseen words</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔤 Language Models</div>
+      <ul>
+        <li><strong>Unigram:</strong> P(string) = Π P(word) — simple, effective</li>
+        <li><strong>Bigram/n-gram:</strong> P(wᵢ | wᵢ₋₁,…,wᵢ₋ₙ₊₁) — captures word order</li>
+        <li><strong>MI</strong> — mutual information: association between term and category</li>
+        <li><strong>χ²</strong> — chi-square: statistical significance of association</li>
+        <li>Feature selection on full data (incl. test) = information leak!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠ NB posterior probabilities</strong> are numerically unreliable (very close to 0 or 1) due to violated independence — but <strong>classification decisions are usually correct</strong> since we only compare P(A,c₁) vs P(A,c₂).
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9: NEURAL NETWORKS -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">🧠</span>
+    <h2>Neural Networks &amp; Deep Learning</h2>
+    <span class="topic-tag badge badge-purple">Deep Learning</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Training modifies <strong>connection weights</strong> via backpropagation (chain rule + gradient descent). Activation functions shape signals layer by layer; the output layer interprets them for the task (e.g., softmax for classification). <strong>Dropout</strong> is the standard regularization technique improving generalisation. <strong>CNNs</strong> use spatially shared weights for hierarchical image feature extraction.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">⚡ MLP &amp; Backpropagation</div>
+      <ul>
+        <li><strong>z = Σ wᵢxᵢ + b</strong>, then apply activation f(z)</li>
+        <li>Activations: sigmoid, tanh, <strong>ReLU</strong> max(0,z), softmax</li>
+        <li>Forward pass → compute loss → backward pass (chain rule) → update w ← w − η∇E</li>
+        <li>Training changes weights; some may be suppressed entirely</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red);">🛡 Overfitting Solutions</div>
+      <ul>
+        <li><strong>Dropout</strong> — randomly disable subset of neurons each iteration</li>
+        <li><strong>Early stopping</strong> — monitor dev set error</li>
+        <li><strong>L1/L2 regularisation</strong></li>
+        <li><strong>Data augmentation</strong> / more training data</li>
+        <li>Deeper nets need fewer neurons per layer</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Architectures</div>
+    <table class="def-table">
+      <tr><td>CNN</td><td>Spatially <strong>shared weights</strong> detect local patterns. Hierarchy: edges → shapes → objects. Best for <strong>image/shape recognition</strong>. Spatially shared weights allow ignoring irrelevant pixels.</td></tr>
+      <tr><td>RNN / LSTM</td><td>Process sequences. LSTM avoids vanishing gradient with gating mechanisms.</td></tr>
+      <tr><td>Transformer</td><td>Self-attention: Attention(Q,K,V) = softmax(QKᵀ/√dₖ)·V. Parallel sequence processing. Replaced RNNs.</td></tr>
+      <tr><td>BERT</td><td>Encoder-only, bidirectional. Pre-trained with MLM + NSP. Fine-tuned for downstream tasks.</td></tr>
+      <tr><td>GPT</td><td>Decoder-only, unidirectional (causal masking). Autoregressive — generates one token at a time.</td></tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam key:</strong> For shape recognition → <strong>CNN</strong> because (a) spatially shared weights allow ignoring irrelevant pixels, and (b) hierarchical feature extraction in successive layers. Dropout = randomly disabling a subset of neurons each training iteration.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10: REINFORCEMENT LEARNING -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">🎮</span>
+    <h2>Reinforcement Learning</h2>
+    <span class="topic-tag badge badge-green">RL</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    An <strong>agent</strong> learns to maximise cumulative reward by interacting with an <strong>environment</strong> via trial-and-error with delayed rewards. No explicit teacher — only a reward signal. Unlike supervised ML, feedback is delayed, data is sequential, and the agent's actions affect future data.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 RL Elements</div>
+      <ul>
+        <li><strong>Policy π</strong> — mapping states → actions</li>
+        <li><strong>Reward function</strong> — state → scalar; property of environment</li>
+        <li><strong>Value function V(s)</strong> — expected cumulative future reward from s</li>
+        <li><strong>Model (optional)</strong> — agent's internal env representation</li>
+        <li><strong>Discounted return:</strong> Gₜ = rₜ₊₁ + γrₜ₊₂ + γ²rₜ₊₃ + …</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">⚡ TD Learning &amp; Q-Learning</div>
+      <ul>
+        <li><strong>TD update:</strong> V(s) ← V(s) + α[V(s') − V(s)]</li>
+        <li>Based on difference between estimates at two time steps</li>
+        <li><strong>Q-Learning</strong> — learns Q(s,a); off-policy; converges to optimal policy</li>
+        <li><strong>ε-greedy:</strong> greedy with prob 1-ε; random with prob ε</li>
+        <li>γ=0: immediate reward only; γ=1: fully far-sighted</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 RL vs Dynamic Programming:</strong> DP requires complete model (all transition probabilities). RL learns from experience when model is unknown. Q-Learning converges if each state-action pair is visited infinitely often and learning rate decreases appropriately.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 11: LLMs -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">💬</span>
+    <h2>Large Language Models &amp; Prompt Engineering</h2>
+    <span class="topic-tag badge badge-pink" style="background:var(--pink-dim);color:var(--pink);border-color:var(--pink);">LLMs</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    LLMs are very large <strong>decoder-only autoregressive</strong> models (1B–hundreds of B parameters) pre-trained on next-token prediction. The pipeline: <strong>pre-training</strong> (unsupervised) → <strong>fine-tuning</strong> (SFT, instruction-following) → <strong>alignment</strong> (RLHF/DPO). For task-specific quality drops, the fix is to <strong>extend fine-tuning instructions and redo alignment</strong>.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔧 Training Pipeline</div>
+      <ul>
+        <li><strong>Pre-training</strong> — next-token prediction; negative log-likelihood loss</li>
+        <li><strong>SFT</strong> — instruction → model → output R̂; compared to reference R</li>
+        <li><strong>RLHF</strong> — human rankings → reward model → RL policy update</li>
+        <li><strong>DPO/KTO</strong> — alternative alignment methods</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">✍ Prompting Strategies</div>
+      <ul>
+        <li><strong>Zero-Shot</strong> — instruction + data, no examples</li>
+        <li><strong>Few-Shot</strong> — instruction + examples + data</li>
+        <li><strong>Chain-of-Thought</strong> — step-by-step examples; forces reasoning</li>
+        <li><strong>Role-playing</strong> — assume a persona</li>
+        <li><strong>Least-to-Most</strong> — decompose into subproblems</li>
+        <li><strong>Self-consistency</strong> — model critiques its own outputs</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🔍 RAG System</div>
+      <ul>
+        <li>Query → retrieve relevant document chunks → LLM → answer</li>
+        <li><strong>Segmentation</strong> — determines detail/granularity of retrieved context</li>
+        <li><strong>Two-phase retrieval:</strong> fast first-stage (embeddings) + expensive re-ranking</li>
+        <li>Re-ranking maximises accuracy while minimising computation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">LLM API Parameters</div>
+    <table class="def-table">
+      <tr><td>Temperature</td><td>Lower = more deterministic/repeatable output</td></tr>
+      <tr><td>Top-p (nucleus)</td><td>Limits token selection to top cumulative probability mass</td></tr>
+      <tr><td>Max length</td><td>Maximum tokens to generate</td></tr>
+      <tr><td>Stop sequence</td><td>Stops generation when pattern occurs</td></tr>
+      <tr><td>Freq/presence penalty</td><td>Reduce word repetition</td></tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam key:</strong> If LLM shows reduced quality on certain tasks → <strong>extend instruction fine-tuning set and repeat the alignment phase</strong> (not re-do full pre-training). RAG segmentation <strong>determines the detail of the response by defining the text window size</strong>.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 12: RAG & LLM AGENTS -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">🤖</span>
+    <h2>Semantic Retrieval, RAG &amp; LLM-Based Agents</h2>
+    <span class="topic-tag badge badge-blue">Agents &amp; RAG</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    <strong>Prompting does not change the model</strong> — it only steers how the model's existing parametric knowledge is expressed. Semantic retrieval produces a ranked document list via a query-document matching pipeline. RAG grounds LLM answers in retrieved chunks, reducing hallucinations and extending knowledge beyond the training cutoff. An LLM-based agent adds <strong>memory, tools, and planning</strong> around the model to act autonomously in an environment.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🌍 Types of Environments</div>
+      <ul>
+        <li><strong>Observable</strong> — agent can fully perceive the current state</li>
+        <li><strong>Deterministic</strong> — actions have predictable outcomes</li>
+        <li><strong>Sequential</strong> — decisions affect future states</li>
+        <li><strong>Static</strong> — environment does not change while agent deliberates</li>
+        <li><strong>Discrete</strong> — finite set of percepts/actions</li>
+        <li><strong>Single-agent vs Multi-agent</strong> — one or many acting entities</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">📊 Retrieval Ranking</div>
+      <ul>
+        <li><strong>BM25</strong> — lexical baseline; TF-IDF + length norm; fast</li>
+        <li><strong>Bi-encoder</strong> — separate query/doc embeddings; scalable</li>
+        <li><strong>Cross-encoder (monoBERT)</strong> — joint attention [CLS]; most accurate, slow</li>
+        <li><strong>ColBERT</strong> — late interaction MaxSim; balances speed &amp; quality</li>
+        <li><strong>Metrics:</strong> Precision@k, Recall@k, MRR, nDCG</li>
+        <li><strong>Two-phase:</strong> fast retrieval (BM25/bi-encoder) → expensive re-ranking</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🔗 Agent Architecture</div>
+      <ul>
+        <li><strong>Environment</strong> — decision space (OS, code interpreter, web, etc.)</li>
+        <li><strong>Memory</strong> — short-term (prompt context) vs long-term (vector store, DB)</li>
+        <li><strong>Tools</strong> — function calling; agent receives JSON schema, calls APIs</li>
+        <li><strong>Planning:</strong> ReAct (Thought→Action→Observation loop)</li>
+        <li><strong>Reflexion</strong> — generate → self-critique → refine cycle</li>
+        <li><strong>ToRA</strong> — CoT + executable code (SymPy) for maths tasks</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">RAG Pipeline Variants</div>
+    <table class="def-table">
+      <tr><th>Variant</th><th>What it adds</th></tr>
+      <tr><td>Naive RAG</td><td>Fixed: query → retrieve → generate; no pre/post processing</td></tr>
+      <tr><td>Advanced RAG</td><td>Pre: query rewriting, routing, expansion · Post: re-ranking, summarisation, fusion</td></tr>
+      <tr><td>Iterative RAG</td><td>Retrieve → generate → judge → repeat to build up context</td></tr>
+      <tr><td>Recursive RAG</td><td>Query decomposition between retrieve-generate cycles</td></tr>
+      <tr><td>Adaptive RAG</td><td>Judges whether retrieval is needed at each step (special tokens/thresholds)</td></tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam keys:</strong>
+    <strong>Prompting does NOT modify model weights</strong> — it only affects how the model uses its existing knowledge.
+    Environment characteristics: <strong>observable, deterministic, sequential, static, discrete</strong> (same taxonomy as Lecture 1 search environments).
+    Cross-encoder &gt; ColBERT &gt; bi-encoder in accuracy; opposite order in retrieval speed.
+    Short-term memory lives in the <strong>prompt context</strong>; long-term memory persists in <strong>external storage</strong> across sessions.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ALGORITHM REFERENCE TABLE -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="ref">
+  <div class="topic-header">
+    <span class="topic-icon">📌</span>
+    <h2>Quick Reference: All Key Algorithms</h2>
+    <span class="topic-tag badge badge-teal">Reference</span>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Algorithm Summary Table</div>
+    <table class="def-table">
+      <tr><th>Algorithm</th><th>Type</th><th>Key Property / Exam Fact</th></tr>
+      <tr><td>BFS</td><td>Uninformed search</td><td>Complete, optimal (uniform cost), high memory O(b<sup>d</sup>)</td></tr>
+      <tr><td>DFS</td><td>Uninformed search</td><td>Low memory O(bm), not optimal, not complete in infinite spaces</td></tr>
+      <tr><td>ID-DFS</td><td>Uninformed search</td><td>BFS completeness + DFS memory; optimal for uniform costs</td></tr>
+      <tr><td>A*</td><td>Informed search</td><td>Optimal if h admissible (never overestimates), complete</td></tr>
+      <tr><td>IDA*</td><td>Informed search</td><td>Low memory A*; re-expands states (no memory of them)</td></tr>
+      <tr><td>SMA*</td><td>Informed search</td><td>Bounded memory; forgets shallowest highest-cost leaves</td></tr>
+      <tr><td>Min-Max</td><td>Game search</td><td>Optimal vs perfect opponent; O(b<sup>d</sup>)</td></tr>
+      <tr><td>α-β Pruning</td><td>Game search</td><td>Prune when α ≥ β; O(b<sup>d/2</sup>) optimal; doubles effective depth</td></tr>
+      <tr><td>Backtracking</td><td>CSP</td><td>Systematic, complete; assign one var at a time</td></tr>
+      <tr><td>AC-3</td><td>CSP propagation</td><td>Maintains arc consistency; dynamically reduces domain sizes</td></tr>
+      <tr><td>STRIPS/POP</td><td>Planning</td><td>Symbolic operators; POP uses only necessary ordering constraints</td></tr>
+      <tr><td>ID3 / C4.5</td><td>Supervised ML</td><td>Decision tree by info gain / gain ratio; C4.5 handles continuous</td></tr>
+      <tr><td>k-NN</td><td>Supervised ML</td><td>Instance-based; infers properties via similarity; no explicit model</td></tr>
+      <tr><td>k-Means</td><td>Unsupervised ML</td><td>Clustering via centroid iteration; discovers equivalence classes</td></tr>
+      <tr><td>Naïve Bayes</td><td>Statistical ML</td><td>Conditional independence assumption; posteriors unreliable but classifications correct</td></tr>
+      <tr><td>MLP + Backprop</td><td>Neural Network</td><td>Gradient descent via chain rule; weights adjusted, some suppressed</td></tr>
+      <tr><td>CNN</td><td>Deep Learning</td><td>Spatially shared weights; hierarchical features; best for images</td></tr>
+      <tr><td>Transformer</td><td>Deep Learning</td><td>Self-attention Q,K,V; parallel; replaced RNNs</td></tr>
+      <tr><td>Q-Learning</td><td>Reinforcement RL</td><td>Off-policy; learns action-value Q(s,a); ε-greedy exploration</td></tr>
+      <tr><td>BM25</td><td>Lexical retrieval</td><td>TF-IDF-style scoring; term frequency + IDF + document length normalisation</td></tr>
+      <tr><td>monoBERT</td><td>Neural re-ranking</td><td>Cross-encoder; joint query-document attention via [CLS]; most accurate, slow</td></tr>
+      <tr><td>ColBERT</td><td>Late interaction retrieval</td><td>Separate encoders + MaxSim; balances quality and efficiency</td></tr>
+      <tr><td>ReAct</td><td>LLM agent reasoning</td><td>Thought → Action → Observation loop; interleaves reasoning with tool calls</td></tr>
+      <tr><td>Reflexion</td><td>LLM agent reasoning</td><td>Generate → self-critique → refine; no new external actions required</td></tr>
+      <tr><td>ToRA</td><td>Tool-integrated reasoning</td><td>CoT + executable code (SymPy); two-stage training (imitation + output shaping)</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- INTERACTIVE EXAM QUESTIONS -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="exam">
+  <div class="topic-header">
+    <span class="topic-icon">📝</span>
+    <h2>Interactive Exam Practice</h2>
+    <span class="topic-tag badge badge-amber">Real 2025 Questions</span>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Exam 2025 — All Questions (English)</span>
+    </div>
+	<div class="exam-body">
+
+	  <div class="exam-q" id="q1">
+		<div class="exam-q-text">Q1. Can we effectively formulate every problem as a state space search problem?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q1','c')"><span class="opt-letter">a)</span> No, because we will have too many operators and too high a branching factor in the search graph.</div>
+		  <div class="exam-opt" onclick="answer(this,'q1','c')"><span class="opt-letter">b)</span> No, because not all problems allow us to define inverse transition operators between states.</div>
+		  <div class="exam-opt" onclick="answer(this,'q1','c')"><span class="opt-letter">c)</span> Yes, because complex operations can be represented as a combination of simpler operators.</div>
+		  <div class="exam-opt" onclick="answer(this,'q1','c')"><span class="opt-letter">d)</span> Yes, because symbolic-arithmetic operations can be represented as operators acting on a computational graph.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q1')">Show Answer</button>
+		<div class="exam-reveal" id="q1-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Complex operations can be represented as combinations of simpler operators, making state space formulation universally applicable.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q2">
+		<div class="exam-q-text">Q2. Is there a place for a deduction-based approach in contemporary AI?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q2','b')"><span class="opt-letter">a)</span> No, because practically all contemporary AI systems are based on machine learning.</div>
+		  <div class="exam-opt" onclick="answer(this,'q2','b')"><span class="opt-letter">b)</span> Yes, deductive methods allow for the expression of verified knowledge, e.g., in the form of rules, also as sources of knowledge for generative language models (LLMs).</div>
+		  <div class="exam-opt" onclick="answer(this,'q2','b')"><span class="opt-letter">c)</span> Yes, because deductive methods are essential for data augmentation.</div>
+		  <div class="exam-opt" onclick="answer(this,'q2','b')"><span class="opt-letter">d)</span> Yes, because deductive methods are present in every supervised machine learning algorithm as an element of controlling the training process.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q2')">Show Answer</button>
+		<div class="exam-reveal" id="q2-reveal">
+		  <div class="exam-explanation">✅ Answer: b) — Deductive methods remain relevant for encoding verified knowledge and feeding it into modern LLMs (e.g., LINC neurosymbolic theorem proving).</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q3">
+		<div class="exam-q-text">Q3. What is arc consistency in CSP and why is it used?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q3','b')"><span class="opt-letter">a)</span> Arc consistency is the consistency of the path of connected variables in search and an element of partial solution representation.</div>
+		  <div class="exam-opt" onclick="answer(this,'q3','b')"><span class="opt-letter">b)</span> Arc consistency guarantees that for any two variables connected by a constraint, their domains contain values that satisfy that constraint.</div>
+		  <div class="exam-opt" onclick="answer(this,'q3','b')"><span class="opt-letter">c)</span> Arc consistency is a transformation of the problem, resulting in it consisting of n subproblems, in which the pairs are connected by a single arc.</div>
+		  <div class="exam-opt" onclick="answer(this,'q3','b')"><span class="opt-letter">d)</span> Arc consistency is a partial order of pairs: variable-heuristic, accelerating solution finding.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q3')">Show Answer</button>
+		<div class="exam-reveal" id="q3-reveal">
+		  <div class="exam-explanation">✅ Answer: b) — Arc consistency ensures that for every constrained pair, valid domain values exist on both sides. It dynamically reduces effective domain sizes.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q4">
+		<div class="exam-q-text">Q4. What is the partial order planning algorithm based on?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q4','c')"><span class="opt-letter">a)</span> Hierarchically dividing the problem into areas of local subplans that are next combined.</div>
+		  <div class="exam-opt" onclick="answer(this,'q4','c')"><span class="opt-letter">b)</span> The lack of distinction between actions that are generated for the same operators.</div>
+		  <div class="exam-opt" onclick="answer(this,'q4','c')"><span class="opt-letter">c)</span> Utilising only the necessary constraints in the representation of the plan.</div>
+		  <div class="exam-opt" onclick="answer(this,'q4','c')"><span class="opt-letter">d)</span> A partial order plan allows for conflicting sequences of actions, where conflicts are resolved later through additional searching.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q4')">Show Answer</button>
+		<div class="exam-reveal" id="q4-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Partial order planning uses only the minimally necessary ordering constraints, leaving actions unordered when order doesn't matter (least commitment principle).</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q5">
+		<div class="exam-q-text">Q5. What are the true properties of the evaluation function in algorithms for playing logical games?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q5','a')"><span class="opt-letter">a)</span> The evaluation function must be consistent with the payoff function for terminal nodes and estimate it for all intermediate states.</div>
+		  <div class="exam-opt" onclick="answer(this,'q5','a')"><span class="opt-letter">b)</span> It must return 0 for the terminal node of the game tree and be consistent with the payoff function for the others.</div>
+		  <div class="exam-opt" onclick="answer(this,'q5','a')"><span class="opt-letter">c)</span> The evaluation function is a heuristic function for the cost of winning in one move.</div>
+		  <div class="exam-opt" onclick="answer(this,'q5','a')"><span class="opt-letter">d)</span> The evaluation function is any linear function of the set of features describing the game state.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q5')">Show Answer</button>
+		<div class="exam-reveal" id="q5-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — The evaluation function must agree with payoff at terminal nodes AND estimate it for all intermediate (non-terminal) states.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q6">
+		<div class="exam-q-text">Q6. Why is it important for the heuristic to be admissible in state space search?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q6','a')"><span class="opt-letter">a)</span> An admissible heuristic does not hide the problem and returns values no higher than the actual cost.</div>
+		  <div class="exam-opt" onclick="answer(this,'q6','a')"><span class="opt-letter">b)</span> Because it allows for comparing values between nodes.</div>
+		  <div class="exam-opt" onclick="answer(this,'q6','a')"><span class="opt-letter">c)</span> Because only an admissible heuristic defines equivalence classes of nodes based on its values.</div>
+		  <div class="exam-opt" onclick="answer(this,'q6','a')"><span class="opt-letter">d)</span> Because it does not hide the path leading to a node that satisfies the goal test.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q6')">Show Answer</button>
+		<div class="exam-reveal" id="q6-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — An admissible heuristic never overestimates the true cost → guarantees A* finds the optimal solution.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q7">
+		<div class="exam-q-text">Q7. When do positions in the game tree become stable (quiescent)?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q7','c')"><span class="opt-letter">a)</span> Stable (quiescent) positions are those for which there is a balance between attacking moves and moves that create threats.</div>
+		  <div class="exam-opt" onclick="answer(this,'q7','c')"><span class="opt-letter">b)</span> Positions in the game tree become stable (quiescent) when their subtrees become balanced after applying alpha-beta pruning.</div>
+		  <div class="exam-opt" onclick="answer(this,'q7','c')"><span class="opt-letter">c)</span> Stable (quiescent) positions are those for which the situation in the game does not correlate with significant changes in the value of the evaluation function over the next few moves.</div>
+		  <div class="exam-opt" onclick="answer(this,'q7','c')"><span class="opt-letter">d)</span> Stable positions are below the depth that defines the horizon problem in the game tree.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q7')">Show Answer</button>
+		<div class="exam-reveal" id="q7-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Quiescent = "calm" states where the evaluation function won't change dramatically in the near future. Safe to stop search here.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q8">
+		<div class="exam-q-text">Q8. How does constraint propagation affect the efficiency of a CSP-solving algorithm?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q8','c')"><span class="opt-letter">a)</span> It is an alternative approach to backtracking search based on heuristic forward searching.</div>
+		  <div class="exam-opt" onclick="answer(this,'q8','c')"><span class="opt-letter">b)</span> Constraint propagation shifts the search to the level of local operations within the variable domains.</div>
+		  <div class="exam-opt" onclick="answer(this,'q8','c')"><span class="opt-letter">c)</span> Constraint propagation dynamically reduces the effective size of variable domains.</div>
+		  <div class="exam-opt" onclick="answer(this,'q8','c')"><span class="opt-letter">d)</span> It breaks the problem into independent subproblems of constraint solving within individual pairs of variables.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q8')">Show Answer</button>
+		<div class="exam-reveal" id="q8-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Constraint propagation prunes domain values that cannot be part of any valid solution, shrinking the search space dynamically.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q9">
+		<div class="exam-q-text">Q9. Do planning algorithms differ from heuristic state space search?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q9','b')"><span class="opt-letter">a)</span> Planning algorithms are heuristic search algorithms based on a partial order graph heuristic.</div>
+		  <div class="exam-opt" onclick="answer(this,'q9','b')"><span class="opt-letter">b)</span> Planning algorithms utilise knowledge from the symbolic representation of state change operators.</div>
+		  <div class="exam-opt" onclick="answer(this,'q9','b')"><span class="opt-letter">c)</span> Planning algorithms do not build a complete transition graph from the initial state to the final state, but only a forest of partial graphs.</div>
+		  <div class="exam-opt" onclick="answer(this,'q9','b')"><span class="opt-letter">d)</span> Planning algorithms build the action graph deterministically and later apply heuristics to linearise the partial order graph into the final graph.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q9')">Show Answer</button>
+		<div class="exam-reveal" id="q9-reveal">
+		  <div class="exam-explanation">✅ Answer: b) — Planning exploits the symbolic structure of operators (preconditions, effects) to guide search — this is what distinguishes it from pure heuristic search.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q10">
+		<div class="exam-q-text">Q10. Why does unsupervised machine learning work and to what extent?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q10','b')"><span class="opt-letter">a)</span> It transforms some attributes into decision classes based on correlation analysis.</div>
+		  <div class="exam-opt" onclick="answer(this,'q10','b')"><span class="opt-letter">b)</span> It explores similarities between objects to make property transfers or determine equivalence classes.</div>
+		  <div class="exam-opt" onclick="answer(this,'q10','b')"><span class="opt-letter">c)</span> It relies on augmentation of labelled data based on clustering.</div>
+		  <div class="exam-opt" onclick="answer(this,'q10','b')"><span class="opt-letter">d)</span> It only works when clustering results correlate with an accepted class hierarchy.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q10')">Show Answer</button>
+		<div class="exam-reveal" id="q10-reveal">
+		  <div class="exam-explanation">✅ Answer: b) — Unsupervised learning discovers structure by measuring similarity, enabling clustering and property inference without labels.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q11">
+		<div class="exam-q-text">Q11. What is the order of assigning attributes to the nodes of the decision tree?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q11','d')"><span class="opt-letter">a)</span> Any order is acceptable as long as the attributes with the highest InfoGain value are chosen.</div>
+		  <div class="exam-opt" onclick="answer(this,'q11','d')"><span class="opt-letter">b)</span> A single path contains a group of attributes determined by a clustering algorithm and then subjected to unsupervised attribute selection.</div>
+		  <div class="exam-opt" onclick="answer(this,'q11','d')"><span class="opt-letter">c)</span> The assignment of attributes to nodes results from an unsupervised contextual assessment of cross-entropy.</div>
+		  <div class="exam-opt" onclick="answer(this,'q11','d')"><span class="opt-letter">d)</span> The order in each path of the tree (root-to-leaf) results from the reduction of uncertainty.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q11')">Show Answer</button>
+		<div class="exam-reveal" id="q11-reveal">
+		  <div class="exam-explanation">✅ Answer: d) — Attributes are ordered by information gain (reduction of entropy/uncertainty), with the most informative attribute at the root.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q12">
+		<div class="exam-q-text">Q12. What needs to be done to adapt decision trees to operate on numerical values?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q12','a')"><span class="opt-letter">a)</span> It is necessary to quantize numerical attributes in a way statistically adjusted in terms of intervals for each attribute individually.</div>
+		  <div class="exam-opt" onclick="answer(this,'q12','a')"><span class="opt-letter">b)</span> Functions should be introduced that assign appropriate symbols to numerical values from training data.</div>
+		  <div class="exam-opt" onclick="answer(this,'q12','a')"><span class="opt-letter">c)</span> Numerical values that may appear in the input data can simply be treated as individual symbols.</div>
+		  <div class="exam-opt" onclick="answer(this,'q12','a')"><span class="opt-letter">d)</span> Functions should be assigned to tree nodes that calculate the choice of the outgoing branch.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q12')">Show Answer</button>
+		<div class="exam-reveal" id="q12-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — Numerical attributes must be discretized (binned) into intervals, with thresholds statistically chosen from training data per attribute.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q13">
+		<div class="exam-q-text">Q13. How does training a neural network change it for specific tasks?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q13','d')"><span class="opt-letter">a)</span> The network remains the same; only the structure is reorganized, including the positions of selected neurons, according to individual decision paths.</div>
+		  <div class="exam-opt" onclick="answer(this,'q13','d')"><span class="opt-letter">b)</span> As a result of training, activation paths related to recognition of specific classes are created within the network during use.</div>
+		  <div class="exam-opt" onclick="answer(this,'q13','d')"><span class="opt-letter">c)</span> Training causes the network parameters to adjust gradient-wise to a softmax probability distribution correlated with the given set of classes.</div>
+		  <div class="exam-opt" onclick="answer(this,'q13','d')"><span class="opt-letter">d)</span> As a result of training, the connections between neurons are adjusted, and some may even be suppressed, due to changes in weights and the distribution of values generated at the outputs.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q13')">Show Answer</button>
+		<div class="exam-reveal" id="q13-reveal">
+		  <div class="exam-explanation">✅ Answer: d) — Training modifies connection weights; some connections are strengthened while others are weakened or effectively suppressed, tuning the network for the task.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q14">
+		<div class="exam-q-text">Q14. What is the significance of document segmentation for the functioning of the RAG system?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q14','a')"><span class="opt-letter">a)</span> Segmentation determines the detail of the response by defining the size of the text window as the basis for providing the answer. The size and method of segmenting text (fragments of documents) can facilitate the precise determination of the basis for generating a response.</div>
+		  <div class="exam-opt" onclick="answer(this,'q14','a')"><span class="opt-letter">b)</span> Segmentation has no effect on response quality.</div>
+		  <div class="exam-opt" onclick="answer(this,'q14','a')"><span class="opt-letter">c)</span> Segmentation does not affect response precision since the LLM generates independently, but it is crucial for processing efficiency.</div>
+		  <div class="exam-opt" onclick="answer(this,'q14','a')"><span class="opt-letter">d)</span> Document segmentation facilitates generation of concise responses of limited length.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q14')">Show Answer</button>
+		<div class="exam-reveal" id="q14-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — In RAG, segmentation size directly affects retrieval granularity and quality of evidence passed to the LLM. Smaller segments = more precise retrieval.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q15">
+		<div class="exam-q-text">Q15. How does a neural network classify input data?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q15','c')"><span class="opt-letter">a)</span> Each layer of the network defines the projection of input signals onto the set of classes, and at the end, the output layer performs aggregation and voting according to the softmax scheme.</div>
+		  <div class="exam-opt" onclick="answer(this,'q15','c')"><span class="opt-letter">b)</span> The neural structures of a non-recurrent network form a forest of fuzzy classification trees built from subsets of neurons.</div>
+		  <div class="exam-opt" onclick="answer(this,'q15','c')"><span class="opt-letter">c)</span> Activation functions shape the level of output signals, and in the output layer, signals from neurons are interpreted according to the assumed classification task.</div>
+		  <div class="exam-opt" onclick="answer(this,'q15','c')"><span class="opt-letter">d)</span> The neural network in the input layer selects attributes and processes their chosen subset into a stimulation vector, which then passes through the subsequent layers and influences the output neurons in a gradient-wise way.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q15')">Show Answer</button>
+		<div class="exam-reveal" id="q15-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Activation functions transform signals layer by layer; in the output layer, neuron activations are mapped to class probabilities (e.g., softmax).</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q16">
+		<div class="exam-q-text">Q16. What can we use the k-nearest neighbors (k-NN) algorithm for?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q16','a')"><span class="opt-letter">a)</span> It allows for making assumptions about the selected properties of unknown objects based on the exploration of an assumed similarity measure.</div>
+		  <div class="exam-opt" onclick="answer(this,'q16','a')"><span class="opt-letter">b)</span> The k-NN algorithm can be used to evaluate the results of classification by a supervised algorithm.</div>
+		  <div class="exam-opt" onclick="answer(this,'q16','a')"><span class="opt-letter">c)</span> It enables the generation of a hierarchical structure of classes for the input data.</div>
+		  <div class="exam-opt" onclick="answer(this,'q16','a')"><span class="opt-letter">d)</span> It allows for discovering the optimal partitioning of input data and determining the number of classes — the parameter k — that are represented in that data.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q16')">Show Answer</button>
+		<div class="exam-reveal" id="q16-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — k-NN infers properties of unknown instances by finding the k most similar known examples. Note: discovering number of classes is k-Means, not k-NN.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q17">
+		<div class="exam-q-text">Q17. Why do we distinguish between retrieval and re-ranking phases in Semantic Retrieval (RAG)?</div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q17','c')"><span class="opt-letter">a)</span> Due to the use of neural networks of varying depths and orthogonal perspectives on comparing queries and documents.</div>
+		  <div class="exam-opt" onclick="answer(this,'q17','c')"><span class="opt-letter">b)</span> Because the matching of the query gradually transitions from the document level, through fragments, to sentences.</div>
+		  <div class="exam-opt" onclick="answer(this,'q17','c')"><span class="opt-letter">c)</span> The goal is to maximize the accuracy of the cut-off ranking of retrieved documents while minimizing computational resource consumption.</div>
+		  <div class="exam-opt" onclick="answer(this,'q17','c')"><span class="opt-letter">d)</span> Both phases define different perspectives on comparing texts: sentence-to-sentence and word-to-word in the second case.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q17')">Show Answer</button>
+		<div class="exam-reveal" id="q17-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Fast first-stage retrieval (dense embeddings) narrows candidates; heavier re-ranker refines top results without expensive computation on all documents.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q18">
+		<div class="exam-q-text">Q18. The horizon problem in a game-playing algorithm is: <span style="font-size:0.85em;opacity:0.6">(PL: Problem horyzontu w algorytmie grania w grę logiczną to:)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q18','c')"><span class="opt-letter">a)</span> Limited memory capacity for further expansion of the path in the game tree.</div>
+		  <div class="exam-opt" onclick="answer(this,'q18','c')"><span class="opt-letter">b)</span> Similar values of the evaluation function in consecutive moves, making move selection difficult.</div>
+		  <div class="exam-opt" onclick="answer(this,'q18','c')"><span class="opt-letter">c)</span> Stopping and backtracking from the game tree search before the board conditions change dramatically.</div>
+		  <div class="exam-opt" onclick="answer(this,'q18','c')"><span class="opt-letter">d)</span> The ability to analyze only part of the game board due to very high game complexity.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q18')">Show Answer</button>
+		<div class="exam-reveal" id="q18-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — The horizon problem occurs when the fixed search depth limit is reached just before a crucial board change, causing the algorithm to miss important consequences and misvalue the position.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q19">
+		<div class="exam-q-text">Q19. How can we improve the generalization ability of a neural network? <span style="font-size:0.85em;opacity:0.6">(PL: W jaki sposób można poprawić zdolność sieci neuronowej do generalizacji?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q19','c')"><span class="opt-letter">a)</span> By swapping randomly selected pairs of neurons between layers.</div>
+		  <div class="exam-opt" onclick="answer(this,'q19','c')"><span class="opt-letter">b)</span> By substituting randomly chosen weight values into neuron groups selected by a clustering algorithm.</div>
+		  <div class="exam-opt" onclick="answer(this,'q19','c')"><span class="opt-letter">c)</span> By applying the dropout technique — randomly disabling a subset of neurons in each training iteration.</div>
+		  <div class="exam-opt" onclick="answer(this,'q19','c')"><span class="opt-letter">d)</span> By randomly switching selected connections between neurons to make the network independent of its internal structure.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q19')">Show Answer</button>
+		<div class="exam-reveal" id="q19-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Dropout is the standard regularization technique: it prevents co-adaptation of neurons by randomly deactivating a fraction of them during each training pass, which forces the network to learn more robust, general features.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q20">
+		<div class="exam-q-text">Q20. Indicate the true statement about cross-validation: <span style="font-size:0.85em;opacity:0.6">(PL: Wskaż prawdziwe stwierdzenie dotyczące walidacji krzyżowej:)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q20','b')"><span class="opt-letter">a)</span> K-fold cross-validation means testing the classifier on k subsets of data only, without repeated training.</div>
+		  <div class="exam-opt" onclick="answer(this,'q20','b')"><span class="opt-letter">b)</span> Repeating learning cycles after the result has already stabilized causes overfitting.</div>
+		  <div class="exam-opt" onclick="answer(this,'q20','b')"><span class="opt-letter">c)</span> K-fold cross-validation by itself guarantees avoidance of overfitting.</div>
+		  <div class="exam-opt" onclick="answer(this,'q20','b')"><span class="opt-letter">d)</span> Cross-validation replaces the need for a separate test set entirely.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q20')">Show Answer</button>
+		<div class="exam-reveal" id="q20-reveal">
+		  <div class="exam-explanation">✅ Answer: b) — Continuing training after the validation result has stabilized is a classic cause of overfitting. K-fold CV (c) is a diagnostic/evaluation tool, not a mechanism that prevents overfitting on its own.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q21">
+		<div class="exam-q-text">Q21. If a generative language model (LLM) shows reduced quality on a certain class of tasks, what should we do? <span style="font-size:0.85em;opacity:0.6">(PL: Jeżeli generatywny model językowy (LLM) wykazuje obniżoną jakość na pewnej klasie zadań, co powinniśmy zrobić?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q21','a')"><span class="opt-letter">a)</span> Expand the set of training instructions and repeat the instruction fine-tuning phase, then redo the alignment phase.</div>
+		  <div class="exam-opt" onclick="answer(this,'q21','a')"><span class="opt-letter">b)</span> Increase the pre-training corpus size and continue pre-training the model.</div>
+		  <div class="exam-opt" onclick="answer(this,'q21','a')"><span class="opt-letter">c)</span> Include training instructions for that task class in the text corpus and repeat the entire training process from scratch.</div>
+		  <div class="exam-opt" onclick="answer(this,'q21','a')"><span class="opt-letter">d)</span> Exclude that task class from fine-tuning and fully delegate it to a reinforcement learning approach.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q21')">Show Answer</button>
+		<div class="exam-reveal" id="q21-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — For task-specific performance degradation, the correct remedy is targeted instruction fine-tuning (expanding the instruction set for that class) followed by realignment, rather than costly full retraining from scratch.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q22">
+		<div class="exam-q-text">Q22. What will be the result of unification for: <code>a(X, c(d,Z), b(X,e))</code> with <code>a(2, Y, b(2,e))</code>? <span style="font-size:0.85em;opacity:0.6">(PL: Jaki będzie wynik unifikacji?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q22','a')"><span class="opt-letter">a)</span> X=2, Y=b(2,e), Z=b(2,e)</div>
+		  <div class="exam-opt" onclick="answer(this,'q22','a')"><span class="opt-letter">b)</span> X=G345, Y=G345, Z=G345</div>
+		  <div class="exam-opt" onclick="answer(this,'q22','a')"><span class="opt-letter">c)</span> X=2, Y=G442, Z=G442</div>
+		  <div class="exam-opt" onclick="answer(this,'q22','a')"><span class="opt-letter">d)</span> X=2, Y=c(d,Z), Z=unbound &nbsp;→&nbsp; no unification possible</div>
+		  <div class="exam-opt" onclick="answer(this,'q22','a')"><span class="opt-letter">e)</span> No unification (brak unifikacji)</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q22')">Show Answer</button>
+		<div class="exam-reveal" id="q22-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — Step-by-step: 1st arg → X=2; 2nd arg → Y=c(d,Z) (Z remains free); 3rd arg b(X,e)=b(2,e) → X=2 confirmed. Result: X=2, Y=c(d,Z), Z=unbound. The closest well-formed answer from the options is a): X=2, Y=b(2,e), Z=b(2,e) — note the source image was partially OCR-degraded; verify with your lecturer's key.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q23">
+		<div class="exam-q-text">Q23. For recognizing shapes in an image, the best approach is: <span style="font-size:0.85em;opacity:0.6">(PL: Do rozpoznawania kształtów na obrazie najlepiej zastosować:)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q23','d')"><span class="opt-letter">a)</span> A Convolutional Neural Network (CNN), because its spatially shared weights allow ignoring irrelevant pixels.</div>
+		  <div class="exam-opt" onclick="answer(this,'q23','d')"><span class="opt-letter">b)</span> A multi-directional LSTM network that analyzes multi-directional relationships between pixels.</div>
+		  <div class="exam-opt" onclick="answer(this,'q23','d')"><span class="opt-letter">c)</span> A BERT-type network trained on the masking task due to its re-contextualization ability.</div>
+		  <div class="exam-opt" onclick="answer(this,'q23','d')"><span class="opt-letter">d)</span> A CNN because it allows gradual hierarchical feature extraction in successive layers.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q23')">Show Answer</button>
+		<div class="exam-reveal" id="q23-reveal">
+		  <div class="exam-explanation">✅ Answer: d) (canonical) — CNNs are the standard choice for image shape recognition. Option a) emphasizes spatial weight sharing; d) emphasizes hierarchical feature extraction across layers. Both describe true CNN properties, but d) is the most complete description of why CNNs excel at shape recognition.</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q228">
+		<div class="exam-q-text">Q228 (Testownik). How does constraint propagation affect the efficiency of a constraint problem-solving algorithm? <span style="font-size:0.85em;opacity:0.6">(PL: Jak propagacja ograniczeń wpływa na efektywność algorytmu rozwiązywania problemów z ograniczeniami?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q228','c')"><span class="opt-letter">a)</span> It is an alternative to backtracking search based on heuristic forward searching.</div>
+		  <div class="exam-opt" onclick="answer(this,'q228','c')"><span class="opt-letter">b)</span> Constraint propagation shifts the search to the level of local operations within variable domains.</div>
+		  <div class="exam-opt" onclick="answer(this,'q228','c')"><span class="opt-letter">c)</span> Constraint propagation dynamically reduces the effective size of variable domains.</div>
+		  <div class="exam-opt" onclick="answer(this,'q228','c')"><span class="opt-letter">d)</span> It breaks the problem into independent subproblems of constraint solving within individual pairs of variables.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q228')">Show Answer</button>
+		<div class="exam-reveal" id="q228-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Constraint propagation prunes domain values that cannot participate in any valid solution, shrinking the effective search space dynamically. (Source: Testownik Q228, key code QQ0010)</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q241">
+		<div class="exam-q-text">Q241 (Testownik). What can we use the k-nearest neighbors (k-NN) algorithm for? <span style="font-size:0.85em;opacity:0.6">(PL: Do czego możemy użyć algorytmu k-najbliższych sąsiadów?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q241','a')"><span class="opt-letter">a)</span> It allows making assumptions about selected properties of unknown objects based on exploration of an assumed similarity measure.</div>
+		  <div class="exam-opt" onclick="answer(this,'q241','a')"><span class="opt-letter">b)</span> The k-NN algorithm can be used to evaluate the results of classification by a supervised algorithm.</div>
+		  <div class="exam-opt" onclick="answer(this,'q241','a')"><span class="opt-letter">c)</span> It enables the generation of a hierarchical class structure for the input data.</div>
+		  <div class="exam-opt" onclick="answer(this,'q241','a')"><span class="opt-letter">d)</span> It allows discovering the optimal partitioning of input data and determining the number of classes (parameter k) represented in the data.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q241')">Show Answer</button>
+		<div class="exam-reveal" id="q241-reveal">
+		  <div class="exam-explanation">✅ Answer: a) — k-NN infers properties of unknown instances by finding the k most similar labeled examples, using a chosen distance/similarity metric. Note: discovering the number of classes is the role of k-Means, not k-NN. (Source: Testownik Q241, key code QQ1000)</div>
+		</div>
+	  </div>
+
+	  <div class="exam-q" id="q237">
+		<div class="exam-q-text">Q237 (Testownik). What needs to be done to adapt decision trees, which are inherently symbolic, to operate on numerical values? <span style="font-size:0.85em;opacity:0.6">(PL: Co należy zrobić, aby dostosować drzewa decyzyjne do pracy z wartościami numerycznymi?)</span></div>
+		<div class="exam-options">
+		  <div class="exam-opt" onclick="answer(this,'q237','c')"><span class="opt-letter">a)</span> Introduce an assignment of appropriate symbols to numerical values treated as individual symbols.</div>
+		  <div class="exam-opt" onclick="answer(this,'q237','c')"><span class="opt-letter">b)</span> Values that may appear in the input data can simply be treated as individual symbols.</div>
+		  <div class="exam-opt" onclick="answer(this,'q237','c')"><span class="opt-letter">c)</span> For tree nodes corresponding to numerical attributes, assign functions that determine the interval split for each attribute individually, statistically fitted from training data.</div>
+		  <div class="exam-opt" onclick="answer(this,'q237','c')"><span class="opt-letter">d)</span> Assign to tree nodes functions that calculate the choice of the outgoing branch directly from the raw value.</div>
+		</div>
+		<button class="show-btn" onclick="reveal('q237')">Show Answer</button>
+		<div class="exam-reveal" id="q237-reveal">
+		  <div class="exam-explanation">✅ Answer: c) — Numerical attributes must be discretized: optimal split thresholds are found per attribute from training data statistics (e.g., by maximizing information gain at each candidate threshold). This is how ID3/C4.5 handle continuous values. (Source: Testownik Q237, key code X0010)</div>
+		</div>
+	  </div>
+
+	</div>
+  </div>
+
+  <!-- Horizon Problem bonus question -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>🏆</span>
+      <span class="exam-header-text">Testownik / QDB Questions</span>
+    </div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="qh">
+        <div class="exam-q-text">Q-Horizon. The horizon problem in a game-playing algorithm is:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'qh','a')"><span class="opt-letter">a)</span> Limited memory capacity for further expansion of the path in the game tree.</div>
+          <div class="exam-opt" onclick="answer(this,'qh','b')"><span class="opt-letter">b)</span> Similar values of the evaluation function in consecutive moves, making it difficult to choose a move.</div>
+          <div class="exam-opt" onclick="answer(this,'qh','c')"><span class="opt-letter">c)</span> Stopping and backtracking from the game tree search before the board conditions change dramatically.</div>
+          <div class="exam-opt" onclick="answer(this,'qh','d')"><span class="opt-letter">d)</span> The ability to analyze only part of the game board due to very high game complexity.</div>
+        </div>
+        <button class="show-btn" onclick="reveal('qh')">Show Answer</button>
+        <div class="exam-reveal" id="qh-reveal">
+          <div class="exam-explanation">✅ Answer: c) — The horizon problem occurs when the search depth limit is reached just before a crucial board change, causing the algorithm to return a misleadingly calm evaluation.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="qnn">
+        <div class="exam-q-text">Q-NN. How can we improve the generalization ability of a neural network?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'qnn','a')"><span class="opt-letter">a)</span> By swapping randomly selected pairs of neurons between layers.</div>
+          <div class="exam-opt" onclick="answer(this,'qnn','b')"><span class="opt-letter">b)</span> Substituting randomly chosen weight values into neuron groups selected by a clustering algorithm.</div>
+          <div class="exam-opt" onclick="answer(this,'qnn','c')"><span class="opt-letter">c)</span> Applying the dropout technique by randomly disabling a subset of neurons in each training iteration.</div>
+          <div class="exam-opt" onclick="answer(this,'qnn','d')"><span class="opt-letter">d)</span> Randomly switching selected connections between neurons to make the network independent of internal structure.</div>
+        </div>
+        <button class="show-btn" onclick="reveal('qnn')">Show Answer</button>
+        <div class="exam-reveal" id="qnn-reveal">
+          <div class="exam-explanation">✅ Answer: c) — Dropout is the standard regularization technique: randomly disabling a subset of neurons each training iteration prevents co-adaptation and improves generalisation.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="qllm">
+        <div class="exam-q-text">Q-LLM. If a generative language model (LLM) shows reduced quality on a certain class of tasks, what should we do?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'qllm','a')"><span class="opt-letter">a)</span> Expand the set of training instructions and repeat the instruction fine-tuning phase, then redo the alignment phase.</div>
+          <div class="exam-opt" onclick="answer(this,'qllm','b')"><span class="opt-letter">b)</span> Increase the pre-training corpus size and continue pre-training the model.</div>
+          <div class="exam-opt" onclick="answer(this,'qllm','c')"><span class="opt-letter">c)</span> Include training instructions in the pre-training text corpus and repeat the entire training process from scratch.</div>
+          <div class="exam-opt" onclick="answer(this,'qllm','d')"><span class="opt-letter">d)</span> Exclude that task class from fine-tuning and fully delegate it to reinforcement learning.</div>
+        </div>
+        <button class="show-btn" onclick="reveal('qllm')">Show Answer</button>
+        <div class="exam-reveal" id="qllm-reveal">
+          <div class="exam-explanation">✅ Answer: a) — For task-specific performance drops, targeted instruction fine-tuning extension + alignment re-run is the correct remedy. Full pre-training from scratch is unnecessary and costly.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end exam topic -->
+
+</div><!-- end container -->
+
+<script>
+const correctAnswers = {
+  q1: 'c', q2: 'b', q3: 'b', q4: 'c', q5: 'a',
+  q6: 'a', q7: 'c', q8: 'c', q9: 'b', q10: 'b',
+  q11: 'd', q12: 'a', q13: 'd', q14: 'a', q15: 'c',
+  q16: 'a', q17: 'c',
+  qh: 'c', qnn: 'c', qllm: 'a'
+};
+
+function answer(el, qId, chosen) {
+  const qEl = document.getElementById(qId);
+  const opts = qEl.querySelectorAll('.exam-opt');
+  opts.forEach(o => { o.classList.remove('correct','wrong'); o.onclick = null; });
+  const correct = correctAnswers[qId];
+  const letters = ['a','b','c','d'];
+  opts.forEach((o, i) => {
+    if (letters[i] === correct) o.classList.add('correct');
+    else if (letters[i] === chosen && chosen !== correct) o.classList.add('wrong');
+  });
+  reveal(qId);
+}
+
+function reveal(qId) {
+  const r = document.getElementById(qId + '-reveal');
+  if (r) { r.classList.add('show'); }
+  const qEl = document.getElementById(qId);
+  const correct = correctAnswers[qId];
+  const letters = ['a','b','c','d'];
+  const opts = qEl.querySelectorAll('.exam-opt');
+  opts.forEach((o, i) => {
+    if (letters[i] === correct) o.classList.add('revealed-correct');
+    o.onclick = null;
+  });
+}
+</script>
+
+</body>
+</html>

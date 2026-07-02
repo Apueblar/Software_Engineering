@@ -1,0 +1,104 @@
+Grading Rubric — Assignment 1 (AI&KE)
+Total: 100 points (code) + report assessment.
+
+Task 1 — Shortest Path A → B (70 pts)
+1a. Dijkstra — travel time criterion t (10 pts)
+Points	Requirement
+4	Dijkstra's algorithm correctly finds the shortest route by travel time for basic cases (direct connection, 1 transfer).
+2	Correct GTFS data handling: graph construction from stop_times.txt, mapping stations to platforms (parent_station), filtering trips by calendar.txt (day of week + date range).
+2	Correct time handling: waiting for a train is included in the cost, dwell times at stops (departure_time ≠ arrival_time), post-midnight times (24:xx:xx).
+2	Correct output format: stdout contains successive segments (start stop, end stop, line name, departure time, arrival time); stderr contains the optimized criterion value and computation time.
+1b. A* — travel time criterion t (25 pts)
+Points	Requirement
+8	A* correctly finds the optimal route (identical to Dijkstra) by travel time.
+7	The heuristic is admissible: h(n) ≤ h*(n) for every node. The student can explain why the chosen heuristic never overestimates the true cost (e.g., Haversine / v_max with v_max ≥ maximum speed in the network).
+5	A explores fewer nodes than Dijkstra (measured and demonstrated in the report or on stderr). If A explores the same number of nodes as Dijkstra, the heuristic is trivial (h=0) — fewer points awarded.
+5	Correct handling of edge cases: calendar_dates.txt (holiday exceptions), pickup_type=1 (no boarding), no-solution scenario (algorithm terminates correctly).
+1c. A* — transfer minimization criterion p (25 pts)
+Points	Requirement
+8	A* correctly minimizes the number of transfers (not travel time).
+7	The heuristic is admissible for the transfer criterion. The student understands that a distance-based heuristic (Haversine/Euclidean) is not admissible for this criterion and uses an appropriate alternative (e.g., h=0, line-graph-based heuristic).
+5	The cost function g(n) correctly counts transfers: changing lines at a station = +1 transfer, continuing on the same line = +0.
+5	Correct results for routes requiring multiple transfers (≥2) and for routes with a direct connection (0 transfers).
+1d. A* modifications (10 pts)
+Points	Requirement
+5	The proposed modification is reasonable and correctly implemented (e.g., bidirectional A*, better data structures, improved heuristic, pruning, landmark-based heuristics).
+3	Experimental comparison with baseline A* — demonstrated improvement in computation time or solution quality (with concrete numbers/charts).
+2	Description of the modification in the report: what was changed, why, and what effect it had.
+Task 2 — TSP: Tabu Search (30 pts)
+2a. Basic Tabu Search, unbounded T (10 pts)
+Points	Requirement
+4	The Tabu Search algorithm correctly explores the TSP solution space and returns a route visiting all stops in list L and returning to A.
+2	Correct neighbourhood definition (swap, 2-opt, or insert) — the neighbourhood generates valid permutations.
+2	The Tabu list correctly blocks revisits. Storing moves (rather than full solutions) is preferred but not required.
+2	Correct cost evaluation: time/transfers are computed using the timetable (time-dependent), not Euclidean distance.
+2b. Variable T size (5 pts)
+Points	Requirement
+2	The Tabu list size is parameterized and depends on the length of L (e.g., `	T	∈ [√n, n]`).
+2	Experimental comparison of at least 3 values of `	T	` — demonstrating the impact on solution quality and computation time.
+1	Description in the report: how T was chosen, the effect, and conclusions.
+2c. Aspiration criterion (5 pts)
+Points	Requirement
+2	Aspiration is correctly implemented — allows selecting a neighbour from the Tabu list if it is better than the best solution found so far.
+2	Aspiration actually activates in the tested scenarios (the student can demonstrate this via logging or by counting activations).
+1	Comparison of results with vs. without Aspiration — the result with Aspiration is no worse.
+2d. Neighbourhood sampling (10 pts)
+Points	Requirement
+4	A sampling strategy is implemented (random, first-improvement, deterministic, or adaptive).
+3	Experimental comparison: computation time with full neighbourhood scan vs. sampling (demonstrated speedup).
+3	Solution quality with sampling is not dramatically worse than with full scan (demonstrated experimentally).
+Report
+The report is mandatory and must be submitted at least 24 hours before the code submission deadline.
+
+Required contents
+Section	Description	Notes
+Theoretical background	Description of the algorithms used (Dijkstra, A*, Tabu Search) — how they work, computational complexity, optimality conditions.	Do not copy definitions from the assignment — describe in your own words, show that you understand the concepts.
+Heuristic design for A*	Which heuristics were used for criterion t and p? Why these and not others? How were parameters determined (e.g., v_max)? Why is the heuristic admissible?	Key section. You should justify why a distance-based heuristic works for time but not for transfers. Bonus: comparison of multiple heuristics.
+Graph construction	How was the graph built from GTFS data? How were platforms (parent_station), post-midnight times, pickup_type, and calendar filtering handled?	Describe your design decisions — e.g., whether nodes are platforms or stations, how transfers are modelled.
+Tabu Search parameters	How was the neighbourhood chosen (swap/2-opt/insert)? How was the Tabu list size set? How was Aspiration implemented? How does sampling work?	Justify your choices — e.g., "I chose swap because for n=6 it gives C(6,2)=15 neighbours, which is fully searchable."
+Usage examples	At least 2 examples of running the program with full input and output (stdout + stderr).	Show diverse scenarios: direct connection, transfer, criterion t and p.
+Experimental comparisons	Tables or charts comparing algorithm variants: (1) A* vs. Dijkstra — number of visited nodes, time; (2) Tabu with different T — quality, time; (3) with/without Aspiration; (4) full scan vs. sampling.	Without experimental comparisons, points for modifications (1d, 2b, 2c, 2d) are significantly reduced.
+Libraries used	List of libraries with a brief description of each one's role.	 
+Problems encountered	Description of problems and how they were solved (e.g., times > 24:00, UTF-8 encoding, performance).	Honesty is valued — describing a problem and its workaround is better than pretending everything worked from the start.
+Guidelines for the "Heuristic design" section
+Your report should answer the following questions:
+
+For A* with travel time criterion (t):
+
+Which distance function did you use (Haversine, Euclidean, Manhattan)?
+How do you convert distance to time (what v_max and how was it determined)?
+Is the heuristic admissible — why? (Formal justification: h(n) ≤ h*(n))
+How many fewer nodes does A* explore compared to Dijkstra? How does this depend on v_max?
+For A* with transfer criterion (p):
+
+Why is a distance-based heuristic not admissible for this criterion?
+What heuristic did you use instead (h=0, line graph, other)?
+If h=0 — does this mean A* = Dijkstra? Did you try a better heuristic?
+For Tabu Search:
+
+Which neighbourhood did you choose and why?
+How did you set the Tabu list size — constant, dependent on n, experimentally?
+When does Aspiration activate in your tests? How many times?
+What sampling strategy did you use and how did it affect time/quality?
+A well-written heuristic design section can compensate for minor implementation shortcomings — it demonstrates understanding of the algorithm even if the code is not perfect.
+
+Penalties
+Penalty	Condition
+-5 pts	The program does not compile / does not run without modifications.
+-5 pts	Missing calendar.txt support — the algorithm does not filter trips by date/day of week.
+-3 pts	Missing calendar_dates.txt support — the algorithm ignores holiday exceptions.
+-3 pts	Missing parent_station support — multi-platform stations are treated as separate, unrelated stops.
+-3 pts	Missing post-midnight time support (24:xx:xx in stop_times.txt).
+-2 pts	Missing pickup_type=1 support (no boarding at terminal stops).
+-2 pts	Incorrect output format (missing required information on stdout/stderr).
+up to -10 pts	Report submitted late or incomplete (per grading rules) or student showing lack of understanding of the provided solutions/theoretical background.
+FAQ
+Q: Must A* return the same result as Dijkstra? Yes. With an admissible heuristic, A* guarantees optimality — the result should be identical to Dijkstra's. If it differs, the heuristic is inadmissible or there is a bug in the implementation.
+
+Q: Can I use h=0 as the A* heuristic? Yes, but then A* = Dijkstra and you will not receive points for "fewer explored nodes" (1b). For criterion p, this is an acceptable solution.
+
+Q: How should travel time be calculated — from the start time to arrival, or only time spent on trains? Travel time = time from the start moment (given as input) to the moment of reaching the destination station. It includes waiting for the train, travel time on trains, and waiting time during transfers.
+
+Q: What if there is no connection? The algorithm should terminate correctly and report that no solution was found (it must not loop forever).
+
+Q: In Task 2 (TSP), must I return to the starting station? Yes — the route must visit all stops in list L and return to A.
