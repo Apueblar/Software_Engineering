@@ -1,0 +1,25 @@
+-> Checkpoint 1: Verify networking
+# SSH into the instance
+ssh -i ~/.ssh/labsuser.pem ec2-user@<public_ip>
+# From inside the instance, test internet access
+curl -I https://example.com
+
+-> Checkpoint 2: Verify backend
+# Watch the log
+sudo tail -f /var/log/user_data.log
+# Check service status
+sudo systemctl status backend
+# Test from the internet
+curl http://<public_ip>:5000/chat/all?username=test
+
+-> Checkpoint 3: Verify frontend
+sudo systemctl status frontend
+# Then open in browser:
+# http://<public_ip>:3000
+
+-> Verify after reboot
+sudo reboot
+# Wait ~1 minute, then:
+ssh -i ~/.ssh/labsuser.pem ec2-user@<public_ip>
+sudo systemctl status backend frontend
+# Both should show: active (running)

@@ -1,0 +1,82 @@
+### Question 1
+
+A startup expects unpredictable traffic spikes: a viral marketing campaign may multiply traffic tenfold overnight. Which hosting model best matches this requirement?
+
+* A. VPS — predictable monthly pricing simplifies budgeting for scaling events.
+* B. **Cloud — on-demand scaling and pay-per-use pricing accommodate sudden spikes without pre-provisioned capacity.**
+* C. On-premises servers — full hardware control guarantees maximum throughput during traffic peaks.
+
+### Question 2
+
+A data analytics pipeline running on multiple EC2 instances needs to read the same large dataset concurrently from all instances simultaneously. Which storage service should the team use?
+
+* A. **Amazon S3 — object storage accessible by any number of EC2 instances simultaneously via a web service API.**
+* B. Amazon EBS — block storage volumes that can be mounted by multiple EC2 instances at the same time for shared read access.
+* C. Amazon EBS Multi-Attach — allows an unlimited number of instances to concurrently read and write the same EBS volume.
+
+### Question 3
+
+A team wants a lighter, faster alternative to virtual machines for packaging and running their microservices. What is the key technical difference that makes Docker containers lighter than VMs?
+
+* A. Containers emulate hardware using a hypervisor, avoiding the need for a full guest operating system.
+* B. Containers run only on Linux and therefore consume fewer host resources than Windows-based VMs.
+* C. **Containers share the host OS kernel and do not run a full guest operating system, making them lighter and faster to start than VMs.**
+
+### Question 4
+
+A Dockerfile must copy a compiled JAR file into the image at /app/service.jar and set /app as the working directory for all subsequent instructions. Which pair of Dockerfile instructions is correct?
+
+* A. RUN cp service.jar /app/service.jar
+CMD cd /app
+* B. COPY service.jar /app/service.jar
+WORKDIR /app
+* C. ADD service.jar
+ENV WORKDIR=/app
+
+### Question 5
+
+An EC2 instance in a private subnet needs to download software updates from the internet, but must not be directly reachable from the internet. Which component enables outbound-only internet access for the instance?
+
+* A. **A NAT Gateway placed in a public subnet, with the private subnet's route table directing outbound internet traffic to it.**
+* B. A VPC Peering connection to a separate VPC that has internet access.
+* C. An Internet Gateway attached directly to the private subnet's route table.
+
+### Question 6
+
+A team wants to review exactly which resources will be changed with a new version of Terraform files - without making any actual changes. How to do it?
+
+* A. terraform validate - validates changes and display summary without changing resources.
+* B. **terraform plan - displays a proposed change set without modifying resources.**
+* C. terraform apply --dry-run - executes simulation mode without modifying resources.
+
+### Question 7
+
+A batch job runs 200 ECS tasks for 30 minutes each night, then drops to zero for the rest of the day. Which launch type minimizes cost?
+
+* A. EC2 Reserved Instances — predictable nightly schedule justifies a 1-year reservation.
+* B. EC2 On-Demand — avoids reservation commitment with no cost penalty for burst patterns.
+* C. **ECS Fargate — billing starts when tasks start and stops when they stop; no idle EC2 cost accumulates.**
+
+### Question 8
+
+A team packages a Vite frontend and a Spring Boot backend in one ECS task definition. Every backend code change triggers a redeployment that restarts both containers. What is the root cause?
+
+* A. Fargate requires all containers in a task to use the same image tag to prevent version mismatches.
+* B. **Updating either container image creates a new task definition revision; the ECS service replaces all running tasks with the new revision, including the unchanged container.**
+* C. ECS health checks restart all containers in a task whenever any container is replaced.
+
+### Question 9
+
+An ALB listener on port 80 must send /api/* requests to a backend target group and all other requests to a frontend target group. What is the correct configuration?
+
+* A. **One explicit rule at priority 10 for /api/* -> backend; default listener action -> frontend.**
+* B. Two listener rules: one at priority 10 for /api/* -> backend; one at priority 20 for /* -> frontend.
+* C. One weighted routing rule splitting all traffic 50/50 between the two target groups.
+
+### Question 10
+
+An ECS Fargate task pulls its image from ECR and, at runtime, calls the DynamoDB API. Which IAM role (task role, task execution role) governs each operation?
+
+* A. The task role governs both — it covers all outbound AWS API calls from the task.
+* B. Both roles are interchangeable — either can be used for either operation.
+* C. **The task execution role governs the ECR image pull; the task role governs the DynamoDB API call.**

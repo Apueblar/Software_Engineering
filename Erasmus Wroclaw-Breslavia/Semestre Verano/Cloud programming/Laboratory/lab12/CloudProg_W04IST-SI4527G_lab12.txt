@@ -1,0 +1,10 @@
+This assigment does not use separate repository. Use the previous GitHub repository.
+Configure CloudWatch to monitor the CPU load and memory usage of all containers running in your application.
+Configure CloudWatch to send e-mail, when the CPU load is higher than a particular value.
+Configure CloudWatch to send e-mail, when all tasks in your account are stopped.
+All changes should be implemented using Terraform file. Configure the threshold value of CPU load as an Input Variable.
+In the README.md file, add a section explaining your configuration.
+Push your solution to GitHub:
+Solution must be committed and pushed to GitHub (no ePortal submission).
+Solution must be committed to the main branch.
+The repository should show progress and contributions of authors. The single commit is unacceptable. 

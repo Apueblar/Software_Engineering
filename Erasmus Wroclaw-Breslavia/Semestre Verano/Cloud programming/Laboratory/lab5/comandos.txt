@@ -1,0 +1,18 @@
+setx AWS_SHARED_CREDENTIALS_FILE "C:\Users\xxxx\Desktop\xxxxxxxx\.aws\credentials"
+
+[change credentials]
+
+terraform version
+
+terraform init
+
+terraform fmt
+terraform validate
+terraform plan -out <name>
+terraform apply <name>
+
+terraform show
+
+terraform destroy
+
+ssh -i key.pem ubuntu@publicIP

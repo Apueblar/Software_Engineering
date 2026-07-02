@@ -1,0 +1,13 @@
+By running the commands:
+> scp -i labsuser.pem labsuser.pem ec2-user@52.204.28.165:~
+Where 52.204.28.165 is the Public IP of Public VM1
+
+We connect by:
+> ssh -i labsuser.pem ec2-user@52.204.28.165
+
+Enable permission:
+> chmod 400 labsuser.pem
+
+And by running:
+> ssh -i labsuser.pem ec2-user@10.0.2.153
+Where 10.0.2.153 is the Private IP of Private VM2
