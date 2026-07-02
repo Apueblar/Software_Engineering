@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Infrastructure Management — 100-Question Practice Exam</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SUMMARY BOX ── */
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+/* ── TWO / THREE COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+/* ── INFO CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card ul li strong { color: var(--text); }
+
+/* ── DEFINITION TABLE ── */
+.def-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: 600;
+}
+.def-table td strong { color: var(--text); }
+.def-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── DIAGRAM ── */
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--teal);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--text2);
+}
+
+/* ── EXAM QUESTIONS ── */
+.exam-section {
+  background: var(--surface2);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.exam-header {
+  background: var(--amber-dim);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exam-header-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.exam-body { padding: 14px 18px; }
+.exam-q {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+}
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+.show-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px;
+}
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── SEPARATOR ── */
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── KEY FACTS ── */
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.key-fact {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.key-fact-value {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.key-fact-label {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--sans);
+  font-weight: 600;
+}
+
+/* ── COMPARE GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.compare-col { padding: 16px; }
+.compare-col:first-child { border-right: 1px solid var(--border); }
+.compare-col-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.compare-col ul { list-style: none; }
+.compare-col li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.compare-col li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+
+/* ── WARNING BOX ── */
+.warn-box {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.warn-box strong { color: var(--red); }
+
+/* ── TIP BOX ── */
+.tip-box {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--teal); }
+
+svg text { font-family: 'Syne', sans-serif; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">🖥 IT Infrastructure Management · WUST · W04IST-SI0826G</div>
+  <h1>100-Question Practice Exam</h1>
+  <div class="header-sub">Interactive practice exam covering all 12 topics — click an answer, then reveal the explanation</div>
+  <div class="badges">
+    <span class="badge badge-blue">12 Topics</span>
+    <span class="badge badge-teal">100 Questions</span>
+    <span class="badge badge-amber">Interactive Practice</span>
+    <span class="badge badge-purple">Windows Server 2025</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+<a href="#t1">Windows Server Platform </a>
+<a href="#t2">Domain Environment & Act</a>
+<a href="#t3">User Accounts</a>
+<a href="#t4">File and Folder Permissi</a>
+<a href="#t5">PowerShell Fundamentals</a>
+<a href="#t6">Group Policies</a>
+<a href="#t7">Group Policies</a>
+<a href="#t8">Group Policies</a>
+<a href="#t9">Active Directory in Larg</a>
+<a href="#t10">DNS Server</a>
+<a href="#t11">Certificate Services</a>
+<a href="#t12">Windows Firewall</a>
+</nav>
+
+<div class="container">
+
+<div class="exam-section" id="t1">
+    <div class="exam-header">
+      <span>🖥️</span>
+      <span class="exam-header-text">Topic 01 — Windows Server Platform & Virtualization</span>
+      <span class="badge badge-blue" style="margin-left:auto;">Foundational</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q1">
+        <div class="exam-q-text">1. Which type of hypervisor runs directly on the physical hardware without requiring a host operating system?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','a',true)"><span class="opt-letter">A</span>Type I (bare-metal)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','b',false)"><span class="opt-letter">B</span>Type II (hosted)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','c',false)"><span class="opt-letter">C</span>Containerization</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q1')">Show Answer</button>
+        <div class="exam-reveal" id="q1-exp">
+          <div class="exam-explanation">✅ A. Type I hypervisors (e.g. Hyper-V) run directly on the hardware with no host OS underneath; Type II runs as an application on top of a host OS.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q2">
+        <div class="exam-q-text">2. What is the key difference between containers and virtual machines regarding the operating system?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','a',false)"><span class="opt-letter">A</span>Containers each run a full independent guest OS, while VMs share one OS kernel</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','b',true)"><span class="opt-letter">B</span>Containers share a single OS kernel/image, while each VM requires its own full OS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','c',false)"><span class="opt-letter">C</span>There is no difference; both require a dedicated OS per instance</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q2')">Show Answer</button>
+        <div class="exam-reveal" id="q2-exp">
+          <div class="exam-explanation">✅ B. Containers share the host's kernel and are far lighter weight; each VM carries its own complete guest operating system.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q3">
+        <div class="exam-q-text">3. With Hyper-V enabled, how does a physical CPU core with Intel Hyperthreading appear to the hypervisor?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','a',false)"><span class="opt-letter">A</span>As a single physical core only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','b',true)"><span class="opt-letter">B</span>As two separate Logical Processors</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','c',false)"><span class="opt-letter">C</span>As a virtual NUMA node assignment</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q3')">Show Answer</button>
+        <div class="exam-reveal" id="q3-exp">
+          <div class="exam-explanation">✅ B. Hyperthreading exposes each physical core as two Logical Processors (LPs) to the hypervisor scheduler.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q4">
+        <div class="exam-q-text">4. Which Windows Server installation method allows automated, network-based deployment to many computers without using physical media?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','a',false)"><span class="opt-letter">A</span>DVD installation media</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','b',false)"><span class="opt-letter">B</span>USB installation media</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','c',true)"><span class="opt-letter">C</span>Windows Deployment Services (WDS)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q4')">Show Answer</button>
+        <div class="exam-reveal" id="q4-exp">
+          <div class="exam-explanation">✅ C. WDS deploys images over the network (PXE boot) to many machines at once, removing the need for physical install media.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q5">
+        <div class="exam-q-text">5. What is the minimum RAM required to run (not install) the Core installation of Windows Server 2025?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','a',true)"><span class="opt-letter">A</span>512MB</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','b',false)"><span class="opt-letter">B</span>1024MB</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','c',false)"><span class="opt-letter">C</span>2GB</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q5')">Show Answer</button>
+        <div class="exam-reveal" id="q5-exp">
+          <div class="exam-explanation">✅ A. Server Core can run on as little as 512MB RAM; 1024MB is needed only to perform the installation itself.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q6">
+        <div class="exam-q-text">6. Which cloud service model provides only the underlying virtualized hardware (compute, storage, networking), leaving the OS and everything above it to the customer?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','a',false)"><span class="opt-letter">A</span>SaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','b',false)"><span class="opt-letter">B</span>PaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','c',true)"><span class="opt-letter">C</span>IaaS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q6')">Show Answer</button>
+        <div class="exam-reveal" id="q6-exp">
+          <div class="exam-explanation">✅ C. IaaS hands the customer raw virtualized infrastructure; the customer manages the OS, runtime, and applications themselves.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q7">
+        <div class="exam-q-text">7. Which Windows Server 2025 installation "flavor" is headless, container-only, and supports only a limited set of roles such as DNS or web server?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','a',false)"><span class="opt-letter">A</span>Desktop Experience edition</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','b',false)"><span class="opt-letter">B</span>Server Core edition</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','c',true)"><span class="opt-letter">C</span>Nano Server edition</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q7')">Show Answer</button>
+        <div class="exam-reveal" id="q7-exp">
+          <div class="exam-explanation">✅ C. Nano Server is the smallest, headless, container-focused flavor and only supports a narrow set of roles.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q8">
+        <div class="exam-q-text">8. Which Windows Server 2025 edition is licensed for an unlimited number of Operating System Environments (OSEs)?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','a',false)"><span class="opt-letter">A</span>Standard</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','b',false)"><span class="opt-letter">B</span>Essentials</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','c',true)"><span class="opt-letter">C</span>Datacenter</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q8')">Show Answer</button>
+        <div class="exam-reveal" id="q8-exp">
+          <div class="exam-explanation">✅ C. Datacenter edition is licensed for unlimited OSEs, making it the choice for high-density virtualization hosts.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q9">
+        <div class="exam-q-text">9. What is the primary distinction between a Role and a Feature in Windows Server?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','a',false)"><span class="opt-letter">A</span>A Role is a single capability not exposed to clients, while a Feature is a complex function with dependent services</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','b',true)"><span class="opt-letter">B</span>A Role is a complex function such as DNS or DHCP, while a Feature is typically a single capability like BitLocker</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','c',false)"><span class="opt-letter">C</span>Roles and Features are interchangeable terms for the same concept</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q9')">Show Answer</button>
+        <div class="exam-reveal" id="q9-exp">
+          <div class="exam-explanation">✅ B. A Role (DNS, DHCP, AD DS) is a complex, client-facing function with dependent services; a Feature (BitLocker) is typically a single standalone capability.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t2">
+    <div class="exam-header">
+      <span>🌳</span>
+      <span class="exam-header-text">Topic 02 — Domain Environment & Active Directory Fundamentals</span>
+      <span class="badge badge-blue" style="margin-left:auto;">Core AD</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q10">
+        <div class="exam-q-text">10. In a Workgroup environment, how are user accounts managed?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','a',false)"><span class="opt-letter">A</span>Centrally, via a single domain controller account store</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','b',true)"><span class="opt-letter">B</span>Independently, with separate local accounts per machine</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','c',false)"><span class="opt-letter">C</span>Through an Azure AD tenant account store only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q10')">Show Answer</button>
+        <div class="exam-reveal" id="q10-exp">
+          <div class="exam-explanation">✅ B. A Workgroup has no central authority — every computer keeps its own local accounts independently.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q11">
+        <div class="exam-q-text">11. Which AD physical object acts as the Key Distribution Center (KDC) in the Kerberos authentication flow?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','a',false)"><span class="opt-letter">A</span>The Global Catalog server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','b',true)"><span class="opt-letter">B</span>The Domain Controller</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','c',false)"><span class="opt-letter">C</span>The RODC (read-only DC)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q11')">Show Answer</button>
+        <div class="exam-reveal" id="q11-exp">
+          <div class="exam-explanation">✅ B. The Domain Controller runs the KDC service, issuing the TGT and service tickets used in Kerberos authentication.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q12">
+        <div class="exam-q-text">12. In the Kerberos authentication flow, which exchange occurs immediately after the initial AS_REQ/AS_REP exchange?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','a',false)"><span class="opt-letter">A</span>AP_REQ/AP_REP</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','b',true)"><span class="opt-letter">B</span>TGS_REQ/TGS_REP</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','c',false)"><span class="opt-letter">C</span>LDAP_BIND/LDAP_RESULT</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q12')">Show Answer</button>
+        <div class="exam-reveal" id="q12-exp">
+          <div class="exam-explanation">✅ B. After the client obtains its TGT via AS_REQ/AS_REP, it exchanges TGS_REQ/TGS_REP with the KDC to obtain a service ticket.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q13">
+        <div class="exam-q-text">13. In a multi-domain forest such as nwtrader.msft with child domain asia.nwtrader.msft, what is this hierarchical structure called?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','a',true)"><span class="opt-letter">A</span>A domain tree</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','b',false)"><span class="opt-letter">B</span>A site link</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','c',false)"><span class="opt-letter">C</span>An organizational unit</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q13')">Show Answer</button>
+        <div class="exam-reveal" id="q13-exp">
+          <div class="exam-explanation">✅ A. Parent and child domains sharing a contiguous DNS namespace form a domain tree.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q14">
+        <div class="exam-q-text">14. Which of the following is classified as a logical AD object rather than a physical one?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','a',false)"><span class="opt-letter">A</span>A Domain Controller server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','b',false)"><span class="opt-letter">B</span>The Global Catalog index</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','c',true)"><span class="opt-letter">C</span>An Organizational Unit</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q14')">Show Answer</button>
+        <div class="exam-reveal" id="q14-exp">
+          <div class="exam-explanation">✅ C. OUs are logical containers used for delegation and GPO linking; DCs and GCs are physical server roles.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q15">
+        <div class="exam-q-text">15. Which PowerShell cmdlet is used to promote the very first domain controller in a brand-new forest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','a',false)"><span class="opt-letter">A</span>Install-ADDSDomainController</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','b',true)"><span class="opt-letter">B</span>Install-ADDSForest cmdlet</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','c',false)"><span class="opt-letter">C</span>Install-WindowsFeature AD-DS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q15')">Show Answer</button>
+        <div class="exam-reveal" id="q15-exp">
+          <div class="exam-explanation">✅ B. Install-ADDSForest creates a brand-new forest and promotes the first DC; Install-ADDSDomainController adds an additional DC to an existing domain.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q16">
+        <div class="exam-q-text">16. What is the purpose of the Install From Media (IFM) method when promoting a new domain controller?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','a',false)"><span class="opt-letter">A</span>It encrypts the AD database before it replicates across the network</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','b',true)"><span class="opt-letter">B</span>It seeds a new DC from a local copy instead of full network replication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','c',false)"><span class="opt-letter">C</span>It is required when installing the very first DC in a brand-new forest</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q16')">Show Answer</button>
+        <div class="exam-reveal" id="q16-exp">
+          <div class="exam-explanation">✅ B. IFM lets a new DC be seeded from a local backup copy of the AD database, avoiding a full replication pull over a slow WAN link.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q17">
+        <div class="exam-q-text">17. Given the LDAP Distinguished Name OU=Research,DC=contoso,DC=internal, which naming component is missing that would be needed to uniquely identify a user object within that OU?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','a',false)"><span class="opt-letter">A</span>The DC (domain component)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','b',true)"><span class="opt-letter">B</span>The CN (common name)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','c',false)"><span class="opt-letter">C</span>The RDN of the domain itself</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q17')">Show Answer</button>
+        <div class="exam-reveal" id="q17-exp">
+          <div class="exam-explanation">✅ B. A user object needs a CN (Common Name) component prepended to uniquely identify it within the OU path.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q18">
+        <div class="exam-q-text">18. Which PowerShell cmdlet is the Microsoft-recommended way to create a new Organizational Unit?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','a',false)"><span class="opt-letter">A</span>The legacy dsadd ou command</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','b',true)"><span class="opt-letter">B</span>New-ADOrganizationalUnit</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','c',false)"><span class="opt-letter">C</span>The New-ADUser cmdlet</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q18')">Show Answer</button>
+        <div class="exam-reveal" id="q18-exp">
+          <div class="exam-explanation">✅ B. New-ADOrganizationalUnit is the modern, recommended cmdlet for creating OUs; dsadd is a legacy command-line tool.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t3">
+    <div class="exam-header">
+      <span>👥</span>
+      <span class="exam-header-text">Topic 03 — User Accounts, Computer Accounts & Groups</span>
+      <span class="badge badge-teal" style="margin-left:auto;">Identity</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q19">
+        <div class="exam-q-text">19. Which PowerShell cmdlet is the recommended modern way to create a new domain user account?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','a',false)"><span class="opt-letter">A</span>dsadd user</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','b',true)"><span class="opt-letter">B</span>New-ADUser</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','c',false)"><span class="opt-letter">C</span>Add-Computer</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q19')">Show Answer</button>
+        <div class="exam-reveal" id="q19-exp">
+          <div class="exam-explanation">✅ B. New-ADUser is the modern Active Directory module cmdlet for creating user accounts.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q20">
+        <div class="exam-q-text">20. What happens to a computer's domain account password under normal operation?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','a',false)"><span class="opt-letter">A</span>It never changes once initially set</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','b',true)"><span class="opt-letter">B</span>It changes automatically and regularly</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','c',false)"><span class="opt-letter">C</span>It must be reset by hand every 30 days</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q20')">Show Answer</button>
+        <div class="exam-reveal" id="q20-exp">
+          <div class="exam-explanation">✅ B. Computer account passwords rotate automatically on a regular schedule without administrator intervention.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q21">
+        <div class="exam-q-text">21. A laptop that was reinstalled and rejoined to the domain under the same computer name is now failing to authenticate. What is the most likely cause?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','a',false)"><span class="opt-letter">A</span>The local DNS server is currently offline and unreachable</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','b',true)"><span class="opt-letter">B</span>The reinstall generated a new computer password unknown to the DC</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','c',false)"><span class="opt-letter">C</span>The user's UPN certificate has recently expired</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q21')">Show Answer</button>
+        <div class="exam-reveal" id="q21-exp">
+          <div class="exam-explanation">✅ B. A reinstall generates a brand-new machine secret; the DC still expects the old password, so secure-channel authentication breaks.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q22">
+        <div class="exam-q-text">22. Excessive time difference between a client computer and the domain controller most directly breaks which authentication protocol?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','a',false)"><span class="opt-letter">A</span>NTLM authentication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','b',true)"><span class="opt-letter">B</span>Kerberos authentication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','c',false)"><span class="opt-letter">C</span>RADIUS authentication</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q22')">Show Answer</button>
+        <div class="exam-reveal" id="q22-exp">
+          <div class="exam-explanation">✅ B. Kerberos relies on timestamps to prevent replay attacks, so a clock skew beyond the allowed tolerance (default 5 minutes) breaks authentication.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q23">
+        <div class="exam-q-text">23. Which type of group can be assigned permissions to resources such as files and folders?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','a',false)"><span class="opt-letter">A</span>Distribution group</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','b',true)"><span class="opt-letter">B</span>Security group</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','c',false)"><span class="opt-letter">C</span>Both types equally</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q23')">Show Answer</button>
+        <div class="exam-reveal" id="q23-exp">
+          <div class="exam-explanation">✅ B. Only Security groups carry a SID and can be used in ACLs to grant permissions; Distribution groups are for email/messaging only.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q24">
+        <div class="exam-q-text">24. Which group scope is restricted to being usable only within its own domain, yet can include members from any domain in the forest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','a',false)"><span class="opt-letter">A</span>Global scope</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','b',true)"><span class="opt-letter">B</span>Domain Local scope</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','c',false)"><span class="opt-letter">C</span>Universal scope</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q24')">Show Answer</button>
+        <div class="exam-reveal" id="q24-exp">
+          <div class="exam-explanation">✅ B. Domain Local groups can hold members from anywhere in the forest but can only be assigned permissions within their own domain.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q25">
+        <div class="exam-q-text">25. Which group scope can only contain member objects from its own domain, but is itself visible to all domains in the forest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','a',true)"><span class="opt-letter">A</span>Global</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','b',false)"><span class="opt-letter">B</span>Domain Local</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','c',false)"><span class="opt-letter">C</span>Universal</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q25')">Show Answer</button>
+        <div class="exam-reveal" id="q25-exp">
+          <div class="exam-explanation">✅ A. Global groups are restricted to members from their own domain, but the group itself can be used/seen across the whole forest.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q26">
+        <div class="exam-q-text">26. According to the AGDLP best-practice strategy, in what order should permissions be assigned?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','a',false)"><span class="opt-letter">A</span>Permissions → Domain Local groups → Global groups → Accounts</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','b',true)"><span class="opt-letter">B</span>Accounts → Global groups → Domain Local groups → Permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','c',false)"><span class="opt-letter">C</span>Accounts → Domain Local groups → Global groups → Permissions</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q26')">Show Answer</button>
+        <div class="exam-reveal" id="q26-exp">
+          <div class="exam-explanation">✅ B. AGDLP: place Accounts into Global groups, place Global groups into Domain Local groups, then assign Permissions to the Domain Local group.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q27">
+        <div class="exam-q-text">27. Which built-in group is automatically populated only in the first/forest-root domain and grants forest-wide schema modification rights?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','a',false)"><span class="opt-letter">A</span>Domain Admins</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','b',true)"><span class="opt-letter">B</span>Schema Admins</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','c',false)"><span class="opt-letter">C</span>Account Operators</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q27')">Show Answer</button>
+        <div class="exam-reveal" id="q27-exp">
+          <div class="exam-explanation">✅ B. Schema Admins exists only in the forest root domain and is the only group permitted to modify the AD schema.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q28">
+        <div class="exam-q-text">28. What is the recommended best practice when delegating administrative tasks in AD?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','a',false)"><span class="opt-letter">A</span>Delegate to individual user accounts for tighter control</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','b',true)"><span class="opt-letter">B</span>Delegate to groups, and document all delegations</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','c',false)"><span class="opt-letter">C</span>Avoid delegation entirely and use only Domain Admins</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q28')">Show Answer</button>
+        <div class="exam-reveal" id="q28-exp">
+          <div class="exam-explanation">✅ B. Best practice is to delegate rights to groups rather than individuals, and to keep documentation of every delegation made.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t4">
+    <div class="exam-header">
+      <span>📁</span>
+      <span class="exam-header-text">Topic 04 — File and Folder Permissions</span>
+      <span class="badge badge-purple" style="margin-left:auto;">NTFS</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q29">
+        <div class="exam-q-text">29. On which file systems are NTFS-style permissions available?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','a',false)"><span class="opt-letter">A</span>FAT32 file systems only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','b',true)"><span class="opt-letter">B</span>NTFS or ReFS file systems only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','c',false)"><span class="opt-letter">C</span>FAT32 and NTFS, equally</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q29')">Show Answer</button>
+        <div class="exam-reveal" id="q29-exp">
+          <div class="exam-explanation">✅ B. Granular ACL-based permissions are a feature of NTFS and ReFS; FAT32 has no concept of per-object security descriptors.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q30">
+        <div class="exam-q-text">30. A folder has Everyone::Read::Deny and Everyone::Full Control::Allow both applied. What is the effective result for read access?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','a',false)"><span class="opt-letter">A</span>Full Control applies, since Allow overrides Deny</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','b',true)"><span class="opt-letter">B</span>No one can read it — even admins — since explicit Deny always wins</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','c',false)"><span class="opt-letter">C</span>The permissions cancel out, leaving no access whatsoever</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q30')">Show Answer</button>
+        <div class="exam-reveal" id="q30-exp">
+          <div class="exam-explanation">✅ B. Explicit Deny entries always take precedence over Allow entries in NTFS permission evaluation, regardless of scope.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q31">
+        <div class="exam-q-text">31. Which statement correctly describes how permissions from a user account and their group memberships combine?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','a',false)"><span class="opt-letter">A</span>Only the most restrictive group's permissions apply</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','b',true)"><span class="opt-letter">B</span>Permissions are cumulative across the account and its groups</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','c',false)"><span class="opt-letter">C</span>Only the first matching group's permission is used</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q31')">Show Answer</button>
+        <div class="exam-reveal" id="q31-exp">
+          <div class="exam-explanation">✅ B. NTFS Allow permissions are cumulative — a user's effective permission is the union of permissions from their account and every group they belong to.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q32">
+        <div class="exam-q-text">32. An administrator wants a "drop" folder where users can upload files but cannot view or modify existing files. Which permission level is needed to achieve this?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','a',false)"><span class="opt-letter">A</span>Basic permission levels only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','b',true)"><span class="opt-letter">B</span>Advanced (granular) permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','c',false)"><span class="opt-letter">C</span>Share permissions only, NTFS default</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q32')">Show Answer</button>
+        <div class="exam-reveal" id="q32-exp">
+          <div class="exam-explanation">✅ B. This write-only/drop-box behavior requires the granular advanced permissions (e.g. Create Files, no List/Read), not a basic permission level.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q33">
+        <div class="exam-q-text">33. When permission inheritance is disabled on a folder, what choice is the administrator given for the previously inherited entries?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','a',true)"><span class="opt-letter">A</span>Either delete them or convert them to direct (explicit) permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','b',false)"><span class="opt-letter">B</span>The folder automatically reverts to Everyone::Full Control</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','c',false)"><span class="opt-letter">C</span>Inheritance settings can never be disabled at all</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q33')">Show Answer</button>
+        <div class="exam-reveal" id="q33-exp">
+          <div class="exam-explanation">✅ A. Windows prompts to either remove the inherited entries entirely or copy/convert them into explicit permissions on the object.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q34">
+        <div class="exam-q-text">34. When a file is copied from one NTFS folder to another (even on the same volume), what permissions does the copy receive?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','a',false)"><span class="opt-letter">A</span>It keeps the original file's direct permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','b',true)"><span class="opt-letter">B</span>It inherits permissions from the destination folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','c',false)"><span class="opt-letter">C</span>It receives no permissions until manually configured</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q34')">Show Answer</button>
+        <div class="exam-reveal" id="q34-exp">
+          <div class="exam-explanation">✅ B. A copy is treated as a brand-new object, so it always inherits the permissions of its new parent folder.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q35">
+        <div class="exam-q-text">35. A file is moved within the same NTFS volume to a different folder. What happens to its permissions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','a',false)"><span class="opt-letter">A</span>It inherits fully fresh permissions from the destination, like a copy</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','b',true)"><span class="opt-letter">B</span>Direct permissions stay; inherited ones now come from the new parent</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','c',false)"><span class="opt-letter">C</span>All permissions are stripped and the file becomes inaccessible</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q35')">Show Answer</button>
+        <div class="exam-reveal" id="q35-exp">
+          <div class="exam-explanation">✅ B. A same-volume move keeps the file's explicit permissions intact, while its inherited entries switch to those of the new parent.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q36">
+        <div class="exam-q-text">36. A folder has NTFS permission G_Sales::Modify::Allow and Share permission Everyone::Full Control::Allow. Accessed remotely via its UNC path, what is the effective permission?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','a',false)"><span class="opt-letter">A</span>Full Control, since Share permissions override NTFS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','b',true)"><span class="opt-letter">B</span>Modify, since the more restrictive permission wins</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','c',false)"><span class="opt-letter">C</span>Full Control, since NTFS permissions are ignored over the network</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q36')">Show Answer</button>
+        <div class="exam-reveal" id="q36-exp">
+          <div class="exam-explanation">✅ B. When accessing over the network, Windows applies the most restrictive of the Share and NTFS permissions — here that is Modify.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q37">
+        <div class="exam-q-text">37. What is Microsoft's recommended best practice for configuring Share vs. NTFS permissions on a shared folder?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','a',false)"><span class="opt-letter">A</span>Set Share permissions very restrictively and leave NTFS open</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','b',true)"><span class="opt-letter">B</span>Leave Share wide open and control real access through NTFS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','c',false)"><span class="opt-letter">C</span>Apply identical restrictive permissions on both Share and NTFS for redundancy</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q37')">Show Answer</button>
+        <div class="exam-reveal" id="q37-exp">
+          <div class="exam-explanation">✅ B. Best practice is to leave the Share permission wide open (Everyone:Full Control) and do all real access control via the more granular NTFS permissions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t5">
+    <div class="exam-header">
+      <span>💻</span>
+      <span class="exam-header-text">Topic 05 — PowerShell Fundamentals</span>
+      <span class="badge badge-green" style="margin-left:auto;">Scripting</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q38">
+        <div class="exam-q-text">38. What naming convention do PowerShell cmdlets follow?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','a',false)"><span class="opt-letter">A</span>Noun-Verb</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','b',true)"><span class="opt-letter">B</span>Verb-Noun</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','c',false)"><span class="opt-letter">C</span>Action_Object</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q38')">Show Answer</button>
+        <div class="exam-reveal" id="q38-exp">
+          <div class="exam-explanation">✅ B. PowerShell cmdlets always follow the Verb-Noun pattern, e.g. Get-Process, New-ADUser.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q39">
+        <div class="exam-q-text">39. Which cmdlet lists all the approved PowerShell verbs?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','a',true)"><span class="opt-letter">A</span>Get-Verb</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','b',false)"><span class="opt-letter">B</span>Get-Command</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','c',false)"><span class="opt-letter">C</span>Get-Help</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q39')">Show Answer</button>
+        <div class="exam-reveal" id="q39-exp">
+          <div class="exam-explanation">✅ A. Get-Verb returns the full list of Microsoft-approved verbs that cmdlet names should use.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q40">
+        <div class="exam-q-text">40. Which cmdlet would you use to inspect the properties and methods of an object returned by another cmdlet?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','a',false)"><span class="opt-letter">A</span>Format-List</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','b',true)"><span class="opt-letter">B</span>Get-Member</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','c',false)"><span class="opt-letter">C</span>Select-Object</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q40')">Show Answer</button>
+        <div class="exam-reveal" id="q40-exp">
+          <div class="exam-explanation">✅ B. Get-Member reveals the type, properties, and methods of any object piped into it.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q41">
+        <div class="exam-q-text">41. Which command sets the execution policy to Bypass for only the current PowerShell session, without changing the system-wide setting?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','a',true)"><span class="opt-letter">A</span>Set-ExecutionPolicy Bypass -Scope Process</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','b',false)"><span class="opt-letter">B</span>Set-ExecutionPolicy Unrestricted -Scope LocalMachine</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','c',false)"><span class="opt-letter">C</span>Get-ExecutionPolicy Bypass</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q41')">Show Answer</button>
+        <div class="exam-reveal" id="q41-exp">
+          <div class="exam-explanation">✅ A. The -Scope Process parameter limits the execution policy change to the current PowerShell process only, leaving the machine-wide setting untouched.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q42">
+        <div class="exam-q-text">42. In a PowerShell function with zero parameters, how is a value returned if no explicit return statement is used?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','a',false)"><span class="opt-letter">A</span>The function always implicitly returns $null</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','b',true)"><span class="opt-letter">B</span>The last unassigned value in the function becomes its output</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','c',false)"><span class="opt-letter">C</span>PowerShell functions cannot return values without return</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q42')">Show Answer</button>
+        <div class="exam-reveal" id="q42-exp">
+          <div class="exam-explanation">✅ B. PowerShell implicitly outputs any unassigned expression result, so the last such value in the function becomes its return value.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q43">
+        <div class="exam-q-text">43. Which attribute forces the caller of a PowerShell function to supply a value for a parameter?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','a',false)"><span class="opt-letter">A</span>[ValidateNotNullOrEmpty()]</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','b',true)"><span class="opt-letter">B</span>[Parameter(Mandatory)]</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','c',false)"><span class="opt-letter">C</span>[string] type constraint only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q43')">Show Answer</button>
+        <div class="exam-reveal" id="q43-exp">
+          <div class="exam-explanation">✅ B. The [Parameter(Mandatory)] attribute makes PowerShell prompt for, or require, a value for that parameter before the function will run.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q44">
+        <div class="exam-q-text">44. Which comparison operator performs a case-sensitive equality check in PowerShell?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','a',false)"><span class="opt-letter">A</span>-eq</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','b',false)"><span class="opt-letter">B</span>-ieq</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','c',true)"><span class="opt-letter">C</span>-ceq</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q44')">Show Answer</button>
+        <div class="exam-reveal" id="q44-exp">
+          <div class="exam-explanation">✅ C. -ceq is the case-sensitive equality operator; -eq and -ieq are both case-insensitive by default.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q45">
+        <div class="exam-q-text">45. Which loop construct is specifically designed to be used inline within a PowerShell pipeline (e.g., after Get-NetAdapter |)?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','a',false)"><span class="opt-letter">A</span>foreach statement keyword</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','b',true)"><span class="opt-letter">B</span>Foreach-Object cmdlet</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','c',false)"><span class="opt-letter">C</span>for loop keyword</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q45')">Show Answer</button>
+        <div class="exam-reveal" id="q45-exp">
+          <div class="exam-explanation">✅ B. Foreach-Object is a cmdlet designed to process each pipeline object one at a time within a pipe chain.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q46">
+        <div class="exam-q-text">46. Which loop type guarantees that its body executes at least once, because the condition is evaluated after each iteration rather than before?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','a',false)"><span class="opt-letter">A</span>While loop</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','b',true)"><span class="opt-letter">B</span>Do...While loop</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','c',false)"><span class="opt-letter">C</span>foreach loop</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q46')">Show Answer</button>
+        <div class="exam-reveal" id="q46-exp">
+          <div class="exam-explanation">✅ B. A Do...While loop checks its condition after running the body, so the body always executes at least once.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t6">
+    <div class="exam-header">
+      <span>📋</span>
+      <span class="exam-header-text">Topic 06 — Group Policies, Part 1</span>
+      <span class="badge badge-amber" style="margin-left:auto;">GPO Basics</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q47">
+        <div class="exam-q-text">47. In Windows configuration, which database underlies most Group Policy settings?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','a',false)"><span class="opt-letter">A</span>The Active Directory schema</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','b',true)"><span class="opt-letter">B</span>The Windows Registry</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','c',false)"><span class="opt-letter">C</span>The SYSVOL share folder</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q47')">Show Answer</button>
+        <div class="exam-reveal" id="q47-exp">
+          <div class="exam-explanation">✅ B. Most Group Policy settings ultimately write values into the local Windows Registry on the target computer.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q48">
+        <div class="exam-q-text">48. What is the key difference between a Group Policy "Policy" setting and a "Preference" setting?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','a',true)"><span class="opt-letter">A</span>Policies are enforced; Preferences are defaults the user can change</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','b',false)"><span class="opt-letter">B</span>Preferences are enforced while Policies are merely suggested</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','c',false)"><span class="opt-letter">C</span>There is no functional difference, only the name</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q48')">Show Answer</button>
+        <div class="exam-reveal" id="q48-exp">
+          <div class="exam-explanation">✅ A. Policy settings are enforced and greyed-out for the user; Preferences merely set an initial value the user remains free to change.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q49">
+        <div class="exam-q-text">49. A Local GPO can be scoped to apply separately to which of the following user categories?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','a',true)"><span class="opt-letter">A</span>Administrators, Non-administrators, or an individual user</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','b',false)"><span class="opt-letter">B</span>Only Domain Admins, with no other targeting</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','c',false)"><span class="opt-letter">C</span>Only the current logged-on user, no other options</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q49')">Show Answer</button>
+        <div class="exam-reveal" id="q49-exp">
+          <div class="exam-explanation">✅ A. Local GPOs support multiple local policy layers that can target Administrators, Non-administrators, or a specific individual user.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q50">
+        <div class="exam-q-text">50. What are the two top-level components of a Group Policy Object?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','a',false)"><span class="opt-letter">A</span>Software Settings and Security Settings</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','b',true)"><span class="opt-letter">B</span>User Configuration and Computer Configuration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','c',false)"><span class="opt-letter">C</span>Local GPO and Domain-based GPO</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q50')">Show Answer</button>
+        <div class="exam-reveal" id="q50-exp">
+          <div class="exam-explanation">✅ B. Every GPO is divided into the User Configuration and Computer Configuration nodes.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q51">
+        <div class="exam-q-text">51. In the default GPO processing order, which level is applied first, and which is applied last (and therefore wins in a conflict)?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','a',true)"><span class="opt-letter">A</span>Local first, OU last (most specific wins)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','b',false)"><span class="opt-letter">B</span>OU first, then Local applied last</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','c',false)"><span class="opt-letter">C</span>Domain first, then Site applied last</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q51')">Show Answer</button>
+        <div class="exam-reveal" id="q51-exp">
+          <div class="exam-explanation">✅ A. GPOs apply in the order Local → Site → Domain → OU, so the OU-level GPO is processed last and wins any conflict.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q52">
+        <div class="exam-q-text">52. What does RSoP (Resultant Set of Policy) represent?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','a',false)"><span class="opt-letter">A</span>The raw, unprocessed list of all GPOs linked anywhere in the forest</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','b',true)"><span class="opt-letter">B</span>The final, effective settings after resolving inheritance and conflicts</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','c',false)"><span class="opt-letter">C</span>A report available only for software installation policies</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q52')">Show Answer</button>
+        <div class="exam-reveal" id="q52-exp">
+          <div class="exam-explanation">✅ B. RSoP shows the net effective policy settings actually applied to a user/computer after all GPO inheritance and conflict resolution.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q53">
+        <div class="exam-q-text">53. Which of the following setting types typically does NOT apply via the routine background refresh (every 90-120 minutes) and instead requires a restart or logoff?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','a',false)"><span class="opt-letter">A</span>Administrative Templates</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','b',false)"><span class="opt-letter">B</span>Security settings</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','c',true)"><span class="opt-letter">C</span>Software installation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q53')">Show Answer</button>
+        <div class="exam-reveal" id="q53-exp">
+          <div class="exam-explanation">✅ C. Software installation policies only apply at computer startup or user logon, not during the periodic background refresh cycle.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t7">
+    <div class="exam-header">
+      <span>🛠️</span>
+      <span class="exam-header-text">Topic 07 — Group Policies, Part 2 (Templates, Scope, Testing)</span>
+      <span class="badge badge-amber" style="margin-left:auto;">GPO Internals</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q54">
+        <div class="exam-q-text">54. Where is the Group Policy Container (GPC) portion of a GPO stored?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','a',false)"><span class="opt-letter">A</span>In the SYSVOL share folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','b',true)"><span class="opt-letter">B</span>In Active Directory itself</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','c',false)"><span class="opt-letter">C</span>On each client's local registry</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q54')">Show Answer</button>
+        <div class="exam-reveal" id="q54-exp">
+          <div class="exam-explanation">✅ B. The GPC, holding version info and a pointer to the GPT, lives as an object in Active Directory.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q55">
+        <div class="exam-q-text">55. Where is the Group Policy Template (GPT) portion of a GPO stored?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','a',false)"><span class="opt-letter">A</span>In Active Directory itself</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','b',true)"><span class="opt-letter">B</span>In the SYSVOL share folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','c',false)"><span class="opt-letter">C</span>In the local PolicyDefinitions folder</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q55')">Show Answer</button>
+        <div class="exam-reveal" id="q55-exp">
+          <div class="exam-explanation">✅ B. The GPT, containing the actual settings files, is stored in the SYSVOL share so it can replicate to all DCs.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q56">
+        <div class="exam-q-text">56. An administrator sets "Block Inheritance" on an OU, but a parent GPO link has "Enforce (No Override)" set. What happens?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','a',false)"><span class="opt-letter">A</span>Block Inheritance always wins, and the parent GPO is ignored</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','b',true)"><span class="opt-letter">B</span>Enforce wins, and the parent GPO's settings still apply</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','c',false)"><span class="opt-letter">C</span>Both settings cancel out and no GPOs apply at all</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q56')">Show Answer</button>
+        <div class="exam-reveal" id="q56-exp">
+          <div class="exam-explanation">✅ B. Enforce (No Override) always beats Block Inheritance — an enforced parent GPO's settings still flow down regardless.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q57">
+        <div class="exam-q-text">57. Which mechanism restricts which specific groups or accounts a linked GPO actually applies to, by controlling read and apply permissions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','a',true)"><span class="opt-letter">A</span>Security Filtering</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','b',false)"><span class="opt-letter">B</span>Block Inheritance</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','c',false)"><span class="opt-letter">C</span>Enforce setting only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q57')">Show Answer</button>
+        <div class="exam-reveal" id="q57-exp">
+          <div class="exam-explanation">✅ A. Security Filtering uses the GPO's read/apply ACL to limit which security principals the linked GPO actually affects.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q58">
+        <div class="exam-q-text">58. An administrator wants to test what GPO settings would apply to a user or computer that doesn't exist yet, or isn't currently reachable. Which tool should be used?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','a',false)"><span class="opt-letter">A</span>Group Policy Results</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','b',true)"><span class="opt-letter">B</span>Group Policy Modelling</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','c',false)"><span class="opt-letter">C</span>Running gpupdate /force</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q58')">Show Answer</button>
+        <div class="exam-reveal" id="q58-exp">
+          <div class="exam-explanation">✅ B. Group Policy Modelling simulates policy application for hypothetical or offline objects, unlike Group Policy Results, which needs a real, reachable target.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q59">
+        <div class="exam-q-text">59. What prerequisite is required to use Group Policy Results against a real target computer?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','a',false)"><span class="opt-letter">A</span>The target computer must be powered off during the report</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','b',true)"><span class="opt-letter">B</span>The user must have logged on once, and the PC must be reachable</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','c',false)"><span class="opt-letter">C</span>No prerequisites; it always works regardless of access</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q59')">Show Answer</button>
+        <div class="exam-reveal" id="q59-exp">
+          <div class="exam-explanation">✅ B. Group Policy Results requires the target machine to be online/reachable and the user to have logged on there at least once so data exists to query.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q60">
+        <div class="exam-q-text">60. Where, on a domain controller, are ADMX files stored to act as the Central Store for the whole domain?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','a',false)"><span class="opt-letter">A</span>C:\Windows\PolicyDefinitions folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','b',true)"><span class="opt-letter">B</span>C:\Windows\SYSVOL\domain\Policies\PolicyDefinitions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','c',false)"><span class="opt-letter">C</span>C:\ProgramData\GroupPolicy folder</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q60')">Show Answer</button>
+        <div class="exam-reveal" id="q60-exp">
+          <div class="exam-explanation">✅ B. Creating a PolicyDefinitions folder under SYSVOL turns it into the domain-wide Central Store that all admins/GPMC consoles read from.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t8">
+    <div class="exam-header">
+      <span>📦</span>
+      <span class="exam-header-text">Topic 08 — Group Policies, Part 3 (Software, Redirection, PSOs)</span>
+      <span class="badge badge-amber" style="margin-left:auto;">GPO Advanced</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q61">
+        <div class="exam-q-text">61. Which deployment method for software installed via GPO installs automatically with no user choice, and cannot be removed by the user?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','a',false)"><span class="opt-letter">A</span>Published</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','b',true)"><span class="opt-letter">B</span>Assigned</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','c',false)"><span class="opt-letter">C</span>Manual</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q61')">Show Answer</button>
+        <div class="exam-reveal" id="q61-exp">
+          <div class="exam-explanation">✅ B. Assigned software installs automatically (advertised/forced) and the user cannot remove it; Published only offers it via Add/Remove Programs.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q62">
+        <div class="exam-q-text">62. Can the "Published" software deployment method be used under Computer Configuration?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','a',false)"><span class="opt-letter">A</span>Yes, it works identically to User Configuration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','b',true)"><span class="opt-letter">B</span>No — Published only works under User Configuration, not Computer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','c',false)"><span class="opt-letter">C</span>Yes, but only when using MSIX packages</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q62')">Show Answer</button>
+        <div class="exam-reveal" id="q62-exp">
+          <div class="exam-explanation">✅ B. Computer Configuration only supports Assigned deployment; Published is exclusive to User Configuration.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q63">
+        <div class="exam-q-text">63. Which native package format does GPO Software Installation support without any additional scripting?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','a',false)"><span class="opt-letter">A</span>.exe</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','b',true)"><span class="opt-letter">B</span>.msi</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','c',false)"><span class="opt-letter">C</span>.zip</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q63')">Show Answer</button>
+        <div class="exam-reveal" id="q63-exp">
+          <div class="exam-explanation">✅ B. GPO Software Installation natively understands the Windows Installer (.msi) format without needing wrapper scripts.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q64">
+        <div class="exam-q-text">64. When preparing a network share for GPO-based software deployment, what type of path must always be used in the package definition?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','a',false)"><span class="opt-letter">A</span>A local file-server path (e.g. C:\install\)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','b',true)"><span class="opt-letter">B</span>A UNC path (e.g., \\dc1\install\)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','c',false)"><span class="opt-letter">C</span>A mapped network drive letter</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q64')">Show Answer</button>
+        <div class="exam-reveal" id="q64-exp">
+          <div class="exam-explanation">✅ B. Clients need a UNC path because local paths and mapped drive letters are not guaranteed to resolve the same way on every client.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q65">
+        <div class="exam-q-text">65. Why might Folder Redirection fail for a user logging into a workstation?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','a',true)"><span class="opt-letter">A</span>The destination network share is not reachable at logon</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','b',false)"><span class="opt-letter">B</span>Folder Redirection only works offline and ignores network shares</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','c',false)"><span class="opt-letter">C</span>Folder Redirection requires the destination volume to be FAT32</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q65')">Show Answer</button>
+        <div class="exam-reveal" id="q65-exp">
+          <div class="exam-explanation">✅ A. Folder Redirection depends on reaching the target network share at logon time; if it's unreachable, redirection fails.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q66">
+        <div class="exam-q-text">66. Which user profile folder should NOT be redirected via Folder Redirection, due to conflicts with roaming profiles?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','a',false)"><span class="opt-letter">A</span>The Documents folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','b',false)"><span class="opt-letter">B</span>The Desktop folder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','c',true)"><span class="opt-letter">C</span>AppData (Roaming) folder</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q66')">Show Answer</button>
+        <div class="exam-reveal" id="q66-exp">
+          <div class="exam-explanation">✅ C. AppData (Roaming) is already handled by roaming profiles, so redirecting it too causes conflicts and is not recommended.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q67">
+        <div class="exam-q-text">67. In Folder Redirection, which targeting mode assigns different destination paths based on security group membership?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','a',false)"><span class="opt-letter">A</span>Basic targeting</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','b',true)"><span class="opt-letter">B</span>Advanced targeting</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','c',false)"><span class="opt-letter">C</span>Simple targeting</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q67')">Show Answer</button>
+        <div class="exam-reveal" id="q67-exp">
+          <div class="exam-explanation">✅ B. Advanced targeting lets you assign different redirection destinations based on the user's security group membership.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q68">
+        <div class="exam-q-text">68. Where are Password Settings Objects (PSOs) stored in Active Directory?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','a',true)"><span class="opt-letter">A</span>CN=Password Settings Container,CN=System,DC=...</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','b',false)"><span class="opt-letter">B</span>Directly within the Domain Controllers OU</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','c',false)"><span class="opt-letter">C</span>Within each user's individual object, as an attribute only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q68')">Show Answer</button>
+        <div class="exam-reveal" id="q68-exp">
+          <div class="exam-explanation">✅ A. PSOs live in the dedicated Password Settings Container under the System container in AD.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q69">
+        <div class="exam-q-text">69. Can a PSO be linked directly to an Organizational Unit?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','a',false)"><span class="opt-letter">A</span>Yes, OUs are the only valid target</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','b',true)"><span class="opt-letter">B</span>No, PSOs apply only to users or security groups</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','c',false)"><span class="opt-letter">C</span>Yes, but only in single-domain forests</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q69')">Show Answer</button>
+        <div class="exam-reveal" id="q69-exp">
+          <div class="exam-explanation">✅ B. PSOs can only be linked to users or (global security) groups — they cannot be applied directly to an OU.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q70">
+        <div class="exam-q-text">70. Why were PSOs (Fine-Grained Password Policies) introduced, given that GPOs can already define password settings?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','a',true)"><span class="opt-letter">A</span>Because only a domain-linked GPO affects passwords, forcing one shared policy</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','b',false)"><span class="opt-letter">B</span>Because GPOs are fully unable to define password length</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','c',false)"><span class="opt-letter">C</span>Because PSOs fully replace GPOs for every setting</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q70')">Show Answer</button>
+        <div class="exam-reveal" id="q70-exp">
+          <div class="exam-explanation">✅ A. Password policy via GPO only takes effect when linked at the domain root, forcing one policy for everyone; PSOs allow different password rules for different users/groups.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t9">
+    <div class="exam-header">
+      <span>🔁</span>
+      <span class="exam-header-text">Topic 09 — Active Directory in Large Networks (Replication, Sites, FSMO)</span>
+      <span class="badge badge-red" style="margin-left:auto;">Replication & FSMO</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q71">
+        <div class="exam-q-text">71. What does AD replicate, in addition to the AD database partitions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','a',false)"><span class="opt-letter">A</span>Only the Schema partition</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','b',true)"><span class="opt-letter">B</span>The SYSVOL volume</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','c',false)"><span class="opt-letter">C</span>Only locally cached credentials</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q71')">Show Answer</button>
+        <div class="exam-reveal" id="q71-exp">
+          <div class="exam-explanation">✅ B. Besides the AD database partitions (Schema, Configuration, Domain), SYSVOL — holding GPOs and scripts — is also replicated between DCs.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q72">
+        <div class="exam-q-text">72. A password changes on one DC, and another DC hasn't yet replicated that change. What happens when a user tries to authenticate against the second DC?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','a',false)"><span class="opt-letter">A</span>Authentication fails until replication completes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','b',true)"><span class="opt-letter">B</span>The DC forwards the attempt to the PDC Emulator, so login succeeds</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','c',false)"><span class="opt-letter">C</span>The second DC creates a temporary password override</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q72')">Show Answer</button>
+        <div class="exam-reveal" id="q72-exp">
+          <div class="exam-explanation">✅ B. On a password mismatch, the authenticating DC checks with the PDC Emulator, which always holds the latest password, allowing the login to succeed.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q73">
+        <div class="exam-q-text">73. What does an AD Site represent?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','a',false)"><span class="opt-letter">A</span>The logical structure of domains and OUs together</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','b',true)"><span class="opt-letter">B</span>IP subnets joined by fast, reliable links — the physical network layout</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','c',false)"><span class="opt-letter">C</span>A virtual container used solely for FSMO roles</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q73')">Show Answer</button>
+        <div class="exam-reveal" id="q73-exp">
+          <div class="exam-explanation">✅ B. Sites map the physical network topology — subnets joined by fast, reliable connectivity — separately from the logical domain/OU structure.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q74">
+        <div class="exam-q-text">74. Which component automatically builds and maintains the intra-site replication topology without administrator configuration?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','a',true)"><span class="opt-letter">A</span>The KCC service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','b',false)"><span class="opt-letter">B</span>The FSMO role holder</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','c',false)"><span class="opt-letter">C</span>The DNS server</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q74')">Show Answer</button>
+        <div class="exam-reveal" id="q74-exp">
+          <div class="exam-explanation">✅ A. The Knowledge Consistency Checker automatically generates and adjusts the replication topology within a site.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q75">
+        <div class="exam-q-text">75. What is the maximum time AD guarantees for full propagation of a change within a single site under intra-site replication?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','a',true)"><span class="opt-letter">A</span>Under 5 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','b',false)"><span class="opt-letter">B</span>Exactly 15 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','c',false)"><span class="opt-letter">C</span>Up to 180 minutes</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q75')">Show Answer</button>
+        <div class="exam-reveal" id="q75-exp">
+          <div class="exam-explanation">✅ A. Intra-site replication is change-notification driven and propagates changes within the site in under 5 minutes.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q76">
+        <div class="exam-q-text">76. Unlike intra-site replication, inter-site replication is best described as:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','a',false)"><span class="opt-letter">A</span>Change-triggered and near real-time</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','b',true)"><span class="opt-letter">B</span>Schedule-driven, with a default interval of every 180 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','c',false)"><span class="opt-letter">C</span>Manual only, requiring an administrator to trigger every transfer</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q76')">Show Answer</button>
+        <div class="exam-reveal" id="q76-exp">
+          <div class="exam-explanation">✅ B. Inter-site replication runs on a configurable schedule, defaulting to every 180 minutes, rather than triggering instantly on change.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q77">
+        <div class="exam-q-text">77. Which protocol is preferred for inter-site replication and requires a secure connection such as a VPN or leased line?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','a',false)"><span class="opt-letter">A</span>SMTP transport</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','b',true)"><span class="opt-letter">B</span>IP/RPC transport</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','c',false)"><span class="opt-letter">C</span>FTP transport</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q77')">Show Answer</button>
+        <div class="exam-reveal" id="q77-exp">
+          <div class="exam-explanation">✅ B. IP/RPC is the preferred, efficient transport for inter-site replication and assumes a reliable, secured link between sites.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q78">
+        <div class="exam-q-text">78. Which FSMO role is responsible for issuing pools of Relative Identifiers (RIDs) used to build unique SIDs for new objects?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','a',false)"><span class="opt-letter">A</span>PDC Emulator</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','b',true)"><span class="opt-letter">B</span>RID Master</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','c',false)"><span class="opt-letter">C</span>Infrastructure Master</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q78')">Show Answer</button>
+        <div class="exam-reveal" id="q78-exp">
+          <div class="exam-explanation">✅ B. The RID Master hands out blocks of RIDs to each DC so they can construct unique SIDs for newly created objects.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q79">
+        <div class="exam-q-text">79. Which forest-level FSMO role must be contacted whenever a domain is added to or removed from the forest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','a',false)"><span class="opt-letter">A</span>Schema Master</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','b',true)"><span class="opt-letter">B</span>Domain Naming Master</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','c',false)"><span class="opt-letter">C</span>Infrastructure Master</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q79')">Show Answer</button>
+        <div class="exam-reveal" id="q79-exp">
+          <div class="exam-explanation">✅ B. The Domain Naming Master is the forest-wide authority that must approve adding or removing any domain in the forest.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q80">
+        <div class="exam-q-text">80. What is the correct PowerShell syntax to gracefully transfer a FSMO role to another DC that is still online?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','a',true)"><span class="opt-letter">A</span>Move-ADDirectoryServerOperationMasterRole -Identity DC02 -OperationMasterRole PDCEmulator</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','b',false)"><span class="opt-letter">B</span>Move-ADDirectoryServerOperationMasterRole -Identity DC02 -OperationMasterRole PDCEmulator -Force</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','c',false)"><span class="opt-letter">C</span>Seize-FSMORole -Identity DC02 -Role PDCEmulator</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q80')">Show Answer</button>
+        <div class="exam-reveal" id="q80-exp">
+          <div class="exam-explanation">✅ A. A graceful transfer uses Move-ADDirectoryServerOperationMasterRole without -Force; the -Force switch and seizure commands are for forcibly grabbing a role from an offline/dead DC.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t10">
+    <div class="exam-header">
+      <span>🌐</span>
+      <span class="exam-header-text">Topic 10 — DNS Server</span>
+      <span class="badge badge-teal" style="margin-left:auto;">Name Resolution</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q81">
+        <div class="exam-q-text">81. Which DNS record type maps a hostname to an IPv6 address?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','a',false)"><span class="opt-letter">A</span>An A record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','b',true)"><span class="opt-letter">B</span>An AAAA record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','c',false)"><span class="opt-letter">C</span>A CNAME record</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q81')">Show Answer</button>
+        <div class="exam-reveal" id="q81-exp">
+          <div class="exam-explanation">✅ B. AAAA records map a hostname to an IPv6 address; A records are for IPv4.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q82">
+        <div class="exam-q-text">82. Which DNS zone type contains only NS and A records pointing to the authoritative server, rather than a full copy of the zone?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','a',true)"><span class="opt-letter">A</span>Stub zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','b',false)"><span class="opt-letter">B</span>Secondary zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','c',false)"><span class="opt-letter">C</span>Primary zone</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q82')">Show Answer</button>
+        <div class="exam-reveal" id="q82-exp">
+          <div class="exam-explanation">✅ A. A stub zone holds only minimal NS/A glue records pointing to the authoritative servers, not a full copy of the zone data.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q83">
+        <div class="exam-q-text">83. Which type of DNS zone stores its data within Active Directory and replicates automatically along with AD, removing any single point of failure?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','a',false)"><span class="opt-letter">A</span>Primary (file-based) zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','b',true)"><span class="opt-letter">B</span>AD-Integrated zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','c',false)"><span class="opt-letter">C</span>Secondary zone</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q83')">Show Answer</button>
+        <div class="exam-reveal" id="q83-exp">
+          <div class="exam-explanation">✅ B. AD-Integrated zones store records as AD objects, replicating multi-master with AD itself and eliminating the single-point-of-failure of one primary server.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q84">
+        <div class="exam-q-text">84. A Reverse Lookup Zone is used to:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','a',false)"><span class="opt-letter">A</span>Resolve a hostname into an IP address</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','b',true)"><span class="opt-letter">B</span>Resolve an IP address into a hostname</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','c',false)"><span class="opt-letter">C</span>Resolve only mail server hostnames</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q84')">Show Answer</button>
+        <div class="exam-reveal" id="q84-exp">
+          <div class="exam-explanation">✅ B. Reverse lookup zones use PTR records to resolve an IP address back to its hostname — the opposite of a forward lookup.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q85">
+        <div class="exam-q-text">85. In the chain of internet name resolution, which servers does the local resolver query immediately after a cache miss, before reaching the TLD servers?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','a',true)"><span class="opt-letter">A</span>The Root name servers</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','b',false)"><span class="opt-letter">B</span>Authoritative servers for that domain</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','c',false)"><span class="opt-letter">C</span>Secondary zone servers</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q85')">Show Answer</button>
+        <div class="exam-reveal" id="q85-exp">
+          <div class="exam-explanation">✅ A. On a cache miss the resolver first queries a Root server, which refers it to the appropriate TLD servers, and so on down the chain.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q86">
+        <div class="exam-q-text">86. A child domain emea.contoso.com is delegated authority away from the parent contoso.com zone to a server in London. Which DNS record type implements this delegation?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','a',false)"><span class="opt-letter">A</span>MX record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','b',true)"><span class="opt-letter">B</span>NS record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','c',false)"><span class="opt-letter">C</span>PTR record</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q86')">Show Answer</button>
+        <div class="exam-reveal" id="q86-exp">
+          <div class="exam-explanation">✅ B. NS records in the parent zone point to the name servers authoritative for the delegated child zone.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q87">
+        <div class="exam-q-text">87. AD relies heavily on DNS for service discovery. Which record type allows clients to locate services such as LDAP and Kerberos for a domain?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','a',true)"><span class="opt-letter">A</span>SRV record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','b',false)"><span class="opt-letter">B</span>CNAME record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','c',false)"><span class="opt-letter">C</span>MX record</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q87')">Show Answer</button>
+        <div class="exam-reveal" id="q87-exp">
+          <div class="exam-explanation">✅ A. SRV records advertise the host and port of specific services (like LDAP/Kerberos), letting clients locate them dynamically.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q88">
+        <div class="exam-q-text">88. Which automatically-created DNS subdomain stores AD-specific service location records — such as the DC locator, Global Catalog locator, and PDC Emulator locator — kept separate to allow independent replication and delegation?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','a',false)"><span class="opt-letter">A</span>_sites</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','b',true)"><span class="opt-letter">B</span>_msdcs</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','c',false)"><span class="opt-letter">C</span>_tcp</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q88')">Show Answer</button>
+        <div class="exam-reveal" id="q88-exp">
+          <div class="exam-explanation">✅ B. The _msdcs subdomain holds AD service-locator SRV records and is kept separate so it can replicate and be delegated independently of the main zone.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q89">
+        <div class="exam-q-text">89. Between which two parties does a typical recursive DNS query occur?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','a',false)"><span class="opt-letter">A</span>Between two DNS servers during external resolution</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','b',true)"><span class="opt-letter">B</span>Between a client and its configured local DNS server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','c',false)"><span class="opt-letter">C</span>Only between root servers and TLD servers</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q89')">Show Answer</button>
+        <div class="exam-reveal" id="q89-exp">
+          <div class="exam-explanation">✅ B. A recursive query is what a client sends to its configured local DNS server, asking it to do all the resolution work on the client's behalf.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q90">
+        <div class="exam-q-text">90. Which DNS zone type is a read-only copy of zone data, kept current via periodic zone transfer from the primary?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','a',false)"><span class="opt-letter">A</span>Stub zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','b',true)"><span class="opt-letter">B</span>Secondary zone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','c',false)"><span class="opt-letter">C</span>AD-Integrated zone</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q90')">Show Answer</button>
+        <div class="exam-reveal" id="q90-exp">
+          <div class="exam-explanation">✅ B. A Secondary zone is a full, read-only replica of a primary zone, kept up to date through periodic zone transfers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t11">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Topic 11 — Certificate Services (PKI / AD CS)</span>
+      <span class="badge badge-purple" style="margin-left:auto;">PKI</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q91">
+        <div class="exam-q-text">91. Which of the four core PKI security properties ensures that a sender cannot later deny having sent a signed message?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','a',false)"><span class="opt-letter">A</span>Confidentiality</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','b',false)"><span class="opt-letter">B</span>Integrity</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','c',true)"><span class="opt-letter">C</span>Non-repudiation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q91')">Show Answer</button>
+        <div class="exam-reveal" id="q91-exp">
+          <div class="exam-explanation">✅ C. Non-repudiation, provided by digital signatures, prevents a sender from later denying they sent a given message.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q92">
+        <div class="exam-q-text">92. In a two-tier PKI hierarchy, why is the Root CA typically kept offline?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','a',true)"><span class="opt-letter">A</span>To minimize compromise risk, since its trust underpins the whole chain</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','b',false)"><span class="opt-letter">B</span>Because Root CAs cannot issue certificates while online</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','c',false)"><span class="opt-letter">C</span>Because offline CAs process certificate requests faster</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q92')">Show Answer</button>
+        <div class="exam-reveal" id="q92-exp">
+          <div class="exam-explanation">✅ A. Since every certificate in the hierarchy ultimately traces trust back to the Root CA, keeping it offline drastically reduces its attack surface and compromise risk.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q93">
+        <div class="exam-q-text">93. An administrator needs to recover a lost private key for a user whose disk failed. For which type of certificate can the CA's archived encrypted private key actually be recovered?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','a',false)"><span class="opt-letter">A</span>Authentication/signing certificates</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','b',true)"><span class="opt-letter">B</span>Encryption certificates only (e.g., EFS)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','c',false)"><span class="opt-letter">C</span>Any certificate type, without restriction</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q93')">Show Answer</button>
+        <div class="exam-reveal" id="q93-exp">
+          <div class="exam-explanation">✅ B. Only encryption certificates (like EFS) are eligible for key archival/recovery; signing keys must remain solely with the original holder to preserve non-repudiation.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q94">
+        <div class="exam-q-text">94. What is required to recover an archived private key from the CA's key archival store?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','a',true)"><span class="opt-letter">A</span>A Key Recovery Agent (KRA) certificate</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','b',false)"><span class="opt-letter">B</span>The user's domain password</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','c',false)"><span class="opt-letter">C</span>Physical access to the Root CA server only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q94')">Show Answer</button>
+        <div class="exam-reveal" id="q94-exp">
+          <div class="exam-explanation">✅ A. A designated Key Recovery Agent, holding a KRA certificate, is required to decrypt and recover an archived private key.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q95">
+        <div class="exam-q-text">95. Which AD CS role service provides a faster, real-time alternative to downloading a full CRL for checking certificate revocation status?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','a',false)"><span class="opt-letter">A</span>NDES enrollment service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','b',true)"><span class="opt-letter">B</span>Online Responder (OCSP)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','c',false)"><span class="opt-letter">C</span>CA Web Enrollment portal</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q95')">Show Answer</button>
+        <div class="exam-reveal" id="q95-exp">
+          <div class="exam-explanation">✅ B. The Online Responder implements OCSP, answering individual revocation-status queries in real time instead of requiring a full CRL download.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<hr class="sep"/>
+
+<div class="exam-section" id="t12">
+    <div class="exam-header">
+      <span>🔒</span>
+      <span class="exam-header-text">Topic 12 — Windows Firewall, IPSec, and OpenSSH</span>
+      <span class="badge badge-red" style="margin-left:auto;">Network Security</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q96">
+        <div class="exam-q-text">96. What is the default inbound/outbound traffic behavior of Windows Firewall?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','a',true)"><span class="opt-letter">A</span>Block all inbound, allow all outbound</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','b',false)"><span class="opt-letter">B</span>Allow all inbound, block all outbound</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','c',false)"><span class="opt-letter">C</span>Block both inbound and outbound by default</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q96')">Show Answer</button>
+        <div class="exam-reveal" id="q96-exp">
+          <div class="exam-explanation">✅ A. Out of the box, Windows Firewall blocks unsolicited inbound traffic while allowing outbound traffic by default.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q97">
+        <div class="exam-q-text">97. Which Windows network profile is the most restrictive, and is applied by default to unidentified networks?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','a',false)"><span class="opt-letter">A</span>Private</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','b',false)"><span class="opt-letter">B</span>Domain</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','c',true)"><span class="opt-letter">C</span>Public</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q97')">Show Answer</button>
+        <div class="exam-reveal" id="q97-exp">
+          <div class="exam-explanation">✅ C. The Public profile is the most restrictive and is the default applied to any network Windows cannot identify.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q98">
+        <div class="exam-q-text">98. Under an IPSec Connection Security Rule set to "Request authentication" (rather than "Require"), what happens if the peer host cannot authenticate?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','a',false)"><span class="opt-letter">A</span>Communication fails entirely and is blocked</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','b',true)"><span class="opt-letter">B</span>Communication falls back to unprotected, and still works</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','c',false)"><span class="opt-letter">C</span>The connection is permanently blocked going forward</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q98')">Show Answer</button>
+        <div class="exam-reveal" id="q98-exp">
+          <div class="exam-explanation">✅ B. "Request" only attempts authentication; if it fails, the connection still falls back to unprotected communication instead of being blocked.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q99">
+        <div class="exam-q-text">99. Which IPSec authentication method is recommended for production environments, because the machine proves its identity using a trusted certificate, typically alongside IKEv2?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','a',false)"><span class="opt-letter">A</span>A pre-shared key (PSK)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','b',true)"><span class="opt-letter">B</span>Computer certificate from a CA</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','c',false)"><span class="opt-letter">C</span>Kerberos V5 only, no certs</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q99')">Show Answer</button>
+        <div class="exam-reveal" id="q99-exp">
+          <div class="exam-explanation">✅ B. Certificate-based authentication, backed by a trusted CA, is the recommended production-grade method, commonly paired with IKEv2.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q100">
+        <div class="exam-q-text">100. On Windows Server 2025, what is the default shell presented to a user after logging in via SSH, before any registry change is made?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','a',false)"><span class="opt-letter">A</span>powershell.exe</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','b',false)"><span class="opt-letter">B</span>pwsh.exe</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','c',true)"><span class="opt-letter">C</span>cmd.exe</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q100')">Show Answer</button>
+        <div class="exam-reveal" id="q100-exp">
+          <div class="exam-explanation">✅ C. Out of the box, OpenSSH on Windows Server defaults to cmd.exe as the login shell unless the DefaultShell registry value is changed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);color:var(--text3);text-align:center;padding:20px;font-family:var(--mono);font-size:11px;letter-spacing:0.5px;">
+  IT INFRASTRUCTURE MANAGEMENT · 100-QUESTION PRACTICE EXAM · W04IST-SI0826G · WROCLAW UNIVERSITY OF SCIENCE AND TECHNOLOGY
+</footer>
+
+<script>
+function toggleOpt(el, qId, letter, isCorrect) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function shuffleAllOptions() {
+  document.querySelectorAll('.exam-q').forEach(q => {
+    const container = q.querySelector('.exam-options');
+    if (!container) return;
+    const opts = shuffleArray(Array.from(container.children));
+    let correctLetter = null;
+    opts.forEach((opt, idx) => {
+      const letter = String.fromCharCode(65 + idx); // A, B, C
+      const letterSpan = opt.querySelector('.opt-letter');
+      if (letterSpan) letterSpan.textContent = letter;
+      const onclick = opt.getAttribute('onclick') || '';
+      if (/,\s*true\)/.test(onclick)) correctLetter = letter;
+      container.appendChild(opt); // re-insert in new shuffled order
+    });
+    const expDiv = document.querySelector('#' + q.id + '-exp .exam-explanation');
+    if (expDiv && correctLetter) {
+      expDiv.textContent = expDiv.textContent.replace(/^(\s*✅\s*)[A-Z](\.)/, '$1' + correctLetter + '$2');
+    }
+  });
+}
+shuffleAllOptions();
+
+function revealAll(qId) {
+  const q = document.getElementById(qId);
+  if (!q) return;
+  const opts = q.querySelectorAll('.exam-opt');
+  opts.forEach(opt => {
+    const onclick = opt.getAttribute('onclick') || '';
+    const match = onclick.match(/,\s*'([a-c])',\s*(true|false)/);
+    if (match) {
+      const isCorrect = match[2] === 'true';
+      if (isCorrect) {
+        opt.classList.remove('wrong');
+        opt.classList.add('revealed-correct');
+      }
+    }
+  });
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.add('show');
+}
+
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = 65;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>

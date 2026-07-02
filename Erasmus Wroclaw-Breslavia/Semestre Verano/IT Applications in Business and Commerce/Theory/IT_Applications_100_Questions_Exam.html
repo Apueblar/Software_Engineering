@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Applications: Electronic Media — 100 Question Exam Practice</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SUMMARY BOX ── */
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+/* ── TWO / THREE COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+/* ── INFO CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card ul li strong { color: var(--text); }
+
+/* ── DEFINITION TABLE ── */
+.def-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: 600;
+}
+.def-table td strong { color: var(--text); }
+.def-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── DIAGRAM ── */
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--teal);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--text2);
+}
+
+/* ── EXAM QUESTIONS ── */
+.exam-section {
+  background: var(--surface2);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.exam-header {
+  background: var(--amber-dim);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exam-header-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.exam-body { padding: 14px 18px; }
+.exam-q {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+}
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+.show-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px;
+}
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── SEPARATOR ── */
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── KEY FACTS ── */
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.key-fact {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.key-fact-value {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.key-fact-label {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--sans);
+  font-weight: 600;
+}
+
+/* ── COMPARE GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.compare-col { padding: 16px; }
+.compare-col:first-child { border-right: 1px solid var(--border); }
+.compare-col-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.compare-col ul { list-style: none; }
+.compare-col li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.compare-col li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+
+/* ── WARNING BOX ── */
+.warn-box {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.warn-box strong { color: var(--red); }
+
+/* ── TIP BOX ── */
+.tip-box {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--teal); }
+
+svg text { font-family: 'Syne', sans-serif; }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">💻 IT Applications · Electronic Media in Business and Commerce</div>
+  <h1>Exam Practice — 100 Questions</h1>
+  <div class="header-sub">Interactive question bank covering all 14 lecture blocks, organized by topic</div>
+  <div class="badges">
+    <span class="badge badge-blue">12 Topic Sections</span>
+    <span class="badge badge-teal">Interactive Exam Practice</span>
+    <span class="badge badge-amber">100 Practice Questions</span>
+    <span class="badge badge-purple">Click an Option, then Show Answer</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+  <a href="#t1">Enterprise Apps</a>
+  <a href="#t2">REST &amp; Messaging</a>
+  <a href="#t3">Virtualization/Cloud</a>
+  <a href="#t4">Containers/Docker</a>
+  <a href="#t5">Orchestration</a>
+  <a href="#t6">Crypto Basics</a>
+  <a href="#t7">Network Security</a>
+  <a href="#t8">E-Payments</a>
+  <a href="#t9">Security Economics</a>
+  <a href="#t10">ITIL/ITSM</a>
+  <a href="#t11">SLM/Availability</a>
+  <a href="#t12">Blockchain</a>
+</nav>
+
+<div class="container">
+
+<div class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🏢</span>
+    <h2>E-Business &amp; Enterprise Applications</h2>
+    <span class="topic-tag badge badge-blue">8 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">E-Business and Enterprise Applications (SOA, CORBA, RMI, Web Services)</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q1">
+        <div class="exam-q-text">1. Which Java EE component is used to implement business logic in an N-tier architecture?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','a',false)"><span class="opt-letter">A</span>Web Container (Servlets/JSP)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','b',true)"><span class="opt-letter">B</span>EJB Container (business logic)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','c',false)"><span class="opt-letter">C</span>JDBC Driver (database access)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','d',false)"><span class="opt-letter">D</span>JNDI Service (naming lookup)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q1')">Show Answer</button>
+        <div class="exam-reveal" id="q1-exp">
+          <div class="exam-explanation">✅ Correct answer: B) EJB Container (business logic)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q2">
+        <div class="exam-q-text">2. What is the main advantage of CORBA's IDL?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','a',false)"><span class="opt-letter">A</span>Faster than plain HTTP calls</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','b',true)"><span class="opt-letter">B</span>Language-independent interface definitions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','c',false)"><span class="opt-letter">C</span>Encrypts client-server communication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','d',false)"><span class="opt-letter">D</span>Avoids needing an ORB</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q2')">Show Answer</button>
+        <div class="exam-reveal" id="q2-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Language-independent interface definitions</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q3">
+        <div class="exam-q-text">3. Which of these is a known weakness of CORBA that motivated the move toward Web Services?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','a',false)"><span class="opt-letter">A</span>Lack of support for distributed objects</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','b',true)"><span class="opt-letter">B</span>Firewall traversal issues with binary formats</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','c',false)"><span class="opt-letter">C</span>Inability to ever use Java</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','d',false)"><span class="opt-letter">D</span>No support for remote method calls</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q3')">Show Answer</button>
+        <div class="exam-reveal" id="q3-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Firewall traversal issues with binary formats</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q4">
+        <div class="exam-q-text">4. In SOA, what best characterizes a "service"?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','a',false)"><span class="opt-letter">A</span>A tightly coupled subroutine shared by two apps</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','b',true)"><span class="opt-letter">B</span>A reusable unit of business functionality with a contract</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','c',false)"><span class="opt-letter">C</span>A database stored procedure</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','d',false)"><span class="opt-letter">D</span>A hardware component dedicated to one application</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q4')">Show Answer</button>
+        <div class="exam-reveal" id="q4-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A reusable unit of business functionality with a contract</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q5">
+        <div class="exam-q-text">5. Which protocol provides the XML-based interface description used to generate SOAP client code, similar to a Java interface?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','a',false)"><span class="opt-letter">A</span>UDDI (service registry)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','b',true)"><span class="opt-letter">B</span>WSDL (interface description)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','c',false)"><span class="opt-letter">C</span>SOAP Envelope (message wrapper)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','d',false)"><span class="opt-letter">D</span>RMI/IIOP (Java/CORBA bridge)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q5')">Show Answer</button>
+        <div class="exam-reveal" id="q5-exp">
+          <div class="exam-explanation">✅ Correct answer: B) WSDL (interface description)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q6">
+        <div class="exam-q-text">6. Which part of a SOAP message is mandatory?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','a',false)"><span class="opt-letter">A</span>Header (optional part)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','b',false)"><span class="opt-letter">B</span>Fault (optional part)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','c',true)"><span class="opt-letter">C</span>Envelope and Body (required)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','d',false)"><span class="opt-letter">D</span>UDDI registry entry (unrelated)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q6')">Show Answer</button>
+        <div class="exam-reveal" id="q6-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Envelope and Body (required)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q7">
+        <div class="exam-q-text">7. What was a major reason UDDI fell out of common use?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','a',false)"><span class="opt-letter">A</span>REST replaced it fully as a standard in 2001</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','b',true)"><span class="opt-letter">B</span>Major public registries (IBM, MS, SAP) shut in 2006</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','c',false)"><span class="opt-letter">C</span>It never supported XML messaging formats</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','d',false)"><span class="opt-letter">D</span>It required a paid license from the W3C</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q7')">Show Answer</button>
+        <div class="exam-reveal" id="q7-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Major public registries (IBM, MS, SAP) shut in 2006</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q8">
+        <div class="exam-q-text">8. RMI differs from CORBA mainly because RMI:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','a',false)"><span class="opt-letter">A</span>Works only over the UDP protocol</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','b',true)"><span class="opt-letter">B</span>Restricted to homogeneous Java-to-Java calls</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','c',false)"><span class="opt-letter">C</span>Requires no naming registry lookup</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','d',false)"><span class="opt-letter">D</span>Cannot perform remote method invocation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q8')">Show Answer</button>
+        <div class="exam-reveal" id="q8-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Restricted to homogeneous Java-to-Java calls</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">🔗</span>
+    <h2>REST, GraphQL &amp; Microservices</h2>
+    <span class="topic-tag badge badge-teal">10 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">REST, GraphQL, Microservices, and Messaging (AMQP/gRPC/HTTP2)</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q9">
+        <div class="exam-q-text">9. Which of the four core REST principles states that resources should be accessible through HTML, XML, JSON, or binary forms?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','a',false)"><span class="opt-letter">A</span>Resources have names</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','b',false)"><span class="opt-letter">B</span>Resources support simple verbs</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','c',true)"><span class="opt-letter">C</span>Resources have representations</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','d',false)"><span class="opt-letter">D</span>Everything is a resource</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q9')">Show Answer</button>
+        <div class="exam-reveal" id="q9-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Resources have representations</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q10">
+        <div class="exam-q-text">10. Which HTTP method most naturally maps to the SQL DELETE operation in REST?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','a',false)"><span class="opt-letter">A</span>The GET method</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','b',false)"><span class="opt-letter">B</span>The POST method</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','c',false)"><span class="opt-letter">C</span>The PUT method</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','d',true)"><span class="opt-letter">D</span>The DELETE method</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q10')">Show Answer</button>
+        <div class="exam-reveal" id="q10-exp">
+          <div class="exam-explanation">✅ Correct answer: D) The DELETE method</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q11">
+        <div class="exam-q-text">11. What is a key advantage of GraphQL over classic REST endpoints?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','a',false)"><span class="opt-letter">A</span>It eliminates the need for a server entirely</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','b',true)"><span class="opt-letter">B</span>Clients specify exactly the fields they need</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','c',false)"><span class="opt-letter">C</span>It is a storage engine replacing databases</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','d',false)"><span class="opt-letter">D</span>It only works over WebSockets</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q11')">Show Answer</button>
+        <div class="exam-reveal" id="q11-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Clients specify exactly the fields they need</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q12">
+        <div class="exam-q-text">12. In a microservices architecture, how does data management typically differ from a monolithic application?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','a',false)"><span class="opt-letter">A</span>All services share a single central database</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','b',true)"><span class="opt-letter">B</span>Each service manages its own data store</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','c',false)"><span class="opt-letter">C</span>Data is stored only in flat files</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','d',false)"><span class="opt-letter">D</span>There is no persistent storage at all</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q12')">Show Answer</button>
+        <div class="exam-reveal" id="q12-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Each service manages its own data store</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q13">
+        <div class="exam-q-text">13. Which feature distinguishes SOAP from REST regarding data format?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','a',false)"><span class="opt-letter">A</span>SOAP can only ever use JSON</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','b',true)"><span class="opt-letter">B</span>SOAP uses XML; REST can use other formats</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','c',false)"><span class="opt-letter">C</span>REST services always require WSDL</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','d',false)"><span class="opt-letter">D</span>SOAP messages cannot use HTTP</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q13')">Show Answer</button>
+        <div class="exam-reveal" id="q13-exp">
+          <div class="exam-explanation">✅ Correct answer: B) SOAP uses XML; REST can use other formats</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q14">
+        <div class="exam-q-text">14. In AMQP, which component is responsible for routing a published message to one or more queues based on bindings?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','a',false)"><span class="opt-letter">A</span>Consumer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','b',false)"><span class="opt-letter">B</span>Producer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','c',true)"><span class="opt-letter">C</span>Exchange</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','d',false)"><span class="opt-letter">D</span>Channel</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q14')">Show Answer</button>
+        <div class="exam-reveal" id="q14-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Exchange</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q15">
+        <div class="exam-q-text">15. Which AMQP exchange type routes messages to all queues bound to it, ignoring the routing key?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','a',false)"><span class="opt-letter">A</span>Direct</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','b',false)"><span class="opt-letter">B</span>Topic</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','c',true)"><span class="opt-letter">C</span>Fanout</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','d',false)"><span class="opt-letter">D</span>Headers</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q15')">Show Answer</button>
+        <div class="exam-reveal" id="q15-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Fanout</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q16">
+        <div class="exam-q-text">16. In an RPC pattern implemented over AMQP, what does the client use to match an incoming reply with its original request?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','a',false)"><span class="opt-letter">A</span>The exchange name</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','b',true)"><span class="opt-letter">B</span>The correlation_id</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','c',false)"><span class="opt-letter">C</span>The queue's TTL</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','d',false)"><span class="opt-letter">D</span>The routing key prefix</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q16')">Show Answer</button>
+        <div class="exam-reveal" id="q16-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The correlation_id</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q17">
+        <div class="exam-q-text">17. What transport protocol does gRPC use by default?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','a',false)"><span class="opt-letter">A</span>HTTP/1.1 only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','b',true)"><span class="opt-letter">B</span>HTTP/2 by default</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','c',false)"><span class="opt-letter">C</span>AMQP messaging</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','d',false)"><span class="opt-letter">D</span>WebSocket only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q17')">Show Answer</button>
+        <div class="exam-reveal" id="q17-exp">
+          <div class="exam-explanation">✅ Correct answer: B) HTTP/2 by default</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q18">
+        <div class="exam-q-text">18. Which HTTP/2 feature allows multiple requests/responses to be interleaved over a single TCP connection without head-of-line blocking at the application layer?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','a',false)"><span class="opt-letter">A</span>Header compression via the HPACK algorithm</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','b',true)"><span class="opt-letter">B</span>Binary framing with stream multiplexing</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','c',false)"><span class="opt-letter">C</span>Long polling over an HTTP/1.1 connection</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','d',false)"><span class="opt-letter">D</span>Server-Sent Events one-way streaming</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q18')">Show Answer</button>
+        <div class="exam-reveal" id="q18-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Binary framing with stream multiplexing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">☁️</span>
+    <h2>Virtualization + Cloud Computing</h2>
+    <span class="topic-tag badge badge-amber">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Virtualization + Cloud Computing</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q19">
+        <div class="exam-q-text">19. According to the NIST definition, what is cloud computing fundamentally?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','a',false)"><span class="opt-letter">A</span>A single dedicated server rented by one firm</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','b',true)"><span class="opt-letter">B</span>On-demand network access to shared resources</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','c',false)"><span class="opt-letter">C</span>A specialized programming language</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','d',false)"><span class="opt-letter">D</span>A storage solution used only for backups</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q19')">Show Answer</button>
+        <div class="exam-reveal" id="q19-exp">
+          <div class="exam-explanation">✅ Correct answer: B) On-demand network access to shared resources</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q20">
+        <div class="exam-q-text">20. Which Popek &amp; Goldberg property of virtualization ensures the VMM controls all hardware resources?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','a',false)"><span class="opt-letter">A</span>Fidelity</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','b',false)"><span class="opt-letter">B</span>Performance</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','c',true)"><span class="opt-letter">C</span>Safety</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','d',false)"><span class="opt-letter">D</span>Portability</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q20')">Show Answer</button>
+        <div class="exam-reveal" id="q20-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Safety</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q21">
+        <div class="exam-q-text">21. A Type 1 (bare-metal) hypervisor differs from a Type 2 (hosted) hypervisor in that Type 1:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','a',false)"><span class="opt-letter">A</span>Requires a full host operating system underneath it</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','b',true)"><span class="opt-letter">B</span>Runs directly on the physical hardware</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','c',false)"><span class="opt-letter">C</span>Cannot run multiple guest operating systems</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q21','d',false)"><span class="opt-letter">D</span>Only works with Windows guests</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q21')">Show Answer</button>
+        <div class="exam-reveal" id="q21-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Runs directly on the physical hardware</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q22">
+        <div class="exam-q-text">22. Which CPU virtualization technique requires modifying the guest OS kernel to use hypercalls instead of certain non-virtualizable instructions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','a',false)"><span class="opt-letter">A</span>Full virtualization via binary translation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','b',true)"><span class="opt-letter">B</span>Paravirtualization with hypercalls</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','c',false)"><span class="opt-letter">C</span>Hardware-assisted virtualization</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q22','d',false)"><span class="opt-letter">D</span>Application virtualization</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q22')">Show Answer</button>
+        <div class="exam-reveal" id="q22-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Paravirtualization with hypercalls</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q23">
+        <div class="exam-q-text">23. In the *aaS cloud service model stack, which model provides a complete application run remotely, where the vendor also handles patching and bug fixes?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','a',false)"><span class="opt-letter">A</span>IaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','b',false)"><span class="opt-letter">B</span>PaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','c',true)"><span class="opt-letter">C</span>SaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q23','d',false)"><span class="opt-letter">D</span>DaaS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q23')">Show Answer</button>
+        <div class="exam-reveal" id="q23-exp">
+          <div class="exam-explanation">✅ Correct answer: C) SaaS</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q24">
+        <div class="exam-q-text">24. Amazon EC2 is a classic example of which cloud service model?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','a',true)"><span class="opt-letter">A</span>IaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','b',false)"><span class="opt-letter">B</span>PaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','c',false)"><span class="opt-letter">C</span>SaaS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q24','d',false)"><span class="opt-letter">D</span>FaaS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q24')">Show Answer</button>
+        <div class="exam-reveal" id="q24-exp">
+          <div class="exam-explanation">✅ Correct answer: A) IaaS</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q25">
+        <div class="exam-q-text">25. A cloud deployment model owned and used exclusively by a single enterprise, not exposed externally, is called:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','a',false)"><span class="opt-letter">A</span>Public Cloud</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','b',true)"><span class="opt-letter">B</span>Private Cloud</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','c',false)"><span class="opt-letter">C</span>Community Cloud</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q25','d',false)"><span class="opt-letter">D</span>Hybrid Cloud</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q25')">Show Answer</button>
+        <div class="exam-reveal" id="q25-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Private Cloud</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q26">
+        <div class="exam-q-text">26. According to the lecture's risk ranking for human-mistake-based threats in virtualization, which risk scores highest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','a',false)"><span class="opt-letter">A</span>Loss of performance from overcommitted resources</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','b',false)"><span class="opt-letter">B</span>Dormant VMs left running unattended</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','c',true)"><span class="opt-letter">C</span>Inadequate protection or misconfiguration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q26','d',false)"><span class="opt-letter">D</span>VM rollback to an insecure snapshot</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q26')">Show Answer</button>
+        <div class="exam-reveal" id="q26-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Inadequate protection or misconfiguration</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q27">
+        <div class="exam-q-text">27. Which open-source platform provides shared compute, storage, and networking resources across bare metal, VMs, and containers, using components like Nova and Neutron?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','a',false)"><span class="opt-letter">A</span>Kubernetes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','b',true)"><span class="opt-letter">B</span>OpenStack</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','c',false)"><span class="opt-letter">C</span>Docker Swarm</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q27','d',false)"><span class="opt-letter">D</span>VMware vSphere</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q27')">Show Answer</button>
+        <div class="exam-reveal" id="q27-exp">
+          <div class="exam-explanation">✅ Correct answer: B) OpenStack</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">🐳</span>
+    <h2>Containers and GPU (Docker)</h2>
+    <span class="topic-tag badge badge-purple">8 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Containers and GPU (Docker)</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q28">
+        <div class="exam-q-text">28. Which three Linux kernel features combine to enable container technology?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','a',false)"><span class="opt-letter">A</span>Hypervisor, VMM, and binary translation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','b',true)"><span class="opt-letter">B</span>Namespaces, cgroups, and Copy-on-Write filesystem</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','c',false)"><span class="opt-letter">C</span>IDL, ORB, and IIOP from CORBA</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q28','d',false)"><span class="opt-letter">D</span>SSL, TLS, and IPsec protocols</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q28')">Show Answer</button>
+        <div class="exam-reveal" id="q28-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Namespaces, cgroups, and Copy-on-Write filesystem</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q29">
+        <div class="exam-q-text">29. What is the primary role of Linux cgroups in containers?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','a',false)"><span class="opt-letter">A</span>Isolating processes via namespaces</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','b',true)"><span class="opt-letter">B</span>Resource limiting and accounting (CPU, I/O)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','c',false)"><span class="opt-letter">C</span>Layering and caching container images</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q29','d',false)"><span class="opt-letter">D</span>Routing network traffic between containers</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q29')">Show Answer</button>
+        <div class="exam-reveal" id="q29-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Resource limiting and accounting (CPU, I/O)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q30">
+        <div class="exam-q-text">30. Which Docker build approach is preferred for reproducible, version-controlled images?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','a',false)"><span class="opt-letter">A</span>Using a manual run/commit loop</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','b',true)"><span class="opt-letter">B</span>A version-controlled Dockerfile</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','c',false)"><span class="opt-letter">C</span>Manually copying files into a container</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q30','d',false)"><span class="opt-letter">D</span>Exporting a full VM image</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q30')">Show Answer</button>
+        <div class="exam-reveal" id="q30-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A version-controlled Dockerfile</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q31">
+        <div class="exam-q-text">31. What is the main benefit of multi-stage builds in a Dockerfile?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','a',false)"><span class="opt-letter">A</span>Running several containers at once</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','b',true)"><span class="opt-letter">B</span>Keeping the final image small and build-tool-free</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','c',false)"><span class="opt-letter">C</span>Eliminating the need for a base image</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q31','d',false)"><span class="opt-letter">D</span>Automatically encrypting the final image</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q31')">Show Answer</button>
+        <div class="exam-reveal" id="q31-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Keeping the final image small and build-tool-free</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q32">
+        <div class="exam-q-text">32. By default, under what user privilege do Docker containers run, posing a security risk?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','a',false)"><span class="opt-letter">A</span>A restricted guest account</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','b',true)"><span class="opt-letter">B</span>Root, the host's superuser</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','c',false)"><span class="opt-letter">C</span>A randomly generated user</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q32','d',false)"><span class="opt-letter">D</span>No process owner at all</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q32')">Show Answer</button>
+        <div class="exam-reveal" id="q32-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Root, the host's superuser</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q33">
+        <div class="exam-q-text">33. On Apple Silicon (ARM) Macs, which technology bridges running x86 Docker images?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','a',false)"><span class="opt-letter">A</span>WSL 2 compatibility layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','b',true)"><span class="opt-letter">B</span>Rosetta 2 translation layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','c',false)"><span class="opt-letter">C</span>HyperKit virtualization layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q33','d',false)"><span class="opt-letter">D</span>osxfs file-sharing layer</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q33')">Show Answer</button>
+        <div class="exam-reveal" id="q33-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Rosetta 2 translation layer</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q34">
+        <div class="exam-q-text">34. To pass GPU access to a running Docker container at runtime, which flag is used?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','a',false)"><span class="opt-letter">A</span>--network=host</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','b',true)"><span class="opt-letter">B</span>--gpus all</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','c',false)"><span class="opt-letter">C</span>--privileged</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q34','d',false)"><span class="opt-letter">D</span>--mount type=gpu</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q34')">Show Answer</button>
+        <div class="exam-reveal" id="q34-exp">
+          <div class="exam-explanation">✅ Correct answer: B) --gpus all</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q35">
+        <div class="exam-q-text">35. Which Docker filesystem feature allows containers to start almost instantly by tracking changes in a thin writable layer over read-only image layers?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','a',false)"><span class="opt-letter">A</span>Namespace isolation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','b',false)"><span class="opt-letter">B</span>cgroup resource limits</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','c',true)"><span class="opt-letter">C</span>Copy-on-Write (CoW) layering</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q35','d',false)"><span class="opt-letter">D</span>Bind-mounted host paths</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q35')">Show Answer</button>
+        <div class="exam-reveal" id="q35-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Copy-on-Write (CoW) layering</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">⚙️</span>
+    <h2>Orchestration — Kubernetes &amp; CI</h2>
+    <span class="topic-tag badge badge-green">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Orchestration — Kubernetes and Continuous Integration</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q36">
+        <div class="exam-q-text">36. What is the smallest deployable unit in Kubernetes?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','a',false)"><span class="opt-letter">A</span>Node (a machine)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','b',true)"><span class="opt-letter">B</span>Pod (group of containers)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','c',false)"><span class="opt-letter">C</span>Cluster (set of nodes)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q36','d',false)"><span class="opt-letter">D</span>Namespace (virtual cluster)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q36')">Show Answer</button>
+        <div class="exam-reveal" id="q36-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Pod (group of containers)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q37">
+        <div class="exam-q-text">37. Which Kubernetes control-plane component stores the cluster's state as a distributed key-value store?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','a',false)"><span class="opt-letter">A</span>Kubelet (node agent)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','b',false)"><span class="opt-letter">B</span>Kube-Proxy (network rules)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','c',true)"><span class="opt-letter">C</span>etcd (key-value store)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q37','d',false)"><span class="opt-letter">D</span>cAdvisor (metrics)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q37')">Show Answer</button>
+        <div class="exam-reveal" id="q37-exp">
+          <div class="exam-explanation">✅ Correct answer: C) etcd (key-value store)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q38">
+        <div class="exam-q-text">38. Which Kubernetes object provides declarative management of stateless Pods/ReplicaSets, including rollback support?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','a',false)"><span class="opt-letter">A</span>ReplicationController (legacy)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','b',true)"><span class="opt-letter">B</span>Deployment (with rollback)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','c',false)"><span class="opt-letter">C</span>ConfigMap (config data)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q38','d',false)"><span class="opt-letter">D</span>Service (network access)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q38')">Show Answer</button>
+        <div class="exam-reveal" id="q38-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Deployment (with rollback)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q39">
+        <div class="exam-q-text">39. What is the primary difference between a Kubernetes ConfigMap and a Secret?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','a',false)"><span class="opt-letter">A</span>ConfigMaps can never be mounted as files</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','b',true)"><span class="opt-letter">B</span>Secrets are base64-encoded and may be encrypted</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','c',false)"><span class="opt-letter">C</span>Secrets work only with StatefulSets</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q39','d',false)"><span class="opt-letter">D</span>ConfigMaps always need a separate database</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q39')">Show Answer</button>
+        <div class="exam-reveal" id="q39-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Secrets are base64-encoded and may be encrypted</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q40">
+        <div class="exam-q-text">40. Which Kubernetes networking object operates at Layer 7 and provides SSL/TLS termination plus name-based virtual hosting?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','a',false)"><span class="opt-letter">A</span>Service (ClusterIP)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','b',false)"><span class="opt-letter">B</span>NodePort (host port)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','c',true)"><span class="opt-letter">C</span>Ingress (L7 routing)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q40','d',false)"><span class="opt-letter">D</span>LoadBalancer (L4)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q40')">Show Answer</button>
+        <div class="exam-reveal" id="q40-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Ingress (L7 routing)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q41">
+        <div class="exam-q-text">41. What does HPA stand for in Kubernetes auto-scaling, and what does it do?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','a',true)"><span class="opt-letter">A</span>Horizontal Pod Autoscaler — adds Pods under load</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','b',false)"><span class="opt-letter">B</span>High Performance Allocation — raises CPU clock speed</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','c',false)"><span class="opt-letter">C</span>Hybrid Provisioning Agent — migrates Pods across clouds</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q41','d',false)"><span class="opt-letter">D</span>Host Proxy Adapter — routes network traffic</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q41')">Show Answer</button>
+        <div class="exam-reveal" id="q41-exp">
+          <div class="exam-explanation">✅ Correct answer: A) Horizontal Pod Autoscaler — adds Pods under load</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q42">
+        <div class="exam-q-text">42. In Kubernetes, what is the purpose of a Selector?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','a',false)"><span class="opt-letter">A</span>To encrypt traffic between Pods</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','b',true)"><span class="opt-letter">B</span>To filter and group objects using Labels</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','c',false)"><span class="opt-letter">C</span>To allocate persistent storage volumes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q42','d',false)"><span class="opt-letter">D</span>To define container runtime versions</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q42')">Show Answer</button>
+        <div class="exam-reveal" id="q42-exp">
+          <div class="exam-explanation">✅ Correct answer: B) To filter and group objects using Labels</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q43">
+        <div class="exam-q-text">43. In GitLab CI, what component actually executes the jobs defined in a pipeline?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','a',false)"><span class="opt-letter">A</span>The GitLab Pages server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','b',true)"><span class="opt-letter">B</span>A GitLab Runner agent</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','c',false)"><span class="opt-letter">C</span>The Kubernetes scheduler</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q43','d',false)"><span class="opt-letter">D</span>The Docker Hub registry</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q43')">Show Answer</button>
+        <div class="exam-reveal" id="q43-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A GitLab Runner agent</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q44">
+        <div class="exam-q-text">44. In a `.gitlab-ci.yml` file, what happens if a job in an earlier stage fails?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','a',false)"><span class="opt-letter">A</span>Subsequent stages still run, but are flagged as warnings</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','b',true)"><span class="opt-letter">B</span>Subsequent stages are skipped</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','c',false)"><span class="opt-letter">C</span>The pipeline automatically retries indefinitely</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q44','d',false)"><span class="opt-letter">D</span>Only the failed job's stage is skipped, all others run normally</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q44')">Show Answer</button>
+        <div class="exam-reveal" id="q44-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Subsequent stages are skipped</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">🔐</span>
+    <h2>Basic Software Security Mechanisms</h2>
+    <span class="topic-tag badge badge-pink">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Basic Software Security Mechanisms (Cryptography, Hashing, Signatures)</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q45">
+        <div class="exam-q-text">45. Which property of cryptographic hash functions means a one-bit change in input causes a large, unpredictable change in the digest?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','a',true)"><span class="opt-letter">A</span>Avalanche effect</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','b',false)"><span class="opt-letter">B</span>Collision resistance</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','c',false)"><span class="opt-letter">C</span>Pre-image resistance</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q45','d',false)"><span class="opt-letter">D</span>Key stretching</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q45')">Show Answer</button>
+        <div class="exam-reveal" id="q45-exp">
+          <div class="exam-explanation">✅ Correct answer: A) Avalanche effect</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q46">
+        <div class="exam-q-text">46. For a symmetric cipher with a 128-bit key, brute-forcing the key space is considered:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','a',false)"><span class="opt-letter">A</span>Feasible within hours on modern hardware</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','b',true)"><span class="opt-letter">B</span>Computationally infeasible given the key space size</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','c',false)"><span class="opt-letter">C</span>Trivial using a single consumer GPU</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q46','d',false)"><span class="opt-letter">D</span>Impossible to even theoretically estimate</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q46')">Show Answer</button>
+        <div class="exam-reveal" id="q46-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Computationally infeasible given the key space size</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q47">
+        <div class="exam-q-text">47. Which block cipher mode of operation is known to be weak because identical plaintext blocks produce identical ciphertext blocks?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','a',false)"><span class="opt-letter">A</span>CBC</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','b',false)"><span class="opt-letter">B</span>CTR</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','c',true)"><span class="opt-letter">C</span>ECB</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q47','d',false)"><span class="opt-letter">D</span>OFB</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q47')">Show Answer</button>
+        <div class="exam-reveal" id="q47-exp">
+          <div class="exam-explanation">✅ Correct answer: C) ECB</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q48">
+        <div class="exam-q-text">48. In a digital envelope (message enveloping) scheme, how is the random one-time session key protected before transmission?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','a',false)"><span class="opt-letter">A</span>It is sent in plaintext with the message</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','b',true)"><span class="opt-letter">B</span>It is encrypted with the recipient's public key</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','c',false)"><span class="opt-letter">C</span>It is hashed with SHA-256 and discarded</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q48','d',false)"><span class="opt-letter">D</span>It is encrypted with the sender's private key</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q48')">Show Answer</button>
+        <div class="exam-reveal" id="q48-exp">
+          <div class="exam-explanation">✅ Correct answer: B) It is encrypted with the recipient's public key</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q49">
+        <div class="exam-q-text">49. What does a digital signature primarily provide that a simple MAC does NOT?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','a',false)"><span class="opt-letter">A</span>Faster computation on large messages</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','b',true)"><span class="opt-letter">B</span>Non-repudiation, via asymmetric cryptography</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','c',false)"><span class="opt-letter">C</span>Confidentiality of the message content</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q49','d',false)"><span class="opt-letter">D</span>Stronger resistance to brute-force attacks</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q49')">Show Answer</button>
+        <div class="exam-reveal" id="q49-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Non-repudiation, via asymmetric cryptography</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q50">
+        <div class="exam-q-text">50. To verify a digital signature, the recipient decrypts the received digest using:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','a',false)"><span class="opt-letter">A</span>The recipient's own private key</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','b',true)"><span class="opt-letter">B</span>The author's public key</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','c',false)"><span class="opt-letter">C</span>A shared symmetric session key</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q50','d',false)"><span class="opt-letter">D</span>The recipient's public key</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q50')">Show Answer</button>
+        <div class="exam-reveal" id="q50-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The author's public key</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q51">
+        <div class="exam-q-text">51. What is the main difference between MAC and HMAC?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','a',false)"><span class="opt-letter">A</span>MAC uses asymmetric keys, HMAC uses symmetric keys</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','b',true)"><span class="opt-letter">B</span>HMAC hashes message and key together, no separate encryption</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','c',false)"><span class="opt-letter">C</span>MAC provides non-repudiation, HMAC does not</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q51','d',false)"><span class="opt-letter">D</span>HMAC cannot detect any tampering</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q51')">Show Answer</button>
+        <div class="exam-reveal" id="q51-exp">
+          <div class="exam-explanation">✅ Correct answer: B) HMAC hashes message and key together, no separate encryption</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q52">
+        <div class="exam-q-text">52. Which of the following is NOT something a digital signature provides?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','a',false)"><span class="opt-letter">A</span>Authentication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','b',false)"><span class="opt-letter">B</span>Integrity</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','c',true)"><span class="opt-letter">C</span>Confidentiality</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q52','d',false)"><span class="opt-letter">D</span>Non-repudiation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q52')">Show Answer</button>
+        <div class="exam-reveal" id="q52-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Confidentiality</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q53">
+        <div class="exam-q-text">53. RSA's security as a public-key cipher is based primarily on the difficulty of:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','a',false)"><span class="opt-letter">A</span>Solving discrete logarithm problems</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','b',true)"><span class="opt-letter">B</span>Prime factoring and the multiplicative inverse</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','c',false)"><span class="opt-letter">C</span>Elliptic curve point multiplication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q53','d',false)"><span class="opt-letter">D</span>Exhaustive search of symmetric keys</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q53')">Show Answer</button>
+        <div class="exam-reveal" id="q53-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Prime factoring and the multiplicative inverse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">📜</span>
+    <h2>Secure Network Protocols &amp; Certificates</h2>
+    <span class="topic-tag badge badge-red">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Secure Network Protocols &amp; Public Certificates</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q54">
+        <div class="exam-q-text">54. What is the main purpose of a Certificate Authority (CA) in public-key infrastructure?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','a',false)"><span class="opt-letter">A</span>To generate a fresh session key per transaction</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','b',true)"><span class="opt-letter">B</span>To vouch for a public key owner's identity via certificate</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','c',false)"><span class="opt-letter">C</span>To store every user's password centrally</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q54','d',false)"><span class="opt-letter">D</span>To replace the need for encryption entirely</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q54')">Show Answer</button>
+        <div class="exam-reveal" id="q54-exp">
+          <div class="exam-explanation">✅ Correct answer: B) To vouch for a public key owner's identity via certificate</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q55">
+        <div class="exam-q-text">55. Which mechanism allows real-time, online verification of a certificate's revocation status?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','a',false)"><span class="opt-letter">A</span>CRL (offline list)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','b',true)"><span class="opt-letter">B</span>OCSP (real-time check)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','c',false)"><span class="opt-letter">C</span>DN (distinguished name)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q55','d',false)"><span class="opt-letter">D</span>CPS (policy statement)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q55')">Show Answer</button>
+        <div class="exam-reveal" id="q55-exp">
+          <div class="exam-explanation">✅ Correct answer: B) OCSP (real-time check)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q56">
+        <div class="exam-q-text">56. In an X.509 certificate's Distinguished Name (DN), which field should match the server's domain name for a server certificate?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','a',false)"><span class="opt-letter">A</span>Organization (O)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','b',false)"><span class="opt-letter">B</span>Organizational Unit (OU)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','c',true)"><span class="opt-letter">C</span>Common Name (CN)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q56','d',false)"><span class="opt-letter">D</span>Country (C)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q56')">Show Answer</button>
+        <div class="exam-reveal" id="q56-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Common Name (CN)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q57">
+        <div class="exam-q-text">57. In the OpenPGP (distributed) trust model, trust is established through:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','a',false)"><span class="opt-letter">A</span>A single central root authority</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','b',true)"><span class="opt-letter">B</span>A "web of trust" from signatures and key-signing parties</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','c',false)"><span class="opt-letter">C</span>Government-issued digital IDs only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q57','d',false)"><span class="opt-letter">D</span>Automatic trust of all certificates by default</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q57')">Show Answer</button>
+        <div class="exam-reveal" id="q57-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A "web of trust" from signatures and key-signing parties</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q58">
+        <div class="exam-q-text">58. What is the default TCP port for HTTPS?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','a',false)"><span class="opt-letter">A</span>80</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','b',false)"><span class="opt-letter">B</span>8080</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','c',true)"><span class="opt-letter">C</span>443</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q58','d',false)"><span class="opt-letter">D</span>21</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q58')">Show Answer</button>
+        <div class="exam-reveal" id="q58-exp">
+          <div class="exam-explanation">✅ Correct answer: C) 443</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q59">
+        <div class="exam-q-text">59. During the SSL/TLS ClientHello/ServerHello handshake, what is negotiated as part of the Cipher Suite?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','a',false)"><span class="opt-letter">A</span>Only the HTTP version in use</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','b',true)"><span class="opt-letter">B</span>Key-exchange algorithm, cipher, and MAC algorithm</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','c',false)"><span class="opt-letter">C</span>The client's source IP address and port</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q59','d',false)"><span class="opt-letter">D</span>The full DNS resolution path for the domain</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q59')">Show Answer</button>
+        <div class="exam-reveal" id="q59-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Key-exchange algorithm, cipher, and MAC algorithm</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q60">
+        <div class="exam-q-text">60. In Apache's secure configuration, which directive specifies the server's CA certification chain?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','a',false)"><span class="opt-letter">A</span>SSLCertificateFile (server cert)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','b',true)"><span class="opt-letter">B</span>SSLCertificateChainFile (CA chain)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','c',false)"><span class="opt-letter">C</span>SSLVerifyClient (client auth)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q60','d',false)"><span class="opt-letter">D</span>SSLPassPhraseDialog (passphrase)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q60')">Show Answer</button>
+        <div class="exam-reveal" id="q60-exp">
+          <div class="exam-explanation">✅ Correct answer: B) SSLCertificateChainFile (CA chain)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q61">
+        <div class="exam-q-text">61. Why is encryption alone considered insufficient to guarantee data integrity?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','a',false)"><span class="opt-letter">A</span>Encryption always corrupts data in transit</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','b',true)"><span class="opt-letter">B</span>Tampering breaks ciphertext rather than being detected</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','c',false)"><span class="opt-letter">C</span>Integrity needs no cryptographic mechanism</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q61','d',false)"><span class="opt-letter">D</span>Encryption only works for plaintext, not ciphertext</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q61')">Show Answer</button>
+        <div class="exam-reveal" id="q61-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Tampering breaks ciphertext rather than being detected</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q62">
+        <div class="exam-q-text">62. Which protocol layer does IPsec operate at, according to the lecture's layered encryption model?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','a',false)"><span class="opt-letter">A</span>Data-link layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','b',true)"><span class="opt-letter">B</span>IP layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','c',false)"><span class="opt-letter">C</span>TCP/UDP layer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q62','d',false)"><span class="opt-letter">D</span>Application layer</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q62')">Show Answer</button>
+        <div class="exam-reveal" id="q62-exp">
+          <div class="exam-explanation">✅ Correct answer: B) IP layer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">💳</span>
+    <h2>Secure Electronic Payments</h2>
+    <span class="topic-tag badge badge-blue">7 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Secure Electronic Payments</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q63">
+        <div class="exam-q-text">63. What does CVC2/CVV2 primarily provide in a Card-Not-Present (remote) transaction?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','a',false)"><span class="opt-letter">A</span>Proof the cardholder has sufficient funds</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','b',true)"><span class="opt-letter">B</span>A code verifying card presence at registration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','c',false)"><span class="opt-letter">C</span>The merchant's ID number for billing</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q63','d',false)"><span class="opt-letter">D</span>The issuing bank's account routing number</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q63')">Show Answer</button>
+        <div class="exam-reveal" id="q63-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A code verifying card presence at registration</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q64">
+        <div class="exam-q-text">64. Which organizations jointly proposed the SET protocol for secure Internet card payments?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','a',false)"><span class="opt-letter">A</span>Visa and PayPal</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','b',true)"><span class="opt-letter">B</span>MasterCard and VISA</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','c',false)"><span class="opt-letter">C</span>American Express and Discover</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q64','d',false)"><span class="opt-letter">D</span>SWIFT and IBAN</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q64')">Show Answer</button>
+        <div class="exam-reveal" id="q64-exp">
+          <div class="exam-explanation">✅ Correct answer: B) MasterCard and VISA</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q65">
+        <div class="exam-q-text">65. A key privacy design goal of SET was that:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','a',false)"><span class="opt-letter">A</span>Banks should know exactly what was purchased</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','b',true)"><span class="opt-letter">B</span>Merchants should not access the client's bank account info</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','c',false)"><span class="opt-letter">C</span>Merchants should see the client's full bank balance</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q65','d',false)"><span class="opt-letter">D</span>Cardholders should be anonymous to their own bank</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q65')">Show Answer</button>
+        <div class="exam-reveal" id="q65-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Merchants should not access the client's bank account info</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q66">
+        <div class="exam-q-text">66. 3D Secure organizes its architecture into three domains. Which one includes the central VISA/MasterCard systems?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','a',false)"><span class="opt-letter">A</span>Acquirer Domain (merchant's bank)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','b',false)"><span class="opt-letter">B</span>Issuer Domain (cardholder's bank)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','c',true)"><span class="opt-letter">C</span>Interoperability Domain (card networks)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q66','d',false)"><span class="opt-letter">D</span>Merchant Domain (online store)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q66')">Show Answer</button>
+        <div class="exam-reveal" id="q66-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Interoperability Domain (card networks)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q67">
+        <div class="exam-q-text">67. What does the Personal Assurance Message (PAM) in 3D Secure help prevent?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','a',false)"><span class="opt-letter">A</span>Double-spending of digital funds</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','b',true)"><span class="opt-letter">B</span>Spoofing of the bank's authentication widget</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','c',false)"><span class="opt-letter">C</span>Network congestion during checkout</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q67','d',false)"><span class="opt-letter">D</span>Premature card expiration</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q67')">Show Answer</button>
+        <div class="exam-reveal" id="q67-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Spoofing of the bank's authentication widget</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q68">
+        <div class="exam-q-text">68. How does Google Pay improve security compared to storing raw card data on a phone?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','a',false)"><span class="opt-letter">A</span>It stores the raw card number in an encrypted file</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','b',true)"><span class="opt-letter">B</span>It never stores raw card data, only a device token</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','c',false)"><span class="opt-letter">C</span>It requires the card inserted into the phone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q68','d',false)"><span class="opt-letter">D</span>It disables NFC entirely</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q68')">Show Answer</button>
+        <div class="exam-reveal" id="q68-exp">
+          <div class="exam-explanation">✅ Correct answer: B) It never stores raw card data, only a device token</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q69">
+        <div class="exam-q-text">69. EMV is the common standard governing communication between:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','a',false)"><span class="opt-letter">A</span>Two banks during a SWIFT transfer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','b',true)"><span class="opt-letter">B</span>A smartcard chip and POS/ATM terminals</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','c',false)"><span class="opt-letter">C</span>A web browser and an HTTPS server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q69','d',false)"><span class="opt-letter">D</span>Two separate cryptocurrency wallets</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q69')">Show Answer</button>
+        <div class="exam-reveal" id="q69-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A smartcard chip and POS/ATM terminals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">💰</span>
+    <h2>Economic Aspects of Security</h2>
+    <span class="topic-tag badge badge-teal">3 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Economic Aspects of Security</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q70">
+        <div class="exam-q-text">70. From an economic security-management perspective, why is investment in security typically justified using risk assessment?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','a',false)"><span class="opt-letter">A</span>Eliminate the need for all security spending</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','b',true)"><span class="opt-letter">B</span>Balance safeguard cost against threat cost</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','c',false)"><span class="opt-letter">C</span>Guarantee a service will never ever fail</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q70','d',false)"><span class="opt-letter">D</span>Remove the organization's security policy</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q70')">Show Answer</button>
+        <div class="exam-reveal" id="q70-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Balance safeguard cost against threat cost</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q71">
+        <div class="exam-q-text">71. A documented security policy primarily serves to:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','a',false)"><span class="opt-letter">A</span>Replace all technical controls entirely</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','b',true)"><span class="opt-letter">B</span>Define rules for protecting information assets</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','c',false)"><span class="opt-letter">C</span>Guarantee against all security vulnerabilities</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q71','d',false)"><span class="opt-letter">D</span>Serve only as a marketing document</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q71')">Show Answer</button>
+        <div class="exam-reveal" id="q71-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Define rules for protecting information assets</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q72">
+        <div class="exam-q-text">72. When assessing service vulnerabilities for investment decisions, which factor is typically weighed alongside the probability of an incident?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','a',false)"><span class="opt-letter">A</span>The color scheme of the company website</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','b',true)"><span class="opt-letter">B</span>The potential cost if it's exploited</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','c',false)"><span class="opt-letter">C</span>The total number of HR employees</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q72','d',false)"><span class="opt-letter">D</span>The age of the company's CEO</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q72')">Show Answer</button>
+        <div class="exam-reveal" id="q72-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The potential cost if it's exploited</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">📋</span>
+    <h2>IT Service Management (ITIL/ITSM)</h2>
+    <span class="topic-tag badge badge-amber">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">IT Service Management (ITIL/ITSM)</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q73">
+        <div class="exam-q-text">73. What does ITIL stand for?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','a',true)"><span class="opt-letter">A</span>Information Technology Infrastructure Library</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','b',false)"><span class="opt-letter">B</span>International Technology Implementation Logic</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','c',false)"><span class="opt-letter">C</span>Information Technology Internal Lifecycle</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q73','d',false)"><span class="opt-letter">D</span>Integrated Telecommunications Information Layer</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q73')">Show Answer</button>
+        <div class="exam-reveal" id="q73-exp">
+          <div class="exam-explanation">✅ Correct answer: A) Information Technology Infrastructure Library</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q74">
+        <div class="exam-q-text">74. According to ITIL, Value is best defined as:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','a',false)"><span class="opt-letter">A</span>The total cost of implementing the service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','b',true)"><span class="opt-letter">B</span>Perceived benefits and utility for the customer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','c',false)"><span class="opt-letter">C</span>The uptime of the service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q74','d',false)"><span class="opt-letter">D</span>The number of users using the service</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q74')">Show Answer</button>
+        <div class="exam-reveal" id="q74-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Perceived benefits and utility for the customer</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q75">
+        <div class="exam-q-text">75. Which government agency originally developed ITIL in the 1980s?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','a',false)"><span class="opt-letter">A</span>NIST (US standards body)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','b',true)"><span class="opt-letter">B</span>CCTA (UK government agency)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','c',false)"><span class="opt-letter">C</span>NSA (US intelligence agency)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q75','d',false)"><span class="opt-letter">D</span>ISO (international standards body)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q75')">Show Answer</button>
+        <div class="exam-reveal" id="q75-exp">
+          <div class="exam-explanation">✅ Correct answer: B) CCTA (UK government agency)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q76">
+        <div class="exam-q-text">76. In ITIL, the underlying root cause of one or more incidents is called a:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','a',false)"><span class="opt-letter">A</span>A Known Error</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','b',false)"><span class="opt-letter">B</span>A Workaround</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','c',true)"><span class="opt-letter">C</span>A Problem record</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q76','d',false)"><span class="opt-letter">D</span>A Configuration Item</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q76')">Show Answer</button>
+        <div class="exam-reveal" id="q76-exp">
+          <div class="exam-explanation">✅ Correct answer: C) A Problem record</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q77">
+        <div class="exam-q-text">77. What document or item triggers the start of the Change Management process?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','a',false)"><span class="opt-letter">A</span>A Service Level Agreement</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','b',true)"><span class="opt-letter">B</span>A Request For Change (RFC)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','c',false)"><span class="opt-letter">C</span>A Known Error report</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q77','d',false)"><span class="opt-letter">D</span>A new entry added to the CMDB</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q77')">Show Answer</button>
+        <div class="exam-reveal" id="q77-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A Request For Change (RFC)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q78">
+        <div class="exam-q-text">78. What is the primary repository that stores Configuration Items (CIs) and their relationships?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','a',false)"><span class="opt-letter">A</span>The Knowledge Management System</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','b',false)"><span class="opt-letter">B</span>The published Service Catalog</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','c',true)"><span class="opt-letter">C</span>Configuration Management Database (CMDB)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q78','d',false)"><span class="opt-letter">D</span>The full Service Portfolio</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q78')">Show Answer</button>
+        <div class="exam-reveal" id="q78-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Configuration Management Database (CMDB)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q79">
+        <div class="exam-q-text">79. Which of the following best distinguishes a Metric from a KPI in ITIL?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','a',false)"><span class="opt-letter">A</span>A Metric is the goal; a KPI measures progress</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','b',true)"><span class="opt-letter">B</span>A KPI measures progress; a Metric is the data behind it</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','c',false)"><span class="opt-letter">C</span>They are exactly the same thing</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q79','d',false)"><span class="opt-letter">D</span>KPIs apply only to financial services</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q79')">Show Answer</button>
+        <div class="exam-reveal" id="q79-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A KPI measures progress; a Metric is the data behind it</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q80">
+        <div class="exam-q-text">80. The Deming Cycle used in Continual Service Improvement consists of which four steps?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','a',false)"><span class="opt-letter">A</span>Define, Measure, Analyze, Improve</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','b',true)"><span class="opt-letter">B</span>Plan, Do, Check, Act</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','c',false)"><span class="opt-letter">C</span>Initiate, Execute, Monitor, Close</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q80','d',false)"><span class="opt-letter">D</span>Strategy, Design, Transition, Operation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q80')">Show Answer</button>
+        <div class="exam-reveal" id="q80-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Plan, Do, Check, Act</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q81">
+        <div class="exam-q-text">81. Which of the following is true about ITIL according to its "Ups and Downs"?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','a',false)"><span class="opt-letter">A</span>A strictly enforced universal norm for all processes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','b',true)"><span class="opt-letter">B</span>A process standard, but not exactly "how" to do things</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','c',false)"><span class="opt-letter">C</span>Comprehensive coverage of all organizational issues</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q81','d',false)"><span class="opt-letter">D</span>A single proprietary tool sold by CCTA</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q81')">Show Answer</button>
+        <div class="exam-reveal" id="q81-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A process standard, but not exactly "how" to do things</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">⏱️</span>
+    <h2>SLM, Availability &amp; ITSCM</h2>
+    <span class="topic-tag badge badge-purple">9 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Service Level Management, Availability &amp; IT Service Continuity Management</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q82">
+        <div class="exam-q-text">82. What document defines the agreed service levels between a customer and an external provider, as opposed to an internal department?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','a',false)"><span class="opt-letter">A</span>OLA (internal agreement)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','b',false)"><span class="opt-letter">B</span>SLA (customer agreement)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','c',true)"><span class="opt-letter">C</span>UC (Underpinning Contract)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q82','d',false)"><span class="opt-letter">D</span>SQP (not a real ITIL term)</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q82')">Show Answer</button>
+        <div class="exam-reveal" id="q82-exp">
+          <div class="exam-explanation">✅ Correct answer: C) UC (Underpinning Contract)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q83">
+        <div class="exam-q-text">83. How is Availability calculated according to the lecture's formula?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','a',true)"><span class="opt-letter">A</span>(Service Time − Downtime) / Service Time × 100%</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','b',false)"><span class="opt-letter">B</span>Downtime / Agreed Service Time × 100%</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','c',false)"><span class="opt-letter">C</span>Number of breaks / total time</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q83','d',false)"><span class="opt-letter">D</span>MTBF multiplied by MTRS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q83')">Show Answer</button>
+        <div class="exam-reveal" id="q83-exp">
+          <div class="exam-explanation">✅ Correct answer: A) (Service Time − Downtime) / Service Time × 100%</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q84">
+        <div class="exam-q-text">84. Which metric measures how quickly and efficiently a service can be restored after a failure?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','a',false)"><span class="opt-letter">A</span>MTBF</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','b',false)"><span class="opt-letter">B</span>MTBSI</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','c',true)"><span class="opt-letter">C</span>MTRS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q84','d',false)"><span class="opt-letter">D</span>RTO</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q84')">Show Answer</button>
+        <div class="exam-reveal" id="q84-exp">
+          <div class="exam-explanation">✅ Correct answer: C) MTRS</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q85">
+        <div class="exam-q-text">85. For a system with components in series, each with independent availability, total availability is calculated as:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','a',false)"><span class="opt-letter">A</span>The sum of all component availabilities</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','b',true)"><span class="opt-letter">B</span>The product of all the individual availabilities</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','c',false)"><span class="opt-letter">C</span>One minus the product of all unavailabilities</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q85','d',false)"><span class="opt-letter">D</span>The average of all component availabilities</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q85')">Show Answer</button>
+        <div class="exam-reveal" id="q85-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The product of all the individual availabilities</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q86">
+        <div class="exam-q-text">86. A system with "Five 9s" (99.999%) availability corresponds to approximately how much downtime per year?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','a',false)"><span class="opt-letter">A</span>36 days</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','b',false)"><span class="opt-letter">B</span>8.76 hours</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','c',false)"><span class="opt-letter">C</span>52.56 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q86','d',true)"><span class="opt-letter">D</span>5.26 minutes</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q86')">Show Answer</button>
+        <div class="exam-reveal" id="q86-exp">
+          <div class="exam-explanation">✅ Correct answer: D) 5.26 minutes</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q87">
+        <div class="exam-q-text">87. In IT Service Continuity Management, what is the key difference between a "Disruption" and a "Disaster"?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','a',false)"><span class="opt-letter">A</span>A Disruption is permanent; a Disaster is only temporary</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','b',true)"><span class="opt-letter">B</span>A Disruption is brief; a Disaster is prolonged and severe</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','c',false)"><span class="opt-letter">C</span>The two terms are completely interchangeable</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q87','d',false)"><span class="opt-letter">D</span>Disasters refer only to natural, never technical, events</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q87')">Show Answer</button>
+        <div class="exam-reveal" id="q87-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A Disruption is brief; a Disaster is prolonged and severe</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q88">
+        <div class="exam-q-text">88. Which recovery type provides full duplexing, redundancy, and automatic failover, restoring service almost immediately?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','a',false)"><span class="opt-letter">A</span>Cold (gradual recovery, slowest)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','b',false)"><span class="opt-letter">B</span>Warm (intermediate recovery)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','c',true)"><span class="opt-letter">C</span>Hot (immediate/fast recovery)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q88','d',false)"><span class="opt-letter">D</span>Manual recovery process only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q88')">Show Answer</button>
+        <div class="exam-reveal" id="q88-exp">
+          <div class="exam-explanation">✅ Correct answer: C) Hot (immediate/fast recovery)</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q89">
+        <div class="exam-q-text">89. In an Active-Passive cluster configuration, what happens during normal operation?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','a',false)"><span class="opt-letter">A</span>All nodes serve client requests simultaneously</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','b',true)"><span class="opt-letter">B</span>Only the active node serves; passive stays on standby</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','c',false)"><span class="opt-letter">C</span>Load is balanced equally across all nodes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q89','d',false)"><span class="opt-letter">D</span>Both nodes remain offline until started manually</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q89')">Show Answer</button>
+        <div class="exam-reveal" id="q89-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Only the active node serves; passive stays on standby</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q90">
+        <div class="exam-q-text">90. According to ITIL's framing, Security is best expressed as the combination of which three attributes?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','a',false)"><span class="opt-letter">A</span>Availability, Reliability, Maintainability</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','b',true)"><span class="opt-letter">B</span>Availability, Confidentiality, Integrity</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','c',false)"><span class="opt-letter">C</span>Safety, Reliability, Confidentiality</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q90','d',false)"><span class="opt-letter">D</span>Integrity, Maintainability, Safety</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q90')">Show Answer</button>
+        <div class="exam-reveal" id="q90-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Availability, Confidentiality, Integrity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">⛓️</span>
+    <h2>Blockchain &amp; Cryptocurrencies</h2>
+    <span class="topic-tag badge badge-green">10 Questions</span>
+  </div>
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Blockchain and Cryptocurrencies</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q91">
+        <div class="exam-q-text">91. What is the primary purpose of a Merkle Tree in a blockchain?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','a',false)"><span class="opt-letter">A</span>To securely store and encrypt passwords</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','b',true)"><span class="opt-letter">B</span>To verify block transactions without a full scan</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','c',false)"><span class="opt-letter">C</span>To encrypt the entire blockchain's history</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q91','d',false)"><span class="opt-letter">D</span>To determine and adjust mining difficulty</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q91')">Show Answer</button>
+        <div class="exam-reveal" id="q91-exp">
+          <div class="exam-explanation">✅ Correct answer: B) To verify block transactions without a full scan</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q92">
+        <div class="exam-q-text">92. Which value, calculated through mining, is included in a block header and varies until the resulting block hash meets the difficulty target?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','a',false)"><span class="opt-letter">A</span>The Merkle Root</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','b',false)"><span class="opt-letter">B</span>The Timestamp</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','c',true)"><span class="opt-letter">C</span>The Nonce value</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q92','d',false)"><span class="opt-letter">D</span>The Previous Block Hash</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q92')">Show Answer</button>
+        <div class="exam-reveal" id="q92-exp">
+          <div class="exam-explanation">✅ Correct answer: C) The Nonce value</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q93">
+        <div class="exam-q-text">93. What is the maximum supply cap of Bitcoin?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','a',false)"><span class="opt-letter">A</span>100 million</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','b',true)"><span class="opt-letter">B</span>21 million</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','c',false)"><span class="opt-letter">C</span>1 billion</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q93','d',false)"><span class="opt-letter">D</span>Unlimited</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q93')">Show Answer</button>
+        <div class="exam-reveal" id="q93-exp">
+          <div class="exam-explanation">✅ Correct answer: B) 21 million</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q94">
+        <div class="exam-q-text">94. In Proof of Stake consensus, what determines a node's probability of being selected to add the next block?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','a',false)"><span class="opt-letter">A</span>The amount of computational power (hash rate) it contributes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','b',true)"><span class="opt-letter">B</span>The amount of coins/tokens it has staked as a deposit</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','c',false)"><span class="opt-letter">C</span>Its physical geographic server location</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q94','d',false)"><span class="opt-letter">D</span>The number of transactions it has previously processed</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q94')">Show Answer</button>
+        <div class="exam-reveal" id="q94-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The amount of coins/tokens it has staked as a deposit</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q95">
+        <div class="exam-q-text">95. What is a Decentralized Autonomous Organization (DAO) fundamentally governed by?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','a',false)"><span class="opt-letter">A</span>An annually elected board of directors</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','b',true)"><span class="opt-letter">B</span>Rules and decisions encoded in smart contracts</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','c',false)"><span class="opt-letter">C</span>A central bank's monetary policy</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q95','d',false)"><span class="opt-letter">D</span>Government regulation alone</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q95')">Show Answer</button>
+        <div class="exam-reveal" id="q95-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Rules and decisions encoded in smart contracts</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q96">
+        <div class="exam-q-text">96. Approximately how many transactions per second (TPS) can the base Bitcoin blockchain process, given roughly 2,000 transactions per 10-minute block?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','a',true)"><span class="opt-letter">A</span>~3.2 TPS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','b',false)"><span class="opt-letter">B</span>~320 TPS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','c',false)"><span class="opt-letter">C</span>~24,000 TPS</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q96','d',false)"><span class="opt-letter">D</span>~56,000 TPS</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q96')">Show Answer</button>
+        <div class="exam-reveal" id="q96-exp">
+          <div class="exam-explanation">✅ Correct answer: A) ~3.2 TPS</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q97">
+        <div class="exam-q-text">97. What does SegWit (Segregated Witness) do to help Bitcoin scaling?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','a',false)"><span class="opt-letter">A</span>Doubles the block's mining reward amount</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','b',true)"><span class="opt-letter">B</span>Separates signatures from the block to save space</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','c',false)"><span class="opt-letter">C</span>Eliminates the need for a Merkle tree entirely</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q97','d',false)"><span class="opt-letter">D</span>Switches Bitcoin entirely to Proof of Stake</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q97')">Show Answer</button>
+        <div class="exam-reveal" id="q97-exp">
+          <div class="exam-explanation">✅ Correct answer: B) Separates signatures from the block to save space</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q98">
+        <div class="exam-q-text">98. A "Hard Fork" in blockchain terminology means:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','a',false)"><span class="opt-letter">A</span>A backward-compatible upgrade old nodes accept</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','b',true)"><span class="opt-letter">B</span>A change old nodes reject as incompatible</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','c',false)"><span class="opt-letter">C</span>A temporary, planned network outage</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q98','d',false)"><span class="opt-letter">D</span>The merging of two unrelated blockchains</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q98')">Show Answer</button>
+        <div class="exam-reveal" id="q98-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A change old nodes reject as incompatible</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q99">
+        <div class="exam-q-text">99. Which of the following best describes the Ripple (XRP) network?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','a',false)"><span class="opt-letter">A</span>A pure Proof-of-Work blockchain like Bitcoin</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','b',true)"><span class="opt-letter">B</span>A payment settlement system with pre-mined tokens</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','c',false)"><span class="opt-letter">C</span>A smart-contract platform rivaling Ethereum</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q99','d',false)"><span class="opt-letter">D</span>An anonymous peer-to-peer mining network</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q99')">Show Answer</button>
+        <div class="exam-reveal" id="q99-exp">
+          <div class="exam-explanation">✅ Correct answer: B) A payment settlement system with pre-mined tokens</div>
+        </div>
+      </div>
+      <div class="exam-q" id="q100">
+        <div class="exam-q-text">100. What major event caused the creation of Ethereum Classic?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','a',false)"><span class="opt-letter">A</span>A scheduled hard fork to implement Proof of Stake</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','b',true)"><span class="opt-letter">B</span>The DAO Hack of 2016 and the hard fork to reverse it</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','c',false)"><span class="opt-letter">C</span>A SEC lawsuit against the Ethereum Foundation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q100','d',false)"><span class="opt-letter">D</span>The collapse of the Mt. Gox exchange</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q100')">Show Answer</button>
+        <div class="exam-reveal" id="q100-exp">
+          <div class="exam-explanation">✅ Correct answer: B) The DAO Hack of 2016 and the hard fork to reverse it</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);color:var(--text3);text-align:center;padding:20px;font-family:var(--mono);font-size:11px;letter-spacing:0.5px;">
+  IT APPLICATIONS: ELECTRONIC MEDIA IN BUSINESS AND COMMERCE · 100-QUESTION EXAM PRACTICE EDITION
+</footer>
+
+<script>
+function toggleOpt(el, qId, letter, isCorrect) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function shuffleAllOptions() {
+  document.querySelectorAll('.exam-q').forEach(q => {
+    const container = q.querySelector('.exam-options');
+    if (!container) return;
+    const opts = shuffleArray(Array.from(container.children));
+    let correctLetter = null;
+    opts.forEach((opt, idx) => {
+      const letter = String.fromCharCode(65 + idx); // A, B, C, D
+      const letterSpan = opt.querySelector('.opt-letter');
+      if (letterSpan) letterSpan.textContent = letter;
+      const onclick = opt.getAttribute('onclick') || '';
+      if (/,\s*true\)/.test(onclick)) correctLetter = letter;
+      container.appendChild(opt); // re-insert in new shuffled order
+    });
+    const expDiv = document.querySelector('#' + q.id + '-exp .exam-explanation');
+    if (expDiv && correctLetter) {
+      expDiv.textContent = expDiv.textContent.replace(/Correct answer:\s*[A-D]\)/, 'Correct answer: ' + correctLetter + ')');
+    }
+  });
+}
+shuffleAllOptions();
+
+function revealAll(qId) {
+  const q = document.getElementById(qId);
+  if (!q) return;
+  const opts = q.querySelectorAll('.exam-opt');
+  opts.forEach(opt => {
+    const onclick = opt.getAttribute('onclick') || '';
+    const match = onclick.match(/,\s*'([a-d])',\s*(true|false)/);
+    if (match) {
+      const isCorrect = match[2] === 'true';
+      if (isCorrect) {
+        opt.classList.remove('wrong');
+        opt.classList.add('revealed-correct');
+      }
+    }
+  });
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.add('show');
+}
+
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = 65;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>

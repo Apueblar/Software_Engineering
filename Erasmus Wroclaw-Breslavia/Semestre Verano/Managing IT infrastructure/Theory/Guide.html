@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Infrastructure Management — Topic Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SUMMARY BOX ── */
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+/* ── TWO / THREE COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+/* ── INFO CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card ul li strong { color: var(--text); }
+
+/* ── DEFINITION TABLE ── */
+.def-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: 600;
+}
+.def-table td strong { color: var(--text); }
+.def-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── DIAGRAM ── */
+.diagram-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.diagram-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--teal);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--text2);
+}
+
+/* ── EXAM QUESTIONS ── */
+.exam-section {
+  background: var(--surface2);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.exam-header {
+  background: var(--amber-dim);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exam-header-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.exam-body { padding: 14px 18px; }
+.exam-q {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  user-select: none;
+}
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+.show-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px;
+}
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── SEPARATOR ── */
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── KEY FACTS ── */
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.key-fact {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.key-fact-value {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.key-fact-label {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--sans);
+  font-weight: 600;
+}
+
+/* ── COMPARE GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.compare-col { padding: 16px; }
+.compare-col:first-child { border-right: 1px solid var(--border); }
+.compare-col-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.compare-col ul { list-style: none; }
+.compare-col li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.compare-col li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+
+/* ── WARNING BOX ── */
+.warn-box {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.warn-box strong { color: var(--red); }
+
+/* ── TIP BOX ── */
+.tip-box {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--teal); }
+
+svg text { font-family: 'Syne', sans-serif; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">🖥 IT Infrastructure Management · WUST · W04IST-SI0826G · Wojciech Thomas, PhD</div>
+  <h1>Topic Study Guide</h1>
+  <div class="header-sub">Complete reference organized by topic, with diagrams, definitions &amp; interactive exam questions</div>
+  <div class="badges">
+    <span class="badge badge-blue">12 Core Topics</span>
+    <span class="badge badge-teal">Interactive Exam Practice</span>
+    <span class="badge badge-amber">20 Real Exam Questions</span>
+    <span class="badge badge-purple">Windows Server 2025</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+  <a href="#t1">Windows Server</a>
+  <a href="#t2">Active Directory</a>
+  <a href="#t3">Users &amp; Groups</a>
+  <a href="#t4">NTFS Permissions</a>
+  <a href="#t5">PowerShell</a>
+  <a href="#t6">Group Policies I</a>
+  <a href="#t7">Group Policies II</a>
+  <a href="#t8">GPO Advanced</a>
+  <a href="#t9">AD Replication &amp; FSMO</a>
+  <a href="#t10">DNS</a>
+  <a href="#t11">PKI / AD CS</a>
+  <a href="#t12">Firewall, IPSec &amp; SSH</a>
+  <a href="#glossary">Glossary</a>
+  <a href="#exam">Exam Practice</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 1: WINDOWS SERVER PLATFORM -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🖥️</span>
+    <h2>Windows Server Platform &amp; Virtualization</h2>
+    <span class="topic-tag badge badge-blue">Foundational</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Windows Server 2025 is the server OS at the core of this course. Three installation flavors exist: <strong>Desktop Experience</strong> (full GUI), <strong>Core</strong> (CLI-only), and <strong>Nano</strong> (container-only). Virtualization comes in two types: <strong>Type I</strong> (bare-metal hypervisor — Hyper-V) and <strong>Type II</strong> (hosted — VirtualBox). Containerization shares a single OS kernel across isolated workloads.
+  </div>
+
+  <!-- Virtualization comparison -->
+  <div class="compare-grid" style="margin-bottom:20px;">
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--blue);">⚡ Type I — Bare-Metal Hypervisor</div>
+      <ul>
+        <li>Runs <strong>directly on hardware</strong></li>
+        <li>Examples: <strong>Hyper-V</strong>, VMware ESX, KVM</li>
+        <li>Guest partitions sit above hypervisor layer</li>
+        <li>Better performance, used in production</li>
+        <li>Intel Hyperthreading → each physical core = 1 Logical Processor (LP)</li>
+      </ul>
+    </div>
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--teal);">🪟 Type II — Hosted Hypervisor</div>
+      <ul>
+        <li>Runs <strong>as software on top of a host OS</strong></li>
+        <li>Examples: <strong>VirtualBox</strong>, VMware Player</li>
+        <li>Each guest OS has its own VMM layer above host</li>
+        <li>Easier to set up, used for development/testing</li>
+        <li>Extra OS overhead = slower than Type I</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Installation Flavors -->
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🖥 Desktop Experience</div>
+      <ul>
+        <li>Full GUI (Explorer, MMC, etc.)</li>
+        <li>RAM: min <strong>2 GB</strong></li>
+        <li>Familiar, easiest to manage locally</li>
+        <li>Higher attack surface &amp; resource use</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">⌨ Server Core</div>
+      <ul>
+        <li>Command-line only — <strong>no GUI</strong></li>
+        <li>RAM: min <strong>512 MB</strong> (1024MB to install)</li>
+        <li>Same roles as Desktop Experience</li>
+        <li>Managed via <code>sconfig</code>, PowerShell, RSAT</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">🪄 Nano Server</div>
+      <ul>
+        <li>Container-only, headless, <strong>extremely small</strong></li>
+        <li>RAM: ~<strong>128 MB</strong> per instance</li>
+        <li>Supports only select roles: DNS, web server</li>
+        <li>Example: 3400 Nano VMs on a single 8×20-core/1TB RAM host</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Server 2025 Editions</div>
+    <table class="def-table">
+      <thead><tr><th>Edition</th><th>OSEs Allowed</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Datacenter</td><td>Unlimited</td><td>For high-density virtualisation environments</td></tr>
+        <tr><td>Standard</td><td>2</td><td>Most common; full feature set</td></tr>
+        <tr><td>Essentials</td><td>1</td><td>25 users / 50 devices cap; small businesses</td></tr>
+        <tr><td>Storage Server</td><td>—</td><td>OEM only; optimised for NAS/SAN scenarios</td></tr>
+        <tr><td>Hyper-V Server</td><td>—</td><td>Free; hypervisor only, no Windows Server roles</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🔧 Roles vs Features</div>
+      <ul>
+        <li><strong>Role</strong> — complex function (e.g. DNS, DHCP, Domain Controller); a group of dependent services</li>
+        <li><strong>Feature</strong> — single capability not normally exposed to clients (e.g. BitLocker)</li>
+        <li>Roles can depend on features; "features on demand" must be installed from mounted media</li>
+        <li>Managed via <strong>Server Manager</strong> — multi-server console</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📋 Min. Requirements (Server 2025)</div>
+      <ul>
+        <li>CPU: <strong>x86-64</strong>, 1.4 GHz min, NX/DEP/SLAT</li>
+        <li>RAM: <strong>2 GB</strong> (GUI) / <strong>512 MB</strong> (Core)</li>
+        <li>Disk: <strong>32 GB</strong> (more if RAM > 16 GB)</li>
+        <li>Install via: DVD, USB, or WDS (network-based)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 2: ACTIVE DIRECTORY FUNDAMENTALS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">🌳</span>
+    <h2>Domain Environment &amp; Active Directory Fundamentals</h2>
+    <span class="topic-tag badge badge-blue">Core AD</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Active Directory (AD DS) is the central directory service for Windows domains. A <strong>domain</strong> provides centralized authentication via Kerberos and a single account that works domain-wide. Multiple domains form <strong>trees</strong>; multiple trees form a <strong>forest</strong>. Logical structure (OUs, domains) maps separately from physical structure (sites, DCs).
+  </div>
+
+  <!-- Kerberos Flow -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Kerberos Authentication Flow (Single Sign-On)</div>
+    <svg viewBox="0 0 740 160" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#4d9fff"/>
+        </marker>
+      </defs>
+      <!-- Client -->
+      <rect x="20" y="50" width="110" height="60" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="75" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#4d9fff" font-family="Syne">Client</text>
+      <text x="75" y="92" text-anchor="middle" font-size="10" fill="#9aa0b8" font-family="Syne">Workstation</text>
+
+      <!-- KDC -->
+      <rect x="300" y="20" width="140" height="60" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="370" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#2dd4bf" font-family="Syne">KDC</text>
+      <text x="370" y="63" text-anchor="middle" font-size="10" fill="#9aa0b8" font-family="Syne">Domain Controller</text>
+
+      <!-- Service -->
+      <rect x="590" y="50" width="130" height="60" rx="8" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="655" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#a78bfa" font-family="Syne">Service</text>
+      <text x="655" y="92" text-anchor="middle" font-size="10" fill="#9aa0b8" font-family="Syne">e.g. File Server</text>
+
+      <!-- Step 1: AS_REQ -->
+      <line x1="130" y1="68" x2="298" y2="48" stroke="#4d9fff" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="210" y="44" text-anchor="middle" font-size="10" fill="#4d9fff" font-family="Syne">① AS_REQ</text>
+
+      <!-- Step 2: AS_REP (TGT) -->
+      <line x1="298" y1="58" x2="130" y2="74" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <text x="210" y="82" text-anchor="middle" font-size="10" fill="#2dd4bf" font-family="Syne">② AS_REP (TGT)</text>
+
+      <!-- Step 3: TGS_REQ -->
+      <line x1="130" y1="82" x2="298" y2="68" stroke="#4d9fff" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="210" y="100" text-anchor="middle" font-size="10" fill="#4d9fff" font-family="Syne">③ TGS_REQ</text>
+
+      <!-- Step 4: TGS_REP (ST) -->
+      <line x1="298" y1="76" x2="130" y2="94" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="4,3"/>
+      <text x="210" y="118" text-anchor="middle" font-size="10" fill="#2dd4bf" font-family="Syne">④ TGS_REP (ST)</text>
+
+      <!-- Step 5: AP_REQ -->
+      <line x1="130" y1="98" x2="588" y2="78" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="390" y="120" text-anchor="middle" font-size="10" fill="#a78bfa" font-family="Syne">⑤ AP_REQ → Service Access</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🧱 AD Physical Objects</div>
+      <ul>
+        <li><strong>Domain Controller (DC)</strong> — runs AD DS, authenticates users</li>
+        <li><strong>Data Store</strong> — <code>C:\Windows\NTDS\ntds.dit</code></li>
+        <li><strong>Global Catalog (GC)</strong> — partial replica of all objects in forest</li>
+        <li><strong>RODC</strong> — Read-Only Domain Controller (branch offices)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🧩 AD Logical Objects</div>
+      <ul>
+        <li><strong>Schema</strong> — defines object types and attributes</li>
+        <li><strong>Domain</strong> — security and admin boundary</li>
+        <li><strong>Tree</strong> — parent/child domains with contiguous namespace</li>
+        <li><strong>Forest</strong> — collection of trees; single schema</li>
+        <li><strong>OU (Organizational Unit)</strong> — container for delegation &amp; GPO linking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">AD Object Naming Formats</div>
+    <table class="def-table">
+      <thead><tr><th>Format</th><th>Example</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td>Distinguished Name (DN)</td><td><code>cn=Sarah,ou=Marketing,DC=contoso,DC=internal</code></td><td>Unique domain-wide</td></tr>
+        <tr><td>Relative DN (RDN)</td><td><code>ou=Marketing</code></td><td>Relative to parent only</td></tr>
+        <tr><td>Canonical Name</td><td><code>contoso.internal/Marketing/Sarah</code></td><td>Human-friendly path</td></tr>
+        <tr><td>UPN</td><td><code>sarah@contoso.internal</code></td><td>Login; unique in forest</td></tr>
+        <tr><td>SAM Account Name</td><td><code>contoso\sarah</code></td><td>Pre-Win2000 logon; legacy</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="color:var(--amber);">⚠️ OUs vs Containers — Critical Difference</div>
+    <ul>
+      <li><strong>Containers</strong> (e.g. built-in Users, Computers, Built-in): <strong>cannot be nested</strong>, <strong>cannot have permissions assigned</strong>, <strong>cannot have GPOs linked</strong></li>
+      <li><strong>OUs</strong>: can be nested, can have permissions delegated, can have GPOs linked — this is the key practical difference</li>
+      <li>PowerShell: <code>New-ADOrganizationalUnit -Name Sweden -Path "DC=contoso,DC=internal"</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--blue);">💻 Promote a DC via PowerShell</div>
+    <pre>Install-WindowsFeature AD-Domain-Services
+Import-Module ADDSDeployment
+# First DC in a new forest:
+Install-ADDSForest -DomainName contoso.internal -InstallDNS
+# Additional DC in existing domain:
+Install-ADDSDomainController -DomainName contoso.internal -InstallDNS</pre>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 3: USERS, COMPUTERS & GROUPS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">👥</span>
+    <h2>User Accounts, Computer Accounts &amp; Groups</h2>
+    <span class="topic-tag badge badge-teal">Identity</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Users authenticate with a <strong>UPN</strong> or <strong>SAM account name</strong>. Computers have their own accounts with auto-rotating passwords. Groups come in two types (<strong>Security</strong> vs <strong>Distribution</strong>) and three scopes (<strong>Domain Local</strong>, <strong>Global</strong>, <strong>Universal</strong>). The A-G-DL-P strategy provides a recommended pattern for assigning permissions.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">Domain Local</div>
+      <ul>
+        <li>Visible/usable <strong>only in its own domain</strong></li>
+        <li>Can hold objects from <strong>the entire forest</strong></li>
+        <li>Used to <strong>assign permissions to resources</strong></li>
+        <li>Think: "the lock on the resource"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">Global</div>
+      <ul>
+        <li>Visible from <strong>all forest domains</strong></li>
+        <li>Can only contain objects from <strong>its own domain</strong></li>
+        <li>Used to <strong>gather users by role/dept</strong></li>
+        <li>Think: "the key that represents users"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">Universal</div>
+      <ul>
+        <li>Visible from <strong>all forest domains</strong></li>
+        <li>Can contain objects from <strong>entire forest</strong></li>
+        <li>Used to <strong>combine global groups across domains</strong></li>
+        <li>Stored in the Global Catalog</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="summary" style="border-left-color:var(--amber);">
+    <div class="summary-title" style="color:var(--amber);">Mnemonic — A-G-DL-P Strategy</div>
+    <strong>A</strong>ccounts → <strong>G</strong>lobal groups → <strong>D</strong>omain <strong>L</strong>ocal groups → <strong>P</strong>ermissions<br>
+    In multi-domain forests, add Universal: <strong>A → G → U → DL → P</strong>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🖥 Computer Accounts</div>
+      <ul>
+        <li>Each domain computer has its own account with a random, auto-rotating password</li>
+        <li>Add via PowerShell: <code>Add-Computer -ComputerName cl2 -DomainName "contoso.com" -Restart</code></li>
+        <li><strong>Common problems:</strong> reinstalling OS creates a new account (password mismatch); excessive time diff breaks Kerberos</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">👤 Create a User (PowerShell)</div>
+      <pre style="margin:0;font-size:11px;">New-ADUser Anna -SamAccountName Anna `
+  -UserPrincipalName "annas@contoso.com" `
+  -Path "OU=Sweden,DC=contoso,DC=internal" `
+  -DisplayName "Anna Svensson" `
+  -AccountPassword (ConvertTo-SecureString `
+    -AsPlainText "P@sswOrd" -Force) `
+  -Enabled $true</pre>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Default Built-In Groups</div>
+    <table class="def-table">
+      <thead><tr><th>Group</th><th>Location</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td>Enterprise Admins</td><td>First forest domain only</td><td>Forest-wide admin</td></tr>
+        <tr><td>Schema Admins</td><td>First forest domain only</td><td>Can modify AD schema</td></tr>
+        <tr><td>Domain Admins</td><td>Users container</td><td>Full domain control</td></tr>
+        <tr><td>Administrators</td><td>Built-in container</td><td>Local admin on DCs</td></tr>
+        <tr><td>Server Operators</td><td>Built-in container</td><td>Start/stop services, manage shares</td></tr>
+        <tr><td>Backup Operators</td><td>Built-in container</td><td>Backup/restore regardless of permissions</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 4: FILE & FOLDER PERMISSIONS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">🔐</span>
+    <h2>File &amp; Folder Permissions (NTFS)</h2>
+    <span class="topic-tag badge badge-red">Security</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    NTFS permissions apply to files and folders on <strong>NTFS or ReFS volumes only</strong> (not FAT/FAT32). Every securable object has an <strong>ACL</strong>. Permissions are cumulative from all group memberships, but <strong>explicit Deny always wins</strong>. When accessing via a network share, both <strong>NTFS and Share permissions apply</strong> — the <strong>most restrictive (lowest common)</strong> result wins.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📋 Permission Evaluation Rules</div>
+      <ul>
+        <li><strong>Principle of least privilege</strong> — only explicitly assigned permissions apply</li>
+        <li><strong>Implicit deny</strong> — no permission assigned = no access</li>
+        <li>Permissions from user + all groups are <strong>cumulative (additive)</strong></li>
+        <li><strong>Explicit Deny always wins</strong> over any Allow — even Full Control</li>
+        <li>Example: <code>Read::Deny</code> + <code>Full Control::Allow</code> → no read for anyone (even admins), but write works</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🌐 NTFS + Share: The Combination Rule</div>
+      <ul>
+        <li>Local access (<code>C:\profiles</code>) → <strong>only NTFS</strong> permissions apply</li>
+        <li>Network access (<code>\\dc1\profiles</code>) → <strong>both</strong> NTFS and Share apply</li>
+        <li>Effective = the <strong>most restrictive (lowest common)</strong> of the two</li>
+        <li><strong>Microsoft best practice:</strong> set Share to <code>Everyone::Full Control::Allow</code>; manage restriction via NTFS only</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Copy &amp; Move Behavior — Permission Inheritance</div>
+    <svg viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#9aa0b8"/>
+        </marker>
+      </defs>
+      <!-- Copy anywhere -->
+      <rect x="20" y="20" width="180" height="90" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="110" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#4d9fff" font-family="Syne">COPY (anywhere)</text>
+      <text x="110" y="62" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">Result: inherits</text>
+      <text x="110" y="78" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">permissions from</text>
+      <text x="110" y="94" text-anchor="middle" font-size="11" fill="#2dd4bf" font-family="Syne">DESTINATION folder</text>
+
+      <!-- Move same vol -->
+      <rect x="260" y="20" width="180" height="90" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="350" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#2dd4bf" font-family="Syne">MOVE (same volume)</text>
+      <text x="350" y="56" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">Direct perms: kept</text>
+      <text x="350" y="72" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">Inherited perms:</text>
+      <text x="350" y="88" text-anchor="middle" font-size="11" fill="#2dd4bf" font-family="Syne">from new parent</text>
+      <text x="350" y="104" text-anchor="middle" font-size="10" fill="#5c6380" font-family="Syne">(fast — no data move)</text>
+
+      <!-- Move diff vol -->
+      <rect x="500" y="20" width="180" height="90" rx="8" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="590" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#a78bfa" font-family="Syne">MOVE (diff. volume)</text>
+      <text x="590" y="56" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">Behaves like a copy:</text>
+      <text x="590" y="72" text-anchor="middle" font-size="11" fill="#9aa0b8" font-family="Syne">all perms inherited</text>
+      <text x="590" y="88" text-anchor="middle" font-size="11" fill="#a78bfa" font-family="Syne">from DESTINATION</text>
+      <text x="590" y="104" text-anchor="middle" font-size="10" fill="#5c6380" font-family="Syne">(data is physically copied)</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--amber);">📌 Permission Inheritance Key Points</div>
+    <ul>
+      <li>ACL set on a parent folder <strong>propagates to subfolders/files automatically</strong></li>
+      <li>Inherited permissions <strong>cannot be directly changed at the child</strong> — change at source</li>
+      <li>Inheritance <strong>can be disabled</strong>; you then choose to <strong>delete</strong> or <strong>convert to explicit (direct)</strong> permissions</li>
+      <li>⚠️ <strong>Never remove permissions</strong> for <code>Administrators</code> and <code>SYSTEM</code></li>
+      <li>Scope can be fine-tuned: "this folder only", "subfolders and files", "files only", etc.</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 5: POWERSHELL -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">⚡</span>
+    <h2>PowerShell Fundamentals</h2>
+    <span class="topic-tag badge badge-teal">Scripting</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    PowerShell is a <strong>command-line shell + scripting language</strong> using <strong>Verb-Noun</strong> naming conventions (e.g. <code>Get-Service</code>). It's the recommended management tool for Windows Server. Modern cross-platform "PowerShell" differs from legacy "Windows PowerShell" — check with <code>$PSVersionTable</code>.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔍 Discovery Commands</div>
+      <ul>
+        <li><code>Get-Command *Net*</code> — wildcard search</li>
+        <li><code>Get-Help Get-NetAdapter -Examples</code></li>
+        <li><code>Get-Service | Get-Member</code> — inspect properties/methods</li>
+        <li><code>Update-Help</code> — refresh local help files</li>
+        <li><code>Get-Verb</code> — list all allowed verbs</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔀 Loops</div>
+      <ul>
+        <li><strong>for</strong> — classic counter loop</li>
+        <li><strong>foreach</strong> — iterates a collection: <code>foreach ($id in $ids){...}</code></li>
+        <li><strong>Foreach-Object</strong> — pipeline: <code>Get-NetAdapter | Foreach-Object {$_.name}</code></li>
+        <li><strong>While</strong> — condition checked before iteration</li>
+        <li><strong>Do...While</strong> — condition checked <strong>after</strong> (always runs at least once)</li>
+      </ul>
+    </div>
+  </div>
+
+  <pre>
+# Pipeline example — list all running services with display name and startup type
+Get-Service | Where-Object Status -eq Running | Select-Object -Property DisplayName,StartupType | Format-Table
+
+# Execution policy — bypass for current session only
+Set-ExecutionPolicy Bypass -Scope Process
+
+# Function with typed parameter, mandatory, and validation
+function Get-ServerInfo {
+  param(
+    [Parameter(Mandatory)]
+    [ValidateNotNullOrEmpty()]
+    [string]$ComputerName = $env:COMPUTERNAME
+  )
+  Get-ComputerInfo -ComputerName $ComputerName
+}</pre>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Comparison Operators</div>
+    <table class="def-table">
+      <thead><tr><th>Operator</th><th>Meaning</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>-eq / -ieq</td><td>Equal (case-insensitive)</td><td>Default; -ceq for case-sensitive</td></tr>
+        <tr><td>-ne / -ine</td><td>Not equal</td><td>-cne for case-sensitive</td></tr>
+        <tr><td>-gt / -ge / -lt / -le</td><td>Greater/less comparisons</td><td>Works on numbers &amp; strings</td></tr>
+        <tr><td>-like</td><td>Wildcard match</td><td>Use <code>?</code> (1 char) and <code>*</code> (any)</td></tr>
+        <tr><td>-match</td><td>Regex match</td><td>Returns $true/$false</td></tr>
+        <tr><td>-is</td><td>Type check</td><td>e.g. <code>$x -is [string]</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 6: GROUP POLICIES PART 1 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">📋</span>
+    <h2>Group Policies — Part 1 (Fundamentals)</h2>
+    <span class="topic-tag badge badge-amber">GPO</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Group Policy uses the Windows <strong>Registry</strong> as its configuration database. GPOs apply settings to computers and users in a defined order: <strong>Local → Site → Domain → OU</strong>. The last applied wins in a conflict. <strong>RSoP</strong> shows the final effective combination of all policies.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — GPO Application Order (Last Applied Wins)</div>
+    <svg viewBox="0 0 700 80" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#9aa0b8"/>
+        </marker>
+      </defs>
+      <rect x="10" y="20" width="120" height="40" rx="6" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="70" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#4d9fff" font-family="Syne">Local GPO</text>
+
+      <line x1="130" y1="40" x2="168" y2="40" stroke="#9aa0b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+      <rect x="170" y="20" width="120" height="40" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="230" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#2dd4bf" font-family="Syne">Site</text>
+
+      <line x1="290" y1="40" x2="328" y2="40" stroke="#9aa0b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+      <rect x="330" y="20" width="120" height="40" rx="6" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="390" y="44" text-anchor="middle" font-size="13" font-weight="700" fill="#a78bfa" font-family="Syne">Domain</text>
+
+      <line x1="450" y1="40" x2="488" y2="40" stroke="#9aa0b8" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+      <rect x="490" y="15" width="200" height="50" rx="6" fill="#3d2e0a" stroke="#fbbf24" stroke-width="2"/>
+      <text x="590" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="Syne">OU (wins)</text>
+      <text x="590" y="55" text-anchor="middle" font-size="10" fill="#9aa0b8" font-family="Syne">most specific → applied last</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">⏱ GPO Refresh Timing</div>
+      <ul>
+        <li><strong>Computer settings</strong>: applied at startup, refreshed every <strong>90–120 min</strong></li>
+        <li><strong>User settings</strong>: applied at logon, refreshed every <strong>90–120 min</strong></li>
+        <li><strong>Software installation</strong>: only at startup/logoff — NOT via background refresh</li>
+        <li>Force refresh manually: <code>gpupdate /force</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🏗 GPO Structure</div>
+      <ul>
+        <li>Two top-level: <strong>User Configuration</strong> + <strong>Computer Configuration</strong></li>
+        <li>Each has: <strong>Software settings</strong>, <strong>Security settings</strong>, <strong>Administrative Templates</strong></li>
+        <li>Managed via <strong>GPMC</strong> (Group Policy Management Console)</li>
+        <li>Applied to objects via <strong>GPO links</strong> at Site/Domain/OU</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 7: GROUP POLICIES PART 2 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">📐</span>
+    <h2>Group Policies — Part 2 (Templates, Scope &amp; Testing)</h2>
+    <span class="topic-tag badge badge-amber">GPO</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Administrative Templates (<strong>ADMX/ADML</strong>) define and describe settings. A GPO's physical files live in two places: the <strong>Group Policy Container (GPC)</strong> in AD and the <strong>Group Policy Template (GPT)</strong> in SYSVOL. Inheritance can be overridden with <strong>Block Inheritance</strong> (on an OU) and <strong>Enforce/No Override</strong> (on a GPO link).
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📁 ADMX/ADML Template Files</div>
+      <ul>
+        <li><strong>ADMX</strong> — defines the actual settings (language-neutral)</li>
+        <li><strong>ADML</strong> — translated/localized description text</li>
+        <li>Local: <code>C:\Windows\PolicyDefinitions</code></li>
+        <li>Domain Central Store: <code>C:\Windows\SYSVOL\domain\Policies\PolicyDefinitions</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🧱 GPO Physical Storage</div>
+      <ul>
+        <li><strong>GPC (Group Policy Container)</strong> — stored in Active Directory; contains metadata and version</li>
+        <li><strong>GPT (Group Policy Template)</strong> — stored in SYSVOL; contains actual policy files</li>
+        <li>Both must stay in sync — version mismatch causes inconsistency</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">🚫 Block Inheritance</div>
+      <ul>
+        <li>Set <strong>on an OU</strong></li>
+        <li>Prevents parent-container GPOs from applying</li>
+        <li>Can be overridden by <strong>Enforce</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🔒 Enforce (No Override)</div>
+      <ul>
+        <li>Set <strong>on a GPO link</strong></li>
+        <li>Pushes settings through Block Inheritance</li>
+        <li>The strongest override available</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🎯 Security Filtering</div>
+      <ul>
+        <li>Restricts which groups the GPO applies to</li>
+        <li>Read + Apply permissions required</li>
+        <li>Delegation can explicitly exclude a group</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--blue);">📊 Group Policy Results</div>
+      <ul>
+        <li>Shows what <strong>actually applied</strong> to a real target</li>
+        <li>Requires access to the target computer</li>
+        <li>User must have logged on there at least once</li>
+        <li>Real (not simulated) result</li>
+      </ul>
+    </div>
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--teal);">🔬 Group Policy Modelling</div>
+      <ul>
+        <li>A <strong>simulation</strong> — target doesn't need to exist</li>
+        <li>More parameters → more accurate simulation</li>
+        <li>Great for planning and testing before deployment</li>
+        <li>Runs as a service on the DC</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 8: GPO ADVANCED (Software, Folder Redirection, PSOs) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">🗂️</span>
+    <h2>GPO Advanced — Software, Folder Redirection &amp; PSOs</h2>
+    <span class="topic-tag badge badge-amber">GPO</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📦 Software Deployment via GPO</div>
+      <ul>
+        <li>Only <strong>.msi</strong> format natively supported (MSIX on Server 2019+)</li>
+        <li><strong>Does NOT refresh via gpupdate</strong> — only at startup/logon</li>
+        <li><strong>Assigned (Computer)</strong>: installs at startup, user cannot remove</li>
+        <li><strong>Assigned (User)</strong>: installs at logon, user cannot remove</li>
+        <li><strong>Published (User only)</strong>: appears in Control Panel; user can install/uninstall</li>
+        <li>⚠️ Published is <strong>NOT available</strong> under Computer Configuration</li>
+        <li>Always use <strong>UNC path</strong> (<code>\\dc1\install\</code>) — never local path</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">📂 Folder Redirection</div>
+      <ul>
+        <li>Transparently moves user profile folders (Documents, Desktop, etc.) to a network share</li>
+        <li>User path appears unchanged — fully transparent</li>
+        <li>Path: <code>User Configuration &gt; Policies &gt; Windows Settings &gt; Folder Redirection</code></li>
+        <li><strong>Basic</strong>: all users → same root path</li>
+        <li><strong>Advanced</strong>: different paths by security group</li>
+        <li>⚠️ Do <strong>NOT</strong> redirect <code>AppData(Roaming)</code> — conflicts with roaming profiles</li>
+        <li>Enable Offline Files (CSC) for disconnected use</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="summary" style="border-left-color:var(--purple);">
+    <div class="summary-title" style="color:var(--purple);">Password Settings Objects (Fine-Grained Password Policy)</div>
+    The domain can only have <strong>one password policy</strong> per domain (from domain-level GPO). PSOs allow <strong>multiple policies for different users/groups</strong> in the same domain. PSOs are applied <strong>directly to users or security groups — never to OUs</strong>. When multiple PSOs apply to the same user, the one with the <strong>lower <code>msDS-PasswordSettingsPrecedence</code> value wins</strong>.
+  </div>
+
+  <pre>
+# Create a PSO with PowerShell
+New-ADFineGrainedPasswordPolicy -Name "ServiceAccounts-PSO" -Precedence 10 `
+  -MinPasswordLength 20 -ComplexityEnabled $true `
+  -LockoutThreshold 5 -LockoutDuration "00:30:00"
+
+# Assign to a group
+Add-ADFineGrainedPasswordPolicySubject -Identity "ServiceAccounts-PSO" -Subjects "SVC_Accounts"
+
+# Check effective policy for a user
+Get-ADUserResultantPasswordPolicy -Identity SVC_Accounts</pre>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9: AD REPLICATION, SITES & FSMO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">🔄</span>
+    <h2>AD Replication, Sites &amp; FSMO Roles</h2>
+    <span class="topic-tag badge badge-blue">Advanced AD</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    AD replication keeps all DCs in sync. <strong>Intra-site</strong> replication is change-triggered and propagates in under 5 minutes. <strong>Inter-site</strong> replication is schedule-driven (default: every 180 minutes). Five <strong>FSMO roles</strong> handle operations that cannot safely run on multiple DCs simultaneously.
+  </div>
+
+  <div class="compare-grid" style="margin-bottom:20px;">
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--blue);">🏠 Intra-Site Replication</div>
+      <ul>
+        <li><strong>Change-triggered</strong> — near real-time</li>
+        <li>Full propagation: <strong>under 5 minutes</strong></li>
+        <li>Protocol: IP/RPC</li>
+        <li>Topology: ring + shortcuts, auto-managed by <strong>KCC</strong></li>
+        <li>No admin configuration needed</li>
+      </ul>
+    </div>
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--teal);">🌍 Inter-Site Replication</div>
+      <ul>
+        <li><strong>Schedule-driven</strong> — default: <strong>every 180 min</strong></li>
+        <li>Configured manually in <strong>AD Sites &amp; Services</strong></li>
+        <li>Protocol: IP/RPC (preferred) or SMTP (non-domain data only)</li>
+        <li>Diagnostic: <code>repadmin /showrepl</code></li>
+        <li>Represents <strong>physical network</strong> topology</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">FSMO Roles — One per Domain / Forest</div>
+    <table class="def-table">
+      <thead><tr><th>Role</th><th>Scope</th><th>Responsibility</th></tr></thead>
+      <tbody>
+        <tr><td>PDC Emulator</td><td>Per domain</td><td><strong>Time sync</strong> for all DCs; first to learn password changes; fallback for auth</td></tr>
+        <tr><td>RID Master</td><td>Per domain</td><td>Issues pools of RIDs used to build unique SIDs for new objects</td></tr>
+        <tr><td>Infrastructure Master</td><td>Per domain</td><td>Tracks identifiers for objects referenced from other domains</td></tr>
+        <tr><td>Domain Naming Master</td><td>Per forest</td><td>Adds/removes domains in the forest (AD Domains and Trusts)</td></tr>
+        <tr><td>Schema Master</td><td>Per forest</td><td>Processes all changes to the AD schema (<code>schmmgmt.dll</code>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠️ Critical FSMO Seizure Rule:</strong> After seizing a failed DC's FSMO role onto another DC, you must <strong>NEVER bring the original DC back online</strong>. It still believes it holds the role and will cause immediate conflicts and data corruption.
+  </div>
+
+  <pre>
+# Check current FSMO role holders
+netdom query fsmo
+Get-ADDomain | Select-Object PDCEmulator, RIDMaster, InfrastructureMaster
+Get-ADForest | Select-Object DomainNamingMaster, SchemaMaster
+
+# Transfer a role (graceful — old DC still online)
+Move-ADDirectoryServerOperationMasterRole -Identity DC02 -OperationMasterRole PDCEmulator
+
+# Seize a role (old DC has failed — NEVER bring it back!)
+Move-ADDirectoryServerOperationMasterRole -Identity DC02 -OperationMasterRole PDCEmulator -Force</pre>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10: DNS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">🌐</span>
+    <h2>DNS Server</h2>
+    <span class="topic-tag badge badge-teal">Networking</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    DNS translates hostnames to IPs and enables <strong>AD service discovery</strong> via <strong>SRV records</strong>. AD is entirely dependent on DNS — broken SRV records cause logon failures, GPO failures, and replication failures. The <code>_msdcs</code> subdomain stores AD-specific service records separately for independent replication and delegation.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📋 Zone Types</div>
+      <ul>
+        <li><strong>Primary</strong> — writable master copy</li>
+        <li><strong>Secondary</strong> — read-only; updated via zone transfer</li>
+        <li><strong>Stub</strong> — NS and A records only; delegates to authoritative server</li>
+        <li><strong>AD-Integrated</strong> — stored in AD, replicates with AD automatically; preferred for domain zones</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔤 Key Record Types</div>
+      <ul>
+        <li><strong>A</strong> — hostname → IPv4</li>
+        <li><strong>AAAA</strong> — hostname → IPv6</li>
+        <li><strong>CNAME</strong> — alias → another name</li>
+        <li><strong>MX</strong> — mail server for a domain</li>
+        <li><strong>NS</strong> — authoritative name server for a zone</li>
+        <li><strong>SRV</strong> — service location (LDAP, Kerberos) ← <strong>critical for AD</strong></li>
+        <li><strong>PTR</strong> — IP → hostname (reverse lookup)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compare-grid" style="margin-bottom:20px;">
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--blue);">🔁 Recursive Query</div>
+      <ul>
+        <li>Client asks resolver for a <strong>final answer</strong></li>
+        <li>Resolver does all the work on behalf of client</li>
+        <li>Used: workstation ↔ its configured DNS server</li>
+        <li>Returns: actual IP or NXDOMAIN</li>
+      </ul>
+    </div>
+    <div class="compare-col" style="background:var(--surface2);">
+      <div class="compare-col-title" style="color:var(--teal);">🔀 Iterative Query</div>
+      <ul>
+        <li>Server returns <strong>a referral</strong>, not a final answer</li>
+        <li>"I don't know — try that server instead"</li>
+        <li>Used: between DNS servers during external resolution</li>
+        <li>Chain: root → TLD → authoritative server</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Why _msdcs exists:</strong> Created automatically when a domain installs. Contains DC locator, Global Catalog locator, and PDC Emulator SRV/CNAME records. Kept separate so it can be independently replicated to all DNS servers in the forest and delegated without touching the main domain zone.
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--amber);">⚠️ AD SRV Records — If These Break, Everything Breaks</div>
+    <ul>
+      <li>DC lookup: <code>_ldap._tcp.contoso.com</code></li>
+      <li>Kerberos: <code>_kerberos._tcp.contoso.com</code></li>
+      <li>Missing/wrong SRV records → failed logon, GPO failures, replication failures</li>
+      <li>AD-integrated zone stores SRV records in AD; they replicate automatically</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 11: PKI / AD CS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">🔏</span>
+    <h2>Certificate Services (PKI / AD CS)</h2>
+    <span class="topic-tag badge badge-red">Security</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    PKI provides <strong>Confidentiality, Integrity, Authenticity, and Non-repudiation</strong>. A <strong>Certification Authority (CA)</strong> issues certificates that bind a public key to an identity. Best practice: offline <strong>Root CA</strong> + online <strong>Enterprise Issuing CA</strong> (two-tier hierarchy). Certificate revocation is checked via the <strong>CRL</strong> downloaded from the <strong>CDP</strong>.
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Stand-alone CA vs Enterprise CA</div>
+    <table class="def-table">
+      <thead><tr><th>Feature</th><th>Stand-alone CA</th><th>Enterprise CA</th></tr></thead>
+      <tbody>
+        <tr><td>Domain required</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Certificate templates</td><td>No</td><td>Yes</td></tr>
+        <tr><td>GPO autoenrollment</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Publishes CRL/AIA to AD</td><td>No</td><td>Yes</td></tr>
+        <tr><td>Issuance</td><td>Manual approval (default)</td><td>Automatic (if template allows)</td></tr>
+        <tr><td>Best used as</td><td><strong>Offline Root CA</strong></td><td><strong>Issuing CA for domain members</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔗 CDP vs AIA</div>
+      <ul>
+        <li><strong>CDP (CRL Distribution Point)</strong>: where clients download the CRL to check if a cert is revoked</li>
+        <li><strong>AIA (Authority Information Access)</strong>: where clients download the issuing CA cert to build the trust chain</li>
+        <li>Both: publish to AD (domain only) or HTTP (all clients)</li>
+        <li><code>Get-CACrlDistributionPoint</code> / <code>Get-CAAuthorityInformationAccess</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">⚙️ Key Install Decisions (cannot change later)</div>
+      <ul>
+        <li>Computer name + domain (part of every issued cert)</li>
+        <li>CA type (Root vs Subordinate)</li>
+        <li>Key length: <strong>4096-bit RSA</strong> recommended for roots</li>
+        <li>Hash algorithm: <strong>SHA-256</strong> minimum (SHA-1 deprecated)</li>
+        <li>Validity period: Root <strong>10–20 yrs</strong>; Issuing: <strong>~5 yrs</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠️ Offline Root CA Pitfall:</strong> If taken offline without pre-publishing a long-validity CRL (6+ months) reachable over <strong>HTTP</strong> (not just LDAP), all certificates it ever signed will start failing validation once the old CRL expires. Always publish via HTTP.
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--teal);">🔑 Key Archival / Recovery</div>
+    <ul>
+      <li>CA can store an <strong>encrypted copy of the private key</strong> — only for <strong>encryption certs (e.g. EFS)</strong>, never for signing/authentication keys</li>
+      <li>Requires a <strong>Key Recovery Agent (KRA)</strong> certificate</li>
+      <li>Used when keys are lost: profile deleted, OS reinstall, disk failure, device theft</li>
+      <li>Best practice: KRA on dedicated secure account; exported cert kept offline; tested periodically</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 12: FIREWALL, IPSEC & OPENSSH -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">🛡️</span>
+    <h2>Windows Firewall, IPSec &amp; OpenSSH</h2>
+    <span class="topic-tag badge badge-red">Security</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Windows Firewall is a <strong>stateful, host-based firewall</strong> (default: block all inbound, allow all outbound). It has three network profiles: <strong>Domain</strong> (auto; DC reachable), <strong>Private</strong>, and <strong>Public</strong>. <strong>IPSec</strong> authenticates/encrypts packets between two hosts. <strong>OpenSSH</strong> is cross-platform, fully scriptable remote access, pre-installed on Server 2025.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🌐 Domain Profile</div>
+      <ul>
+        <li><strong>Auto-applied</strong> when a DC is reachable</li>
+        <li><strong>Cannot be set manually</strong></li>
+        <li>Usually least restrictive for internal traffic</li>
+        <li>Check: <code>Get-NetConnectionProfile</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🏠 Private Profile</div>
+      <ul>
+        <li>Internal/home networks</li>
+        <li>Set manually by an admin</li>
+        <li>Moderately restrictive</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red);">🔒 Public Profile</div>
+      <ul>
+        <li>Default for <strong>unidentified networks</strong></li>
+        <li><strong>Most restrictive</strong></li>
+        <li>Applied automatically when no domain/private match</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap" style="margin-bottom:20px;">
+    <div class="def-wrap-title">IPSec — Enforcement Levels</div>
+    <table class="def-table">
+      <thead><tr><th>Mode</th><th>Behaviour</th><th>Use For</th></tr></thead>
+      <tbody>
+        <tr><td>Request Authentication</td><td>Tries IPSec; <strong>falls back to unprotected</strong> if peer can't authenticate</td><td>Initial rollout, testing</td></tr>
+        <tr><td>Require Authentication</td><td><strong>Refuses unprotected traffic</strong>; peer must have a matching rule or communication fails</td><td>Production, after verified rollout</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠️ Critical IKEv2 Cert Requirement:</strong> The machine cert MUST include EKU <strong>"IP Security IKE Intermediate" (OID 1.3.6.1.5.5.8.2.2)</strong>. Standard Computer or Web Server templates do NOT include this. IKE negotiation will <strong>silently fail with no logged error</strong>. Fix: duplicate the "IPSec (Offline Request)" template, add the EKU, enroll on both machines before configuring the rule.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔑 OpenSSH Key Auth — Critical Location</div>
+      <ul>
+        <li><strong>Standard user:</strong> <code>C:\Users\&lt;username&gt;\.ssh\authorized_keys</code></li>
+        <li><strong>Administrators group member:</strong> <code>C:\ProgramData\ssh\administrators_authorized_keys</code></li>
+        <li>Admin file requires <strong>strict ACL</strong> — if permissions too broad, sshd <strong>silently ignores it</strong></li>
+        <li>Set via: <code>icacls.exe</code> granting only Administrators:F and SYSTEM:F</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">💻 Enable OpenSSH (Server 2025)</div>
+      <ul>
+        <li>Pre-installed by default on Server 2025</li>
+        <li>Default port: <strong>TCP 22</strong> (predefined firewall rule created automatically)</li>
+        <li>Default shell: <code>cmd.exe</code> — change via registry key <code>HKLM:\SOFTWARE\OpenSSH\DefaultShell</code></li>
+        <li>Generate key pair: <code>ssh-keygen -t ecdsa</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <pre>
+# Enable sshd service
+Get-Service -Name sshd | Set-Service -StartupType Automatic
+Start-Service sshd
+
+# Restrict SSH access in sshd_config
+AllowGroups contoso\sshusers contoso\serveroperators
+
+# Change default shell to PowerShell 7
+New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Program Files\PowerShell\7\pwsh.exe"
+Restart-Service sshd</pre>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- GLOSSARY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="glossary">
+  <div class="topic-header">
+    <span class="topic-number">📖</span>
+    <span class="topic-icon"></span>
+    <h2>Complete Glossary — All Key Terms</h2>
+    <span class="topic-tag badge badge-blue">Reference</span>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Master Glossary (A–Z)</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>ACL</td><td>Access Control List — list of security principals + their assigned permissions on an object; every securable object has one.</td></tr>
+        <tr><td>AD CS</td><td>Active Directory Certificate Services — Windows Server role providing PKI: CA, Web Enrollment, OCSP, NDES.</td></tr>
+        <tr><td>AD DS</td><td>Active Directory Domain Services — the directory service powering authentication, authorization, and resource management in a Windows domain.</td></tr>
+        <tr><td>ADMX / ADML</td><td>Administrative Template files; ADMX = setting definitions (language-neutral); ADML = localized descriptions.</td></tr>
+        <tr><td>AIA</td><td>Authority Information Access — location where clients download the issuing CA cert to build the chain of trust.</td></tr>
+        <tr><td>A-G-DL-P</td><td>Accounts → Global groups → Domain Local groups → Permissions. Recommended group nesting strategy.</td></tr>
+        <tr><td>CDP</td><td>CRL Distribution Point — where clients download the Certificate Revocation List to check revocation status.</td></tr>
+        <tr><td>CRL</td><td>Certificate Revocation List — published list of revoked certificates; clients check before trusting any cert.</td></tr>
+        <tr><td>DC</td><td>Domain Controller — a server running AD DS that authenticates users and stores the AD database.</td></tr>
+        <tr><td>DFSR</td><td>Distributed File System Replication — replicates SYSVOL between domain controllers.</td></tr>
+        <tr><td>Distinguished Name (DN)</td><td>LDAP path uniquely identifying any AD object, e.g. <code>cn=Sarah,ou=Marketing,DC=contoso,DC=internal</code>.</td></tr>
+        <tr><td>EKU</td><td>Extended Key Usage — certificate field specifying what the cert can be used for (e.g. client auth, IPSec IKE).</td></tr>
+        <tr><td>Forest</td><td>A collection of one or more AD domain trees sharing a single schema, configuration, and global catalog.</td></tr>
+        <tr><td>FSMO</td><td>Flexible Single Master Operations — five AD roles that cannot safely run on multiple DCs simultaneously.</td></tr>
+        <tr><td>GPC</td><td>Group Policy Container — GPO component stored in Active Directory (metadata and version info).</td></tr>
+        <tr><td>GPMC</td><td>Group Policy Management Console — main tool for creating, editing, and linking GPOs.</td></tr>
+        <tr><td>GPO</td><td>Group Policy Object — a collection of policy settings applied to users/computers in a domain.</td></tr>
+        <tr><td>GPT</td><td>Group Policy Template — GPO component stored in SYSVOL (actual policy files).</td></tr>
+        <tr><td>Hyper-V</td><td>Microsoft's Type I bare-metal hypervisor, built into Windows Server and Windows 11.</td></tr>
+        <tr><td>IaaS</td><td>Infrastructure as a Service — cloud model providing raw compute, storage, and networking.</td></tr>
+        <tr><td>IFM</td><td>Install from Removable Media — a method to promote additional DCs without transferring all AD data over a slow WAN link.</td></tr>
+        <tr><td>IPSec</td><td>IP Security — a protocol suite that authenticates and optionally encrypts every IP packet between two hosts.</td></tr>
+        <tr><td>KCC</td><td>Knowledge Consistency Checker — automatically builds and maintains intra-site replication topology.</td></tr>
+        <tr><td>KDC</td><td>Key Distribution Center — the Kerberos service running on every domain controller.</td></tr>
+        <tr><td>Kerberos</td><td>The primary authentication protocol in AD domains, providing single sign-on via ticket-granting tickets.</td></tr>
+        <tr><td>KRA</td><td>Key Recovery Agent — trusted role that can recover archived private keys from the CA.</td></tr>
+        <tr><td>NTDS</td><td>NT Directory Services — the AD database stored at <code>C:\Windows\NTDS\ntds.dit</code>.</td></tr>
+        <tr><td>NTFS</td><td>New Technology File System — supports file/folder permissions, EFS, compression, quotas. Required for NTFS ACLs.</td></tr>
+        <tr><td>OU</td><td>Organizational Unit — a logical container within a domain that can be nested, have GPOs linked, and have permissions delegated.</td></tr>
+        <tr><td>PDC Emulator</td><td>FSMO role: synchronizes time across all DCs in the domain; first to learn of password changes; auth fallback.</td></tr>
+        <tr><td>PKI</td><td>Public Key Infrastructure — a system of policies, procedures, and technology for issuing, managing, and revoking digital certificates.</td></tr>
+        <tr><td>PSO</td><td>Password Settings Object — fine-grained password policy applied directly to users or security groups (not OUs).</td></tr>
+        <tr><td>RID Master</td><td>FSMO role: issues pools of Relative Identifiers used to construct unique SIDs for new objects.</td></tr>
+        <tr><td>RODC</td><td>Read-Only Domain Controller — DC that holds a read-only copy of AD; used in branch offices or low-trust locations.</td></tr>
+        <tr><td>RSoP</td><td>Resultant Set of Policy — the final effective combination of all applicable GPO settings after inheritance/conflicts.</td></tr>
+        <tr><td>SAM Account Name</td><td>Pre-Windows 2000 logon name; format: <code>domain\username</code>.</td></tr>
+        <tr><td>Schema Master</td><td>Forest-level FSMO role: the only DC that can process changes to the AD schema.</td></tr>
+        <tr><td>SID</td><td>Security Identifier — a unique ID assigned to every security principal (user, group, computer).</td></tr>
+        <tr><td>SRV record</td><td>DNS record type for service location — AD uses SRV to allow clients to find DCs, LDAP, and Kerberos.</td></tr>
+        <tr><td>SYSVOL</td><td>A shared folder on every DC holding GPO templates (GPT) and logon scripts, replicated via DFSR.</td></tr>
+        <tr><td>UPN</td><td>User Principal Name — modern logon format; e.g. <code>user@contoso.com</code>; unique in the forest.</td></tr>
+        <tr><td>WDS</td><td>Windows Deployment Services — network-based automated installation of Windows OS images.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Quick-fire facts -->
+  <div class="exam-section" style="border-color:var(--teal);">
+    <div class="exam-header" style="background:var(--teal-dim);">
+      <span>⚡</span>
+      <span class="exam-header-text" style="color:var(--teal);">Quick-Fire Exam Facts — Memorize These</span>
+    </div>
+    <div class="exam-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--teal);">GPO order: Local → Site → Domain → OU — last applied wins</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--teal);">GPO refresh: every 90–120 min. Software install: only startup/logon</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--blue);">Intra-site replication: change-triggered, &lt;5 min propagation</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--blue);">Inter-site replication: schedule-driven, default 180 min interval</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--amber);">PSO conflict: lower msDS-PasswordSettingsPrecedence value wins</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--amber);">PSOs: link to users/groups ONLY — never to OUs</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--red);">Explicit Deny ALWAYS beats Allow — even Full Control</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--red);">Network access: most restrictive of NTFS + Share applies</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--purple);">Containers: cannot be nested, no permissions, no GPO links</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--purple);">After FSMO seizure: NEVER bring original DC back online</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--teal);">Domain profile: auto-applied when DC reachable, cannot be manually set</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--blue);">IKEv2 cert MUST have EKU: IP Security IKE Intermediate (OID 1.3.6.1.5.5.8.2.2)</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--green);">Admin SSH authorized_keys: C:\ProgramData\ssh\administrators_authorized_keys</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--green);">Standard user SSH: C:\Users\&lt;username&gt;\.ssh\authorized_keys</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--amber);">Copy → destination perms. Move same vol → keep direct perms. Move diff vol → destination perms</div>
+        <div style="font-size:13px;color:var(--text2);padding:6px 10px;background:var(--surface);border-radius:5px;border-left:2px solid var(--red);">SRV records broken → AD logon, GPO, replication ALL fail</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Numbers Table -->
+  <div class="def-wrap" style="margin-top:20px;">
+    <div class="def-wrap-title">Quick Reference — Key Numbers &amp; Defaults</div>
+    <table class="def-table">
+      <thead><tr><th>Item</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>GPO refresh interval (computer &amp; user)</td><td>every 90–120 minutes</td></tr>
+        <tr><td>Intra-site replication propagation</td><td>under 5 minutes (change-triggered)</td></tr>
+        <tr><td>Inter-site replication default interval</td><td>every 180 minutes</td></tr>
+        <tr><td>Minimum CPU speed (Server 2025)</td><td>1.4 GHz</td></tr>
+        <tr><td>Minimum RAM — GUI / Core</td><td>2 GB / 512 MB (1024 MB to install Core)</td></tr>
+        <tr><td>Minimum disk</td><td>32 GB</td></tr>
+        <tr><td>Root CA recommended key length</td><td>4096-bit RSA</td></tr>
+        <tr><td>Root CA validity</td><td>10–20 years</td></tr>
+        <tr><td>Issuing CA validity</td><td>~5 years</td></tr>
+        <tr><td>Minimum hash algorithm</td><td>SHA-256 (SHA-1 deprecated)</td></tr>
+        <tr><td>IKEv2 required EKU OID</td><td>1.3.6.1.5.5.8.2.2 (IP Security IKE Intermediate)</td></tr>
+        <tr><td>OpenSSH default port</td><td>TCP 22</td></tr>
+        <tr><td>RDP default port</td><td>TCP 3389</td></tr>
+        <tr><td>Lab max absences</td><td>4</td></tr>
+        <tr><td>Lecture bonus activities</td><td>up to 20% of final grade</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- EXAM PRACTICE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="exam">
+  <div class="topic-header">
+    <span class="topic-number">🎯</span>
+    <span class="topic-icon"></span>
+    <h2>Exam Practice — 20 Questions</h2>
+    <span class="topic-tag badge badge-amber">Practice</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Groups &amp; Permissions</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q1">
+        <div class="exam-q-text">1. Which group scope can contain user accounts and groups from any domain in the forest, but is itself visible only within its own domain?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','a',false)"><span class="opt-letter">A</span>Global group</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','b',false)"><span class="opt-letter">B</span>Domain Local group</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q1','c',true)"><span class="opt-letter">C</span>Universal group</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q1')">Show Answer</button>
+        <div class="exam-reveal" id="q1-exp">
+          <div class="exam-explanation">✅ C. Universal groups are visible from all forest domains AND can hold objects from the entire forest. Domain Local groups can hold forest-wide objects but are only visible within their own domain — that's the distinction here.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q2">
+        <div class="exam-q-text">2. A folder's NTFS permission is <code>G_Accounting::Full control::Allow</code> and its Share permission is <code>Domain Users::Read::Allow</code>. What is the effective permission when accessing the folder via <code>\\dc1\reports</code>?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','a',false)"><span class="opt-letter">A</span>Full control, because NTFS permissions always override Share permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','b',true)"><span class="opt-letter">B</span>Read, because the most restrictive of the two applicable permissions applies</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q2','c',false)"><span class="opt-letter">C</span>Full control, because Share permissions are ignored when NTFS permissions exist</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q2')">Show Answer</button>
+        <div class="exam-reveal" id="q2-exp">
+          <div class="exam-explanation">✅ B. Network access applies BOTH permission sets simultaneously. The effective permission is always the most restrictive (lowest common) result — here, Read wins over Full Control.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q3">
+        <div class="exam-q-text">3. Which statement about Organizational Units (OUs) versus Containers is correct?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','a',false)"><span class="opt-letter">A</span>Containers can have Group Policy Objects linked to them, just like OUs</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','b',true)"><span class="opt-letter">B</span>OUs can be nested and have permissions/GPOs assigned; containers cannot</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q3','c',false)"><span class="opt-letter">C</span>Containers and OUs are functionally identical, differing only in icon</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q3')">Show Answer</button>
+        <div class="exam-reveal" id="q3-exp">
+          <div class="exam-explanation">✅ B. OUs can be nested, have permissions delegated, AND have GPOs linked. Built-in Containers (Users, Computers, Built-in) can do none of these — this is the key practical difference.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4–6 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Group Policies</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q4">
+        <div class="exam-q-text">4. An administrator wants software to install automatically on 200 computers at next startup, with users unable to uninstall it. Which combination is correct?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','a',false)"><span class="opt-letter">A</span>Published deployment under Computer Configuration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','b',true)"><span class="opt-letter">B</span>Assigned deployment under Computer Configuration</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q4','c',false)"><span class="opt-letter">C</span>Assigned deployment under User Configuration, applied at logon</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q4')">Show Answer</button>
+        <div class="exam-reveal" id="q4-exp">
+          <div class="exam-explanation">✅ B. Assigned (Computer Configuration) installs at startup automatically and users cannot remove it. Published is NOT available under Computer Configuration — only Assigned is. Published (User only) can be uninstalled by users.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q5">
+        <div class="exam-q-text">5. Which Group Policy Client Side Extension is notable for NOT being refreshable using <code>gpupdate</code>?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','a',false)"><span class="opt-letter">A</span>Folder Redirection</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','b',false)"><span class="opt-letter">B</span>Administrative Templates</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q5','c',true)"><span class="opt-letter">C</span>Software Installation</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q5')">Show Answer</button>
+        <div class="exam-reveal" id="q5-exp">
+          <div class="exam-explanation">✅ C. Software Installation is one of the few CSEs that does NOT refresh via gpupdate. Computer assignments only apply at startup; User assignments only apply at logon.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q6">
+        <div class="exam-q-text">6. A Password Settings Object (PSO) can be linked directly to which of the following?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','a',false)"><span class="opt-letter">A</span>An Organizational Unit only</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','b',true)"><span class="opt-letter">B</span>Users or security groups, but never OUs</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q6','c',false)"><span class="opt-letter">C</span>The domain root only</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q6')">Show Answer</button>
+        <div class="exam-reveal" id="q6-exp">
+          <div class="exam-explanation">✅ B. PSOs are applied directly to users or security groups — NEVER to OUs. This is a critical distinction from regular domain password policy (which can only exist at domain level via GPO).</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q7">
+        <div class="exam-q-text">7. Two PSOs apply to the same user. Which one takes effect?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','a',false)"><span class="opt-letter">A</span>The one created most recently</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','b',false)"><span class="opt-letter">B</span>The one with the higher <code>msDS-PasswordSettingsPrecedence</code> value</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q7','c',true)"><span class="opt-letter">C</span>The one with the lower <code>msDS-PasswordSettingsPrecedence</code> value</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q7')">Show Answer</button>
+        <div class="exam-reveal" id="q7-exp">
+          <div class="exam-explanation">✅ C. Lower precedence number = higher priority. If two PSOs conflict, the one with the lower msDS-PasswordSettingsPrecedence value wins. Think: "1 beats 10."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8–10 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Replication &amp; FSMO</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q8">
+        <div class="exam-q-text">8. What is the default interval for AD inter-site replication (assuming default settings)?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','a',false)"><span class="opt-letter">A</span>Every 15 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','b',true)"><span class="opt-letter">B</span>Every 180 minutes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q8','c',false)"><span class="opt-letter">C</span>Change-triggered, near real-time</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q8')">Show Answer</button>
+        <div class="exam-reveal" id="q8-exp">
+          <div class="exam-explanation">✅ B. Inter-site replication defaults to every 180 minutes (3 hours). Change-triggered near real-time is intra-site replication — a very common exam trap.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q9">
+        <div class="exam-q-text">9. Which FSMO role is responsible for time synchronization across all domain controllers in a domain and is the first to learn of password changes?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','a',false)"><span class="opt-letter">A</span>RID Master</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','b',true)"><span class="opt-letter">B</span>PDC Emulator</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q9','c',false)"><span class="opt-letter">C</span>Infrastructure Master</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q9')">Show Answer</button>
+        <div class="exam-reveal" id="q9-exp">
+          <div class="exam-explanation">✅ B. The PDC Emulator synchronizes time for all DCs in the domain (critical for Kerberos which fails if clocks drift >5 min) and is the first to learn of password changes, acting as an auth fallback.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q10">
+        <div class="exam-q-text">10. After seizing a failed DC's FSMO role onto another DC, what must the administrator do regarding the original (failed) DC?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','a',false)"><span class="opt-letter">A</span>Bring it back online as soon as possible to restore redundancy</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','b',true)"><span class="opt-letter">B</span>Never bring it back online, since it still believes it holds the role</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q10','c',false)"><span class="opt-letter">C</span>Re-promote it immediately as a Global Catalog server</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q10')">Show Answer</button>
+        <div class="exam-reveal" id="q10-exp">
+          <div class="exam-explanation">✅ B. After seizing an FSMO role, the original DC MUST NEVER come back online. It still believes it owns the role and will cause conflicts. The original must be decommissioned.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q11–13 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">DNS</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q11">
+        <div class="exam-q-text">11. Which DNS record type allows clients to locate AD services such as LDAP and Kerberos?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','a',false)"><span class="opt-letter">A</span>CNAME</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','b',true)"><span class="opt-letter">B</span>SRV</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q11','c',false)"><span class="opt-letter">C</span>PTR</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q11')">Show Answer</button>
+        <div class="exam-reveal" id="q11-exp">
+          <div class="exam-explanation">✅ B. SRV (Service) records specify the location of services including LDAP (_ldap._tcp) and Kerberos (_kerberos._tcp). AD is entirely dependent on these records to function.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q12">
+        <div class="exam-q-text">12. What is the key difference between a recursive and an iterative DNS query?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','a',false)"><span class="opt-letter">A</span>A recursive query is used only for reverse lookups; iterative is only for forward lookups</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','b',true)"><span class="opt-letter">B</span>In a recursive query the resolver returns a final answer; in an iterative query, each server only refers the client to another server</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q12','c',false)"><span class="opt-letter">C</span>Recursive queries always use UDP, iterative queries always use TCP</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q12')">Show Answer</button>
+        <div class="exam-reveal" id="q12-exp">
+          <div class="exam-explanation">✅ B. Recursive: your DNS server does all the work and returns the final answer. Iterative: each server just refers to the next one ("I don't know — try server X"). Client ↔ resolver is recursive; resolver ↔ root/TLD/auth is iterative.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q13">
+        <div class="exam-q-text">13. Why is the <code>_msdcs</code> subdomain created separately from the main domain DNS zone?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','a',false)"><span class="opt-letter">A</span>To store user mailbox records separately from computer records</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','b',true)"><span class="opt-letter">B</span>To allow independent replication and delegation of AD-specific service location records</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q13','c',false)"><span class="opt-letter">C</span>Because Windows requires all DNS zones to have at least two sub-zones</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q13')">Show Answer</button>
+        <div class="exam-reveal" id="q13-exp">
+          <div class="exam-explanation">✅ B. _msdcs is kept separate so it can be independently replicated to all DNS servers in the forest and delegated without affecting the main domain zone. It holds DC locators, GC locators, and PDC Emulator records.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q14–16 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">PKI / Certificate Services</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q14">
+        <div class="exam-q-text">14. What distinguishes a Stand-alone CA from an Enterprise CA?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','a',false)"><span class="opt-letter">A</span>A Stand-alone CA supports GPO autoenrollment, while an Enterprise CA does not</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','b',true)"><span class="opt-letter">B</span>An Enterprise CA requires AD and supports certificate templates and GPO autoenrollment; a Stand-alone CA does not</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q14','c',false)"><span class="opt-letter">C</span>There is no functional difference; the names refer only to licensing</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q14')">Show Answer</button>
+        <div class="exam-reveal" id="q14-exp">
+          <div class="exam-explanation">✅ B. Enterprise CA requires Active Directory and adds certificate templates, GPO autoenrollment, and automatic publishing to AD/LDAP. Stand-alone CA is independent of AD — best suited as an offline Root CA.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q15">
+        <div class="exam-q-text">15. What is the purpose of the "IP Security IKE Intermediate" Extended Key Usage on a certificate?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','a',false)"><span class="opt-letter">A</span>It is required for any certificate used with EFS file encryption</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','b',true)"><span class="opt-letter">B</span>It is required on machine certificates for IKEv2-based IPSec authentication to succeed</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q15','c',false)"><span class="opt-letter">C</span>It allows a certificate to be used for SSH key-based authentication</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q15')">Show Answer</button>
+        <div class="exam-reveal" id="q15-exp">
+          <div class="exam-explanation">✅ B. IKEv2-based IPSec machine auth requires the EKU "IP Security IKE Intermediate" (OID 1.3.6.1.5.5.8.2.2). Standard Computer templates do NOT include this — IKE negotiation silently fails with no log entry if missing.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q16">
+        <div class="exam-q-text">16. A CRL Distribution Point (CDP) is used by clients to:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','a',false)"><span class="opt-letter">A</span>Download the issuing CA's certificate to build a trust chain</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','b',true)"><span class="opt-letter">B</span>Download the Certificate Revocation List to check if a certificate has been revoked</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q16','c',false)"><span class="opt-letter">C</span>Request a brand-new certificate from the CA automatically</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q16')">Show Answer</button>
+        <div class="exam-reveal" id="q16-exp">
+          <div class="exam-explanation">✅ B. CDP = CRL Distribution Point = where you download the CRL. AIA (Authority Information Access) is where you download the issuing CA cert to build the trust chain. These two are commonly confused.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q17–20 -->
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Firewall, IPSec &amp; OpenSSH</span>
+    </div>
+    <div class="exam-body">
+      <div class="exam-q" id="q17">
+        <div class="exam-q-text">17. On Windows Server 2025, where must the public key be placed for a user who is a member of the local Administrators group to log in via SSH key authentication?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','a',false)"><span class="opt-letter">A</span><code>C:\Users\&lt;username&gt;\.ssh\authorized_keys</code></div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','b',true)"><span class="opt-letter">B</span><code>C:\ProgramData\ssh\administrators_authorized_keys</code></div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q17','c',false)"><span class="opt-letter">C</span><code>C:\Windows\System32\OpenSSH\authorized_keys</code></div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q17')">Show Answer</button>
+        <div class="exam-reveal" id="q17-exp">
+          <div class="exam-explanation">✅ B. For Administrators group members, the key MUST be in C:\ProgramData\ssh\administrators_authorized_keys (not their profile folder). This file also requires strict ACLs — too-broad permissions cause sshd to silently ignore it.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q18">
+        <div class="exam-q-text">18. In a Windows Firewall Connection Security Rule, what happens if one host requires IPSec authentication ("Require") but the peer host has no matching rule configured at all?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','a',false)"><span class="opt-letter">A</span>Traffic falls back to unprotected communication automatically</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','b',true)"><span class="opt-letter">B</span>Communication fails, since the requiring host refuses unprotected traffic</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q18','c',false)"><span class="opt-letter">C</span>The connection is allowed once, then blocked on subsequent attempts</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q18')">Show Answer</button>
+        <div class="exam-reveal" id="q18-exp">
+          <div class="exam-explanation">✅ B. "Require Authentication" refuses unprotected traffic entirely — no fallback. If the peer has no matching rule, the requiring side will refuse the unprotected connection and communication fails completely.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q19">
+        <div class="exam-q-text">19. Which Windows network profile is automatically applied when a domain controller is reachable, and cannot be set manually by an administrator?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','a',false)"><span class="opt-letter">A</span>Private</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','b',false)"><span class="opt-letter">B</span>Public</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q19','c',true)"><span class="opt-letter">C</span>Domain</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q19')">Show Answer</button>
+        <div class="exam-reveal" id="q19-exp">
+          <div class="exam-explanation">✅ C. The Domain profile is automatically applied when a DC is reachable and cannot be manually configured. Private can be set manually; Public is the default for unidentified networks.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q20">
+        <div class="exam-q-text">20. What happens when permission inheritance is disabled on a folder that previously inherited permissions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','a',false)"><span class="opt-letter">A</span>All access to the folder is immediately revoked for everyone</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','b',true)"><span class="opt-letter">B</span>The previously inherited permissions can be either deleted or copied and converted into direct permissions</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q20','c',false)"><span class="opt-letter">C</span>Inheritance cannot be disabled once it has been applied</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q20')">Show Answer</button>
+        <div class="exam-reveal" id="q20-exp">
+          <div class="exam-explanation">✅ B. When you disable inheritance, Windows prompts you to either delete the inherited entries or convert them into explicit direct permissions. Inheritance can always be disabled at any time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end topic exam -->
+
+</div><!-- end container -->
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);color:var(--text3);text-align:center;padding:20px;font-family:var(--mono);font-size:11px;letter-spacing:0.5px;">
+  IT INFRASTRUCTURE MANAGEMENT STUDY GUIDE · W04IST-SI0826G · WROCŁAW UNIVERSITY OF SCIENCE AND TECHNOLOGY · TOPIC-BASED EDITION
+</footer>
+
+<script>
+function toggleOpt(el, qId, letter, isCorrect) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+}
+
+function revealAll(qId) {
+  const q = document.getElementById(qId);
+  if (!q) return;
+  const opts = q.querySelectorAll('.exam-opt');
+  opts.forEach(opt => {
+    const onclick = opt.getAttribute('onclick') || '';
+    const match = onclick.match(/,\s*'([a-c])',\s*(true|false)/);
+    if (match) {
+      const isCorrect = match[2] === 'true';
+      if (isCorrect) {
+        opt.classList.remove('wrong');
+        opt.classList.add('revealed-correct');
+      }
+    }
+  });
+  const exp = document.getElementById(qId + '-exp');
+  if (exp) exp.classList.add('show');
+}
+
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = 65;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>

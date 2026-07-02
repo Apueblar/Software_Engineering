@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Applications: Electronic Media in Business — Topic Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; max-width: 760px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+.topic { margin-bottom: 48px; scroll-margin-top: 70px; }
+
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.four-col { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 800px) {
+  .two-col, .three-col, .four-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li { font-size: 13px; color: var(--text2); padding: 3px 0; padding-left: 14px; position: relative; }
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card p { font-size: 13px; color: var(--text2); }
+
+.def-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; }
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text2); }
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child { font-family: var(--mono); font-size: 12px; color: var(--blue); white-space: nowrap; font-weight: 600; }
+.def-table td strong { color: var(--text); }
+.def-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.diagram-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; overflow-x: auto; }
+.diagram-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+code { font-family: var(--mono); font-size: 12px; background: var(--surface); color: var(--teal); padding: 1px 6px; border-radius: 3px; border: 1px solid var(--border); }
+pre { font-family: var(--mono); font-size: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; overflow-x: auto; line-height: 1.6; margin-bottom: 16px; color: var(--text2); }
+
+.exam-section { background: var(--surface2); border: 1px solid var(--amber); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+.exam-header { background: var(--amber-dim); padding: 10px 18px; display: flex; align-items: center; gap: 10px; }
+.exam-header-text { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--amber); }
+.exam-body { padding: 14px 18px; }
+.exam-q { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text { font-size: 13px; color: var(--text); margin-bottom: 10px; font-weight: 500; font-family: var(--sans); }
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt {
+  font-size: 13px; color: var(--text2); padding: 6px 10px; border-radius: 5px; border: 1px solid transparent;
+  cursor: pointer; transition: all 0.15s; display: flex; gap: 8px; align-items: flex-start; user-select: none;
+}
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter { font-family: var(--mono); font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation { font-size: 12px; color: var(--text2); background: var(--surface); border-left: 3px solid var(--teal); padding: 8px 12px; border-radius: 0 4px 4px 0; font-style: italic; }
+.show-btn {
+  font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--amber);
+  background: var(--amber-dim); border: 1px solid var(--amber); border-radius: 4px; padding: 5px 12px; cursor: pointer; margin-top: 8px; transition: all 0.15s;
+}
+.show-btn:hover { background: var(--amber); color: #000; }
+
+.chip { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 2px 8px; border-radius: 3px; font-weight: 600; margin: 1px; }
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+.key-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.key-fact { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-align: center; }
+.key-fact-value { font-family: var(--mono); font-size: 19px; font-weight: 600; color: var(--blue); margin-bottom: 4px; }
+.key-fact-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--sans); font-weight: 600; }
+
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+.compare-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.compare-col { padding: 16px; }
+.compare-col:not(:last-child) { border-right: 1px solid var(--border); }
+.compare-col-title { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size: 13px; color: var(--text2); padding: 4px 0; padding-left: 14px; position: relative; }
+.compare-col li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+
+svg text { font-family: 'Syne', sans-serif; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">💻 IT Applications: Electronic Media in Business and Commerce</div>
+  <h1>Topic Study Guide</h1>
+  <div class="header-sub">A complete reference for the course, reorganized by topic — covering enterprise architecture, REST &amp; messaging, cloud &amp; containers, IT security, service management, and blockchain — with diagrams, definitions &amp; self-check questions.</div>
+  <div class="badges">
+    <span class="badge badge-blue">14 Core Topics</span>
+    <span class="badge badge-teal">14 Lecture Blocks</span>
+    <span class="badge badge-amber">Diagrams &amp; Definitions</span>
+    <span class="badge badge-purple">Self-Check Questions</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Topics →</span>
+  <a href="#t1">Enterprise Apps &amp; SOA</a>
+  <a href="#t2">REST &amp; Web APIs</a>
+  <a href="#t3">Messaging: AMQP / gRPC</a>
+  <a href="#t4">Cloud &amp; Virtualization</a>
+  <a href="#t5">Docker &amp; Containers</a>
+  <a href="#t6">Kubernetes &amp; CI/CD</a>
+  <a href="#t7">Crypto &amp; Security</a>
+  <a href="#t8">Secure Protocols &amp; Certs</a>
+  <a href="#t9">Secure Payments</a>
+  <a href="#t10">ITIL / ITSM</a>
+  <a href="#t11">Service Mgmt &amp; Availability</a>
+  <a href="#t12">Blockchain Essentials</a>
+  <a href="#t13">Cryptocurrencies</a>
+  <a href="#t14">Blockchain Scaling &amp; Apps</a>
+  <a href="#glossary">Glossary</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COURSE MAP -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="map">
+  <div class="topic-header">
+    <span class="topic-number">00</span>
+    <span class="topic-icon">🗺️</span>
+    <h2>Course Map &amp; Learning Outcomes</h2>
+    <span class="topic-tag badge badge-blue">Overview</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">What This Course Covers</div>
+    The course traces how businesses build and secure digital infrastructure: starting from <strong>enterprise application architecture</strong> (SOA, REST, messaging), moving through <strong>cloud, virtualization, and container orchestration</strong>, then into <strong>cryptography and IT security</strong>, <strong>IT service management</strong> (availability, continuity), and finishing with <strong>blockchain and cryptocurrencies</strong>.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Knowledge (PEK_W)</div>
+      <ul>
+        <li>E-business problems &amp; solutions</li>
+        <li>Web technologies for e-commerce</li>
+        <li>Large public/commercial information systems</li>
+        <li>Information security regulations &amp; cryptographic tools</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Skills (PEK_U)</div>
+      <ul>
+        <li>Specifying complex information systems</li>
+        <li>Designing software with security requirements</li>
+        <li>Implementing &amp; assessing security of commercial web apps</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Social / Soft Skills (PEK_K)</div>
+      <ul>
+        <li>Tech's economic &amp; social impact</li>
+        <li>Teamwork in development projects</li>
+        <li>Scheduling &amp; risk management</li>
+        <li>Awareness of IT security risks</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">14-Lecture Block Map</div>
+    <table class="def-table">
+      <thead><tr><th>#</th><th>Block</th><th>Covered In This Guide</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>E-business &amp; enterprise applications — app servers, CORBA</td><td>Topic 1</td></tr>
+        <tr><td>2</td><td>REST — SOA, Python implementation, micro-services, GraphQL</td><td>Topic 2</td></tr>
+        <tr><td>3</td><td>Virtualization + Cloud Computing — hypervisors, VMware/Xen</td><td>Topics 3 &amp; 4</td></tr>
+        <tr><td>4</td><td>Containers and GPU — Docker, docker-compose, ONNX</td><td>Topic 5</td></tr>
+        <tr><td>5</td><td>Orchestration — Kubernetes, Rancher, CI</td><td>Topic 6</td></tr>
+        <tr><td>6</td><td>Basic software security — cryptosystems, digests, signatures</td><td>Topic 7</td></tr>
+        <tr><td>7</td><td>Secure network protocols — public certificates, SSL/TLS, HTTPS</td><td>Topic 8</td></tr>
+        <tr><td>8</td><td>Secure electronic payments — payment cards, SET/3D Secure</td><td>Topic 9</td></tr>
+        <tr><td>9</td><td>Economic aspects of security — risk &amp; investment</td><td><em>Not covered in this guide</em></td></tr>
+        <tr><td>10</td><td>IT services management (ITIL) — incident/change/KPI</td><td>Topic 10</td></tr>
+        <tr><td>11–12</td><td>SLM, Availability &amp; IT Service Continuity Management</td><td>Topic 11</td></tr>
+        <tr><td>13–15</td><td>Blockchain &amp; Cryptocurrencies</td><td>Topics 12, 13 &amp; 14</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 1: ENTERPRISE APPS & SOA -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🏢</span>
+    <h2>Enterprise Applications, Distributed Programming &amp; SOA</h2>
+    <span class="topic-tag badge badge-blue">Lecture 1</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Enterprise applications split logic into <strong>tiers</strong> (presentation, business, data) for reuse, faster time-to-market, and portability. Distributed objects evolved from <strong>RMI</strong> (Java-only) to <strong>CORBA</strong> (language-independent but firewall/security-unfriendly, binary), which motivated <strong>SOA</strong> — grouping functionality into autonomous, reusable <strong>services</strong> — and ultimately <strong>Web Services</strong> (SOAP/WSDL/UDDI), which ride on HTTP to avoid CORBA's firewall problems.
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Concurrency Models</div>
+      <ul>
+        <li><strong>Sequential:</strong> efficient algorithms/data structures</li>
+        <li><strong>Multithreading:</strong> solves I/O blocking; sync costs; Python historically one core</li>
+        <li><strong>Processes:</strong> isolated, costly to create</li>
+        <li><strong>Asynchronous:</strong> single-threaded event loop; avoid blocking calls</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Distributed App Problems</div>
+      <ul>
+        <li><strong>Bottlenecks:</strong> databases, resource limits</li>
+        <li><strong>Solutions:</strong> load balancing</li>
+        <li>Stateless applications</li>
+        <li>Sync primitives (semaphores, queues, TCP/IP)</li>
+        <li>Good pipeline design</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Enterprise Goals</div>
+      <ul>
+        <li>Reuse</li>
+        <li>Faster time-to-market</li>
+        <li>Lower cost, better quality</li>
+        <li>Portability — "write once, deploy anywhere"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — N-Tier Architecture &amp; JavaEE Services</div>
+    <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="40" width="190" height="150" rx="10" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="115" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="#4d9fff">PRESENTATION</text>
+      <text x="115" y="82" text-anchor="middle" font-size="10" fill="#9aa0b8">Web Servers</text>
+      <line x1="36" y1="92" x2="194" y2="92" stroke="#2a2f3e"/>
+      <text x="115" y="110" text-anchor="middle" font-size="10" fill="#e8eaf0">Web Container</text>
+      <text x="115" y="126" text-anchor="middle" font-size="10" fill="#e8eaf0">JSP · Servlets</text>
+      <text x="115" y="150" text-anchor="middle" font-size="9" fill="#9aa0b8">HTML / HTTP</text>
+      <text x="115" y="170" text-anchor="middle" font-size="9" fill="#9aa0b8">User-facing logic</text>
+
+      <rect x="260" y="40" width="190" height="150" rx="10" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="355" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="#2dd4bf">BUSINESS LOGIC</text>
+      <text x="355" y="82" text-anchor="middle" font-size="10" fill="#9aa0b8">Application Servers</text>
+      <line x1="276" y1="92" x2="434" y2="92" stroke="#2a2f3e"/>
+      <text x="355" y="110" text-anchor="middle" font-size="10" fill="#e8eaf0">EJB Container</text>
+      <text x="355" y="126" text-anchor="middle" font-size="9" fill="#9aa0b8">RMI/IIOP · JNDI · JTA</text>
+      <text x="355" y="142" text-anchor="middle" font-size="9" fill="#9aa0b8">JMS · JavaMail</text>
+      <text x="355" y="158" text-anchor="middle" font-size="9" fill="#9aa0b8">JCA / JMX</text>
+      <text x="355" y="178" text-anchor="middle" font-size="9" fill="#9aa0b8">Core enterprise rules</text>
+
+      <rect x="500" y="40" width="200" height="150" rx="10" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="600" y="65" text-anchor="middle" font-size="13" font-weight="800" fill="#a78bfa">DATA</text>
+      <text x="600" y="82" text-anchor="middle" font-size="10" fill="#9aa0b8">Databases / EIS</text>
+      <line x1="516" y1="92" x2="684" y2="92" stroke="#2a2f3e"/>
+      <text x="600" y="110" text-anchor="middle" font-size="10" fill="#e8eaf0">JDBC</text>
+      <text x="600" y="130" text-anchor="middle" font-size="9" fill="#9aa0b8">Relational DBs,</text>
+      <text x="600" y="146" text-anchor="middle" font-size="9" fill="#9aa0b8">Enterprise Information</text>
+      <text x="600" y="162" text-anchor="middle" font-size="9" fill="#9aa0b8">Systems (mainframes, ERP)</text>
+      <text x="600" y="178" text-anchor="middle" font-size="9" fill="#9aa0b8">Persistent storage</text>
+
+      <path d="M210 115 L260 115" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a1)"/>
+      <path d="M450 115 L500 115" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a1)"/>
+      <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+    </svg>
+  </div>
+
+  <div class="diagram-wrap">
+  <div class="diagram-title">Diagram — Distributed Programming Evolution</div>
+  <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Architectures -->
+    <text x="360" y="20" text-anchor="middle" font-size="12" font-weight="800" fill="#9aa0b8">
+      Architectural Evolution
+    </text>
+
+    <rect x="100" y="35" width="155" height="95" rx="8" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+    <text x="177" y="60" text-anchor="middle" font-size="13" font-weight="800" fill="#4d9fff">3-TIER</text>
+    <text x="177" y="80" text-anchor="middle" font-size="10" fill="#9aa0b8">Presentation</text>
+    <text x="177" y="95" text-anchor="middle" font-size="10" fill="#9aa0b8">Business Logic</text>
+    <text x="177" y="110" text-anchor="middle" font-size="10" fill="#9aa0b8">Database</text>
+
+    <rect x="465" y="35" width="155" height="95" rx="8" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="542" y="60" text-anchor="middle" font-size="13" font-weight="800" fill="#2dd4bf">SOA</text>
+    <text x="542" y="80" text-anchor="middle" font-size="10" fill="#9aa0b8">Autonomous services</text>
+    <text x="542" y="95" text-anchor="middle" font-size="10" fill="#9aa0b8">Contracts, reuse</text>
+    <text x="542" y="110" text-anchor="middle" font-size="10" fill="#9aa0b8">Heterogeneous systems</text>
+
+    <path d="M255 82 L465 82" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a2)"/>
+
+    <!-- Technologies -->
+    <text x="360" y="160" text-anchor="middle" font-size="12" font-weight="800" fill="#9aa0b8">
+      Communication Technologies
+    </text>
+
+    <rect x="10" y="175" width="155" height="70" rx="8" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+    <text x="87" y="200" text-anchor="middle" font-size="13" font-weight="800" fill="#4d9fff">RMI</text>
+    <text x="87" y="220" text-anchor="middle" font-size="10" fill="#9aa0b8">Java-only</text>
+
+    <rect x="190" y="175" width="155" height="70" rx="8" fill="#181b24" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="267" y="200" text-anchor="middle" font-size="13" font-weight="800" fill="#fbbf24">CORBA</text>
+    <text x="267" y="220" text-anchor="middle" font-size="10" fill="#9aa0b8">ORB · IDL · IIOP</text>
+
+    <rect x="370" y="175" width="155" height="70" rx="8" fill="#181b24" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="447" y="200" text-anchor="middle" font-size="13" font-weight="800" fill="#a78bfa">SOAP WS</text>
+    <text x="447" y="220" text-anchor="middle" font-size="10" fill="#9aa0b8">SOAP · WSDL · UDDI</text>
+
+    <rect x="550" y="175" width="160" height="70" rx="8" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+    <text x="630" y="200" text-anchor="middle" font-size="13" font-weight="800" fill="#2dd4bf">REST / gRPC</text>
+    <text x="630" y="220" text-anchor="middle" font-size="10" fill="#9aa0b8">Modern APIs</text>
+
+    <path d="M165 210 L190 210" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a2)"/>
+    <path d="M345 210 L370 210" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a2)"/>
+    <path d="M525 210 L550 210" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a2)"/>
+
+    <defs>
+      <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M2 2L8 5L2 8Z" fill="#5c6380"/>
+      </marker>
+    </defs>
+
+    <text x="360" y="255" text-anchor="middle" font-size="10" fill="#5c6380">
+      Architectures: 3-Tier → SOA | Technologies: RMI → CORBA → SOAP Web Services → REST/gRPC
+    </text>
+
+  </svg>
+</div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-title" style="color: var(--amber);">SOAP Message Structure</div>
+    <p><span class="chip chip-blue">Envelope</span> (required, wraps the message) → <span class="chip chip-amber">Header</span> (optional, metadata) → <span class="chip chip-green">Body</span> (required, the actual call/data) → <span class="chip chip-red">Fault</span> (optional, error info)</p>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--green);">✓ Web Services — Pros</div>
+      <ul>
+        <li>Simple deployment</li>
+        <li>Firewall &amp; security-friendly (rides HTTP/HTTPS)</li>
+        <li>Language-independent</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--red);">✗ Web Services — Cons</div>
+      <ul>
+        <li>Large XML messages</li>
+        <li>Historically "heavy" servers (less true with JAX-WS)</li>
+        <li>UDDI registries now rarely used — IBM/MS/SAP closed public nodes in 2006</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 1</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>N-Tier</td><td>Application split functionally into presentation, business logic, and data layers.</td></tr>
+        <tr><td>RMI</td><td>Remote Method Invocation — Java-homogeneous distributed objects via RmiRegistry.</td></tr>
+        <tr><td>CORBA</td><td>Common Object Request Broker Architecture — heterogeneous, language-independent via ORB/IDL/IIOP.</td></tr>
+        <tr><td>IDL</td><td>Interface Definition Language — language-neutral description of remote service interfaces.</td></tr>
+        <tr><td>SOA</td><td>Service-Oriented Architecture — business functionality grouped into autonomous, reusable services with contracts.</td></tr>
+        <tr><td>Web Service</td><td>W3C: software system identified by a URI, interfaces in XML, discoverable, machine-to-machine via XML messages.</td></tr>
+        <tr><td>UDDI</td><td>Universal Description, Discovery and Integration — a web service registry, now rarely used.</td></tr>
+        <tr><td>WSDL</td><td>XML interface description for a web service (like a Java interface); generates SOAP/client code.</td></tr>
+        <tr><td>SOAP</td><td>XML-based, stateless message format for web services.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t1-1">
+        <div class="exam-q-text">Why did CORBA struggle in real-world deployments compared to Web Services? (select all that apply)</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t1-1','a',true)"><span class="opt-letter">A</span> Firewalls often blocked its binary, non-HTTP traffic</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t1-1','b',true)"><span class="opt-letter">B</span> Its binary message format raised security concerns</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t1-1','c',false)"><span class="opt-letter">C</span> It could only be used with the Java language</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t1-1','d',false)"><span class="opt-letter">D</span> It had no equivalent to an interface description language</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t1-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t1-1-exp">
+          <div class="exam-explanation">✅ A &amp; B. CORBA's binary protocol caused firewall and security headaches. C is wrong — that's RMI's limitation, not CORBA's (CORBA is language-independent). D is wrong — CORBA's IDL is exactly its interface description language.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 2: REST & WEB APIs -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">🔗</span>
+    <h2>REST, GraphQL &amp; Microservices</h2>
+    <span class="topic-tag badge badge-teal">Lecture 2</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    REST is an <strong>architectural style</strong> (not a standard) built on existing HTTP semantics: everything is a <strong>resource</strong>, addressed by a <strong>URI</strong>, manipulated with <strong>HTTP verbs</strong> (CRUD), and returned as a <strong>representation</strong> (JSON/XML/HTML). Classical REST has weaknesses — over/under-fetching, no built-in interface description — which <strong>GraphQL</strong> addresses by letting the client specify exactly what data it needs. <strong>Microservices</strong> extend SOA into fine-grained, independently deployable services, each with its own stack and data store.
+  </div>
+
+  <div class="four-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">1. Resource</div>
+      <p>Everything is a resource: customers, locations, items.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">2. Name</div>
+      <p>Resources are addressed by a URI/URL.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--amber);">3. Verb</div>
+      <p>CRUD via GET / POST / PUT / DELETE.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">4. Representation</div>
+      <p>HTML, XML, JSON, or binary.</p>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — CRUD ↔ HTTP ↔ SQL Mapping</div>
+    <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+      <text x="80" y="25" font-size="11" fill="#5c6380" font-weight="700">CRUD</text>
+      <text x="320" y="25" font-size="11" fill="#5c6380" font-weight="700">HTTP METHOD</text>
+      <text x="560" y="25" font-size="11" fill="#5c6380" font-weight="700">SQL</text>
+
+      <g font-size="12" fill="#e8eaf0">
+        <text x="40" y="55">Create</text><text x="280" y="55" fill="#4d9fff" font-weight="700">POST</text><text x="540" y="55">INSERT</text>
+        <text x="40" y="80">Read</text><text x="280" y="80" fill="#2dd4bf" font-weight="700">GET</text><text x="540" y="80">SELECT</text>
+        <text x="40" y="105">Update</text><text x="280" y="105" fill="#fbbf24" font-weight="700">PUT</text><text x="540" y="105">UPDATE</text>
+        <text x="40" y="130">Delete</text><text x="280" y="130" fill="#f87171" font-weight="700">DELETE</text><text x="540" y="130">DELETE</text>
+      </g>
+      <line x1="0" y1="40" x2="700" y2="40" stroke="#2a2f3e"/>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">SOAP vs. REST</div>
+    <table class="def-table">
+      <thead><tr><th></th><th>SOAP</th><th>REST</th></tr></thead>
+      <tbody>
+        <tr><td>Protocol</td><td>HTTP / HTTPS</td><td>HTTP / HTTPS</td></tr>
+        <tr><td>Endpoint</td><td>Path + SOAP envelope</td><td>Path, HTTP methods, MIME type</td></tr>
+        <tr><td>Arguments</td><td>XML</td><td>Path, query params, POST body</td></tr>
+        <tr><td>Data format</td><td>XML / XML Schema</td><td>JSON / anything</td></tr>
+        <tr><td>Interface description</td><td>WSDL</td><td>None standard — OpenAPI/Swagger by convention</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">XML vs JSON</div>
+      <ul>
+        <li><strong>JSON:</strong> shorter, JavaScript-native, has JSON Schema</li>
+        <li><strong>XML:</strong> rich validator/tooling ecosystem, code generators, higher memory/CPU cost</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Implementation Frameworks</div>
+      <ul>
+        <li><strong>Java:</strong> JAX-RS</li>
+        <li><strong>Python:</strong> Flask, CherryPy, aiohttp, FastAPI</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px; border-left: 3px solid var(--red);">
+    <div class="card-title" style="color: var(--red);">Problems with Classical REST</div>
+    <ul>
+      <li>No built-in interface description (WSDL equivalent) — partially solved by Swagger/OpenAPI, but must be manually authored</li>
+      <li>Hard to handle nested/linked resources, includes/excludes</li>
+      <li><strong>Over-fetching</strong> (generic endpoints) or <strong>under-fetching</strong> (specific endpoints → versioning problems)</li>
+      <li>Tight client-server coupling, outdated docs, response ambiguity</li>
+    </ul>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--purple);">GraphQL</div>
+      <ul>
+        <li>Originated at Facebook (2012/2015/2018 → GraphQL Foundation)</li>
+        <li>Client specifies exactly what data it needs</li>
+        <li>Reduces over/under-fetching</li>
+        <li>Supports multiple queries in one request</li>
+        <li>Not a database/storage/library — not tied to a transport (HTTP, WebSockets, etc.)</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--blue);">Microservices</div>
+      <ul>
+        <li>Loosely coupled, fine-grained services, lightweight protocols</li>
+        <li>Independent stack &amp; decentralized data (vs. monolith's shared stack/single DB)</li>
+        <li>Small, autonomous, cross-functional teams per service</li>
+        <li>Typically fronted by an <strong>API Gateway</strong> routing to Account/Inventory/Shipping etc.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 2</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>REST</td><td>Representational State Transfer — architectural style based on HTTP; client moves between resources by following links.</td></tr>
+        <tr><td>Stateless</td><td>Each request carries all information needed to process it — no server-side session.</td></tr>
+        <tr><td>OpenAPI/Swagger</td><td>De-facto (non-standard) JSON-Schema-based interface description for REST APIs.</td></tr>
+        <tr><td>GraphQL</td><td>Query/manipulation language for APIs letting clients request exactly the fields they need.</td></tr>
+        <tr><td>Microservice</td><td>Small, independently deployable service with its own stack and data, part of a larger SOA-style system.</td></tr>
+        <tr><td>API Gateway</td><td>Single entry point that routes REST calls to the appropriate backend microservice.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t2-1">
+        <div class="exam-q-text">Which problems does GraphQL specifically address compared to classical REST? (select all that apply)</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t2-1','a',true)"><span class="opt-letter">A</span> Over-fetching from generic endpoints</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t2-1','b',true)"><span class="opt-letter">B</span> Under-fetching that forces multiple round trips</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t2-1','c',false)"><span class="opt-letter">C</span> It is a faster network transport than HTTP</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t2-1','d',false)"><span class="opt-letter">D</span> It replaces the need for any backend database</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t2-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t2-1-exp">
+          <div class="exam-explanation">✅ A &amp; B. GraphQL lets clients specify exactly the fields they need, cutting over- and under-fetching. C is wrong — GraphQL is not a transport protocol, it commonly still runs over HTTP. D is wrong — GraphQL is explicitly not a database or storage engine.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 3: MESSAGING — AMQP, gRPC, HTTP/2 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">📨</span>
+    <h2>Messaging: AMQP, gRPC &amp; HTTP/2</h2>
+    <span class="topic-tag badge badge-amber">Lecture 3, Part 1</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Classic HTTP is unidirectional, which breaks down for server-initiated communication and long-running services. Solutions range from <strong>polling</strong> and <strong>WebSockets</strong> to dedicated message-oriented middleware like <strong>AMQP/RabbitMQ</strong> (broker-based, producer→exchange→queue→consumer) and <strong>gRPC</strong> (Protocol-Buffers-based RPC over HTTP/2, supporting streaming).
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">~30s</div><div class="key-fact-label">Default sync HTTP timeout</div></div>
+    <div class="key-fact"><div class="key-fact-value">7–10×</div><div class="key-fact-label">Protobuf vs JSON speed</div></div>
+    <div class="key-fact"><div class="key-fact-value">3</div><div class="key-fact-label">AMQP exchange types</div></div>
+    <div class="key-fact"><div class="key-fact-value">2015</div><div class="key-fact-label">HTTP/2 released</div></div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Data Exchange Formats</div>
+    <table class="def-table">
+      <thead><tr><th>Format</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>XML</td><td>Verbose, but a rich validator/tooling ecosystem (code generators, schemas).</td></tr>
+        <tr><td>JSON</td><td>Shorter than XML, JavaScript-native, still relatively costly to parse/serialize.</td></tr>
+        <tr><td>Protocol Buffers</td><td>Binary IDL by Google — 7–10× faster than JSON; compiles to Java/C++/C#/Python classes.</td></tr>
+        <tr><td>CSV</td><td>Simple "other" tabular option.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="four-col">
+    <div class="card"><div class="card-title" style="color: var(--blue);">Polling</div><p>Client repeatedly asks the server for updates.</p></div>
+    <div class="card"><div class="card-title" style="color: var(--teal);">Long-Polling</div><p>Request held open until timeout or a response is ready.</p></div>
+    <div class="card"><div class="card-title" style="color: var(--amber);">WebSocket</div><p>Full-duplex, persistent connection after the initial HTTP handshake.</p></div>
+    <div class="card"><div class="card-title" style="color: var(--purple);">SSE</div><p>Server-Sent Events — one-way server→client stream over a persistent connection.</p></div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — AMQP Communication Model (RabbitMQ)</div>
+    <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="70" width="110" height="60" rx="8" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="65" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#4d9fff">Producer</text>
+
+      <rect x="190" y="55" width="140" height="90" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="260" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#e8eaf0">Exchange</text>
+      <text x="260" y="98" text-anchor="middle" font-size="9" fill="#9aa0b8">Direct · Topic · Fanout</text>
+      <text x="260" y="115" text-anchor="middle" font-size="9" fill="#9aa0b8">(routes via bindings)</text>
+
+      <rect x="400" y="20" width="120" height="45" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="460" y="46" text-anchor="middle" font-size="11" fill="#2dd4bf">Queue A</text>
+      <rect x="400" y="80" width="120" height="45" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="460" y="106" text-anchor="middle" font-size="11" fill="#2dd4bf">Queue B</text>
+      <rect x="400" y="140" width="120" height="45" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="460" y="166" text-anchor="middle" font-size="11" fill="#2dd4bf">Queue C</text>
+
+      <rect x="590" y="80" width="120" height="50" rx="8" fill="#181b24" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="650" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#a78bfa">Consumer(s)</text>
+
+      <path d="M120 100 L190 100" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a3)"/>
+      <path d="M330 75 L400 42" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a3)"/>
+      <path d="M330 100 L400 102" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a3)"/>
+      <path d="M330 125 L400 162" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a3)"/>
+      <path d="M520 105 L590 105" stroke="#5c6380" stroke-width="1.5" marker-end="url(#a3)"/>
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="360" y="195" text-anchor="middle" font-size="10" fill="#5c6380">Broker (RabbitMQ) connects across firewalls/Internet to link distributed clients</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Exchange Types</div>
+    <table class="def-table">
+      <thead><tr><th>Type</th><th>Behavior</th></tr></thead>
+      <tbody>
+        <tr><td>Direct</td><td>Exact routing-key match between message and queue binding.</td></tr>
+        <tr><td>Topic</td><td>Pattern matching, e.g. <code>eu.de.*</code>, <code>us.#</code>.</td></tr>
+        <tr><td>Fanout</td><td>Broadcast to every bound queue, ignoring routing key.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">gRPC</div>
+      <ul>
+        <li>Classic RPC <em>and</em> streaming RPC</li>
+        <li>Multi-language: Java, Go, C/C++, Node.js, Python, Ruby, ObjC, PHP, C#</li>
+        <li>IDL: Protocol Buffers 3 or Flatbuffers</li>
+        <li>Transport: <strong>HTTP/2</strong>; auth via SSL/TLS</li>
+        <li>Browser issues → often fronted by a REST gateway</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">HTTP/2 (2015) Key Features</div>
+      <ul>
+        <li><strong>Binary framing layer:</strong> small frames enable multiplexing without blocking</li>
+        <li><strong>Streaming:</strong> bidirectional full-duplex</li>
+        <li><strong>Flow control:</strong> fine-grained buffer/memory management</li>
+        <li><strong>HPACK:</strong> header compression reduces overhead</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 3</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>AMQP</td><td>Advanced Message Queuing Protocol — binary, message-oriented middleware protocol over TCP/IP.</td></tr>
+        <tr><td>RabbitMQ</td><td>Fast, Erlang-based AMQP broker; multi-language clients; core concepts: connections, channels, queues.</td></tr>
+        <tr><td>JMS</td><td>Java Message Service — the JavaEE API counterpart to AMQP messaging.</td></tr>
+        <tr><td>Correlation ID</td><td>Identifier used in AMQP RPC to match an async reply back to its original request.</td></tr>
+        <tr><td>gRPC</td><td>Open-source RPC framework (github.com/grpc) using Protocol Buffers over HTTP/2.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t3-1">
+        <div class="exam-q-text">Which AMQP exchange type would you use to broadcast a message to every subscriber regardless of routing key?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t3-1','a',false)"><span class="opt-letter">A</span> Direct</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t3-1','b',false)"><span class="opt-letter">B</span> Topic</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t3-1','c',true)"><span class="opt-letter">C</span> Fanout</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t3-1','d',false)"><span class="opt-letter">D</span> Headers</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t3-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t3-1-exp">
+          <div class="exam-explanation">✅ C — Fanout broadcasts to all bound queues. Direct needs an exact key match; Topic needs pattern matching.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 4: CLOUD & VIRTUALIZATION -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">☁️</span>
+    <h2>Cloud Computing &amp; Virtualization</h2>
+    <span class="topic-tag badge badge-blue">Lecture 3, Part 2</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Cloud computing (<strong>NIST</strong>: on-demand network access to a shared, rapidly provisioned pool of resources) rests on three pillars — <strong>virtualized</strong>, <strong>standardized</strong>, <strong>automated</strong> — enabled by data-center economies of scale. <strong>Virtualization</strong> (server hardware split into isolated VMs) is implemented via hypervisors using full virtualization, paravirtualization, or hardware-assisted techniques. Service models (<strong>IaaS / PaaS / SaaS</strong>) and deployment models (<strong>Public / Private / Hybrid / Community</strong>) describe how these resources are packaged and consumed.
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">~7.1×</div><div class="key-fact-label">Network cost advantage, large DC</div></div>
+    <div class="key-fact"><div class="key-fact-value">~5.7×</div><div class="key-fact-label">Storage cost advantage, large DC</div></div>
+    <div class="key-fact"><div class="key-fact-value">&gt;1000</div><div class="key-fact-label">Servers per admin, large DC</div></div>
+    <div class="key-fact"><div class="key-fact-value">~11.5×</div><div class="key-fact-label">Football-field-sized, large DC</div></div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Cloud Service Models</div>
+    <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="30" width="148" height="170" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="94" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#4d9fff">IaaS</text>
+      <text x="94" y="72" text-anchor="middle" font-size="9" fill="#9aa0b8">Infrastructure</text>
+      <line x1="36" y1="82" x2="152" y2="82" stroke="#2a2f3e"/>
+      <text x="94" y="100" text-anchor="middle" font-size="10" fill="#e8eaf0">Rent VMs, storage,</text>
+      <text x="94" y="116" text-anchor="middle" font-size="10" fill="#e8eaf0">networks — pay for</text>
+      <text x="94" y="132" text-anchor="middle" font-size="10" fill="#e8eaf0">provisioned/used capacity</text>
+      <text x="94" y="160" text-anchor="middle" font-size="9" fill="#4d9fff">Amazon EC2</text>
+      <text x="94" y="178" text-anchor="middle" font-size="8" fill="#9aa0b8">$0.02–$3.20/hr range</text>
+
+      <rect x="190" y="30" width="148" height="170" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="264" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#2dd4bf">PaaS</text>
+      <text x="264" y="72" text-anchor="middle" font-size="9" fill="#9aa0b8">Platform</text>
+      <line x1="206" y1="82" x2="322" y2="82" stroke="#2a2f3e"/>
+      <text x="264" y="100" text-anchor="middle" font-size="10" fill="#e8eaf0">Vendor provides the</text>
+      <text x="264" y="116" text-anchor="middle" font-size="10" fill="#e8eaf0">runtime / programming</text>
+      <text x="264" y="132" text-anchor="middle" font-size="10" fill="#e8eaf0">model; you build apps</text>
+      <text x="264" y="160" text-anchor="middle" font-size="9" fill="#2dd4bf">Heroku, Azure,</text>
+      <text x="264" y="176" text-anchor="middle" font-size="9" fill="#2dd4bf">Google App Engine</text>
+
+      <rect x="360" y="30" width="148" height="170" rx="8" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="434" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#a78bfa">SaaS</text>
+      <text x="434" y="72" text-anchor="middle" font-size="9" fill="#9aa0b8">Software</text>
+      <line x1="376" y1="82" x2="492" y2="82" stroke="#2a2f3e"/>
+      <text x="434" y="105" text-anchor="middle" font-size="10" fill="#e8eaf0">Complete app run</text>
+      <text x="434" y="121" text-anchor="middle" font-size="10" fill="#e8eaf0">remotely; vendor handles</text>
+      <text x="434" y="137" text-anchor="middle" font-size="10" fill="#e8eaf0">patching &amp; bug fixes</text>
+      <text x="434" y="166" text-anchor="middle" font-size="9" fill="#a78bfa">Salesforce, Google Docs</text>
+
+      <rect x="530" y="30" width="170" height="170" rx="8" fill="#3d2e0a" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="615" y="55" text-anchor="middle" font-size="14" font-weight="800" fill="#fbbf24">CDN / Ad-Serving</text>
+      <text x="615" y="72" text-anchor="middle" font-size="9" fill="#9aa0b8">Cloud-adjacent</text>
+      <line x1="546" y1="82" x2="684" y2="82" stroke="#2a2f3e"/>
+      <text x="615" y="105" text-anchor="middle" font-size="10" fill="#e8eaf0">Specialized services</text>
+      <text x="615" y="121" text-anchor="middle" font-size="10" fill="#e8eaf0">outside core *aaS stack</text>
+      <text x="615" y="160" text-anchor="middle" font-size="9" fill="#fbbf24">Akamai (CDN),</text>
+      <text x="615" y="176" text-anchor="middle" font-size="9" fill="#fbbf24">DoubleClick (ads)</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">CPU Virtualization Techniques</div>
+    <table class="def-table">
+      <thead><tr><th>Technique</th><th>How It Works</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Full virtualization</td><td>Binary translation intercepts &amp; replaces privileged instructions; guest OS unmodified.</td><td>VMware vSphere</td></tr>
+        <tr><td>Paravirtualization</td><td>Guest kernel modified to use <strong>hypercalls</strong> instead of non-virtualizable instructions; lower overhead, poor portability.</td><td>Xen</td></tr>
+        <tr><td>Hardware-assisted</td><td>New CPU mode (root mode, "Ring -1") traps privileged instructions automatically — no translation needed.</td><td>Intel VT-x, AMD-V</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Hypervisor Types</div>
+      <ul>
+        <li><strong>Type 1 (bare-metal):</strong> runs directly on hardware (VMware vSphere, Xen)</li>
+        <li><strong>Type 2 (hosted):</strong> runs atop a host OS (VMware Workstation, VirtualBox)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Popek &amp; Goldberg Properties (1974)</div>
+      <ul>
+        <li><strong>Fidelity:</strong> software runs identically under the VMM</li>
+        <li><strong>Performance:</strong> most instructions run directly on hardware</li>
+        <li><strong>Safety:</strong> the VMM controls all hardware resources</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--blue);">☁ Public Cloud</div>
+      <ul><li>Services offered to external users</li><li>e.g. Amazon, Google Apps, Azure</li></ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--teal);">🔒 Private Cloud</div>
+      <ul><li>Owned/leased by one enterprise</li><li>Internal — behaves like SaaS to the customer</li></ul>
+    </div>
+  </div>
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--purple);">🔀 Hybrid Cloud</div>
+      <ul><li>Mix of private + public</li><li>Retains control of sensitive data while using public elasticity</li></ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--amber);">🤝 Community Cloud</div>
+      <ul><li>A provider resells/aggregates infrastructure from other providers</li></ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px; border-left: 3px solid var(--red);">
+    <div class="card-title" style="color: var(--red);">Security of Virtualization — Risk Ranking (Human Mistakes)</div>
+    <p>Rank 1 (highest, score 20): inadequate protection / misconfiguration · Rank 2 (16): damage of virtual disk files · Rank 3 (12): VM sprawl, file deletion · Rank 4 (9): VM rollback · Rank 5 (6): dormant VMs · Rank 6 (4): loss of performance. Virtualization is often <em>perceived</em> as inherently secure — this is questioned.</p>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 4</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Cloud Computing</td><td>NIST: model for ubiquitous, on-demand network access to a shared pool of configurable resources, rapidly provisioned with minimal management effort.</td></tr>
+        <tr><td>Hypervisor (VMM)</td><td>Software layer providing VM abstraction and managing multiple OSes' resource needs.</td></tr>
+        <tr><td>Hypercall</td><td>Paravirtualized guest OS's call into the hypervisor, replacing non-virtualizable instructions.</td></tr>
+        <tr><td>OpenStack</td><td>Open-source cloud platform spanning bare metal, VMs, and containers (Nova, Swift, Neutron, Keystone, etc.).</td></tr>
+        <tr><td>Microstack</td><td>Lightweight OpenStack distribution for micro/edge clouds, installed via snap.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t4-1">
+        <div class="exam-q-text">Which virtualization technique requires modifying the guest OS kernel?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t4-1','a',false)"><span class="opt-letter">A</span> Full virtualization via binary translation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t4-1','b',true)"><span class="opt-letter">B</span> Paravirtualization</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t4-1','c',false)"><span class="opt-letter">C</span> Hardware-assisted virtualization</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t4-1','d',false)"><span class="opt-letter">D</span> None of these require kernel modification</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t4-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t4-1-exp">
+          <div class="exam-explanation">✅ B — Paravirtualization (e.g. Xen) requires modifying the guest kernel to issue hypercalls. Full virtualization and hardware-assisted virtualization both leave the guest OS unmodified.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 5: DOCKER & CONTAINERS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">🐳</span>
+    <h2>Docker &amp; Containers</h2>
+    <span class="topic-tag badge badge-teal">Lecture 4</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Containers solve "works on my machine" without the overhead of full VMs. Three Linux kernel features combine to make containers possible: <strong>namespaces</strong> (process isolation), <strong>cgroups</strong> (resource limiting), and <strong>copy-on-write filesystems</strong> (fast, shareable image layers). <strong>Docker</strong> commoditized LXC with a standard image format and reproducible Dockerfile builds; <strong>Docker Compose</strong> orchestrates multi-container apps on a single host.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — What Makes a Container</div>
+    <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="30" width="190" height="110" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="115" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#4d9fff">Namespaces</text>
+      <text x="115" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">since 2002</text>
+      <text x="115" y="98" text-anchor="middle" font-size="9" fill="#e8eaf0">Own PID tree, net,</text>
+      <text x="115" y="113" text-anchor="middle" font-size="9" fill="#e8eaf0">mount, user, uts, ipc</text>
+
+      <rect x="255" y="30" width="190" height="110" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="350" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#2dd4bf">cgroups</text>
+      <text x="350" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">Google 2006, merged 2008</text>
+      <text x="350" y="98" text-anchor="middle" font-size="9" fill="#e8eaf0">CPU, memory, block I/O,</text>
+      <text x="350" y="113" text-anchor="middle" font-size="9" fill="#e8eaf0">network — no VM needed</text>
+
+      <rect x="490" y="30" width="190" height="110" rx="8" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="585" y="58" text-anchor="middle" font-size="13" font-weight="800" fill="#a78bfa">Copy-on-Write FS</text>
+      <text x="585" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">AUFS, DeviceMapper, BTRFS</text>
+      <text x="585" y="98" text-anchor="middle" font-size="9" fill="#e8eaf0">Read-only layers +</text>
+      <text x="585" y="113" text-anchor="middle" font-size="9" fill="#e8eaf0">thin writable layer</text>
+
+      <text x="350" y="170" text-anchor="middle" font-size="11" fill="#fbbf24" font-weight="700">Namespace + cgroup + CoW = Container Technology</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Unique Container Features</div>
+      <ul>
+        <li>Run in user space; isolated but share the host kernel (no device emulation)</li>
+        <li>Own process space, network interface, <code>/sbin/init</code></li>
+        <li>Near-native performance: CPU = native, memory = few % overhead</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Docker on Different Platforms</div>
+      <ul>
+        <li><strong>Linux:</strong> native, uses host kernel cgroups/namespaces</li>
+        <li><strong>Windows:</strong> Windows containers or Linux containers via WSL 2 (LinuxKit)</li>
+        <li><strong>macOS:</strong> LinuxKit VM via HyperKit, own <code>osxfs</code></li>
+        <li><strong>Apple Silicon:</strong> ARM images by default; Rosetta 2 bridges to x86</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Dockerfile Instructions</div>
+    <table class="def-table">
+      <thead><tr><th>Instruction</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>FROM</td><td>Base image to build on top of.</td></tr>
+        <tr><td>RUN</td><td>Execute a command during image build.</td></tr>
+        <tr><td>COPY</td><td>Copy files from host into the image.</td></tr>
+        <tr><td>WORKDIR</td><td>Set the working directory for subsequent instructions.</td></tr>
+        <tr><td>EXPOSE</td><td>Document the port the container listens on.</td></tr>
+        <tr><td>CMD</td><td>Default command to run when the container starts.</td></tr>
+        <tr><td>ENV</td><td>Set environment variables.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-title" style="color: var(--amber);">Multi-Stage Builds</div>
+    <p>Multiple <code>FROM</code> statements in one Dockerfile — one stage with full build tools (e.g. JDK), another slim runtime-only stage — keeps the final image small.</p>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--red);">Security</div>
+      <ul>
+        <li>Containers run as root by default — a risk</li>
+        <li>Mitigations: rootless mode, user namespace remapping, Enroot</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green);">GPU in Docker</div>
+      <ul>
+        <li>NVIDIA drivers on host; libraries inside the image</li>
+        <li><code>docker run --gpus all</code></li>
+        <li>Compose: <code>deploy.resources.reservations.devices</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Alternatives</div>
+      <ul>
+        <li><strong>Podman:</strong> daemonless, rootless by design</li>
+        <li><strong>Singularity:</strong> popular in HPC</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 5</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>LXC</td><td>Linux Container — lightweight OS-level virtualization that Docker commoditized.</td></tr>
+        <tr><td>Namespace</td><td>Kernel feature isolating a process's view of PIDs, mounts, network, users, etc.</td></tr>
+        <tr><td>cgroup</td><td>Control group — kernel mechanism for limiting/accounting CPU, memory, I/O, network per process group.</td></tr>
+        <tr><td>Copy-on-Write</td><td>Filesystem strategy where image layers are read-only and changes go into a thin writable layer.</td></tr>
+        <tr><td>Docker Compose</td><td>Tool defining and running multi-container apps from a single YAML file.</td></tr>
+        <tr><td>Docker Hub</td><td>Public registry for Docker images at hub.docker.com.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t5-1">
+        <div class="exam-q-text">Which three kernel features combine to enable container technology?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t5-1','a',true)"><span class="opt-letter">A</span> Namespaces, cgroups, copy-on-write filesystems</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t5-1','b',false)"><span class="opt-letter">B</span> Hypervisors, VLANs, RAID</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t5-1','c',false)"><span class="opt-letter">C</span> Threads, semaphores, mutexes</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t5-1','d',false)"><span class="opt-letter">D</span> ORB, IDL, IIOP</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t5-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t5-1-exp">
+          <div class="exam-explanation">✅ A. Namespaces give process isolation, cgroups limit resource usage, and copy-on-write filesystems make image layers fast and shareable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 6: KUBERNETES & CI/CD -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">⚙️</span>
+    <h2>Kubernetes (K8s) &amp; GitLab CI</h2>
+    <span class="topic-tag badge badge-blue">Lecture 5</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Running many containers on one Docker host creates a single point of failure — <strong>Kubernetes</strong> orchestrates them across a cluster, reconciling desired vs. actual state automatically (scheduling, self-healing, scaling, service discovery). A <strong>master/control plane</strong> manages <strong>worker nodes</strong> running <strong>Pods</strong>. <strong>GitLab CI</strong> automates build/test pipelines via <code>.gitlab-ci.yml</code>, triggered on push or schedule.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Kubernetes Architecture</div>
+    <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="25" width="320" height="180" rx="10" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="180" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#4d9fff">MASTER (Control Plane)</text>
+      <rect x="40" y="65" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="105" y="94" text-anchor="middle" font-size="11" fill="#e8eaf0">API Server</text>
+      <rect x="190" y="65" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="255" y="94" text-anchor="middle" font-size="11" fill="#e8eaf0">Scheduler</text>
+      <rect x="40" y="125" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="105" y="154" text-anchor="middle" font-size="11" fill="#e8eaf0">Controller Mgr</text>
+      <rect x="190" y="125" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="255" y="154" text-anchor="middle" font-size="11" fill="#e8eaf0">etcd (state)</text>
+
+      <rect x="380" y="25" width="320" height="180" rx="10" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="540" y="50" text-anchor="middle" font-size="14" font-weight="800" fill="#2dd4bf">WORKER NODES</text>
+      <rect x="400" y="65" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="465" y="94" text-anchor="middle" font-size="11" fill="#e8eaf0">Kubelet</text>
+      <rect x="550" y="65" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="615" y="94" text-anchor="middle" font-size="11" fill="#e8eaf0">Kube-Proxy</text>
+      <rect x="400" y="125" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="465" y="146" text-anchor="middle" font-size="10" fill="#e8eaf0">cAdvisor</text>
+      <text x="465" y="162" text-anchor="middle" font-size="8" fill="#9aa0b8">(monitoring)</text>
+      <rect x="550" y="125" width="130" height="50" rx="6" fill="#181b24" stroke="#2a2f3e"/>
+      <text x="615" y="146" text-anchor="middle" font-size="10" fill="#e8eaf0">Pods</text>
+      <text x="615" y="162" text-anchor="middle" font-size="8" fill="#9aa0b8">(containers)</text>
+
+      <path d="M340 100 L380 100" stroke="#5c6380" stroke-width="2" marker-end="url(#a6)"/>
+      <defs><marker id="a6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="360" y="218" text-anchor="middle" font-size="9" fill="#5c6380">Nodes communicate via a plugin network (Flannel, Weavenet)</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Core Concepts</div>
+    <table class="def-table">
+      <thead><tr><th>Concept</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Cluster</td><td>Collection of hosts aggregating CPU, RAM, disk into a usable pool.</td></tr>
+        <tr><td>Namespace</td><td>Logical cluster/environment; primary method for scoping access.</td></tr>
+        <tr><td>Label</td><td>Key-value pair for identifying/grouping objects (strict syntax).</td></tr>
+        <tr><td>Annotation</td><td>Key-value metadata without syntax limitations.</td></tr>
+        <tr><td>Selector</td><td>Filters objects using labels (equality- or set-based).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Workload Objects</div>
+      <ul>
+        <li><strong>Pod:</strong> smallest unit — 1+ containers sharing storage/network/context</li>
+        <li><strong>ReplicaSet:</strong> next-gen ReplicationController; set-based selectors</li>
+        <li><strong>Deployment:</strong> declarative mgmt of stateless Pods; supports rollbacks</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Storage &amp; Config</div>
+      <ul>
+        <li><strong>PV (Persistent Volume):</strong> cluster-wide resource; access modes ROX/RWO/RWX</li>
+        <li><strong>ConfigMap:</strong> externalized non-secret data</li>
+        <li><strong>Secret:</strong> like ConfigMap, base64-encoded/encrypted</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Auto-Scaling</div>
+      <ul>
+        <li><strong>HPA:</strong> deploys more Pods under load</li>
+        <li><strong>VPA:</strong> grows CPU/memory of existing Pods</li>
+        <li>Both scale down again when load drops</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Networking — External Access Options</div>
+    <table class="def-table">
+      <thead><tr><th>Method</th><th>Layer</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ingress</td><td>L7 (HTTP/HTTPS)</td><td>Shared IP, path-based routing, SSL termination, name-based virtual hosting.</td></tr>
+        <tr><td>NodePort</td><td>L4</td><td>Exposes a port on every node; reachable at <code>NodeAddress:NodePort</code>.</td></tr>
+        <tr><td>LoadBalancer</td><td>L4 (TCP/UDP)</td><td>Cloud provider's external LB; gets its own IP.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-title" style="color: var(--amber);">GitLab CI Pipeline Structure</div>
+    <p><code>image</code> (base image) → <code>stages</code> (ordered list, e.g. check_style → tests → pages → build_master) → each <strong>job</strong> defines <code>stage</code>, <code>before_script</code>, <code>script</code>, <code>artifacts</code>, <code>only</code>/<code>except</code>. Jobs in the same stage run in parallel; a failed job skips subsequent stages. Requires a <strong>Runner</strong> (a Docker executor) registered with a runner token.</p>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 6</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>etcd</td><td>Distributed key-value store holding all cluster state.</td></tr>
+        <tr><td>Kubelet</td><td>Node agent that ensures containers run as instructed.</td></tr>
+        <tr><td>Service (K8s)</td><td>Stable virtual IP for a Pod group selected via labels (ClusterIP/NodePort/LoadBalancer).</td></tr>
+        <tr><td>MiniKube</td><td>Local single-node K8s cluster for development/practice.</td></tr>
+        <tr><td>Continuous Integration</td><td>Frequent integration of work, each verified by an automated build (compile + tests).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t6-1">
+        <div class="exam-q-text">What is the role of etcd in a Kubernetes cluster?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t6-1','a',true)"><span class="opt-letter">A</span> Distributed key-value store holding the cluster's state</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t6-1','b',false)"><span class="opt-letter">B</span> The node agent that runs containers</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t6-1','c',false)"><span class="opt-letter">C</span> The default container runtime</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t6-1','d',false)"><span class="opt-letter">D</span> A network plugin like Flannel</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t6-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t6-1-exp">
+          <div class="exam-explanation">✅ A. etcd is the control plane's distributed key-value store for cluster state. The node agent is Kubelet (B).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 7: CRYPTOGRAPHY & SECURITY FUNDAMENTALS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">🔐</span>
+    <h2>Cryptography &amp; Security Fundamentals</h2>
+    <span class="topic-tag badge badge-amber">Lecture 6</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Symmetric ciphers (single shared key) are fast, used for bulk data. Public-key ciphers (key pair) are slow but solve key exchange and enable <strong>digital signatures</strong>. Hashes + MACs give integrity; signing a hash with a private key gives authentication, integrity, and non-repudiation — but <strong>never confidentiality</strong>.
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--blue);">Symmetric (Bulk) Ciphers</div>
+      <ul>
+        <li>Single shared key — fast</li>
+        <li>Key size: 64–256 bits</li>
+        <li>Use: bulk data encryption</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--purple);">Public Key (Asymmetric)</div>
+      <ul>
+        <li>Key pair; private not derivable from public — slow</li>
+        <li>Key size: 1024–2048 bits</li>
+        <li>Use: key exchange, digital signatures</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Block Cipher Modes</div>
+    <table class="def-table">
+      <thead><tr><th>Mode</th><th>Key Point</th></tr></thead>
+      <tbody>
+        <tr><td>ECB</td><td>Each block independent — <strong>weak</strong>, identical plaintext → identical ciphertext.</td></tr>
+        <tr><td>CBC</td><td>Each block XORed with previous ciphertext before encryption.</td></tr>
+        <tr><td>CFB / OFB</td><td>Turns block cipher into a stream cipher.</td></tr>
+        <tr><td>CTR</td><td>Encrypts counter + nonce, XOR with plaintext — parallelizable.</td></tr>
+        <tr><td>OCB</td><td>Encryption + integrity in a single pass.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Digital Envelope (No Pre-Shared Secret)</div>
+    <svg viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="40" width="140" height="60" rx="8" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="80" y="65" text-anchor="middle" font-size="10" fill="#e8eaf0">1. Generate random</text>
+      <text x="80" y="80" text-anchor="middle" font-size="10" fill="#4d9fff">session key</text>
+
+      <rect x="190" y="40" width="150" height="60" rx="8" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="265" y="60" text-anchor="middle" font-size="10" fill="#e8eaf0">2. Encrypt message</text>
+      <text x="265" y="75" text-anchor="middle" font-size="10" fill="#2dd4bf">with session key</text>
+      <text x="265" y="90" text-anchor="middle" font-size="8" fill="#9aa0b8">(bulk cipher)</text>
+
+      <rect x="380" y="40" width="160" height="60" rx="8" fill="#181b24" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="460" y="60" text-anchor="middle" font-size="10" fill="#e8eaf0">3. Encrypt session key</text>
+      <text x="460" y="75" text-anchor="middle" font-size="10" fill="#fbbf24">with recipient's public key</text>
+
+      <rect x="580" y="40" width="130" height="60" rx="8" fill="#181b24" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="645" y="60" text-anchor="middle" font-size="10" fill="#e8eaf0">4–5. Recipient decrypts</text>
+      <text x="645" y="75" text-anchor="middle" font-size="10" fill="#a78bfa">with private key</text>
+
+      <path d="M150 70 L190 70" stroke="#5c6380" marker-end="url(#a7)"/>
+      <path d="M340 70 L380 70" stroke="#5c6380" marker-end="url(#a7)"/>
+      <path d="M540 70 L580 70" stroke="#5c6380" marker-end="url(#a7)"/>
+      <defs><marker id="a7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="360" y="130" text-anchor="middle" font-size="10" fill="#f87171">⚠ Sender identity not authenticated by this method alone</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--green);">Digital Signature — Signing</div>
+      <ul>
+        <li>1. Compute hash of the document</li>
+        <li>2. Encrypt hash with author's <strong>private key</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Digital Signature — Verifying</div>
+      <ul>
+        <li>1. Decrypt received hash with author's <strong>public key</strong></li>
+        <li>2. Recompute hash of the document</li>
+        <li>3. Compare — equal ⇒ valid</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px; border-left: 3px solid var(--amber);">
+    <div class="card-title" style="color: var(--amber);">What Digital Signatures Do / Don't Provide</div>
+    <p><strong style="color: var(--green);">✓ Provide:</strong> Authentication, Integrity, Non-repudiation. &nbsp; <strong style="color: var(--red);">✗ Do NOT provide:</strong> Confidentiality (document stays plaintext).</p>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Digital Signature vs. MAC</div>
+    <table class="def-table">
+      <thead><tr><th>Property</th><th>Digital Signature</th><th>MAC</th></tr></thead>
+      <tbody>
+        <tr><td>Cryptography</td><td>Asymmetric</td><td>Symmetric</td></tr>
+        <tr><td>Authentication</td><td>✓</td><td>✗</td></tr>
+        <tr><td>Non-repudiation</td><td>✓</td><td>✗</td></tr>
+        <tr><td>Confidentiality</td><td>✗</td><td>✗</td></tr>
+        <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Algorithms</div>
+    <table class="def-table">
+      <thead><tr><th>Algorithm</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>AES</td><td>Current standard block cipher (symmetric)</td></tr>
+        <tr><td>RSA</td><td>Public-key; based on prime factoring</td></tr>
+        <tr><td>Diffie-Hellman / ElGamal</td><td>Key exchange (discrete logarithm)</td></tr>
+        <tr><td>DSA</td><td>Signatures only — not encryption</td></tr>
+        <tr><td>MD5 / SHA-1/2/3</td><td>Hash algorithms</td></tr>
+        <tr><td>HMAC</td><td>message + session key hashed together — no separate encryption</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t7-1">
+        <div class="exam-q-text">Which guarantees does a digital signature provide? (select all that apply)</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t7-1','a',true)"><span class="opt-letter">A</span> Authentication</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t7-1','b',true)"><span class="opt-letter">B</span> Non-repudiation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t7-1','c',false)"><span class="opt-letter">C</span> Confidentiality</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t7-1','d',true)"><span class="opt-letter">D</span> Integrity</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t7-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t7-1-exp">
+          <div class="exam-explanation">✅ A, B, D. A digital signature never provides confidentiality — the document itself remains plaintext.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 8: SECURE NETWORK PROTOCOLS & CERTIFICATES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">🔏</span>
+    <h2>Secure Network Protocols &amp; Public Certificates</h2>
+    <span class="topic-tag badge badge-blue">Lecture 7</span>
+  </div>
+ 
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A <strong>certificate</strong> lets a trusted third party (<strong>CA</strong>) vouch that a public key belongs to its claimed owner, solving the spoofing problem. Certificates follow the <strong>X.509 v3</strong> standard (1996) and chain up to a self-signed Root CA. <strong>SSL/TLS</strong> uses this PKI to negotiate a cipher suite and session key over TCP — most visibly as <strong>HTTPS</strong> (port 443) — securing bank access and interbank transfers (SWIFT, ELIXIR).
+  </div>
+ 
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">443</div><div class="key-fact-label">Default HTTPS port</div></div>
+    <div class="key-fact"><div class="key-fact-value">X.509 v3</div><div class="key-fact-label">Cert standard (1996)</div></div>
+    <div class="key-fact"><div class="key-fact-value">RFC 5280</div><div class="key-fact-label">X.509 + PKIX extensions</div></div>
+    <div class="key-fact"><div class="key-fact-value">OCSP</div><div class="key-fact-label">Online cert status (RFC 2560)</div></div>
+  </div>
+ 
+ <!-- COMBINED DIAGRAM: Certificate Chain + Trust Models + Protocol Layers -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Certificate Chain, Trust Models &amp; Protocol Stack</div>
+    <svg viewBox="0 0 850 310" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="a8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M2 2L8 5L2 8Z" fill="#5c6380"/>
+        </marker>
+      </defs>
+
+      <!-- === CERTIFICATE CHAIN (left) === -->
+      <text x="100" y="18" text-anchor="middle" font-size="10" fill="#9aa0b8">Certificate chain</text>
+
+      <rect x="20" y="25" width="160" height="36" rx="6" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="100" y="40" text-anchor="middle" font-size="10" fill="#e8eaf0">Root CA</text>
+      <text x="100" y="55" text-anchor="middle" font-size="9" fill="#9aa0b8">(self-signed)</text>
+
+      <path d="M100 61 L100 75" stroke="#5c6380" marker-end="url(#a8)"/>
+
+      <rect x="20" y="76" width="160" height="36" rx="6" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="100" y="91" text-anchor="middle" font-size="10" fill="#e8eaf0">Intermediate CA</text>
+      <text x="100" y="106" text-anchor="middle" font-size="9" fill="#9aa0b8">(signed by Root)</text>
+
+      <path d="M100 112 L100 126" stroke="#5c6380" marker-end="url(#a8)"/>
+
+      <rect x="20" y="127" width="160" height="36" rx="6" fill="#181b24" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="100" y="142" text-anchor="middle" font-size="10" fill="#e8eaf0">Server / User Cert</text>
+      <text x="100" y="157" text-anchor="middle" font-size="9" fill="#9aa0b8">CN = domain name</text>
+
+      <!-- cert fields callout -->
+      <rect x="20" y="178" width="160" height="80" rx="6" fill="#12151f" stroke="#5c6380" stroke-width="1"/>
+      <text x="100" y="193" text-anchor="middle" font-size="9" fill="#9aa0b8">X.509 TBS fields</text>
+      <text x="30" y="208" font-size="9" fill="#e8eaf0">• Version, Serial number</text>
+      <text x="30" y="221" font-size="9" fill="#e8eaf0">• DN (C, O, OU, CN)</text>
+      <text x="30" y="234" font-size="9" fill="#e8eaf0">• Validity period</text>
+      <text x="30" y="247" font-size="9" fill="#e8eaf0">• Public key + extensions</text>
+
+      <!-- === TRUST MODELS (center) === -->
+      <!-- Three boxes: x=200..340, x=360..500, x=520..660 → center = (200+660)/2 = 430 -->
+      <text x="430" y="18" text-anchor="middle" font-size="10" fill="#9aa0b8">Trust models</text>
+
+      <!-- Hierarchical -->
+      <rect x="200" y="25" width="140" height="58" rx="6" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="270" y="42" text-anchor="middle" font-size="10" fill="#4d9fff">Hierarchical (PEM)</text>
+      <text x="270" y="56" text-anchor="middle" font-size="9" fill="#e8eaf0">IPRA → PCA → CA</text>
+      <text x="270" y="70" text-anchor="middle" font-size="9" fill="#9aa0b8">Central authority</text>
+
+      <!-- Public -->
+      <rect x="360" y="25" width="140" height="58" rx="6" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="430" y="42" text-anchor="middle" font-size="10" fill="#2dd4bf">Public (PKIX)</text>
+      <text x="430" y="56" text-anchor="middle" font-size="9" fill="#e8eaf0">Any org = Root CA</text>
+      <text x="430" y="70" text-anchor="middle" font-size="9" fill="#9aa0b8">Trusted-root lists in SW</text>
+
+      <!-- Distributed -->
+      <rect x="520" y="25" width="140" height="58" rx="6" fill="#181b24" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="590" y="42" text-anchor="middle" font-size="10" fill="#a78bfa">Distributed (PGP)</text>
+      <text x="590" y="56" text-anchor="middle" font-size="9" fill="#e8eaf0">Web of trust</text>
+      <text x="590" y="70" text-anchor="middle" font-size="9" fill="#9aa0b8">Key-signing parties</text>
+
+      <!-- Revocation box: x=200 width=460 → right edge=660, center=430 -->
+      <rect x="200" y="100" width="460" height="62" rx="6" fill="#12151f" stroke="#5c6380" stroke-width="1"/>
+      <text x="430" y="116" text-anchor="middle" font-size="9" fill="#9aa0b8">Revocation</text>
+      <text x="430" y="132" text-anchor="middle" font-size="9" fill="#fbbf24">CRL <tspan fill="#e8eaf0">— signed list, held locally, regularly refreshed</tspan></text>
+      <text x="430" y="148" text-anchor="middle" font-size="9" fill="#2dd4bf">OCSP <tspan fill="#e8eaf0">— RFC 2560, real-time online check</tspan></text>
+
+      <!-- Apache mod_ssl box: same span, center=430 -->
+      <rect x="200" y="178" width="460" height="80" rx="6" fill="#12151f" stroke="#5c6380" stroke-width="1"/>
+      <text x="430" y="194" text-anchor="middle" font-size="9" fill="#9aa0b8">Apache mod_ssl key directives</text>
+      <text x="430" y="210" text-anchor="middle" font-size="9"><tspan fill="#4d9fff">SSLCertificateFile/KeyFile</tspan><tspan fill="#e8eaf0">  CN/SAN = server DNS</tspan></text>
+      <text x="430" y="223" text-anchor="middle" font-size="9"><tspan fill="#4d9fff">SSLVerifyClient</tspan><tspan fill="#e8eaf0">  none / optional / require</tspan></text>
+      <text x="430" y="236" text-anchor="middle" font-size="9"><tspan fill="#4d9fff">SSLVerifyDepth</tspan><tspan fill="#e8eaf0">  smaller = safer</tspan></text>
+      <text x="430" y="249" text-anchor="middle" font-size="9"><tspan fill="#4d9fff">SSLCACertificatePath</tspan><tspan fill="#e8eaf0">  CRLs linked as #hash.N</tspan></text>
+
+      <!-- === PROTOCOL STACK (right) === -->
+      <!-- Column x=680..840, center=760 -->
+      <text x="760" y="18" text-anchor="middle" font-size="10" fill="#9aa0b8">Protocol layers</text>
+
+      <rect x="680" y="25" width="160" height="32" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="760" y="45" text-anchor="middle" font-size="10" fill="#e8eaf0">Data-link / IP</text>
+
+      <path d="M760 57 L760 70" stroke="#5c6380" marker-end="url(#a8)"/>
+
+      <rect x="680" y="71" width="160" height="32" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="760" y="91" text-anchor="middle" font-size="10" fill="#e8eaf0">TCP / UDP</text>
+
+      <path d="M760 103 L760 116" stroke="#5c6380" marker-end="url(#a8)"/>
+
+      <rect x="680" y="117" width="160" height="32" rx="6" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="760" y="137" text-anchor="middle" font-size="10" fill="#4d9fff">SSL / TLS</text>
+
+      <path d="M760 149 L760 162" stroke="#5c6380" marker-end="url(#a8)"/>
+
+      <rect x="680" y="163" width="160" height="32" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="760" y="183" text-anchor="middle" font-size="10" fill="#2dd4bf">HTTPS / App</text>
+
+      <!-- Encryption aims -->
+      <rect x="680" y="210" width="160" height="48" rx="6" fill="#12151f" stroke="#fbbf24" stroke-width="1"/>
+      <text x="760" y="225" text-anchor="middle" font-size="9" fill="#fbbf24">Encryption aims</text>
+      <text x="760" y="239" text-anchor="middle" font-size="9" fill="#e8eaf0">Confidentiality</text>
+      <text x="760" y="252" text-anchor="middle" font-size="9" fill="#e8eaf0">Integrity · Auth · Replay</text>
+
+      <!-- ClientHello note -->
+      <rect x="680" y="272" width="160" height="30" rx="6" fill="#12151f" stroke="#5c6380" stroke-width="1"/>
+      <text x="760" y="286" text-anchor="middle" font-size="9" fill="#9aa0b8">TLS handshake:</text>
+      <text x="760" y="298" text-anchor="middle" font-size="9" fill="#e8eaf0">ClientHello ↔ ServerHello</text>
+    </svg>
+  </div>
+ 
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 8</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>DN / CN</td><td>Distinguished Name (X.500 hierarchy: C, O, OU, CN). In server certs, CN = server domain name.</td></tr>
+        <tr><td>CPS</td><td>Certification Practice Statement — CA's public declaration of identity-verification &amp; security procedures.</td></tr>
+        <tr><td>SAN</td><td>Subject Alternative Name — owner's domain, HTTP, or email address (RFC 5280 extension).</td></tr>
+        <tr><td>SWIFT / ELIXIR</td><td>Secure interbank messaging (SWIFT) and Poland's domestic clearing house (ELIXIR).</td></tr>
+        <tr><td>Integrity note</td><td>Encryption alone <em>breaks</em> rather than detects tampering — not sufficient on its own for integrity.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t8-1">
+        <div class="exam-q-text">Why does a Root CA's self-signed certificate, by itself, not prevent spoofing?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t8-1','a',false)"><span class="opt-letter">A</span> Self-signed certificates always expire within 24 hours</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t8-1','b',true)"><span class="opt-letter">B</span> Anyone could generate their own key pair and self-sign a certificate claiming to be that Root CA</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t8-1','c',false)"><span class="opt-letter">C</span> Self-signed certificates cannot contain a public key</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t8-1','d',false)"><span class="opt-letter">D</span> SSL does not support self-signed certificates</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t8-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t8-1-exp">
+          <div class="exam-explanation">✅ B. A signature only proves "signed by the holder of this private key" — trust in a self-signed root has to come from somewhere external (e.g., a pre-installed trusted-root list), not from the signature itself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9: SECURE ELECTRONIC PAYMENTS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">💳</span>
+    <h2>Secure Electronic Payments</h2>
+    <span class="topic-tag badge badge-teal">Lecture 8</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Card payments split into <strong>POS</strong> (card present) and <strong>CNP/CNPT</strong> (card not present — phone/web) transactions; CNP carries the highest fraud risk because the issuer bank is liable for fraudulent charges. <strong>SET</strong> (MasterCard/VISA) was the first attempt at securing card payments online across four parties (cardholder, issuer, merchant, acquirer); it was superseded by <strong>3D Secure</strong> (Verified by VISA / SecureCode), which routes authentication through the card issuer itself via SSL+XML. Mobile wallets like <strong>Google Pay</strong> go further, tokenizing the card so the real number never touches the phone.
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--red);">CNP / Remote Transaction</div>
+      <ul>
+        <li>Account name, card number, expiry + CVC2/CVV2/CID</li>
+        <li>Revocable — chargeback possible</li>
+        <li><strong>High risk</strong> — issuer bank liable for fraud</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--green);">POS Transaction</div>
+      <ul>
+        <li>Offline credit (limited value), or</li>
+        <li>Online credit-limit validation, or</li>
+        <li>Charge card with online (delayed) charging</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">EMV</div><div class="key-fact-label">Europay/MasterCard/VISA chip standard</div></div>
+    <div class="key-fact"><div class="key-fact-value">4</div><div class="key-fact-label">SET parties: cardholder, issuer, merchant, acquirer</div></div>
+    <div class="key-fact"><div class="key-fact-value">3</div><div class="key-fact-label">3D Secure domains</div></div>
+    <div class="key-fact"><div class="key-fact-value">NFC + SSL</div><div class="key-fact-label">Google Pay POS / online channels</div></div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — 3D Secure: Three Domains</div>
+    <svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="40" width="200" height="70" rx="8" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="110" y="62" text-anchor="middle" font-size="11" fill="#4d9fff">Issuer Domain</text>
+      <text x="110" y="80" text-anchor="middle" font-size="9" fill="#e8eaf0">Cardholder + Bank</text>
+      <text x="110" y="95" text-anchor="middle" font-size="9" fill="#9aa0b8">(ACS authenticates)</text>
+
+      <rect x="250" y="40" width="200" height="70" rx="8" fill="#181b24" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="350" y="62" text-anchor="middle" font-size="11" fill="#2dd4bf">Interoperability Domain</text>
+      <text x="350" y="80" text-anchor="middle" font-size="9" fill="#e8eaf0">Visa / MasterCard</text>
+      <text x="350" y="95" text-anchor="middle" font-size="9" fill="#9aa0b8">(routes auth messages)</text>
+
+      <rect x="490" y="40" width="200" height="70" rx="8" fill="#181b24" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="590" y="62" text-anchor="middle" font-size="11" fill="#fbbf24">Acquirer Domain</text>
+      <text x="590" y="80" text-anchor="middle" font-size="9" fill="#e8eaf0">Merchant + Bank (MPI)</text>
+      <text x="590" y="95" text-anchor="middle" font-size="9" fill="#9aa0b8">(authorization+payment)</text>
+
+      <path d="M210 75 L250 75" stroke="#5c6380" marker-end="url(#a9)"/>
+      <path d="M450 75 L490 75" stroke="#5c6380" marker-end="url(#a9)"/>
+      <path d="M490 90 L210 90" stroke="#5c6380" marker-end="url(#a9)"/>
+      <defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="350" y="135" text-anchor="middle" font-size="9" fill="#9aa0b8">Cardholder authenticates directly with their own bank (PAM message prevents spoofing)</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Payment Card Classification</div>
+    <table class="def-table">
+      <thead><tr><th>Axis</th><th>Types</th></tr></thead>
+      <tbody>
+        <tr><td>By function</td><td>Credit · Charge/Debit · Pre-paid / electronic purse</td></tr>
+        <tr><td>By technology</td><td>Embossed print · Magnetic stripe · Smartcard · Contactless (RFID) · Virtual (ePayments) · Mobile</td></tr>
+        <tr><td>By channel</td><td>ATM · Point-of-Sale (POS) · Remote (CNPT)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Electronic Shopping Flow</div>
+      <ul>
+        <li>Client browses, selects, fills order, authorizes payment with issuer</li>
+        <li>Merchant confirms with acquirer, fulfills order</li>
+        <li>Merchant initiates issuer→acquirer money transfer</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Privacy Design Goal</div>
+      <ul>
+        <li>Merchant should never see bank-account access info</li>
+        <li>Banks should not see what goods were purchased</li>
+        <li>Google Pay: real card data never stored on the phone — only a device-specific token</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 9</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>CVC2/CVV2/CID</td><td>3–4 digit security code used to authorize CNP transactions.</td></tr>
+        <tr><td>Chargeback</td><td>A CNP transaction revoked/disputed after the fact.</td></tr>
+        <tr><td>SET</td><td>Secure Electronic Transaction — MasterCard/VISA protocol for confidentiality, integrity &amp; authentication across 4 parties.</td></tr>
+        <tr><td>3D Secure</td><td>Superseded SET (~2005–2010); SSL+XML based; "Verified by VISA" / MasterCard SecureCode (SPA).</td></tr>
+        <tr><td>PAM</td><td>Personal Assurance Message — issuer-shown message that prevents spoofing during 3D Secure authentication.</td></tr>
+        <tr><td>Google Pay</td><td>Tokenizes the card on registration; decrypts the token via biometric auth; NFC at POS, SSL online.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t9-1">
+        <div class="exam-q-text">Why are Card-Not-Present (CNP) transactions considered higher risk than POS transactions?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t9-1','a',false)"><span class="opt-letter">A</span> They always use a weaker encryption algorithm</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t9-1','b',false)"><span class="opt-letter">B</span> They are never authorized by the issuer bank</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t9-1','c',true)"><span class="opt-letter">C</span> The card's physical presence/chip can't be verified, transactions are revocable, and the issuer bank bears fraud liability</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t9-1','d',false)"><span class="opt-letter">D</span> They are not covered by EMV at all</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t9-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t9-1-exp">
+          <div class="exam-explanation">✅ C. CNP relies only on data the cardholder types in (number, expiry, CVC2) — there's no physical/chip authentication, chargebacks are possible, and the issuing bank is on the hook for fraud.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10: IT SERVICE MANAGEMENT (ITIL) -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">⚙️</span>
+    <h2>IT Service Management (ITIL)</h2>
+    <span class="topic-tag badge badge-green">Lecture 10</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    <strong>ITIL</strong> (IT Infrastructure Library) is a <strong>best-practice framework</strong> for delivering quality IT services via people, process, partners, and technology (<strong>ITSM</strong>). Its 5-stage <strong>Service Lifecycle</strong> groups processes such as Incident, Problem, Change, Configuration, and Release Management. Progress is guided by <strong>KPIs</strong> (goals) measured via <strong>Metrics</strong>, refined continuously through the <strong>Deming PDCA cycle</strong>.
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">1980s</div><div class="key-fact-label">Developed by UK's CCTA</div></div>
+    <div class="key-fact"><div class="key-fact-value">28 Feb 2019</div><div class="key-fact-label">ITIL 4 released</div></div>
+    <div class="key-fact"><div class="key-fact-value">5</div><div class="key-fact-label">Service Lifecycle stages</div></div>
+    <div class="key-fact"><div class="key-fact-value">ISO 9001</div><div class="key-fact-label">Quality standard met</div></div>
+  </div>
+
+  <!-- DIAGRAM 1: Service Lifecycle -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 1 — ITIL Service Lifecycle</div>
+    <svg width="100%" viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10"  y="50" width="130" height="50" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="75"  y="72" text-anchor="middle" font-size="11" fill="#2dd4bf" font-weight="500">Service</text>
+      <text x="75"  y="87" text-anchor="middle" font-size="11" fill="#2dd4bf" font-weight="500">Strategy</text>
+      <rect x="170" y="50" width="130" height="50" rx="8" fill="#3d2e0a" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="235" y="72" text-anchor="middle" font-size="11" fill="#fbbf24" font-weight="500">Service</text>
+      <text x="235" y="87" text-anchor="middle" font-size="11" fill="#fbbf24" font-weight="500">Design</text>
+      <rect x="330" y="50" width="130" height="50" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="395" y="72" text-anchor="middle" font-size="11" fill="#4d9fff" font-weight="500">Service</text>
+      <text x="395" y="87" text-anchor="middle" font-size="11" fill="#4d9fff" font-weight="500">Transition</text>
+      <rect x="490" y="50" width="130" height="50" rx="8" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="555" y="72" text-anchor="middle" font-size="11" fill="#f87171" font-weight="500">Service</text>
+      <text x="555" y="87" text-anchor="middle" font-size="11" fill="#f87171" font-weight="500">Operation</text>
+      <defs><marker id="a10" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <path d="M140 75 L170 75" stroke="#5c6380" marker-end="url(#a10)"/>
+      <path d="M300 75 L330 75" stroke="#5c6380" marker-end="url(#a10)"/>
+      <path d="M460 75 L490 75" stroke="#5c6380" marker-end="url(#a10)"/>
+      <path d="M555 100 C555 135, 75 135, 75 100" stroke="#a78bfa" stroke-width="1.5" fill="none" marker-end="url(#a10)"/>
+      <text x="315" y="143" text-anchor="middle" font-size="10" fill="#a78bfa">Continual Service Improvement (feeds back into Strategy)</text>
+    </svg>
+  </div>
+
+  <!-- DIAGRAM 2: Incident → Problem → Change flow -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 2 — Incident → Problem → Change Flow</div>
+    <svg width="100%" viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a10b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <!-- Top row -->
+      <rect x="10"  y="20" width="130" height="44" rx="8" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="75"  y="46" text-anchor="middle" font-size="11" fill="#f87171" font-weight="500">Error / Incident</text>
+      <path d="M140 42 L170 42" stroke="#5c6380" marker-end="url(#a10b)"/>
+      <rect x="170" y="20" width="130" height="44" rx="8" fill="#3d2e0a" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="235" y="46" text-anchor="middle" font-size="11" fill="#fbbf24" font-weight="500">Problem</text>
+      <path d="M300 42 L330 42" stroke="#5c6380" marker-end="url(#a10b)"/>
+      <rect x="330" y="20" width="130" height="44" rx="8" fill="#173404" stroke="#97C459" stroke-width="1.5"/>
+      <text x="395" y="38" text-anchor="middle" font-size="10" fill="#97C459" font-weight="500">Known Error</text>
+      <text x="395" y="54" text-anchor="middle" font-size="9"  fill="#639922">(symptoms + workaround)</text>
+      <path d="M460 42 L490 42" stroke="#5c6380" marker-end="url(#a10b)"/>
+      <rect x="490" y="20" width="100" height="44" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="540" y="46" text-anchor="middle" font-size="11" fill="#4d9fff" font-weight="500">RFC</text>
+      <path d="M590 42 L620 42" stroke="#5c6380" marker-end="url(#a10b)"/>
+      <rect x="620" y="20" width="70" height="44" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="655" y="46" text-anchor="middle" font-size="11" fill="#2dd4bf" font-weight="500">Solution</text>
+      <!-- Labels -->
+      <text x="75"  y="108" text-anchor="middle" font-size="9" fill="#5c6380">Incident Mgmt</text>
+      <text x="235" y="108" text-anchor="middle" font-size="9" fill="#5c6380">Problem Mgmt</text>
+      <text x="395" y="108" text-anchor="middle" font-size="9" fill="#5c6380">Known Error DB</text>
+      <text x="540" y="108" text-anchor="middle" font-size="9" fill="#5c6380">Change Mgmt</text>
+    </svg>
+  </div>
+
+  <!-- DIAGRAM 3: KPI vs Metric + PDCA side by side -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 3 — KPI vs. Metric &amp; Deming PDCA</div>
+    <svg width="100%" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="a10c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <!-- KPI box: blue -->
+      <rect x="10" y="20" width="140" height="120" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="80" y="48"  text-anchor="middle" font-size="11" fill="#4d9fff" font-weight="500">KPI — Goal</text>
+      <text x="80" y="76"  text-anchor="middle" font-size="22" fill="#4d9fff" font-weight="500">20,000</text>
+      <text x="80" y="96"  text-anchor="middle" font-size="9"  fill="#378ADD">SSDs / year</text>
+      <text x="80" y="128" text-anchor="middle" font-size="9"  fill="#5c6380">← target</text>
+      <!-- Metric box: red -->
+      <rect x="160" y="20" width="140" height="120" rx="8" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="230" y="48"  text-anchor="middle" font-size="11" fill="#f87171" font-weight="500">Metric — Now</text>
+      <text x="230" y="76"  text-anchor="middle" font-size="22" fill="#f87171" font-weight="500">5,000</text>
+      <text x="230" y="96"  text-anchor="middle" font-size="9"  fill="#E24B4A">in 10 months = 25%</text>
+      <text x="230" y="128" text-anchor="middle" font-size="9"  fill="#A32D2D">⚠ goal unlikely met</text>
+      <!-- Divider -->
+      <line x1="330" y1="20" x2="330" y2="140" stroke="#5c6380" stroke-width="0.5" stroke-dasharray="4 3"/>
+      <!-- PDCA cycle -->
+      <rect x="345" y="20"  width="155" height="56" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="422" y="42"  text-anchor="middle" font-size="13" fill="#4d9fff" font-weight="500">Plan</text>
+      <text x="422" y="58"  text-anchor="middle" font-size="9"  fill="#378ADD">who / what / when / how</text>
+      <rect x="510" y="20"  width="155" height="56" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="587" y="42"  text-anchor="middle" font-size="13" fill="#2dd4bf" font-weight="500">Do</text>
+      <text x="587" y="58"  text-anchor="middle" font-size="9"  fill="#1D9E75">make the changes</text>
+      <rect x="510" y="84"  width="155" height="56" rx="8" fill="#3d2e0a" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="587" y="106" text-anchor="middle" font-size="13" fill="#fbbf24" font-weight="500">Check</text>
+      <text x="587" y="122" text-anchor="middle" font-size="9"  fill="#EF9F27">review results</text>
+      <rect x="345" y="84"  width="155" height="56" rx="8" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="422" y="106" text-anchor="middle" font-size="13" fill="#f87171" font-weight="500">Act</text>
+      <text x="422" y="122" text-anchor="middle" font-size="9"  fill="#E24B4A">update the plan</text>
+      <!-- PDCA arrows -->
+      <path d="M500 48 L510 48"   stroke="#5c6380" marker-end="url(#a10c)"/>
+      <path d="M587 76 L587 84"   stroke="#5c6380" marker-end="url(#a10c)"/>
+      <path d="M510 112 L500 112" stroke="#5c6380" marker-end="url(#a10c)"/>
+      <path d="M422 84 L422 76"   stroke="#5c6380" marker-end="url(#a10c)"/>
+    </svg>
+  </div>
+
+  <!-- DIAGRAM 4: Value = Utility + Warranty -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 4 — Value = Utility + Warranty</div>
+    <svg width="100%" viewBox="0 0 700 110" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10"  y="20" width="190" height="70" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="105" y="50" text-anchor="middle" font-size="12" fill="#2dd4bf" font-weight="500">Utility</text>
+      <text x="105" y="68" text-anchor="middle" font-size="10" fill="#1D9E75">Fit for purpose</text>
+      <text x="215" y="60" text-anchor="middle" font-size="20" fill="#5c6380">+</text>
+      <rect x="230" y="20" width="190" height="70" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="325" y="50" text-anchor="middle" font-size="12" fill="#4d9fff" font-weight="500">Warranty</text>
+      <text x="325" y="68" text-anchor="middle" font-size="10" fill="#378ADD">Fit for use</text>
+      <text x="445" y="60" text-anchor="middle" font-size="20" fill="#5c6380">=</text>
+      <rect x="460" y="10" width="230" height="90" rx="8" fill="#26215C" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="575" y="46" text-anchor="middle" font-size="14" fill="#a78bfa" font-weight="500">Value</text>
+      <text x="575" y="64" text-anchor="middle" font-size="10" fill="#7F77DD">Perceived benefit — subjective</text>
+      <text x="575" y="80" text-anchor="middle" font-size="10" fill="#534AB7">defined by the customer</text>
+    </svg>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--green);">ITIL — UPs</div>
+      <ul>
+        <li>Process description standard; common language for IT &amp; business</li>
+        <li>Focus on processes, not technologies</li>
+        <li>Standardization → quality &amp; profitability</li>
+        <li>Customer focus through service</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--red);">ITIL — DOWNs</div>
+      <ul>
+        <li>Defines "what", not "how"</li>
+        <li>Not a methodology for streamlining processes</li>
+        <li>Doesn't cover all processes or org issues</li>
+        <li>Media noise → unrealistic expectations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Processes by Lifecycle Stage</div>
+    <table class="def-table">
+      <thead><tr><th>Process</th><th>Stage</th><th>Aim</th></tr></thead>
+      <tbody>
+        <tr><td>Incident Mgmt</td><td>Operation</td><td>Restore agreed service level ASAP after an unplanned interruption.</td></tr>
+        <tr><td>Problem Mgmt</td><td>Operation</td><td>Find &amp; remove the root cause via RFC. Temporary fix = <em>workaround</em>; symptoms + workaround = <em>known error</em>.</td></tr>
+        <tr><td>Event Mgmt</td><td>Operation</td><td>Monitor, register &amp; categorize status changes (events) of CIs.</td></tr>
+        <tr><td>Change Mgmt</td><td>Transition</td><td>Implement CI changes (via RFC) in a controlled manner.</td></tr>
+        <tr><td>Service Asset &amp; Config Mgmt</td><td>Transition</td><td>Build/maintain the <strong>CMDB</strong> of Configuration Items (CIs).</td></tr>
+        <tr><td>Release &amp; Deployment Mgmt</td><td>Transition</td><td>Dev → Test → Production → Archive; all stages logged in CMDB.</td></tr>
+        <tr><td>Knowledge Mgmt</td><td>Transition</td><td>Decision-making &amp; knowledge transfer; integrated with CMDB.</td></tr>
+        <tr><td>Service Level Mgmt</td><td>Design</td><td>Agree service terms in an <strong>SLA</strong> from the Service Catalog.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 10</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>ITSM</td><td>Organizational capabilities delivering value as IT services; ITIL is its preeminent framework.</td></tr>
+        <tr><td>Service</td><td>A way to provide value to clients while avoiding unnecessary costs/risks.</td></tr>
+        <tr><td>Value</td><td>Perceived benefits, subjective, defined by the customer. = Utility (fit for purpose) + Warranty (fit for use).</td></tr>
+        <tr><td>CMDB</td><td>Configuration Management Database — stores CIs and their relations.</td></tr>
+        <tr><td>CI</td><td>Configuration Item — a single element needed for service delivery.</td></tr>
+        <tr><td>RFC</td><td>Request For Change — formal document initiating the Change Management process.</td></tr>
+        <tr><td>SLA</td><td>Service Level Agreement — records agreed conditions for a specific service.</td></tr>
+        <tr><td>KPI</td><td>Key Performance Indicator — the target goal; tells if the org is on track.</td></tr>
+        <tr><td>Metric</td><td>Current quantitative status; used to evaluate KPIs, but not a KPI itself.</td></tr>
+        <tr><td>Workaround</td><td>Temporary fix applied while the root cause is unresolved.</td></tr>
+        <tr><td>Known Error</td><td>Problem with identified symptoms + documented workaround, awaiting RFC.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t10-1">
+        <div class="exam-q-text">A team has produced 5,000 of an annual 20,000-unit goal after 10 months. What roles do "20,000 units/year" and "5,000 produced" play in ITIL terms?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-1','a',false)"><span class="opt-letter">A</span> Both are KPIs</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-1','b',false)"><span class="opt-letter">B</span> Both are Metrics</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-1','c',true)"><span class="opt-letter">C</span> 20,000/year is the KPI (goal); 5,000 produced is the Metric (current status)</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-1','d',false)"><span class="opt-letter">D</span> 5,000 produced is the KPI; 20,000/year is the Metric</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t10-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t10-1-exp"></div>
+      </div>
+      <div class="exam-q" id="q-t10-2">
+        <div class="exam-q-text">What defines the value of a service according to ITIL?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-2','a',true)"><span class="opt-letter">A</span> Perceived benefits and utility for the customer</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-2','b',false)"><span class="opt-letter">B</span> The cost of implementing the service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-2','c',false)"><span class="opt-letter">C</span> The number of users using the service</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t10-2','d',false)"><span class="opt-letter">D</span> The uptime of the service</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t10-2')">Show Answers</button>
+        <div class="exam-reveal" id="q-t10-2-exp">
+          <div class="exam-explanation">✅ A. Value is subjective and judged by the customer (utility + warranty) — not cost, popularity, or uptime.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">📊</span>
+    <h2>Service Level Management, Availability &amp; Continuity</h2>
+    <span class="topic-tag badge badge-green">Lecture 12</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    <strong>Availability</strong>, <strong>reliability</strong>, and <strong>maintainability</strong> are quantified via uptime/downtime metrics and combined into the famous "<strong>nines</strong>" scale. <strong>ITSCM</strong> (IT Service Continuity Management) plans for disaster recovery using <strong>cold / warm / hot</strong> recovery strategies and <strong>RTO/RPO</strong> targets; high-availability systems achieve this via redundancy, replication, failover, and clustering (active-active or active-passive).
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Availability, Reliability &amp; Maintainability</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Metric</th></tr></thead>
+      <tbody>
+        <tr><td>Availability</td><td>Ability of a service to perform its function at a given time</td><td>(Agreed Service Time − Downtime) / Agreed Service Time × 100%</td></tr>
+        <tr><td>Reliability</td><td>How long a service runs without interruption</td><td>MTBF = (Available time − Downtime) / Breaks</td></tr>
+        <tr><td>Maintainability</td><td>How quickly a service is restored after failure</td><td>MTRS = Total downtime / Breaks</td></tr>
+        <tr><td>Serviceability</td><td>Supplier's ability to meet contract terms (Availability + Reliability + Maintainability)</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Incident Lifecycle</div>
+    <svg viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="30" width="120" height="50" rx="6" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="80" y="60" text-anchor="middle" font-size="11" fill="#f87171">Detection</text>
+      <rect x="160" y="30" width="120" height="50" rx="6" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="220" y="60" text-anchor="middle" font-size="11" fill="#f87171">Diagnosis</text>
+      <rect x="300" y="30" width="120" height="50" rx="6" fill="#3d1212" stroke="#f87171" stroke-width="1.5"/>
+      <text x="360" y="60" text-anchor="middle" font-size="11" fill="#f87171">Repair</text>
+      <rect x="440" y="30" width="120" height="50" rx="6" fill="#0d3320" stroke="#4ade80" stroke-width="1.5"/>
+      <text x="500" y="60" text-anchor="middle" font-size="11" fill="#4ade80">Restore</text>
+      <rect x="580" y="30" width="120" height="50" rx="6" fill="#0d3320" stroke="#4ade80" stroke-width="1.5"/>
+      <text x="640" y="60" text-anchor="middle" font-size="11" fill="#4ade80">Operation</text>
+      <path d="M140 55 L160 55" stroke="#5c6380" marker-end="url(#a11)"/>
+      <path d="M280 55 L300 55" stroke="#5c6380" marker-end="url(#a11)"/>
+      <path d="M420 55 L440 55" stroke="#5c6380" marker-end="url(#a11)"/>
+      <path d="M560 55 L580 55" stroke="#5c6380" marker-end="url(#a11)"/>
+      <defs><marker id="a11" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="220" y="105" text-anchor="middle" font-size="10" fill="#f87171">⏱ Downtime (MTRS = Maintainability)</text>
+      <text x="570" y="105" text-anchor="middle" font-size="10" fill="#4ade80">⏱ Uptime (MTBF = Reliability)</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Availability Expressed in "Nines"</div>
+    <table class="def-table">
+      <thead><tr><th>Nines</th><th>Availability</th><th>Downtime/Year</th><th>Class</th></tr></thead>
+      <tbody>
+        <tr><td>One 9</td><td>90%</td><td>36d 17h 20m</td><td>1 — Unmanaged</td></tr>
+        <tr><td>Two 9s</td><td>99%</td><td>3d 11h 20m</td><td>2 — Managed</td></tr>
+        <tr><td>Three 9s</td><td>99.9%</td><td>8.76 h</td><td>3 — Well Managed</td></tr>
+        <tr><td>Four 9s</td><td>99.99%</td><td>52.56 m</td><td>4 — Fault Tolerant</td></tr>
+        <tr><td>Five 9s</td><td>99.999%</td><td>5.26 m</td><td>5 — High Availability</td></tr>
+        <tr><td>Six 9s</td><td>99.9999%</td><td>31.5 s</td><td>6 — Very-High-Availability</td></tr>
+        <tr><td>Seven 9s</td><td>99.99999%</td><td>3 s</td><td>7 — Ultra-Availability</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-title" style="color: var(--blue);">Availability Calculations</div>
+    <p><strong>Serial</strong> (all components must work): A = A_H × A_N × A_S × A_W. Example: 0.98×0.98×0.975×0.96 ≈ <strong>89.89%</strong>. &nbsp; <strong>Parallel/redundant</strong> (≥1 must work): A = 1 − (1−A_x)ⁿ. Doubling a 98% host → A_H = 0.9996, lifting the serial chain to <strong>91.96%</strong>.</p>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Recovery Types (Cold / Warm / Hot)</div>
+    <table class="def-table">
+      <thead><tr><th>Type</th><th>Description</th><th>Recovery Time</th></tr></thead>
+      <tbody>
+        <tr><td>Cold</td><td>Servers configured &amp; apps installed from scratch</td><td>Days–weeks (&gt;72h)</td></tr>
+        <tr><td>Warm</td><td>Configured servers/apps, not connected to production</td><td>Minutes–hours (≤72h)</td></tr>
+        <tr><td>Hot</td><td>Full duplexing + automatic failover</td><td>(Almost) immediate (≤24h)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--blue);">Active-Active</div>
+      <ul>
+        <li>All nodes serve requests simultaneously</li>
+        <li>Load balancing prevents overload</li>
+        <li>Better throughput &amp; response time</li>
+        <li>All nodes identically configured</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--teal);">Active-Passive</div>
+      <ul>
+        <li>≥2 nodes — one active, one standby</li>
+        <li>Standby auto-takes-over on failure</li>
+        <li>Clients connect only to the active node normally</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px; border-left: 3px solid var(--red);">
+    <div class="card-title" style="color: var(--red);">Security vs. Safety</div>
+    <p><strong>Dependability</strong> attributes: Availability, Reliability, Safety, Confidentiality, Integrity, Maintainability. <strong>Security</strong> = Availability + Confidentiality + Integrity (Safety/Reliability/Maintainability belong to Dependability, not Security). <strong>Authentication</strong> = who you are; <strong>Authorization</strong> = what you can do.</p>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 8</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>RTO</td><td>Recovery Time Objective — max acceptable downtime, set in the SLA.</td></tr>
+        <tr><td>RPO</td><td>Recovery Point Objective — point in time to which data is restored.</td></tr>
+        <tr><td>Failover</td><td>Automatic, seamless switch to a standby system when the primary fails.</td></tr>
+        <tr><td>Disruption</td><td>Unplanned event disrupting service for a significant time.</td></tr>
+        <tr><td>Disaster</td><td>Interruption of critical service activities for a significant part of the time.</td></tr>
+        <tr><td>Capacity Management</td><td>Monitors &amp; plans resources to meet SLA performance at minimal cost.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t11-1">
+        <div class="exam-q-text">A system needs to be back online almost immediately after a failure, with full duplex redundancy already in place. Which recovery type is this?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t11-1','a',false)"><span class="opt-letter">A</span> Cold recovery</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t11-1','b',false)"><span class="opt-letter">B</span> Warm recovery</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t11-1','c',true)"><span class="opt-letter">C</span> Hot recovery</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t11-1','d',false)"><span class="opt-letter">D</span> Capacity management</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t11-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t11-1-exp">
+          <div class="exam-explanation">✅ C. Hot recovery uses full duplexing and automatic failover for near-immediate recovery (≤24h). Cold takes days–weeks; warm takes minutes–hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9: BLOCKCHAIN ESSENTIALS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">⛓️</span>
+    <h2>Blockchain Essentials</h2>
+    <span class="topic-tag badge badge-amber">Lecture 13</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A blockchain is a <strong>distributed</strong>, append-only ledger of blocks, each cryptographically linked to the previous one via its hash. Transactions inside a block are summarized by a <strong>Merkle tree</strong> for efficient verification. The system removes the need for a trusted central authority by replacing it with cryptographic proof and network consensus.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Centralized vs. Decentralized vs. Distributed</div>
+    <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg">
+      <text x="120" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#4d9fff">Centralized</text>
+      <circle cx="120" cy="90" r="12" fill="#4d9fff"/>
+      <circle cx="60" cy="50" r="7" fill="#5c6380"/><circle cx="180" cy="50" r="7" fill="#5c6380"/>
+      <circle cx="60" cy="130" r="7" fill="#5c6380"/><circle cx="180" cy="130" r="7" fill="#5c6380"/>
+      <line x1="120" y1="90" x2="60" y2="50" stroke="#2a2f3e"/><line x1="120" y1="90" x2="180" y2="50" stroke="#2a2f3e"/>
+      <line x1="120" y1="90" x2="60" y2="130" stroke="#2a2f3e"/><line x1="120" y1="90" x2="180" y2="130" stroke="#2a2f3e"/>
+
+      <text x="360" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#2dd4bf">Decentralized</text>
+      <circle cx="330" cy="60" r="9" fill="#2dd4bf"/><circle cx="390" cy="60" r="9" fill="#2dd4bf"/>
+      <circle cx="300" cy="120" r="6" fill="#5c6380"/><circle cx="360" cy="130" r="6" fill="#5c6380"/><circle cx="420" cy="120" r="6" fill="#5c6380"/>
+      <line x1="330" y1="60" x2="300" y2="120" stroke="#2a2f3e"/><line x1="330" y1="60" x2="360" y2="130" stroke="#2a2f3e"/>
+      <line x1="390" y1="60" x2="360" y2="130" stroke="#2a2f3e"/><line x1="390" y1="60" x2="420" y2="120" stroke="#2a2f3e"/>
+      <line x1="330" y1="60" x2="390" y2="60" stroke="#2a2f3e"/>
+
+      <text x="600" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#a78bfa">Distributed (Blockchain)</text>
+      <circle cx="540" cy="60" r="8" fill="#a78bfa"/><circle cx="600" cy="50" r="8" fill="#a78bfa"/><circle cx="660" cy="60" r="8" fill="#a78bfa"/>
+      <circle cx="540" cy="120" r="8" fill="#a78bfa"/><circle cx="600" cy="130" r="8" fill="#a78bfa"/><circle cx="660" cy="120" r="8" fill="#a78bfa"/>
+      <line x1="540" y1="60" x2="600" y2="50" stroke="#2a2f3e"/><line x1="600" y1="50" x2="660" y2="60" stroke="#2a2f3e"/>
+      <line x1="540" y1="60" x2="540" y2="120" stroke="#2a2f3e"/><line x1="660" y1="60" x2="660" y2="120" stroke="#2a2f3e"/>
+      <line x1="540" y1="120" x2="600" y2="130" stroke="#2a2f3e"/><line x1="600" y1="130" x2="660" y2="120" stroke="#2a2f3e"/>
+      <line x1="540" y1="60" x2="660" y2="120" stroke="#2a2f3e"/><line x1="660" y1="60" x2="540" y2="120" stroke="#2a2f3e"/>
+      <text x="600" y="170" text-anchor="middle" font-size="9" fill="#5c6380">Every node holds a full copy — no single point of control or failure</text>
+    </svg>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Block Structure &amp; Merkle Tree</div>
+    <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="20" width="220" height="180" rx="8" fill="#1a3d6b" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="130" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#4d9fff">BLOCK HEADER</text>
+      <text x="130" y="68" text-anchor="middle" font-size="10" fill="#e8eaf0">Previous Block Hash</text>
+      <text x="130" y="90" text-anchor="middle" font-size="10" fill="#e8eaf0">Timestamp</text>
+      <text x="130" y="112" text-anchor="middle" font-size="10" fill="#e8eaf0">Nonce</text>
+      <text x="130" y="134" text-anchor="middle" font-size="10" fill="#2dd4bf">Merkle Root</text>
+      <text x="130" y="160" text-anchor="middle" font-size="9" fill="#9aa0b8">+ Transaction List</text>
+      <text x="130" y="178" text-anchor="middle" font-size="9" fill="#9aa0b8">(body)</text>
+
+      <text x="450" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#2dd4bf">Merkle Tree (transaction summary)</text>
+      <circle cx="450" cy="45" r="14" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="450" y="49" text-anchor="middle" font-size="8" fill="#2dd4bf">Root</text>
+      <circle cx="390" cy="100" r="12" fill="#181b24" stroke="#2dd4bf"/><circle cx="510" cy="100" r="12" fill="#181b24" stroke="#2dd4bf"/>
+      <text x="390" y="103" text-anchor="middle" font-size="7" fill="#9aa0b8">H(AB)</text><text x="510" y="103" text-anchor="middle" font-size="7" fill="#9aa0b8">H(CD)</text>
+      <circle cx="360" cy="160" r="10" fill="#181b24" stroke="#5c6380"/><circle cx="420" cy="160" r="10" fill="#181b24" stroke="#5c6380"/>
+      <circle cx="480" cy="160" r="10" fill="#181b24" stroke="#5c6380"/><circle cx="540" cy="160" r="10" fill="#181b24" stroke="#5c6380"/>
+      <text x="360" y="163" text-anchor="middle" font-size="7" fill="#9aa0b8">Tx A</text><text x="420" y="163" text-anchor="middle" font-size="7" fill="#9aa0b8">Tx B</text>
+      <text x="480" y="163" text-anchor="middle" font-size="7" fill="#9aa0b8">Tx C</text><text x="540" y="163" text-anchor="middle" font-size="7" fill="#9aa0b8">Tx D</text>
+      <line x1="450" y1="59" x2="390" y2="88" stroke="#2a2f3e"/><line x1="450" y1="59" x2="510" y2="88" stroke="#2a2f3e"/>
+      <line x1="390" y1="112" x2="360" y2="150" stroke="#2a2f3e"/><line x1="390" y1="112" x2="420" y2="150" stroke="#2a2f3e"/>
+      <line x1="510" y1="112" x2="480" y2="150" stroke="#2a2f3e"/><line x1="510" y1="112" x2="540" y2="150" stroke="#2a2f3e"/>
+      <text x="450" y="195" text-anchor="middle" font-size="9" fill="#5c6380">Changing any transaction changes the Merkle Root — and thus the block hash</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Full vs. Non-Full Node</div>
+    <table class="def-table">
+      <thead><tr><th>Node Type</th><th>Stores</th></tr></thead>
+      <tbody>
+        <tr><td>Full Node</td><td>Entire blockchain history; independently validates every block and transaction.</td></tr>
+        <tr><td>Non-Full / Light Node</td><td>Only block headers (or partial data); relies on full nodes for verification.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Government</div>
+      <ul>
+        <li>Dubai — first blockchain-powered state; ~$1.5B/yr saved</li>
+        <li>Estonia — public records on blockchain</li>
+        <li>South Korea — public safety/transport (Samsung)</li>
+        <li>UK — pension payments</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Healthcare &amp; Cybersecurity</div>
+      <ul>
+        <li>Guardtime — keyless signatures, ~1M Estonian patients</li>
+        <li>GEM (Ericsson) — disease outbreak data</li>
+        <li>MedRec (MIT) — decentralized patient records</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Finance &amp; Industry</div>
+      <ul>
+        <li>Barclays — fraud verification 7–10d → &lt;4h</li>
+        <li>BitPesa (Kenya) — FX/payments for frontier markets</li>
+        <li>JIO (Reliance) — supply-chain logistics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 9</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Merkle Tree</td><td>Binary tree of hashes summarizing all transactions in a block into a single root hash.</td></tr>
+        <tr><td>Block</td><td>Unit of the ledger containing a header (prev hash, timestamp, nonce, Merkle root) and a transaction list.</td></tr>
+        <tr><td>Distributed Ledger</td><td>A ledger replicated, shared, and synchronized across many nodes with no central authority.</td></tr>
+        <tr><td>Nonce</td><td>A value miners vary to find a block hash meeting the network's difficulty target.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t12-1">
+        <div class="exam-q-text">What is the purpose of a Merkle tree inside a block?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t12-1','a',true)"><span class="opt-letter">A</span> Efficiently summarize all transactions into a single verifiable root hash</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t12-1','b',false)"><span class="opt-letter">B</span> Encrypt the block for confidentiality</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t12-1','c',false)"><span class="opt-letter">C</span> Store the private keys of all wallet holders</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t12-1','d',false)"><span class="opt-letter">D</span> Replace the need for a nonce</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t12-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t12-1-exp">
+          <div class="exam-explanation">✅ A. The Merkle tree hashes transactions pairwise up to a single root, so any single-transaction change is detectable without re-checking every transaction individually.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10: CRYPTOCURRENCIES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t13">
+  <div class="topic-header">
+    <span class="topic-number">13</span>
+    <span class="topic-icon">₿</span>
+    <h2>Cryptocurrencies in Depth</h2>
+    <span class="topic-tag badge badge-amber">Lecture 14</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Cryptocurrencies are <strong>digital assets</strong> secured by cryptography and exchanged without a central backing authority. <strong>Bitcoin</strong> is mined rather than issued, has a <strong>hard cap of 21 million coins</strong>, and its value is set purely by supply/demand and reputation rather than government decree. Consensus comes from competing mechanisms — <strong>Proof of Work</strong> (energy-intensive mining) vs. <strong>Proof of Stake</strong> (capital-at-risk lottery) — and coins are held in <strong>hot</strong> (online, convenient) or <strong>cold</strong> (offline, secure) wallets.
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Money Through History</div>
+    <svg viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg">
+      <line x1="40" y1="65" x2="680" y2="65" stroke="#2a2f3e" stroke-width="2"/>
+      <circle cx="70" cy="65" r="6" fill="#fbbf24"/>
+      <text x="70" y="40" text-anchor="middle" font-size="9" fill="#fbbf24">Commodity</text>
+      <text x="70" y="90" text-anchor="middle" font-size="8" fill="#5c6380">shells, barley</text>
+      <circle cx="220" cy="65" r="6" fill="#fbbf24"/>
+      <text x="220" y="40" text-anchor="middle" font-size="9" fill="#fbbf24">Representative</text>
+      <text x="220" y="90" text-anchor="middle" font-size="8" fill="#5c6380">banknotes, gold-backed</text>
+      <circle cx="380" cy="65" r="6" fill="#4d9fff"/>
+      <text x="380" y="40" text-anchor="middle" font-size="9" fill="#4d9fff">FIAT (1971)</text>
+      <text x="380" y="90" text-anchor="middle" font-size="8" fill="#5c6380">gov't-backed, unlimited supply</text>
+      <circle cx="530" cy="65" r="6" fill="#4d9fff"/>
+      <text x="530" y="40" text-anchor="middle" font-size="9" fill="#4d9fff">Electronic</text>
+      <text x="530" y="90" text-anchor="middle" font-size="8" fill="#5c6380">checks, wire, debit cards</text>
+      <circle cx="660" cy="65" r="7" fill="#2dd4bf"/>
+      <text x="660" y="40" text-anchor="middle" font-size="9" font-weight="700" fill="#2dd4bf">Crypto (2009)</text>
+      <text x="650" y="90" text-anchor="middle" font-size="8" fill="#5c6380">finite, no authority</text>
+    </svg>
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">21M</div><div class="key-fact-label">Max BTC supply</div></div>
+    <div class="key-fact"><div class="key-fact-value">~94.5%</div><div class="key-fact-label">BTC already mined</div></div>
+    <div class="key-fact"><div class="key-fact-value">1×10⁻⁸</div><div class="key-fact-label">BTC = 1 Satoshi</div></div>
+    <div class="key-fact"><div class="key-fact-value">~2140</div><div class="key-fact-label">Est. year fully mined</div></div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--amber);">FIAT Money</div>
+      <ul>
+        <li>Backed by government / central authority</li>
+        <li>Not finite — can be issued indefinitely</li>
+        <li>Not very divisible</li>
+        <li>Widely accepted; easy real-life use</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--teal);">Bitcoin</div>
+      <ul>
+        <li>Backed by network of users (community)</li>
+        <li>Finite — capped at 21M</li>
+        <li>Highly divisible (8 decimal places)</li>
+        <li>Growing acceptance; needs internet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--blue);">Proof of Work (PoW)</div>
+      <ul>
+        <li>Block creators: <strong>Miners</strong></li>
+        <li>Entry: buy equipment + energy</li>
+        <li>Energy inefficient</li>
+        <li>Reward: block rewards</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <div class="compare-col-title" style="color: var(--green);">Proof of Stake (PoS)</div>
+      <ul>
+        <li>Block creators: <strong>Validators</strong></li>
+        <li>Entry: own coins/tokens (stake)</li>
+        <li>Energy efficient</li>
+        <li>Reward: transaction fees</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Mining Hardware Evolution</div>
+    <svg viewBox="0 0 720 110" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="25" width="130" height="50" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="95" y="55" text-anchor="middle" font-size="12" fill="#9aa0b8">CPU</text>
+      <rect x="220" y="25" width="130" height="50" rx="6" fill="#181b24" stroke="#fbbf24" stroke-width="1.5"/>
+      <text x="285" y="55" text-anchor="middle" font-size="12" fill="#fbbf24">GPU</text>
+      <rect x="410" y="25" width="130" height="50" rx="6" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="475" y="55" text-anchor="middle" font-size="12" fill="#4d9fff">FPGA</text>
+      <rect x="600" y="25" width="100" height="50" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="650" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#2dd4bf">ASIC</text>
+      <path d="M160 50 L220 50" stroke="#5c6380" marker-end="url(#a13)"/>
+      <path d="M350 50 L410 50" stroke="#5c6380" marker-end="url(#a13)"/>
+      <path d="M540 50 L600 50" stroke="#5c6380" marker-end="url(#a13)"/>
+      <defs><marker id="a13" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="95" y="95" text-anchor="middle" font-size="8" fill="#5c6380">too slow</text>
+      <text x="285" y="95" text-anchor="middle" font-size="8" fill="#5c6380">expensive, energy-hungry</text>
+      <text x="475" y="95" text-anchor="middle" font-size="8" fill="#5c6380">flexibility/efficiency middle ground</text>
+      <text x="650" y="95" text-anchor="middle" font-size="8" fill="#5c6380">dedicated, efficient, $$$</text>
+    </svg>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Cryptocurrency Wallets</div>
+    <table class="def-table">
+      <thead><tr><th>Type</th><th>Internet</th><th>Cost</th><th>Security</th></tr></thead>
+      <tbody>
+        <tr><td>Hot</td><td>Yes</td><td>Free</td><td>Lower — susceptible to hackers; easier setup, more tokens supported</td></tr>
+        <tr><td>Cold</td><td>No</td><td>80+ EUR</td><td>Higher — more secure but fewer supported currencies (e.g., Trezor, Ledger); air-gapped devices can still be compromised</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">How to Use Cryptocurrencies</div>
+      <ul>
+        <li>Open an exchange account / wallet</li>
+        <li>Get a public address (like an email)</li>
+        <li>Buy crypto with fiat or another coin</li>
+        <li>Or mine for BTC directly</li>
+        <li>Apply for a crypto debit card</li>
+        <li>Spend, or trade like stocks/bonds</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--red);">Challenges &amp; Risks</div>
+      <ul>
+        <li>Nascent tech, uncertain regulation</li>
+        <li>Huge energy use — 1 BTC tx ≈ 634.72 kg CO₂</li>
+        <li>Misused for dark-web trade, ransom, illicit pay</li>
+        <li>Legal: unrestricted in 132 of 257 countries</li>
+        <li>EFTA (1978, US) governs e-transfer liability</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 10</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Mining</td><td>Process of verifying transactions and securing the network in exchange for newly issued coins.</td></tr>
+        <tr><td>Wallet</td><td>A collection of private keys that lets a user send, receive, and store cryptocurrency — equivalent to a bank account.</td></tr>
+        <tr><td>Exchange</td><td>A centralized, bank-like intermediary that converts between currencies (fiat ↔ crypto or crypto ↔ crypto).</td></tr>
+        <tr><td>Halving</td><td>The automatic, periodic reduction (by half) of the BTC mining reward, slowing new-coin issuance over time.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t13-1">
+        <div class="exam-q-text">Why is Proof of Stake considered more energy-efficient than Proof of Work?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t13-1','a',true)"><span class="opt-letter">A</span> Block creation is decided by a stake-weighted lottery rather than competitive computation</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t13-1','b',false)"><span class="opt-letter">B</span> PoS does not require any nodes to validate blocks</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t13-1','c',false)"><span class="opt-letter">C</span> PoS coins are all pre-mined, so no further work is needed</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t13-1','d',false)"><span class="opt-letter">D</span> PoS uses ASIC hardware exclusively</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t13-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t13-1-exp">
+          <div class="exam-explanation">✅ A. Instead of miners burning energy racing to solve a hash puzzle, validators are picked via a lottery weighted by how many coins they've staked — no computational race means far less energy spent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TOPIC 11: BLOCKCHAIN SCALING, CONSENSUS, ICO/DAO & APPS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="t14">
+  <div class="topic-header">
+    <span class="topic-number">14</span>
+    <span class="topic-icon">🚀</span>
+    <h2>Blockchain Scaling, Consensus Mechanisms, ICO/DAO &amp; Applications</h2>
+    <span class="topic-tag badge badge-purple">Lecture 15</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Bitcoin's base layer throughput (~3.2 TPS) is dwarfed by VISA (tens of thousands of TPS), driving scaling proposals like <strong>SegWit</strong> and off-chain <strong>Lightning Network</strong> payment channels. Beyond Bitcoin's <strong>Proof of Work</strong>, alternative <strong>consensus mechanisms</strong> (PoS, LPoS, DPoS, dBFT) trade off security, speed, and decentralization. <strong>Smart contracts</strong> automate agreement enforcement and, when linked together, form <strong>DAOs</strong> — member-governed organizations with no central management. Real-world adoption now spans government, healthcare, finance, and logistics.
+  </div>
+
+  <div class="key-facts">
+    <div class="key-fact"><div class="key-fact-value">~3.2 TPS</div><div class="key-fact-label">Bitcoin base-layer throughput</div></div>
+    <div class="key-fact"><div class="key-fact-value">24k–56k TPS</div><div class="key-fact-label">VISA throughput, for comparison</div></div>
+    <div class="key-fact"><div class="key-fact-value">2.6×</div><div class="key-fact-label">SegWit speed gain</div></div>
+    <div class="key-fact"><div class="key-fact-value">~2,016</div><div class="key-fact-label">Blocks per difficulty adjustment</div></div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">BTC Scaling Solutions</div>
+    <table class="def-table">
+      <thead><tr><th>Solution</th><th>Speed Gain</th><th>Est. TPS</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Doubling block size ("2×")</td><td>2×</td><td>~6.4</td><td>Blockchain grows exponentially — unsustainable</td></tr>
+        <tr><td>SegWit</td><td>2.6×</td><td>~8.3</td><td>Moves signatures out of the base block, freeing +250% room</td></tr>
+        <tr><td>Schnorr signatures</td><td>5.2× combined w/ SegWit</td><td>—</td><td>Aggregates multiple input signatures into one</td></tr>
+        <tr><td>SegWit2x</td><td>5.2×</td><td>~16.6</td><td>Hybrid: bigger blocks + SegWit; same growth problem</td></tr>
+        <tr><td>Lightning Network</td><td>Millions–billions (theoretical)</td><td>—</td><td>Off-chain payment channels; settles on-chain only at the end</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — Lightning Network Off-Chain Channel</div>
+    <svg viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="55" width="120" height="40" rx="6" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="80" y="80" text-anchor="middle" font-size="11" fill="#4d9fff">Alice</text>
+      <rect x="580" y="55" width="120" height="40" rx="6" fill="#181b24" stroke="#4d9fff" stroke-width="1.5"/>
+      <text x="640" y="80" text-anchor="middle" font-size="11" fill="#4d9fff">Bob</text>
+      <rect x="220" y="20" width="280" height="110" rx="8" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="360" y="40" text-anchor="middle" font-size="10" font-weight="700" fill="#2dd4bf">Off-chain Payment Channel</text>
+      <text x="360" y="65" text-anchor="middle" font-size="9" fill="#9aa0b8">Many instant micro-payments</text>
+      <text x="360" y="82" text-anchor="middle" font-size="9" fill="#9aa0b8">exchanged directly, P2P</text>
+      <text x="360" y="105" text-anchor="middle" font-size="9" fill="#9aa0b8">(channel stays open until closed)</text>
+      <line x1="140" y1="75" x2="220" y2="75" stroke="#5c6380" stroke-width="1.5"/>
+      <line x1="500" y1="75" x2="580" y2="75" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="360" y="145" text-anchor="middle" font-size="9" fill="#5c6380">Only the channel open/close transactions hit the Bitcoin blockchain (on-chain)</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Hard Fork</div>
+      <ul>
+        <li>Not backward compatible</li>
+        <li>Old nodes reject new blocks</li>
+        <li>Requires everyone to upgrade</li>
+        <li>Example: Bitcoin Cash (Aug 2017), block size → 8MB</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--red);">Replay / Double-Spending Attack</div>
+      <ul>
+        <li>Occurs when forked chains both accept the same transaction as valid</li>
+        <li>Same digital token spent more than once</li>
+        <li>Exploits the fact that digital tokens can be duplicated/falsified across chains</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="sep"/>
+
+  <h3 style="font-family: var(--sans); font-size: 16px; margin-bottom: 14px; color: var(--text);">Consensus Mechanisms</h3>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Comparison of Consensus Mechanisms</div>
+    <table class="def-table">
+      <thead><tr><th>#</th><th>Mechanism</th><th>Principle</th><th>Example Chains</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Proof of Work (PoW)</td><td>Expensive to add a block (mining)</td><td>Bitcoin, Litecoin, Ethereum (pre-Casper)</td></tr>
+        <tr><td>2</td><td>Proof of Stake (PoS)</td><td>Lottery; stake coins as deposit</td><td>Ethereum (Casper), Peercoin, NxtCoin, BlackCoin</td></tr>
+        <tr><td>3</td><td>Leased PoS (LPoS)</td><td>Small holders lease coins to staking nodes</td><td>Waves</td></tr>
+        <tr><td>4</td><td>Delegated PoS (DPoS)</td><td>Holders vote to elect nodes; equal-chance lottery among them</td><td>BitShares</td></tr>
+        <tr><td>5</td><td>Delegated Byzantine Fault Tolerance (dBFT)</td><td>Byzantine Fault Tolerance — election, then validation</td><td>NEO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Proof of Work — Detail</div>
+      <p>Mining: collect → validate → bundle into blocks → compute SHA-256 hash → submit → earn reward.</p>
+      <p style="margin-top:8px;"><code>sha256(sha256(data+nonce))=difficulty</code></p>
+      <p style="margin-top:8px;">Finding node broadcasts the block; others verify by reproducing the same hash; &gt;50% acceptance = consensus.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green);">Proof of Stake — Detail</div>
+      <p>All coins exist from genesis — no mining. A randomly picked node (lottery) adds the next block.</p>
+      <p style="margin-top:8px;">More staked coins → higher win chance. Winner collects transaction fees. Very energy efficient.</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">LPoS &amp; DPoS — Detail</div>
+      <p><strong>LPoS:</strong> small holders lease balance to a staking node (funds stay in their control); fees split proportionally.</p>
+      <p style="margin-top:8px;"><strong>DPoS:</strong> balance-weighted votes elect nodes; elected nodes then share equal lottery odds; holders can also vote on network parameters.</p>
+    </div>
+  </div>
+
+  <hr class="sep"/>
+
+  <h3 style="font-family: var(--sans); font-size: 16px; margin-bottom: 14px; color: var(--text);">ICO and DAO</h3>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">IPO vs. ICO</div>
+    <table class="def-table">
+      <thead><tr><th>Dimension</th><th>IPO</th><th>ICO</th></tr></thead>
+      <tbody>
+        <tr><td>What</td><td>Company shares sold to investors</td><td>New cryptocurrency/idea sold as tokens</td></tr>
+        <tr><td>Regulation</td><td>Regulated</td><td>Mostly not regulated</td></tr>
+        <tr><td>Trust</td><td>Proven and trusted</td><td>Risk of scams</td></tr>
+        <tr><td>Stage</td><td>Later-stage companies</td><td>Early-stage startups</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-title" style="color: var(--amber);">ICO Due Diligence Checklist</div>
+    <ul>
+      <li>Read the white paper — does the concept make sense?</li>
+      <li>What problem does it actually solve?</li>
+      <li>Study the team behind the project</li>
+      <li>Check crypto forums for sentiment/red flags</li>
+      <li>Check independent rating companies</li>
+    </ul>
+  </div>
+
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram — How a DAO Works</div>
+    <svg viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="40" width="120" height="50" rx="6" fill="#2d1f5e" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="70" y="62" text-anchor="middle" font-size="9" fill="#a78bfa">Smart Contract</text>
+      <text x="70" y="78" text-anchor="middle" font-size="9" fill="#a78bfa">deployed</text>
+      <rect x="160" y="40" width="120" height="50" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="220" y="62" text-anchor="middle" font-size="9" fill="#9aa0b8">Tokens issued</text>
+      <text x="220" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">(voting power)</text>
+      <rect x="310" y="40" width="120" height="50" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="370" y="62" text-anchor="middle" font-size="9" fill="#9aa0b8">Member submits</text>
+      <text x="370" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">proposal</text>
+      <rect x="460" y="40" width="120" height="50" rx="6" fill="#181b24" stroke="#5c6380" stroke-width="1.5"/>
+      <text x="520" y="62" text-anchor="middle" font-size="9" fill="#9aa0b8">Token holders</text>
+      <text x="520" y="78" text-anchor="middle" font-size="9" fill="#9aa0b8">vote</text>
+      <rect x="610" y="40" width="100" height="50" rx="6" fill="#0f3d38" stroke="#2dd4bf" stroke-width="1.5"/>
+      <text x="660" y="62" text-anchor="middle" font-size="9" font-weight="700" fill="#2dd4bf">Auto-executes</text>
+      <text x="660" y="78" text-anchor="middle" font-size="9" fill="#2dd4bf">if threshold met</text>
+      <path d="M130 65 L160 65" stroke="#5c6380" marker-end="url(#a14)"/>
+      <path d="M280 65 L310 65" stroke="#5c6380" marker-end="url(#a14)"/>
+      <path d="M430 65 L460 65" stroke="#5c6380" marker-end="url(#a14)"/>
+      <path d="M580 65 L610 65" stroke="#5c6380" marker-end="url(#a14)"/>
+      <defs><marker id="a14" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 2L8 5L2 8Z" fill="#5c6380"/></marker></defs>
+      <text x="360" y="115" text-anchor="middle" font-size="9" fill="#5c6380">Actions carried out automatically — no human intervention needed</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">DAO — Key Features</div>
+      <ul>
+        <li><strong>Decentralization:</strong> no central authority; power spread among token holders</li>
+        <li><strong>Autonomy:</strong> smart contracts automate rules &amp; transactions</li>
+        <li><strong>Transparency:</strong> all actions on-chain, publicly auditable</li>
+        <li><strong>Token-based governance:</strong> more tokens = more voting power</li>
+        <li><strong>Open participation:</strong> anyone can join by acquiring tokens</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--amber);">DAO — Pros &amp; Cons</div>
+      <ul>
+        <li>✅ Increased transparency / trust, fewer intermediaries</li>
+        <li>✅ Automated, efficient operations; open global participation</li>
+        <li>⚠ Security risk: exploitable smart-contract bugs</li>
+        <li>⚠ Legal &amp; regulatory uncertainty</li>
+        <li>⚠ Governance manipulation by large token holders</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 20px; border-left: 3px solid var(--purple);">
+    <div class="card-title" style="color: var(--purple);">Smart Contracts — Complexity Spectrum</div>
+    <p>Digital value exchange → Smart right/obligation → Basic smart contract → Multiparty smart contract → Distributed autonomous business unit → Distributed autonomous organization (DAO) → Distributed autonomous government → Distributed autonomous society.</p>
+    <p style="margin-top: 8px;">A smart contract is a computer protocol that digitally facilitates, verifies, or enforces a contract — when conditions are met, it <strong>executes automatically</strong>, with no proxies, middlemen, or lawyers. Linked smart contracts form DAOs.</p>
+  </div>
+
+  <hr class="sep"/>
+
+  <h3 style="font-family: var(--sans); font-size: 16px; margin-bottom: 14px; color: var(--text);">Blockchain Applications by Industry</h3>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Government</div>
+      <ul>
+        <li>Dubai — first blockchain-powered state, ~$1.5B/yr savings</li>
+        <li>Estonia (Ericsson) — public records on-chain</li>
+        <li>South Korea (Samsung) — public safety/transport</li>
+        <li>UK — pension payments</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">Cybersecurity &amp; Healthcare</div>
+      <ul>
+        <li>Guardtime — keyless signatures, ~1M Estonian patients</li>
+        <li>GEM (Ericsson) — disease outbreak data</li>
+        <li>Simply Vital — decentralized patient records</li>
+        <li>MedRec (MIT) — authentication &amp; data sharing</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--purple);">Financial Services</div>
+      <ul>
+        <li>Barclays — fraud tracking, 7–10d → &lt;4h verification</li>
+        <li>BitPesa (Kenya) — FX/payments for frontier markets</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--amber);">Manufacturing &amp; Industrial</div>
+      <ul>
+        <li>JIO (Reliance) — supply-chain logistics, own JIO Coin</li>
+        <li>TransActiv Grid (NY) — peer energy trading</li>
+        <li>STORJ.IO — distributed encrypted cloud storage</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--green);">Retail, Real Estate &amp; Transport</div>
+      <ul>
+        <li>OpenBazaar — decentralized marketplace, no fees</li>
+        <li>Ubitquity.io — blockchain real-estate legal tracking</li>
+        <li>Arcade City — Uber-like ride-sharing on blockchain</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="sep"/>
+
+  <h3 style="font-family: var(--sans); font-size: 16px; margin-bottom: 14px; color: var(--text);">Alternative Chains &amp; Ledger Structures</h3>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Ethereum vs. Bitcoin</div>
+    <table class="def-table">
+      <thead><tr><th>Property</th><th>Bitcoin</th><th>Ethereum</th></tr></thead>
+      <tbody>
+        <tr><td>Founder</td><td>Satoshi Nakamoto</td><td>Vitalik Buterin</td></tr>
+        <tr><td>Released</td><td>9 Jan 2008</td><td>30 Jul 2015</td></tr>
+        <tr><td>Consensus</td><td>Proof of Work</td><td>PoW (planning/moved to PoS)</td></tr>
+        <tr><td>Primary use</td><td>Digital currency</td><td>Smart contracts + currency</td></tr>
+        <tr><td>Algorithm</td><td>SHA-256</td><td>Ethash</td></tr>
+        <tr><td>Block time</td><td>10 minutes</td><td>12–14 seconds</td></tr>
+        <tr><td>Mining</td><td>ASIC miners</td><td>GPUs</td></tr>
+        <tr><td>Scalable</td><td>Not currently</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size: 13px; color: var(--text2); margin-bottom: 20px;">
+    <strong style="color: var(--text);">Ethereum Classic</strong> resulted from the 2016 DAO Hack (~$50M USD lost). The hack was undone for most users via a hard fork; members opposed to reversing the chain retained the original ledger as "Ethereum Classic."
+  </p>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color: var(--blue);">Ripple (XRP)</div>
+      <p>Not a blockchain — a <strong>payment settlement system</strong> for the financial industry. 100B tokens pre-mined; no mining. Used by banks (Santander, Bank of America) for global transfers.</p>
+      <p style="margin-top: 8px;">⚡ 4–5s settlement, ~0.00001 XRP fees. ⚠ Somewhat centralized; SEC lawsuit filed Dec 2020 (alleging unregistered security).</p>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color: var(--teal);">LiteCoin (LTC)</div>
+      <p>Based on BTC Core; uses Lightning Network / SegWit; <strong>4× faster</strong> transaction processing than BTC.</p>
+      <p style="margin-top: 8px;">⚠ Uses memory-hard "scrypt" in PoW — makes FPGA/ASIC mining hardware more complex and expensive to build.</p>
+    </div>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Blockchain vs. Tangle vs. Hashgraph</div>
+    <table class="def-table">
+      <thead><tr><th>Property</th><th>Blockchain</th><th>Tangle</th><th>Hashgraph</th></tr></thead>
+      <tbody>
+        <tr><td>Technology</td><td>Block chain</td><td>Directed acyclic graph</td><td>Directed acyclic graph</td></tr>
+        <tr><td>Copyright</td><td>Open source</td><td>Open source</td><td>Patented</td></tr>
+        <tr><td>Consensus</td><td>PoW (SHA-256)</td><td>PoW — check of Tangle tip</td><td>Virtual voting</td></tr>
+        <tr><td>Openness</td><td>Public ledger</td><td>Public ledger</td><td>Private ledger</td></tr>
+        <tr><td>Application</td><td>Bitcoin</td><td>IOTA</td><td>Swirlds</td></tr>
+        <tr><td>Efficiency (TPS)</td><td>3–4</td><td>500–800</td><td>&gt;250,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Key Definitions — Topic 11</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Lightning Network</td><td>Off-chain payment-channel layer that lets parties exchange many instant transactions, settling on the base blockchain only when the channel closes.</td></tr>
+        <tr><td>Hard Fork</td><td>A backward-incompatible protocol change that splits the network into two chains if not universally adopted.</td></tr>
+        <tr><td>Smart Contract</td><td>Self-executing code that automatically enforces an agreement once its conditions are met, with no intermediary.</td></tr>
+        <tr><td>DAO</td><td>Decentralized Autonomous Organization — a member-governed entity run by smart contracts instead of management hierarchy.</td></tr>
+        <tr><td>ICO</td><td>Initial Coin Offering — sale of new project tokens to early backers, largely unregulated compared to an IPO.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header"><span>📝</span><span class="exam-header-text">Self-Check — Test Yourself</span></div>
+    <div class="exam-body">
+      <div class="exam-q" id="q-t14-1">
+        <div class="exam-q-text">What problem does the Lightning Network primarily solve?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t14-1','a',true)"><span class="opt-letter">A</span> Bitcoin's low on-chain transaction throughput</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t14-1','b',false)"><span class="opt-letter">B</span> The lack of a Merkle tree in Bitcoin blocks</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t14-1','c',false)"><span class="opt-letter">C</span> The 21 million coin supply cap</div>
+          <div class="exam-opt" onclick="toggleOpt(this,'q-t14-1','d',false)"><span class="opt-letter">D</span> The need for a digital signature on every transaction</div>
+        </div>
+        <button class="show-btn" onclick="revealAll('q-t14-1')">Show Answers</button>
+        <div class="exam-reveal" id="q-t14-1-exp">
+          <div class="exam-explanation">✅ A. Bitcoin's base layer only manages ~3.2 TPS. The Lightning Network moves most transactions off-chain into payment channels, settling on-chain only occasionally, enabling far higher effective throughput.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- GLOSSARY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="topic" id="glossary">
+  <div class="topic-header">
+    <span class="topic-number">15</span>
+    <span class="topic-icon">📖</span>
+    <h2>Glossary — Cross-Course Quick Reference</h2>
+    <span class="topic-tag badge badge-blue">All Topics</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">How to Use This Glossary</div>
+    A consolidated A–Z reference of the course's core acronyms and terms, pulled from every topic above. Use it for quick lookups while reviewing — each term links conceptually back to its home topic.
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Architecture &amp; Web (Topics 1–3)</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>SOA</td><td>Service-Oriented Architecture — business functionality as reusable, contract-based services.</td></tr>
+        <tr><td>CORBA</td><td>Common Object Request Broker Architecture — heterogeneous, language-independent distributed objects via ORB/IDL/IIOP.</td></tr>
+        <tr><td>REST</td><td>Representational State Transfer — architectural style using HTTP verbs over named resources.</td></tr>
+        <tr><td>GraphQL</td><td>Query language letting clients request exactly the data fields they need, reducing over/under-fetching.</td></tr>
+        <tr><td>AMQP</td><td>Advanced Message Queuing Protocol — binary message-broker protocol (e.g., RabbitMQ).</td></tr>
+        <tr><td>gRPC</td><td>High-performance RPC framework over HTTP/2 using Protocol Buffers as IDL.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Cloud &amp; Containers (Topics 4–6)</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Hypervisor</td><td>Software (VMM) that creates and manages virtual machines on physical hardware.</td></tr>
+        <tr><td>IaaS / PaaS / SaaS</td><td>Cloud service models providing infrastructure, a dev platform, or a full application, respectively.</td></tr>
+        <tr><td>Namespace / cgroup</td><td>Linux kernel features providing process isolation and resource limiting — the building blocks of containers.</td></tr>
+        <tr><td>Dockerfile</td><td>Declarative recipe for building a reproducible container image.</td></tr>
+        <tr><td>Pod</td><td>Smallest deployable unit in Kubernetes — one or more containers sharing network/storage.</td></tr>
+        <tr><td>HPA / VPA</td><td>Horizontal/Vertical Pod Autoscaler — scale pod count or pod resources in response to load.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Security &amp; Service Management (Topics 7–8)</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>MAC / HMAC</td><td>Message Authentication Code — symmetric-key integrity check on transmitted data.</td></tr>
+        <tr><td>Digital Signature</td><td>Public-key based authentication + integrity + non-repudiation of a document.</td></tr>
+        <tr><td>SLA / OLA / UC</td><td>Service Level Agreement (customer-facing) / Operational Level Agreement (internal) / Underpinning Contract (external supplier).</td></tr>
+        <tr><td>RTO / RPO</td><td>Recovery Time Objective / Recovery Point Objective — maximum tolerable downtime / data loss window.</td></tr>
+        <tr><td>"Nines"</td><td>Shorthand for availability percentage (e.g., "five nines" = 99.999%).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Blockchain &amp; Cryptocurrency (Topics 9–11)</div>
+    <table class="def-table">
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Merkle Tree</td><td>Pairwise hash tree summarizing all transactions in a block into one root hash.</td></tr>
+        <tr><td>Nonce</td><td>Value miners vary to find a block hash meeting the network's difficulty target.</td></tr>
+        <tr><td>PoW / PoS</td><td>Proof of Work (mining-based) / Proof of Stake (stake-weighted lottery) consensus mechanisms.</td></tr>
+        <tr><td>Halving</td><td>Scheduled, automatic reduction of BTC mining rewards by half.</td></tr>
+        <tr><td>Hot / Cold Wallet</td><td>Online, convenient but less secure / offline, less convenient but more secure key storage.</td></tr>
+        <tr><td>Smart Contract</td><td>Self-executing code enforcing agreement terms once conditions are met.</td></tr>
+        <tr><td>DAO</td><td>Decentralized Autonomous Organization governed by token-weighted votes and smart contracts.</td></tr>
+        <tr><td>ICO</td><td>Initial Coin Offering — largely unregulated token sale, contrasted with a regulated IPO.</td></tr>
+        <tr><td>Hard Fork</td><td>Backward-incompatible protocol upgrade that can split a chain in two.</td></tr>
+        <tr><td>Lightning Network</td><td>Off-chain payment-channel scaling layer for Bitcoin.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--teal);">
+    <div class="card-title" style="color: var(--teal);">💡 Study Tip</div>
+    <p>Work topic-by-topic through the Self-Check sections first — they're the fastest way to surface gaps. Then use this glossary as a final pre-exam sweep to make sure every acronym is automatic.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggleOpt(el, qId, letter, isCorrect) {
+  const container = document.getElementById(qId);
+  if (!container) return;
+  const opts = container.querySelectorAll('.exam-opt');
+  opts.forEach(o => { o.classList.remove('correct', 'wrong'); });
+  if (isCorrect) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    opts.forEach(o => {
+      if (o.getAttribute('onclick') && o.getAttribute('onclick').includes(",true)")) {
+        o.classList.add('correct');
+      }
+    });
+  }
+  const reveal = document.getElementById(qId + '-exp');
+  if (reveal) reveal.classList.add('show');
+}
+
+function revealAll(qId) {
+  const container = document.getElementById(qId);
+  if (!container) return;
+  const opts = container.querySelectorAll('.exam-opt');
+  opts.forEach(o => {
+    if (o.getAttribute('onclick') && o.getAttribute('onclick').includes(",true)")) {
+      o.classList.add('revealed-correct');
+    }
+  });
+  const reveal = document.getElementById(qId + '-exp');
+  if (reveal) reveal.classList.add('show');
+}
+</script>
+
+</body>
+</html>

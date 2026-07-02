@@ -1,0 +1,38 @@
+Objective
+This assignment evaluates your ability to manage enterprise software deployment, automate user environments via scripting, implement Fine-Grained Password Policies, and use administrative tools to diagnose and simulate Group Policy application in an Active Directory Domain Services environment.
+
+Task 1: Automated Software Deployment and Configuration
+MSI Deployment: Configure the Zoom desktop conferencing application to install automatically on all domain-joined computers.
+
+Policy Configuration: Utilize the official Zoom Group Policy Administrative Templates (.admx/.adml) to enforce the following configurations:
+
+Enable Single Sign-On (SSO) as the primary login method.
+
+Restrict the SSO login domain specifically to pwr-edu for all users residing in the Sweden Organizational Unit (OU).
+
+Task 2: User Environment Automation (Logon Scripting)
+Target the Sweden/Sales OU and implement a user logon script (PowerShell or VBScript) that executes automatically when a user logs in. The script must meet the following requirements:
+
+Create a runtime-specific directory within the user's profile.
+
+Naming Convention: The folder must be named using the exact hour and minute of execution.
+
+Example: %USERPROFILE%\reports\10-52 (assuming the user authenticates at 10:52).
+
+Task 3: Password Policy Segmentation
+Configure a password policy specifically for users in the Sweden Marketing. This policy must bypass the default domain password complexity requirements, enforcing a simplified structure:
+
+Minimum Password Length: 6 characters.
+
+Complexity: Disabled (non-complex alphanumeric or alphabetic strings permitted).
+
+Note: Ensure you use the appropriate Active Directory mechanism to apply this to the specific OU/group without altering the global Domain Password Policy.
+
+Task 4: Policy Diagnostics, Simulation, and Verification
+Evaluate and validate your GPO implementation by selecting a test user and a test computer account from the targeted OUs. Complete the following comparison:
+
+Group Policy Results: Run a Group Policy Results report (via the GPMC) on the DC1 machine to verify that all configurations from Tasks 1–3 were successfully applied to the live environment.
+
+Group Policy Modeling: Run a Group Policy Modeling wizard for the exact same user and computer context to simulate the Expected Resultant Set of Policy (RSoP).
+
+Compare: Analyze and compare the output of the Modeling report against the actual Results report. Document any discrepancies between the simulated policy inheritance and the actual applied state.
