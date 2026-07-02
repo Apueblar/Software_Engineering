@@ -1,0 +1,368 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="76cd725b-9d60-4b73-8198-3798a59605f7" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DIM_TX_TYPE</ID>
+  <Name>DIM_TX_TYPE</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-393" scrolltop="-3418" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6752" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_TX_TYPE" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000a30e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_TX_TYPE" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-393</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-3418</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="146">
+            <Shape Id="Tx Type Key" Expanded="false">
+              <Attributes>
+                <Attribute Id="Tx Type Key" />
+                <Attribute Id="Locktime Flag" />
+                <Attribute Id="Locktime Marked" />
+                <Attribute Id="Rbf Flag" />
+                <Attribute Id="Rbf Marked" />
+                <Attribute Id="Segwit Marked" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Script Type Desc" Expanded="false">
+              <Attributes>
+                <Attribute Id="Script Type Desc" />
+              </Attributes>
+              <Position x="207" y="20" />
+            </Shape>
+            <Shape Id="Coinbase Flag" Expanded="false">
+              <Attributes>
+                <Attribute Id="Coinbase Flag" />
+              </Attributes>
+              <Position x="207" y="69" />
+            </Shape>
+            <Shape Id="Coinbase Marked" Expanded="false">
+              <Attributes>
+                <Attribute Id="Coinbase Marked" />
+              </Attributes>
+              <Position x="395" y="69" />
+            </Shape>
+            <Shape Id="Segwit Flag" Expanded="false">
+              <Attributes>
+                <Attribute Id="Segwit Flag" />
+              </Attributes>
+              <Position x="207" y="118" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="f45ccac1-d52e-41bf-96ee-181846b28509">
+    <DataSourceViewID>BTC_DSV</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="6bf11952-9c10-4767-97f3-47b52d3f8d21">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="24b47f72-f381-436b-aeb4-98523104ad3b">
+      <ID>Tx Type Key</ID>
+      <Name>Tx Type Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="408ba19b-da44-4182-9791-32bb3d71e681">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ebee0534-9d40-4ac0-a658-df176387a069">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>tx_type_key</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="a4b9fb13-2fef-40bb-ae3d-a797aaf0fff3">
+          <AttributeID>Segwit Flag</AttributeID>
+          <Name>Segwit Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7cdf6233-eb25-44e0-ad0d-c97cd18da56d">
+          <AttributeID>Coinbase Flag</AttributeID>
+          <Name>Coinbase Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6c253f30-a538-4ba5-92fb-2add1c20d422">
+          <AttributeID>Rbf Flag</AttributeID>
+          <Name>Rbf Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="87ceb257-7cca-4ac1-889a-643ca0714d76">
+          <AttributeID>Locktime Flag</AttributeID>
+          <Name>Locktime Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b6775cd0-0df1-453b-bdec-69193bebd25a">
+          <AttributeID>Script Type Desc</AttributeID>
+          <Name>Script Type Desc</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d3909042-3dbc-448b-a9eb-7b8df644c0eb">
+          <AttributeID>Segwit Marked</AttributeID>
+          <Name>Segwit Marked</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="599545e1-b78f-4796-906b-1433991e02ab">
+          <AttributeID>Rbf Marked</AttributeID>
+          <Name>Rbf Marked</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8c708dcb-b4a3-4734-8fde-5477dc769079">
+          <AttributeID>Locktime Marked</AttributeID>
+          <Name>Locktime Marked</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3b39f34f-893b-432e-96f4-9b3c08a87494">
+      <ID>Script Type Desc</ID>
+      <Name>Script Type Desc</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="247e593f-ba82-4e25-bbfc-2a89437308d6">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="82a8469a-997b-4917-b3fd-f741c2a140be">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>script_type_desc</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="00dcd4c5-e9c1-452f-8e9e-d854784a50eb">
+      <ID>Segwit Flag</ID>
+      <Name>Segwit Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="619c3643-b722-4ab8-8236-cec09dede64b">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="50197d8e-ebc2-4d37-a751-4c0f5bc6a392">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>segwit_flag</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="19c31d4c-9afe-496a-b9ae-f5296179cb8a">
+      <ID>Coinbase Flag</ID>
+      <Name>Coinbase Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="37a422fc-0441-4f4c-ad1d-876fb1700a7f">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2145aa58-ad4c-4972-86cb-681bb5c0db6d">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>coinbase_flag</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="342711b3-8970-4a92-9c2f-b4ff72aaef07">
+          <AttributeID>Coinbase Marked</AttributeID>
+          <Name>Coinbase Marked</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9ffcb2d4-4031-4fdf-b9d7-bb8d57b8c95c">
+      <ID>Rbf Flag</ID>
+      <Name>Rbf Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bf7ad2e3-bb51-4ad4-a12c-830e1a873b47">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9f9551ac-fe49-4057-a240-fd152fc7e6e6">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>rbf_flag</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="84696e18-64b1-4c33-8c00-57b8c078be0c">
+      <ID>Locktime Flag</ID>
+      <Name>Locktime Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="83ad9170-61a0-4ddf-a5ea-1f45e2333608">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6e0c6b22-b3b3-4d44-a86b-bd5d4adc44fe">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>locktime_flag</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1bec9c2b-5b92-4352-9b6a-78a52f277388">
+      <ID>Coinbase Marked</ID>
+      <Name>Coinbase Marked</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a45c44e0-8afe-412f-98cc-726db1a0877c">
+          <DataType>WChar</DataType>
+          <DataSize>3</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fa1b41d8-eb36-403a-ab1a-339a237f21b3">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>coinbase_marked</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bc3bd2a5-57a8-4b71-b0bd-0183d944d3da">
+      <ID>Segwit Marked</ID>
+      <Name>Segwit Marked</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="76cbd9f2-0683-49fb-a420-2763a98c6b57">
+          <DataType>WChar</DataType>
+          <DataSize>3</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6104ba33-8fa7-44ec-8205-32c33619aae0">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>segwit_marked</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="776aaffb-f827-4ce9-9f1a-f27eb5a5082f">
+      <ID>Rbf Marked</ID>
+      <Name>Rbf Marked</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ecdbcac7-fd06-4886-8f4c-c2f35e2604a9">
+          <DataType>WChar</DataType>
+          <DataSize>3</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="16e269db-c30c-4f6a-8f2c-332152feacac">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>rbf_marked</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="47db296d-9f77-45f9-97e2-a0c4e4d4741f">
+      <ID>Locktime Marked</ID>
+      <Name>Locktime Marked</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9b489ee4-9c4f-46a9-8202-1484497acac6">
+          <DataType>WChar</DataType>
+          <DataSize>3</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="72ffffa2-6191-465b-bfc4-724d14e59957">
+            <TableID>dbo_DIM_TX_TYPE</TableID>
+            <ColumnID>locktime_marked</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="1b1e5ad0-0e2a-42db-b72d-3b04f4ddd634">
+      <ID>Hierarchy</ID>
+      <Name>Script Evolution</Name>
+      <Levels>
+        <Level dwd:design-time-name="368e2ee3-6c91-49bf-af92-4ac0ddab22a3">
+          <ID>Script Type Desc</ID>
+          <Name>Script Type Desc</Name>
+          <SourceAttributeID>Script Type Desc</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="d2339b62-454f-4a80-b206-a0aa172f6b71">
+          <ID>Segwit Flag</ID>
+          <Name>Segwit Flag</Name>
+          <SourceAttributeID>Segwit Flag</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="ec2e266f-0e67-44e6-a69b-66b589afa9aa">
+      <ID>Hierarchy 1</ID>
+      <Name>Transaction Class</Name>
+      <Levels>
+        <Level dwd:design-time-name="c2ff6b09-4bbf-482e-bdc5-00a2de321f67">
+          <ID>Script Type Desc</ID>
+          <Name>Script Type Desc</Name>
+          <SourceAttributeID>Script Type Desc</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="4e189245-4f3c-479d-9d5b-cfffdd42d69f">
+          <ID>Coinbase Flag</ID>
+          <Name>Coinbase Flag</Name>
+          <SourceAttributeID>Coinbase Flag</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="bb2a7f37-32c0-4c5b-aac3-3ad8bced0f20">
+          <ID>Coinbase Marked</ID>
+          <Name>Coinbase Marked</Name>
+          <SourceAttributeID>Coinbase Marked</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

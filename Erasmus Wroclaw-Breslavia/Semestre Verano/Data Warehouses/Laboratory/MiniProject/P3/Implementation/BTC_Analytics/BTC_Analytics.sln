@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "BTC_Analytics", "BTC_Analytics.dwproj", "{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}.Development|Default.ActiveCfg = Development
+		{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}.Development|Default.Build.0 = Development
+		{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB7354A2-03F4-4852-821C-B31F4CBA2DF7}
+	EndGlobalSection
+EndGlobal

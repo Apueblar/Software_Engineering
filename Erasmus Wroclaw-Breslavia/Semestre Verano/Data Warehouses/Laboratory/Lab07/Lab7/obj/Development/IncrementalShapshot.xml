@@ -1,0 +1,82 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>Lab7</Database>
+    <Server>LAPTOP-MKLCFCJJ</Server>
+    <ConnectionString>Data Source=LAPTOP-MKLCFCJJ;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>33RGpR0lz23CYSTAuQqIRMUSedU=25/05/2026 22:04:0625/05/2026 21:37:52</TimeStamp>
+        <ID>
+          <String>DWH DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>hm/6P0MK1Staa4tyIoYxN3u/XCc=25/05/2026 21:40:2925/05/2026 21:39:18</TimeStamp>
+        <ID>
+          <String>DWH DB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>q6zbYVuUusWqELequDBL2vIFW60=25/05/2026 21:45:4225/05/2026 21:43:56</TimeStamp>
+        <ID>
+          <String>Dim Time</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>dsXdtBxDC+MuLyhYRnX9BgGxx/Y=25/05/2026 22:41:0225/05/2026 21:47:47</TimeStamp>
+        <ID>
+          <String>Product DIM</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>8OhmuN1p22PLy5F0yjx8wPrGFBE=25/05/2026 22:16:3225/05/2026 21:47:47</TimeStamp>
+        <ID>
+          <String>Sales Person DIM</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>r1EIDtJsdpFp5dbCJRSoBkWKJA8=25/05/2026 21:52:3625/05/2026 21:47:47</TimeStamp>
+        <ID>
+          <String>Sales Territory DIM</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>VKu5byU9WkPTFntDXD+Q1h/AVDU=25/05/2026 22:38:4525/05/2026 21:47:47NsHqSzg2/AgWK41rh8qE/qCY1p8=25/05/2026 21:47:4725/05/2026 21:47:47</TimeStamp>
+        <ID>
+          <String>DWH DB</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>hUA3n1Nr1Bl9E9Fbc4dxntdlpH8=25/05/2026 20:12:5625/05/2026 20:12:55</TimeStamp>
+      <ID>
+        <String>Lab7</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-05-26T09:50:47.156667Z</LastDeployed>
+</DeploymentSnapshot>

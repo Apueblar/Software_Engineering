@@ -1,0 +1,359 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="dc142965-ff1e-4195-9215-6126086bb47f" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DIM BLOCK</ID>
+  <Name>DIM_BLOCK</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-393" scrolltop="-2791" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6414" y="10583" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_BLOCK" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_BLOCK" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-393</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-2791</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="170">
+            <Shape Id="Block Key" Expanded="true">
+              <Attributes>
+                <Attribute Id="Block Key" />
+                <Attribute Id="Block Hash" />
+                <Attribute Id="Block Size Bytes" />
+                <Attribute Id="Block Timestamp" />
+                <Attribute Id="Block Weight Units" />
+                <Attribute Id="Pool Name" />
+                <Attribute Id="Pool Slug" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Block Height" Expanded="false">
+              <Attributes>
+                <Attribute Id="Block Height" />
+              </Attributes>
+              <Position x="237" y="20" />
+            </Shape>
+            <Shape Id="Block Difficulty" Expanded="false">
+              <Attributes>
+                <Attribute Id="Block Difficulty" />
+              </Attributes>
+              <Position x="455" y="20" />
+            </Shape>
+            <Shape Id="Difficulty Tier" Expanded="false">
+              <Attributes>
+                <Attribute Id="Difficulty Tier" />
+              </Attributes>
+              <Position x="672" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d9fd6a37-254c-4a9c-83aa-71a1dc63e01b">
+    <DataSourceViewID>BTC_DSV</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="6bb4bbf1-8f3e-4c05-a98e-37aefeb62a3b">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="70a6e606-7c27-4fac-8c3b-b94c55b1e67b">
+      <ID>Block Key</ID>
+      <Name>Block Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c6a18755-19b9-474b-b268-0cb167da6e1a">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d3dd9559-7973-4fdd-94df-2c30a5b10301">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_key</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="2bfddb47-ed20-42b7-b993-7bc5275c6acd">
+          <AttributeID>Block Height</AttributeID>
+          <Name>Block Height</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="db661cb7-aaf6-443d-a9f9-6a410e7b2bc3">
+          <AttributeID>Block Hash</AttributeID>
+          <Name>Block Hash</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ac2aa0dc-09ba-4a82-bef6-9120b609b561">
+          <AttributeID>Block Timestamp</AttributeID>
+          <Name>Block Timestamp</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0abe98ae-27c4-42c7-9857-32be754272b8">
+          <AttributeID>Block Size Bytes</AttributeID>
+          <Name>Block Size Bytes</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f3321c2b-1eb4-4726-8273-cb0113379053">
+          <AttributeID>Block Weight Units</AttributeID>
+          <Name>Block Weight Units</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="383f02b0-0b3d-48df-bb2e-afd540a5c2f4">
+          <AttributeID>Pool Name</AttributeID>
+          <Name>Pool Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="397fa896-46fc-4bec-b919-73b2bd92aa57">
+          <AttributeID>Pool Slug</AttributeID>
+          <Name>Pool Slug</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8dd032bc-d75e-4a30-b7a6-69d03b4437f3">
+      <ID>Block Height</ID>
+      <Name>Block Height</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="29a7241a-0701-4e94-99ad-c4c24cb224a9">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="262997e7-816e-4a97-9884-293f7b446435">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_height</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="4b7f1333-c8af-46ec-a368-0803abadf417">
+          <AttributeID>Block Difficulty</AttributeID>
+          <Name>Block Difficulty</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fa81753d-e209-4b5f-947e-9f9df02d9194">
+      <ID>Block Hash</ID>
+      <Name>Block Hash</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a99b2a8d-80a1-49cd-964e-126df7715bc5">
+          <DataType>WChar</DataType>
+          <DataSize>64</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a7589941-dab5-46af-9eda-d8df021572a0">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_hash</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6310244c-b745-4193-bd27-73f92fe38bd0">
+      <ID>Block Timestamp</ID>
+      <Name>Block Timestamp</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a1560989-ccfd-4e3d-8103-fe08257188ed">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2849a594-ec7d-44b9-8059-a297653a946c">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_timestamp</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0b862865-88f1-4f1b-b95c-6e34ad8dd0ab">
+      <ID>Block Size Bytes</ID>
+      <Name>Block Size Bytes</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f2a45223-3030-4e8e-a3ff-eb824e9064f7">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="51905dcb-40eb-47ac-8095-d57e4976e5f0">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_size_bytes</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f0014661-74be-4b2c-9a1d-581f9556c818">
+      <ID>Block Weight Units</ID>
+      <Name>Block Weight Units</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ab51cd82-583a-423e-8acb-3d3f36501126">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="94c6cc97-2d55-415d-b7e7-3eb7a18a40dc">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_weight_units</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="636169cb-8881-4641-99dc-991702ff4edd">
+      <ID>Block Difficulty</ID>
+      <Name>Block Difficulty</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dc8208c7-3459-4892-abde-fe58420fa3e9">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="59a6196a-954f-4b0f-a1be-871e1c7edcdc">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>block_difficulty</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="de63ac8c-631c-48a8-9931-35de1fc7fb68">
+          <AttributeID>Difficulty Tier</AttributeID>
+          <Name>Difficulty Tier</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6f41fe18-6301-476d-8e7a-d63993346687">
+      <ID>Difficulty Tier</ID>
+      <Name>Difficulty Tier</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d4929b20-318c-4b13-8ac0-7519d32e97d4">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="27526b82-c394-4c04-9390-b8a8c962584a">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>DifficultyTierSort</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="077b5e15-e148-4098-8b6f-85600431c2e4">
+        <DataType>WChar</DataType>
+        <DataSize>20</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="eb15d402-4cef-4770-b564-7c19a4899d82">
+          <TableID>dbo_DIM_BLOCK</TableID>
+          <ColumnID>difficulty_tier</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="00c30648-ebe1-4318-9bfe-baf344fe167a">
+      <ID>Pool Name</ID>
+      <Name>Pool Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="71ad6c05-5b3d-4bc3-b7db-3ca730ab9574">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="05729cbb-0c40-417d-90e4-d299b3951939">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>pool_name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bde901f4-7217-4d2f-b43f-9528bd4286d0">
+      <ID>Pool Slug</ID>
+      <Name>Pool Slug</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="667a0cce-6532-409e-b534-7968ccf0e770">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f9b9d774-fdcb-428e-bada-41a60e0134a8">
+            <TableID>dbo_DIM_BLOCK</TableID>
+            <ColumnID>pool_slug</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="e617c754-992c-4744-beb1-7ab8f8534b76">
+      <ID>Hierarchy</ID>
+      <Name>Difficulty</Name>
+      <Levels>
+        <Level dwd:design-time-name="f5ca0008-ca38-4aca-a9c1-b3663530e38e">
+          <ID>Difficulty Tier</ID>
+          <Name>Difficulty Tier</Name>
+          <SourceAttributeID>Difficulty Tier</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="8552b1c3-39c5-4083-b039-d993e97ceafb">
+          <ID>Block Difficulty</ID>
+          <Name>Block Difficulty</Name>
+          <SourceAttributeID>Block Difficulty</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="262cdc85-726f-456a-98a0-9fe0283809ec">
+          <ID>Block Height</ID>
+          <Name>Block Height</Name>
+          <SourceAttributeID>Block Height</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

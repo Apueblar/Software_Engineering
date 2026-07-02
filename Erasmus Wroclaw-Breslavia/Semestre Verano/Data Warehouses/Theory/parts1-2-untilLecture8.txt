@@ -1,0 +1,916 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1. OLTP vs OLAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OLTP = day-to-day operations | OLAP = decision support / analysis
+
+Feature          | OLTP                    | OLAP
+-----------------|-------------------------|------------------------
+User             | Anyone                  | Knowledge worker
+DB design        | Application-oriented    | Subject-oriented
+Data             | Current, detailed       | Historical, summarised
+Normalisation    | Highly normalised       | Denormalised / multidim
+Access           | Read/write, many users  | Read-heavy, complex scans
+Unit of work     | Simple transaction      | Complex query
+DB size          | MB-GB                   | GB-TB-PB
+Metric           | Transaction throughput  | Query throughput / time
+Updates          | Continuous              | Sporadic, batch loads
+Data lifetime    | Short (days/months)     | Long (5-10 years)
+Retrieval        | Detail row              | Aggregation / GROUP BY
+
+⚠️  OLTP = highly normalised; OLAP = denormalised. Easy to flip.
+⚠️  DW is NOT any DB labelled "DW". Not a 3NF OLTP. Not a UNION view.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 2. DIKW HIERARCHY & BUSINESS INTELLIGENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DIKW: Data → Information → Knowledge → (Wisdom)
+  Data        = raw signals, no context; collection of unorganised facts
+  Information = data + meaning/context (ETL produces this)
+  Knowledge   = understanding patterns in information; enables action
+
+BI Definition: "The processes, technologies, and tools needed to turn
+  data into information, information into knowledge, and knowledge into
+  plans that drive profitable business action."
+
+BI (Business Intelligence) vs BA (Business Analytics) vs DS (Data Science) vs ML (Machine Learning):
+  BI  → Descriptive/Diagnostic: "What happened? Why?"
+  BA  → Predictive:             "What will happen?"
+  DS  → Complex patterns:       Hidden relationships in unstructured data
+  ML  → Prescriptive/Automate:  "What should we do?"
+
+OLAP in ML: DW provides "Golden Records" (single source of truth).
+  DS/ML uses OLAP queries to extract wide flat datasets for model input.
+
+HTAP: Hybrid Transactional/Analytical Processing — handles both OLTP
+  and OLAP simultaneously; enables real-time analytics.
+⚠️  HTAP ≠ operational reporting (different concept).
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 3. DATA WAREHOUSE — DEFINITION & 4 CHARACTERISTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Inmon (1992): "A subject-oriented, integrated, time-variant, and
+  non-volatile collection of data in support of management's
+  decision-making process."
+
+Kimball: "A copy of transaction data specifically structured for
+  query and analysis."
+
+Gartner: Storage architecture holding data from transaction systems
+  and external sources, combined in aggregated/summary form suitable
+  for enterprise-wide analysis.
+
+What a DW is NOT: a process, a tool, a 3NF OLTP DB, a UNION ALL view,
+  a dumping ground, or any DB with "DW" in the name.
+
+── 4 CHARACTERISTICS ──
+
+1. SUBJECT-ORIENTED
+   - Organised around business subjects (customers, sales, products),
+     not applications. Cuts across all apps; no single app's flavour.
+   - Focused on analysis, not day-to-day operations.
+   - Provides concise view around specific subjects.
+
+2. INTEGRATED
+   - Data from multiple heterogeneous sources (relational DBs, flat
+     files, etc.).
+   - Resolves inconsistencies: naming conventions (LastName vs
+     FamilyName), encoding (long vs string), attribute scales
+     (cm vs inch).
+   - Logical: semantic alignment, single version of truth.
+   - Physical: consistent formats, data types.
+
+3. NON-VOLATILE
+   - Physically separate store. Data loaded once; only reads occur.
+   - No transaction processing, recovery, or concurrency control needed.
+   - Data is FROZEN — once in warehouse, not updated (new data only
+     appended via incremental loads).
+   - Same query on same data → always same result.
+
+4. TIME-VARIANT
+   - Historical data (5–10 years vs days/months in OLTP).
+   - Stored as SNAPSHOTS — each represents a point/period in time.
+   - Every data element has a time element (explicit or implicit).
+   - Changes tracked and recorded, NOT overwritten.
+   - Snapshot components: Key + Unit of time + Primary data +
+     Secondary data.
+
+⚠️  Non-volatile + time-variant are NOT contradictory.
+    New snapshots ADDED (time-variant). Old snapshots NEVER changed
+    (non-volatile). These two properties coexist.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 4. DW ARCHITECTURE & COMPONENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Logical Components:
+  [Data Staging Area (ETL)]
+    → [Data Organisation Area (DW / OLAP)]
+      → [Data Access Area (Reports / BI Tools)]
+
+Data Staging Area: off-limits to business users; no query/presentation
+  services; handles extraction, cleaning, transformation, loading.
+
+Data Organisation Area: DW as business community sees it; based on
+  multidimensional data model; separate from OLTP; supports OLAP,
+  data mining, ad-hoc analysis.
+
+Data Access Area: BI tools, pivot tables, mining tools, ad-hoc queries.
+  All tools query the Organisation Area.
+
+── INTEGRATION APPROACHES ──
+
+Query-Driven (Lazy): wrappers + mediators around sources; access
+  current data; slow for frequent/aggregation queries; heavy OLTP load.
+
+Update-Driven (Proactive): data integrated from heterogeneous sources
+  IN ADVANCE and stored separately; fast; redundant.
+⚠️  DATA WAREHOUSE = Update-Driven approach.
+
+── DATA MART (DM) ──
+Simple form of DW focused on single subject/functional area (Sales,
+Finance, Marketing) or single LOB. Draws from few sources.
+⚠️  DM is a type of DW. DW = complex, general; DM = focused.
+
+── OPERATIONAL DATA STORE (ODS) ──
+Inmon & Imhoff: "Subject-oriented, integrated, VOLATILE,
+  current-valued data store containing only corporate detailed data."
+
+ODS                   | DW
+----------------------|---------------------------
+Volatile (updated)    | Non-volatile (frozen)
+Current data only     | Historical data (5-10 yrs)
+Operational reports   | Analytical/strategic reports
+Near real-time        | Periodic batch loads
+Lowest granularity    | Multiple granularity levels
+NOT for trend analysis| Optimised for trends
+
+ODS Types:
+  Type I   — daily update, operational reporting
+  Type II  — hourly update, complex information tracking
+  Type III — synchronous/near-sync, customer relation management
+
+⚠️  ODS is NOT a DW. ODS = volatile + current; DW = non-volatile + historical.
+
+── SQL SERVER BI ECOSYSTEM ──
+  SSIS  = ETL / Integration
+  SSAS  = OLAP Cubes
+  SSRS  = Reporting
+  Power BI = Dashboards / Visualisation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 5. ETL & DATA INTEGRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETL vs ELT:
+
+             | ETL                         | ELT
+-------------|-----------------------------|--------------------------
+Order        | Extract → Transform → Load  | Extract → Load → Transform
+Transform    | In staging / dedicated tool | Inside target DB
+Best for     | Traditional DW, strict QA   | Cloud/big data, powerful DB
+
+ETL Phases:
+  1. Extraction   — pull from source systems
+  2. Transformation — cleanse, harmonise, derive, aggregate
+  3. Loading      — full reload or incremental (delta)
+
+── CHANGE DATA CAPTURE (CDC) ──
+Detects row-level changes in source systems.
+Methods: timestamp columns | DB triggers | log-based (most efficient).
+
+── DATA QUALITY & PROFILING ──
+"Garbage In, Garbage Out" — quality of insights = quality of data.
+
+Kimball's 5 C's:
+  Clean       | Accuracy & Validity
+  Consistent  | No conflicting versions of truth
+  Conformed   | Shared dimensions across organisation
+  Current     | Fresh enough for the business need
+  Comprehensive | All needed data available
+
+DAMA 6 Dimensions: Completeness, Uniqueness, Validity,
+                    Timeliness, Accuracy, Consistency.
+
+Data Profiling: systematic upfront statistical analysis of source data
+  content. Kimball: mandatory after requirements gathering, before ETL.
+
+Profile Types:
+  Structure discovery   — data types, lengths, formats
+  Content discovery     — individual record errors, anomalies
+  Relationship discovery— FK/PK integrity, cross-table references
+
+Attribute Scales (NOIR):
+  Nominal   | Categories, no order (gender, eye colour)
+             | ⚠️  NEVER calculate mean/average
+  Ordinal   | Ordered categories (satisfaction levels)
+  Interval  | Equal intervals, NO true zero (°C, calendar dates)
+  Ratio     | Equal intervals, TRUE zero (weight, income)
+
+Quality Screens (diagnostic filters in ETL pipeline):
+  Column screens      → test individual columns (NULLs, ranges,
+                         valid values, distribution)
+  Structure screens   → test FK/PK integrity
+  Business rule screens → test business logic prerequisites
+
+Error Event Schema: multidimensional structure recording all ETL
+  failures for later diagnosis.
+
+── DISCOVERY-TO-ENFORCEMENT WORKFLOW ──
+  1. Profiling (Analysis)      → Data Quality Insights
+  2. Rule Definition           → DQ Requirements (with stakeholders)
+  3. Quality Screens (ETL)     → Automated pass/fail gates
+
+── DATA OBSERVABILITY ──
+  Static (Data Quality):    point-in-time, reactive (checks after load)
+  Continuous (Data Obs.):   proactive, ML-based anomaly detection,
+                             lineage-aware
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 6. MULTIDIMENSIONAL MODEL — FACTS, DIMENSIONS, GRAIN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Every DW solution describes a business process + what is measured
+(facts) + context of measurement (dimensions).
+Design is PROCESS-CENTRIC, not report-centric.
+
+FACT: a business process event/measurement. Corresponds to a
+  physical, observable event.
+  - Almost always numeric.
+  - Defined at a certain grain.
+  - Rule: if an attribute is commonly aggregated → it's a fact.
+
+MEASURE: quantitative values describing a fact (sales amt, qty, tax).
+  Aggregated by the BI system.
+
+DIMENSION: context surrounding a fact — "who/what/where/when/why/how".
+  - Used for filtering, ordering, grouping.
+  - Called "soul of the DW" — provides entry points for analysis.
+  - Rule: if attribute drives filtering/grouping/ordering → dimension.
+
+GRAIN: level of detail at which facts are recorded.
+  E.g., "one product sold in one transaction" vs "daily product sales."
+  Declared BEFORE schema design. Everything must conform to grain.
+
+⚠️  Numeric attribute ≠ automatically a fact.
+    Test: aggregated? → fact. Filter/group/order? → dimension.
+    E.g., unit price of $10: summing unit prices is meaningless;
+    grouping orders by price ("how many sold at $10?") is useful
+    → unit price is a DIMENSION.
+
+Data Cube: each measure accessed by coordinates (dimension values).
+  (Product=Laptop, Location=South, Year=2013) → 1016
+
+⚠️  OLAP cube / hypercube is NOT a mathematical cube — sides are unequal.
+    Logical representation in relational DB → STAR SCHEMA.
+    Physical representation in multidimensional DB → OLAP CUBE (MDB).
+
+── MEASURES — ADDITIVITY TYPES ──
+Additive      | Can be summed across ANY dimension.
+               | E.g., total sales amount, quantity sold.
+Semi-additive | Can be summed across SOME dimensions, not all.
+               | E.g., bank balance: additive across accounts,
+               | NOT over time.
+Non-additive  | Cannot be summed across ANY dimension.
+               | E.g., margins, percentages, ratios, COUNT DISTINCT.
+
+⚠️  Periodic snapshot fact tables contain at least one SEMI-ADDITIVE measure.
+
+── MEASURES — COMPUTATION CATEGORIES ──
+Distributive | F(n aggregates) = F(all data). SUM, MIN, MAX, COUNT.
+Algebraic    | Computable by function with M arguments from distributive
+               aggregates. AVG (= SUM/COUNT), standard deviation.
+Holistic     | Requires all data together; CANNOT pre-aggregate subcubes.
+               MODE, MEDIAN, RANK.
+
+⚠️  Holistic measures CANNOT be pre-aggregated by subcube.
+
+── DATA CUBE LATTICE ──
+Base cuboid  : lowest level; all N dimensions present.
+Apex cuboid  : 0-D; grand total across all dimensions ("all").
+Lattice      : complete set of cuboids aggregated from base upward.
+
+⚠️  Aggregations are IRREVERSIBLE — you cannot recover parts from a sum.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 7. DW SCHEMAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── STAR SCHEMA (most popular) ──
+Fact table (centre) → connected to denormalised dimension tables.
+
+Fact table: composite PK (FKs to ALL dimensions) + measures.
+  Many rows, few columns. Grows with appends.
+
+Dimension tables: surrogate key + descriptive attributes.
+  NOT normalised. Relatively static.
+
+Advantages: fast queries, fewer joins, easy to understand, clearly
+  depicts facts and dimensions.
+Disadvantages: redundant data in dimension tables; dim tables must
+  carry level indicators.
+
+Surrogate keys: artificial numeric sequential integers in dimension
+  tables; independent of source system key changes (e.g., rehired
+  employee). Dimension table has: Natural Key + Surrogate Key.
+
+⚠️  Exception: Date dimension may use meaningful integer key
+    (YYYYMMDD) — no surrogate needed.
+⚠️  Star schema dimension tables are DENORMALISED.
+⚠️  NEVER use source OLTP PKs in fact table — use DW-generated surrogates.
+
+── SNOWFLAKE SCHEMA ──
+Normalised star — dimension tables further split into sub-tables.
+
+When to use: BI tool requires it; repeating attribute groups; multiple
+  hierarchies; missing values for a subtype.
+
+Advantages: smaller dim tables, easier to handle changes, simpler ETL.
+Disadvantages: more joins → slower performance; more complex metadata;
+  fact tables = ~90% of storage → normalising dims saves almost nothing.
+
+⚠️  Snowflake does NOT always outperform star — more joins can slow it.
+⚠️  Practice: start with Star Schema; snowflake only where needed.
+
+── FACT CONSTELLATION / GALAXY SCHEMA ──
+Multiple fact tables sharing dimension tables.
+Used for multiple business processes.
+
+Conformed Dimensions: shared across fact tables. Must be identical
+  OR one must be a subset of the other.
+
+Drill-Across: query two fact tables via conformed dimensions.
+  Steps: (1) query each fact table separately;
+         (2) combine/join on shared dimension key.
+
+── ALTERNATIVE DATA MODELS ──
+Normalised (3NF) | Inmon-style; flexible, consistent, redundancy-free;
+                 | many joins → slow for direct user queries.
+Dimensional Star | Kimball-style; business-friendly, fast queries.
+Data Vault       | Hub-Satellite-Link; flexible for changing sources.
+OBT (One Big Tbl)| Wide denormalised table; simple but inflexible.
+Hybrid           | Combination of above.
+
+Dimensional models are RESILIENT: can add new fact columns, new FKs,
+or new dim attributes without changing existing queries.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 8. OLAP OPERATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Roll-up       | Aggregate to coarser level (month → quarter → year).
+               | Removes a dimension attribute from GROUP BY.
+Drill-down    | Disaggregate to finer level (year → quarter → month).
+               | Adds a dimension attribute to GROUP BY.
+Slice         | Filter on ONE dimension → subcube (one fewer dimension).
+Dice          | Filter on TWO+ dimensions → smaller subcube.
+Pivot/Rotate  | Reorient cube axes; change row/column presentation.
+Drill-across  | Query MULTIPLE fact tables via conformed dimensions.
+               | Steps: query each fact separately; join on shared dim.
+
+⚠️  Drilling down does NOT require predefined hierarchies or drill paths.
+    It simply adds a dimension attribute to the GROUP BY clause.
+
+── DIMENSION HIERARCHIES ──
+Definition: specification of levels representing relationships among
+  dimension attributes. Supports roll-up and drill-down.
+
+Formal: A → B means value of A uniquely determines value of B
+  (functional dependency). TopD is the maximum element.
+
+Balanced    : Fixed levels; all branches to same depth.
+               E.g., Day → Month → Quarter → Year.
+Unbalanced  : Branches to different depths; self-join / recurrent.
+               E.g., employee-supervisor chain.
+Ragged      : Logical parent NOT always in level immediately above
+               (inconsistent depth between branches).
+Parent-Child: Self-referencing within one table; depth can vary.
+
+Attribute hierarchy: parent-child among subsets of attributes.
+  E.g., Days → Months → Quarters → Years.
+Instance hierarchy (recursive): relationships between rows of the
+  same dimension. E.g., companies owning other companies.
+
+Hierarchy Bridge Table: captures recursive instance relationships.
+  Columns: parent_id, sub_id, levels_removed, node, leaf, level.
+  Enables looking down (all orders under a company) and looking up
+  (all ancestors of a particular row).
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 9. OLAP ARCHITECTURES — MOLAP / ROLAP / HOLAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── MOLAP (Multidimensional OLAP) ──
+Data stored in multidimensional DB (arrays/hash tables/K-D trees).
+All aggregates PRE-COMPUTED at load time. Fastest query performance.
+
+MDDB Implementations: N-dim arrays, hash tables (SQL Server), quad
+  trees, K-D trees.
+
+Optimisations: chunking, two-level storage (dense=array; sparse=
+  compressed), materialised cubes, partitioning.
+
+Advantages: fastest queries; sub-aggregates directly mapped to arrays.
+Disadvantages: ~10 dims max; ~10-20 GB max data; 200MB → 5GB with agg;
+  NOT efficient for sparse data; not real-time (rebuild on dim change).
+  NO standard query language (proprietary, e.g., MDX by Microsoft).
+
+⚠️  MOLAP has NO standard SQL query language — uses proprietary (MDX).
+⚠️  MOLAP STORES a copy of source facts (~10-20% of source size).
+
+When to use: extended analytic/forecasting/planning needs; lots of
+  calculated/aggregated KPIs; complex proprietary calculations.
+
+── ROLAP (Relational OLAP) ──
+Data stored in relational DB (star/snowflake schema).
+OLAP operations translated to SQL. Aggregates = materialised views.
+
+Advantages: scalable; handles large sparse datasets; mature technology;
+  SQL skills in-house; sparsity is not a problem.
+Disadvantages: slower than MOLAP; needs extra optimisation
+  (materialised views, indexes).
+
+When to use: analytic requirements met by SQL; sparse/large data;
+  satisfactory relational engine performance.
+
+── HOLAP (Hybrid OLAP) ──
+Aggregated data → multidimensional storage (fast summary queries).
+Detailed data → relational DB (scalable, real-time detail access).
+
+Vertical partitioning: aggregations in MOLAP, detail in ROLAP.
+Horizontal partitioning: recent data in MOLAP, older in ROLAP.
+
+⚠️  HOLAP does NOT store a copy of source (detail) facts.
+    Only aggregations are in multidimensional storage.
+
+── MOLAP vs ROLAP ──
+Feature           | MOLAP              | ROLAP
+------------------|--------------------|-----------------------
+Dimensions        | ~10 max            | Fluid
+Data size         | 10-20 GB max       | 100× bigger
+Response time     | Short              | Longer
+Typical app       | Data marts         | Data warehouses
+Sparse data       | Bad                | Fine (no empty cells)
+Query language    | Proprietary        | Standard SQL
+
+── SSAS STORAGE MODES ──
+MOLAP : copies facts; fastest; must reprocess on source update.
+ROLAP : no copy; real-time; slowest; saves storage for history.
+HOLAP : no copy; agg in multidim; detail read from star schema.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 10. FACT TABLE TYPES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type                  | Grain              | Row created    | Updated?
+----------------------|--------------------|----------------|----------
+Transaction           | Individual event   | Once per event | No
+Periodic Snapshot     | Regular period     | Periodically   | No
+Accumulating Snapshot | Entity lifecycle   | Once/entity    | YES
+
+TRANSACTION FACT TABLE:
+  Records individual events (or summaries of them). Grain = transaction.
+  Append-only. Most common type.
+
+PERIODIC SNAPSHOT FACT TABLE:
+  Measures status at a predetermined interval (day, week, month-end).
+  Grain declared in dimensional terms (e.g., "balance at end of day").
+  Dense: contains a row even if no activity occurred that period.
+  Contains at least one SEMI-ADDITIVE fact.
+  Examples: account balances, inventory levels.
+
+ACCUMULATING SNAPSHOT FACT TABLE:
+  Describes entity passing through stages/milestones (lifecycle).
+  One row per entity; contains MULTIPLE DATE FKs (one per milestone).
+  Row is REVISITED AND UPDATED as entity progresses.
+  Also stores LAGS (days/minutes between milestones).
+  Example: support ticket with date_logged, date_assigned,
+    date_diagnosed, date_closed.
+
+⚠️  Accumulating snapshot rows ARE updated at each milestone.
+⚠️  Periodic snapshot always has at least one semi-additive measure.
+
+── FACTLESS FACT TABLE ──
+No numeric measures — captures occurrence of an event or relationship.
+
+Event fact: row per event; FK to all dimensions; no numeric measure.
+  E.g., student attending a class on a given day.
+
+Coverage fact: records all POSSIBLE combinations (coverage table) used
+  alongside activity table. Enables "what didn't happen" analysis.
+  E.g., students assigned to class but who never attended.
+
+── NULLS IN FACT TABLES ──
+NULL measures: handled correctly by aggregate functions (SUM, COUNT, etc.).
+⚠️  NULL foreign keys in fact table = REFERENTIAL INTEGRITY VIOLATION.
+    Always use a default "Unknown" or "Not Applicable" surrogate key
+    row in the dimension table.
+
+── FACT TABLE KEYS ──
+Logical PK: composite of all FK to dimensions.
+Physical: optional single surrogate PK for ETL deduplication.
+⚠️  Never use source OLTP PKs in fact table — use DW-generated surrogates.
+
+── AGGREGATE FACT TABLES ──
+Numeric rollups of atomic fact data. Accelerate query performance.
+Aggregate navigation: BI tools auto-choose correct aggregation level.
+Use FKs to "shrunken conformed dimensions" (higher-level dims).
+
+── CONSOLIDATED FACT TABLES ──
+Combine facts from multiple processes at the same grain.
+E.g., actuals + forecasts consolidated for easy comparison.
+Increases ETL burden but simplifies BI analysis.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 11. SPECIAL DIMENSION TYPES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+── CONFORMED DIMENSION ──
+Shared across multiple fact tables. Crucial for DW architecture.
+
+Types:
+  Identical (shared)   : exactly same table used by all fact tables.
+  Conformed Rollup     : one is an attribute-subset of another (different
+                         grain). Smaller = conformed rollup; larger = base.
+  Overlapping          : share some common attributes; neither is perfect
+                         subset of other.
+
+⚠️  Conformed dims can be a SUBSET — need not be identical tables.
+
+Traps: same name/different meaning; different time definitions
+  (fiscal vs calendar); different keys; same data/different organisation.
+
+Conformance matrix: blueprint — rows = fact tables, cols = dimensions.
+
+Drill-across: uses conformed dimensions.
+  Phase 1: each fact query uses shared dim key for aggregation.
+  Phase 2: join result sets on the shared dimension key.
+
+── JUNK DIMENSION (Abstract Dimension) ──
+Groups miscellaneous LOW-CARDINALITY flags/indicators that don't
+belong elsewhere into ONE dimension table. Reduces dim count.
+
+  - Surrogate key required.
+  - Does NOT store full Cartesian product — only actual combinations
+    found in source data.
+  - Best for static, predefined sets of values.
+
+⚠️  Junk dim ≠ Cartesian product. Only existing combinations stored.
+⚠️  Junk vs Degenerate: junk = multiple low-cardinality flags combined;
+    degenerate = single high-cardinality key stored in fact table.
+
+── DEGENERATE DIMENSION ──
+High-cardinality dimension stored IN the fact table itself.
+No separate dimension table. Has no descriptive attributes.
+Almost 1-to-1 cardinality with facts.
+
+E.g., invoice number — after line items inherit all dim FKs, invoice
+itself has no remaining content but its number is still useful for
+grouping/drilling.
+
+⚠️  Degenerate dim is stored IN the fact table (no separate table).
+    Include in design if it might serve as basis for drill-across.
+
+── ROLE-PLAYING DIMENSION ──
+Single physical dim table referenced MULTIPLE TIMES in one fact table.
+Each reference is a logically distinct "role."
+E.g., OrderDate, ShipDate, DueDate — all FK to same Date dim,
+  but as separate views/aliases.
+Implemented as separate VIEWS on the same underlying physical table.
+
+── BEHAVIORAL DIMENSION ──
+Groups/filters facts based on PAST BEHAVIOUR of dimension members.
+E.g., customers generating >$1M vs ≤$500K → tier becomes a dim attr.
+Two-step: (1) identify past behaviour per member;
+          (2) use as dimension attribute in current analysis.
+
+── MINI-DIMENSION ──
+Rapidly changing attributes (e.g., demographic bands) extracted from
+a large dimension into a separate smaller table with its own surrogate
+key. Fact table holds FK to mini-dimension.
+
+── OUTRIGGER (Snowflake Sub-Table) ──
+Free-form text attributes rarely used in queries → moved to separate
+table, FK replaces them in main dimension. Results in a snowflake.
+
+── CORE + CUSTOM STARS ──
+For dimensions with subtypes (e.g., different product types with
+different attributes).
+  Core star: common attributes; supports all-type analysis.
+  Custom stars: core + type-specific attributes.
+Conformed dimensions enable drill-across between core and custom.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 12. DIMENSION DESIGN RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SAME DIMENSION: attributes with NATURAL AFFINITY — related in only
+  one stable context, independent of transactions.
+  E.g., Product & Brand → same dim (product has brand without orders).
+
+SEPARATE DIMENSIONS: attributes whose relationship DEPENDS ON
+  EVENTS/TRANSACTIONS — volatile, multiple contexts possible.
+  E.g., Customer & Salesperson → separate (linked only when orders occur).
+
+BROWSABILITY TEST: "Would someone want to browse these attributes
+  together?" If separating them destroys the ability to study their
+  relationship outside of facts → keep together. If relationship only
+  exists in transaction context → separate.
+
+Dimension attribute goals:
+  Verbose      — full words; no cryptic abbreviations
+  Descriptive  — meaningful when independently viewed
+  Complete     — no NULLs; use "Unknown" or "Not Applicable"
+  Quality assured
+  Indexed      — for heavily used attributes
+  Documented   — in metadata
+
+Flags (Y/N, 0/1) → store as descriptive text ("Yes"/"No", "Active"/"Inactive").
+Multi-part codes → store full code AND decomposed parts as separate attrs.
+Numeric attrs → test use: aggregated = fact; filter/group = dimension.
+
+RESIST NORMALISATION: denormalise fixed-depth hierarchies into flat
+  dim rows. Supports simplicity and speed.
+
+⚠️  Never try to model ALL relationships in the data (unlike ER modelling).
+    Surround facts with as much context as possible. Redundancy is OK.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 13. NULL HANDLING IN OLAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NULL ≠ zero, blank, or empty string.
+NULL = missing / inapplicable / unknown.
+
+COUNT(*)          counts all rows including NULLs
+COUNT(column)     IGNORES NULLs
+AVG / SUM / MIN / MAX  all IGNORE NULLs
+
+⚠️  AVG([10, 20, NULL, 30]) = 60/3 = 20  (NOT 60/4 = 15)
+⚠️  COUNT(column) does NOT count NULL rows.
+
+NULLs in GROUP BY: grouped into a single "(Blank)" category.
+Fix: impute at ETL; use COALESCE(col, default) in metrics.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 14. SQL GROUPING EXTENSIONS (SQL3 / SQL:2003)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Three operators extend GROUP BY for multi-level aggregation without
+UNION ALL.
+
+Operator          | Sets produced            | Use when
+------------------|--------------------------|----------------------
+GROUPING SETS(…)  | Only what you list       | Custom aggregations
+ROLLUP(a,b,c)     | (a,b,c),(a,b),(a),()     | Hierarchical subtotals
+CUBE(a,b,c)       | All 2^N combos = 8       | Full cross-tab
+
+ROLLUP(a,b,c) → N+1 = 4 grouping sets (removes right-to-left).
+CUBE(a,b,c)   → 2^3 = 8 grouping sets.
+()            = grand total row.
+
+⚠️  ROLLUP(a,b,c) → 4 sets (NOT 3). N+1 always.
+⚠️  ORDER IS SIGNIFICANT for ROLLUP (a,b,c ≠ c,b,a).
+⚠️  CUBE(a,b) → 4 sets (2^2). True.
+
+GROUPING() function:
+  GROUPING(col) = 0  → NULL is from ACTUAL DATA
+  GROUPING(col) = 1  → NULL is GENERATED (subtotal row)
+
+⚠️  GROUPING()=1 means GENERATED null (not real data null).
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ WINDOW FUNCTIONS (OVER clause)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Run aggregates across rows WITHOUT collapsing them (unlike GROUP BY).
+Used for rankings, running totals, moving averages, and row comparisons.
+
+Syntax: fn() OVER (PARTITION BY … ORDER BY … ROWS|RANGE BETWEEN …)
+
+Clause       |What it does
+-------------|----------------------------------------
+PARTITION BY |Splits rows into groups (all rows kept)
+ORDER BY     |Sets row order within each partition
+ROWS/RANGE   |Defines the frame (subset) around current row
+
+
+── ROWS vs RANGE ──
+ROWS   Fixed row count.  2 PRECEDING = 2 rows back.
+RANGE  Value distance.   2 PRECEDING = rows where value ≤ 2 less than current.
+Tip: Use ROWS for a fixed row count.
+
+
+── KEY FUNCTIONS ──
+ROW_NUMBER()      Unique rank, no ties
+RANK()            Ties allowed, gaps after
+DENSE_RANK()      Ties allowed, no gaps
+LAG(col, n)       Value n rows before current
+LEAD(col, n)      Value n rows after current
+FIRST/LAST_VALUE  First or last value in frame
+SUM/AVG/COUNT     Standard aggregates used with OVER
+
+
+── COMMON PATTERNS ──
+Running total:    SUM(x)       OVER (ORDER BY date)
+30-day avg:       AVG(x)       OVER (ORDER BY date ROWS BETWEEN 29 PRECEDING AND CURRENT ROW)
+Month-over-month: LAG(sales,1) OVER (ORDER BY yr, mo)
+YTD:              SUM(x)       OVER (PARTITION BY YEAR(date) ORDER BY date)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 16. CTE & RECURSIVE CTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CTE: temporary named result set valid for ONE immediately following
+  statement.
+  Uses: readability, reusability (reference same CTE multiple times),
+  recursion.
+  Multiple CTEs: WITH A AS (…), B AS (… FROM A …)
+
+Recursive CTE: for hierarchical data (org charts, BOM, date ranges).
+
+Structure:
+  1. ANCHOR member   — base case (root/CEO where parent IS NULL)
+  2. RECURSIVE member— joins CTE back to base table for next level
+  3. Termination     — stops when recursive member returns 0 rows
+
+Execution: anchor → T0 → recursive on T0 → T1 → … → Tn (empty)
+           → UNION ALL all results.
+
+Must use UNION ALL (NOT UNION).
+OPTION (MAXRECURSION n); default = 100; 0 = infinite.
+
+⚠️  Cannot use GROUP BY, SUM(), DISTINCT inside recursive member.
+⚠️  Must use UNION ALL, not UNION.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 17. PIVOT / UNPIVOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PIVOT    Rotates rows → columns (cross-tab reporting).
+         Requires known values in advance. T-SQL only.
+         Uses aggregate (SUM, AVG…) per output column.
+
+UNPIVOT  Rotates columns → rows.
+         NOT exact reverse — aggregated rows can't be restored.
+         NULLs from PIVOT disappear in UNPIVOT output.
+
+CASE alternative (portable, ANSI SQL):
+  SUM(CASE WHEN quarter = 1 THEN amount END) AS Q1
+
+
+-- PIVOT
+SELECT * FROM table
+PIVOT (
+  AGG_FN(value_col)           -- e.g. SUM(amount)
+  FOR pivot_col               -- column whose values become headers
+  IN ([val1], [val2], [val3]) -- known values → new column names
+) AS alias;
+
+
+-- UNPIVOT
+SELECT * FROM table
+UNPIVOT (
+  value_col                   -- new column that holds the values
+  FOR pivot_col               -- new column that holds the old column names
+  IN ([val1], [val2], [val3]) -- columns to unpivot
+) AS alias;
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 18. SQL EXECUTION PLANS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Execution plan: sequence of steps to execute a query. Reveals which
+  tables/indexes accessed, join types, aggregation methods.
+
+Compilation phases:
+  1. Parsing      — syntax check → parse tree
+  2. Binding      — resolve object names against catalog → query tree
+  3. Optimisation — cost-based; produces plan stored in plan cache
+
+Plan types: Estimated (no execution) vs Actual (post-execution,
+  includes runtime statistics).
+Read plans: right → left (data flow) or left → right (execution order).
+Arrow thickness = estimated/actual row count.
+
+Key operators:
+  Clustered Index Scan   | Full table read; expensive
+  Clustered Index Seek   | B-tree traversal; efficient targeted access
+  Key Lookup             | Row fetch from non-clustered → clustered index
+  Nested Loops           | Best for low-cardinality outer input
+  Merge Join             | Best when both inputs sorted on join key
+  Hash Match             | Best for large unsorted sets; semi-blocking
+  Stream Aggregate       | Requires sorted input; most efficient agg
+  Sort                   | BLOCKING operator (must complete entire input)
+  Concatenation (UNION ALL) | Non-blocking
+
+Streaming vs blocking:
+  Streaming  — passes rows as processed (non-blocking)
+  Blocking   — must process entire input first (e.g., Sort)
+  Semi-blocking — must complete part of work first (e.g., Hash Match)
+
+OLTP plans: Index Seek + Nested Loops (small result sets).
+OLAP plans: Index Scan + Merge Join / Hash Match (large data).
+
+Common pitfalls: no indexes, SELECT *, functions on indexed cols in
+  WHERE, LIKE '%val' (leading wildcard), non-parameterised queries,
+  unnecessary ORDER BY, overusing subqueries.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 19. QUICK EXAM TRAP TABLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Statement                                              | T/F
+-------------------------------------------------------|-----
+OLAP data is highly normalised                         | F (OLTP is)
+A data mart is a type of DW                            | T
+ODS is a DW                                            | F (volatile ≠ DW)
+DW data is updated like OLTP                           | F (non-volatile)
+UNPIVOT exactly reverses PIVOT                         | F (aggregation lost)
+RANGE 2 PRECEDING = 2 rows back                        | F (value distance)
+COUNT(column) counts NULL rows                         | F (ignores NULLs)
+CUBE(a,b) → 4 grouping sets                            | T (2^2=4)
+ROLLUP(a,b,c) → 3 grouping sets                        | F (N+1=4)
+GROUPING()=1 means NULL from actual data               | F (generated NULL)
+OLAP cube requires equal side lengths                  | F (hypercube)
+DW stores current operational data                     | F (historical)
+DW is a tool for data integration                      | F (DW = storage)
+Grain = level of detail in fact table                  | T
+Star schema dim tables are normalised                  | F (denormalised)
+Snowflake always outperforms star                      | F (more joins)
+Drilling down requires predefined hierarchies          | F (just add GROUP BY attr)
+Accumulating snapshot rows are never updated           | F (updated at milestones)
+Periodic snapshot is always fully additive             | F (semi-additive measure)
+NULLs in FK of fact table are acceptable               | F (use "Unknown" dim row)
+A numeric attribute is always a fact                   | F (depends on usage)
+MOLAP uses standard SQL                                | F (no standard; uses MDX)
+HOLAP stores a copy of source facts                    | F (only aggregations in multidim)
+Product & brand should be separate dims                | F (natural affinity → same dim)
+Conformed dims must be identical tables                | F (subset is OK)
+A degenerate dim has its own dim table                 | F (stored IN fact table)
+Date dim always requires surrogate key                 | F (YYYYMMDD is exception)
+Holistic measures can be pre-aggregated by subcube     | F (need all data together)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 20. OPEN-ENDED ANSWER TEMPLATES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Q: Why is operational data hard to analyse?
+A: Inconsistent definitions/formats across systems; no common time
+   basis; no integrated view; heavy OLTP load if queried for analytics;
+   missing historical context; data quality issues.
+
+Q: Does a DW directly represent operational data? → FALSE
+A: DW is subject-oriented (not app-oriented), integrated (resolved
+   inconsistencies), time-variant (snapshots), non-volatile (frozen).
+   It represents MEASUREMENTS of business processes at points in time
+   — restructured for analytical use; does not represent operational
+   processes.
+
+Q: Fact table vs Dimension table?
+A: Fact: numeric measures, composite PK of FK references to all dims,
+   many rows/few cols, represents events at defined grain; append-only.
+   Dimension: descriptive context (who/what/where/when); denormalised;
+   relatively static; few rows/many cols.
+
+Q: Why separate DW from OLTP?
+A: Performance isolation (OLAP queries would cripple OLTP);
+   different optimisation (indexing vs columnar); different models
+   (3NF vs star); different history horizon (current vs 5-10 yrs);
+   data integrated/cleansed before entering DW.
+
+Q: MOLAP vs ROLAP?
+A: MOLAP: multidim arrays; fastest queries; pre-computed agg; ~10 dim
+   max, ~10-20 GB; no standard query language (MDX etc.).
+   ROLAP: relational DB (star schema); scalable; SQL; handles large
+   sparse data; slower queries than MOLAP.
+   HOLAP: agg in multidim + detail in relational; combines benefits.
+
+Q: Three fact table types?
+A: Transaction: individual events; append-only; most common.
+   Periodic snapshot: status at regular intervals; semi-additive
+   measures; append-only.
+   Accumulating snapshot: one row per entity lifecycle; multiple date
+   FKs; UPDATED as milestones are reached.
+
+Q: Same dim vs separate dims?
+A: Same: natural affinity, one stable context, independent of
+   transactions (product + brand).
+   Separate: relationship depends on transactions (customer + salesperson).
+
+Q: What is a junk dimension?
+A: Combines miscellaneous low-cardinality flags/indicators that don't
+   belong in other dims into one table. Only actual combinations from
+   source data stored (NOT full Cartesian product). Reduces dim count.
+   Surrogate key required.
+
+Q: What is a degenerate dimension?
+A: A dimension stored IN the fact table (no separate dim table).
+   High-cardinality, no descriptive attributes — only the key value
+   remains useful (e.g., invoice number after all FKs are inherited).
+
+Q: What is grain and why is it important?
+A: Grain = the level of detail at which facts are recorded.
+   Declared before schema design. All fact/dimension choices must
+   conform to the declared grain. Mixing grain levels in one fact
+   table causes incorrect aggregations.

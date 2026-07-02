@@ -1,0 +1,114 @@
+1. SUMMARY
+--------------------
+Four-package SSIS pipeline that extracts sales data from AdventureWorks2025,
+transforms it into a star schema in StagingDB, and loads it into a DWH.
+
+  Packages   : 01_Extract -> 02_Transform -> 03_Load (orchestrated by 04_Master)
+  Source     : AdventureWorks2025 (9 tables, Windows Auth / MSOLEDBSQL)
+  Staging    : StagingDB (intermediate layer)
+  Destination: DWH - 4 dimensions + 1 fact table, full-refresh on every run
+
+
+2. ARCHITECTURE
+---------------
+Each package has a single responsibility, allowing independent re-runs,
+isolated failure handling, and cleaner logging. 04_Master connects all three
+with On-Success precedence constraints enforcing strict sequential execution:
+
+  01_Extract --[OK]--> 02_Transform --[OK]--> 03_Load
+
+Inside 02_Transform, dimension tasks run in parallel where possible; all four
+dimension staging tables must complete before Populate SalesFactStaging fires.
+
+
+3. PACKAGE BREAKDOWN
+--------------------
+
+01_Extract
+  - Preparation SQL Task 1: IF NOT EXISTS -> creates 5 raw staging tables
+    (CountryRegion, Product, ProductCategory, ProductSubcategory, SalesOrderDetail)
+  - Preparation SQL Task 2: DROP/CREATE -> recreates 4 tables fresh every run
+    (Person, SalesOrderHeader, SalesPerson, SalesTerritory)
+  - Data Flow Task 1: loads CountryRegion, Product, ProductCategory,
+    ProductSubcategory, SalesOrderDetail into StagingDB
+  - Data Flow Task 2: loads Person, SalesOrderHeader, SalesPerson,
+    SalesTerritory into StagingDB
+  - Error handling: FailComponent on all destinations; FailPackageOnFailure-True
+
+02_Transform
+  Builds the star schema staging layer. Three dimensions use T-SQL (set-based,
+  efficient); two use Data Flow Tasks (column-level transformations needed).
+
+  Table                Method        Key logic
+  -------------------- ------------- ------------------------------------------
+  ProductDIM           SQL           LEFT JOIN Product + Subcategory + Category;
+                                     ISNULL(..., 'Unknown') for optional FKs
+  TimeDIM              SQL           DISTINCT OrderDate decomposed via DATEPART
+  SalesFactStaging     SQL           Joins all 4 dims; ISNULL(key, -1) for NULLs
+  SalesPersonDIM       Data Flow     Derived Column: TRIM(First) + " " + TRIM(Last)
+                                     Union All injects Unknown row (ID - -1)
+  SalesTerritoryDIM    Data Flow     Sort -> Merge Join (SalesTerritory +
+                                     CountryRegion on CountryRegionCode);
+                                     Derived Column handles NULLs;
+                                     Union All injects Unknown row (ID - -1)
+
+03_Load
+  For each of the 5 DWH tables: DROP TABLE IF EXISTS + CREATE, then
+  INSERT ... SELECT from the StagingDB equivalent. Full-refresh every run;
+  no incremental logic, no duplicate risk.
+
+  DWH Tables: ProductDIM, SalesPersonDIM, SalesTerritoryDIM, TimeDIM, SalesFact
+
+04_Master
+  Three Execute Package Tasks chained sequentially. Single entry point for
+  SQL Server Agent or ADF scheduling. Connection managers defined here can be
+  overridden per environment via SSIS parameters.
+
+
+4. DATA QUALITY MEASURES
+------------------------
+  - ISNULL(col, 'Unknown' / 'N/A' / -1) applied consistently across all dims
+  - Unknown members (surrogate key - -1) exist in every dimension so fact rows
+    with no matching dim member never become orphaned
+  - Merge Join requires pre-sorted inputs (Sort components on CountryRegionCode)
+  - Type casting enforced on all Unknown row literals to match destination types
+  - FailComponent + FailPackageOnFailure prevents partial loads
+
+
+5. TESTING RESULTS
+------------------
+  Scenario                        Result    Notes
+  --------------------------      ------    ------------------------------------
+  1. Empty DB (no tables)         PASS      IF NOT EXISTS / DROP-CREATE worked
+                                            correctly; all tables created & loaded
+  2. Empty tables (no data)       PASS      DROP/CREATE reset IDENTITY seeds;
+                                            no key conflicts
+  3. Existing data (re-run)       PASS      Full-refresh replaced all prior data;
+                                            zero duplicate rows found
+
+
+--------------------------------------------------------------------------------
+  STAR SCHEMA (DWH)
+--------------------------------------------------------------------------------
+
+           [SalesPersonDIM]        [SalesTerritoryDIM]
+           SalesPersonKey (PK)     TerritoryKey (PK)
+           SalesPersonID           TerritoryID
+           FullName                TerritoryName
+           TerritoryName           CountryName
+                  |                TerritoryGroup
+                  |                      |
+  [TimeDIM]       |                      |        [ProductDIM]
+  TimeKey (PK)    |                      |        ProductKey (PK)
+  FullDate        |                      |        ProductID
+  Year            |     [SalesFact]      |        ProductName
+  Month     ------+---> ProductKey  <----+------- SubcategoryName
+  Day             |     TimeKey          |        CategoryName
+  Quarter         +---> SalesPersonKey   |        Color
+                  |     TerritoryKey ----+
+                  |     OrderDetailID
+                  +---> Quantity
+                        UnitPrice
+                        TotalAmount
+
+--------------------------------------------------------------------------------

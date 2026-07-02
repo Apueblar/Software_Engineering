@@ -1,0 +1,26 @@
+name: 'dbt_mssql'
+version: '1.0.0'
+config-version: 2
+
+# Profile to use (must match a profile in profiles.yml)
+profile: 'dbt-mssql'
+
+# File paths
+model-paths:      ["models"]
+analysis-paths:   ["analyses"]
+test-paths:       ["tests"]
+seed-paths:       ["seeds"]
+macro-paths:      ["macros"]
+snapshot-paths:   ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model materialisation defaults by folder
+models:
+  dbt_mssql:
+    staging:
+      +materialized: view     # staging models → views (cheap, re-run on demand)
+    marts:
+      +materialized: table    # mart models   → tables (optimised for queries)

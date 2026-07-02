@@ -1,0 +1,45 @@
+# =============================================================================
+# BTC Data Warehouse Pipeline — Configuration
+# =============================================================================
+
+database:
+  server: "LAPTOP-MKLCFCJJ"
+  database: "BTC_Staging"
+  trusted_connection: "yes"
+  driver: "ODBC Driver 17 for SQL Server"
+
+schedule:
+  # How often to run a full incremental fetch (in days).
+  # Set to 1 for daily, 3 for every 3 days, etc.
+  interval_days: 3
+
+fetch:
+  # Number of NEW blocks to fetch per run (each block has ~2000-3000 TXs).
+  # Keep this low on free APIs. 50 blocks ≈ ~100,000 TXs per run.
+  blocks_per_run: 200
+
+  # Max transactions to fetch per block (mempool.space returns 25 per page).
+  # Set to 0 to skip TX/input/output fetching (faster, block-level only).
+  max_tx_per_block: 100
+
+  # yfinance (Yahoo Finance) is used for market OHLCV — no API key required.
+  # No rate-limit sleep is needed; yfinance handles throttling internally.
+
+  # Retry settings for all HTTP calls (mempool.space, Alternative.me)
+  max_retries: 3
+  retry_backoff_sec: 5
+
+logging:
+  # Log file path. Relative to the directory where btc_pipeline.py lives.
+  log_file: "btc_pipeline.log"
+  level: "INFO"   # DEBUG | INFO | WARNING | ERROR
+
+# Target Data Warehouse database (BTC_DW).
+# Must be on the same SQL Server instance as the staging database so that
+# cross-database three-part-name references (BTC_Staging.dbo.*) work inside
+# the DW load SQL executed through this connection.
+dw_database:
+  server: "LAPTOP-MKLCFCJJ"
+  database: "BTC_DW"
+  trusted_connection: "yes"
+  driver: "ODBC Driver 17 for SQL Server"

@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\BTC_Analytics_Cube.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|solutionrelative:BTC_Analytics_Cube.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_DATE.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|solutionrelative:DIM_DATE.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_MARKET.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{D82BBED5-FC89-6F5E-87E7-BDD09B0C0797}|BTC_Analytics.dwproj|solutionrelative:DIM_MARKET.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BTC_Analytics_Cube.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\BTC_Analytics_Cube.cube",
+              "RelativeDocumentMoniker": "BTC_Analytics_Cube.cube",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\BTC_Analytics_Cube.cube [Design]",
+              "RelativeToolTip": "BTC_Analytics_Cube.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-22T23:22:17.831Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DIM_MARKET.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_MARKET.dim",
+              "RelativeDocumentMoniker": "DIM_MARKET.dim",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_MARKET.dim [Design]",
+              "RelativeToolTip": "DIM_MARKET.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T06:27:55.026Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DIM_DATE.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_DATE.dim",
+              "RelativeDocumentMoniker": "DIM_DATE.dim",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\MiniProject\\P3\\Implementation\\BTC_Analytics\\DIM_DATE.dim [Design]",
+              "RelativeToolTip": "DIM_DATE.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-22T23:42:35.58Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

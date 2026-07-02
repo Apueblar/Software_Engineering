@@ -1,0 +1,14 @@
+# All packages are pre-installed in the data_tools Docker image (see Dockerfile).
+# This file is for reference / local venv setup outside Docker.
+
+dlt[mssql,sql_database]>=1.0.0
+dbt-core>=1.7.0
+dbt-sqlserver>=1.7.0
+dbt-duckdb>=1.7.0
+duckdb>=0.10.0
+pymssql>=2.2.0
+pyodbc>=4.0.0
+pandas>=2.0.0
+requests>=2.31.0
+matplotlib>=3.8.0
+sqlalchemy>=2.0.0

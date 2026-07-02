@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Warehouses – Final Exam</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f4f3ef;
+    --surface: #ffffff;
+    --surface-2: #f9f8f6;
+    --border: #e0ddd6;
+    --border-strong: #c9c5bb;
+    --text-primary: #1a1917;
+    --text-secondary: #5c5a55;
+    --text-muted: #8c8a84;
+    --accent: #3b5bdb;
+    --accent-bg: #eef2ff;
+    --accent-border: #c5d0ff;
+    --success: #2f9e44;
+    --success-bg: #ebfbee;
+    --success-border: #b2f2bb;
+    --danger: #c92a2a;
+    --danger-bg: #fff5f5;
+    --danger-border: #ffc9c9;
+    --warning: #e67700;
+    --warning-bg: #fff9db;
+    --warning-border: #ffe066;
+    --radius: 8px;
+    --font: 'Georgia', 'Times New Roman', serif;
+    --font-ui: system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .exam-header {
+    background: var(--text-primary);
+    color: #fff;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .exam-header h1 {
+    font-family: var(--font);
+    font-size: 1.75rem;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+
+  .exam-header p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .parts-banner {
+    background: var(--accent-bg);
+    border-bottom: 1px solid var(--accent-border);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  .parts-banner strong {
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+
+  .parts-banner .part-chip {
+    padding: 0.2rem 0.6rem;
+    background: #fff;
+    border-radius: 100px;
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .scoring-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .grade-chip {
+    padding: 0.25rem 0.625rem;
+    border-radius: 100px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .scoring-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    align-self: center;
+    margin-right: 0.5rem;
+  }
+
+  .exam-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-family: var(--font);
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: var(--text-secondary);
+    margin: 2.5rem 0 0.5rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .section-title .part-badge {
+    background: var(--text-primary);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .section-title .part-count {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-left: auto;
+  }
+
+  .section-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.875rem;
+    transition: border-color 0.15s;
+  }
+
+  .question-card.answered { border-color: var(--border-strong); }
+  .question-card.correct { border-color: var(--success-border); background: var(--success-bg); }
+  .question-card.incorrect { border-color: var(--danger-border); background: var(--danger-bg); }
+
+  .question-header {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .q-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    min-width: 26px;
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .q-text {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .q-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+    padding-left: 2.25rem;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-left: 2.25rem;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.1s, border-color 0.1s;
+    user-select: none;
+  }
+
+  .option:hover { background: var(--surface-2); border-color: var(--border); }
+
+  .option input { display: none; }
+
+  .option-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    transition: background 0.1s, border-color 0.1s;
+  }
+
+  .option.selected .option-box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .option.selected .option-box::after { content: '✓'; }
+
+  .option-letter {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    min-width: 16px;
+  }
+
+  .option-text { font-size: 0.875rem; line-height: 1.45; }
+
+  /* After check/submit states */
+  .option.correct-answer {
+    background: var(--success-bg);
+    border-color: var(--success-border);
+  }
+
+  .option.correct-answer .option-box {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .option.correct-answer .option-box::after { content: '✓'; }
+
+  .option.wrong-pick {
+    background: var(--danger-bg);
+    border-color: var(--danger-border);
+  }
+
+  .option.wrong-pick .option-box {
+    background: var(--danger);
+    border-color: var(--danger);
+  }
+
+  .option.wrong-pick .option-box::after { content: '✗'; }
+
+  .option.missed-answer { border: 1.5px dashed var(--success-border); }
+
+  /* Per-question check button area */
+  .question-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-left: 2.25rem;
+  }
+
+  .btn-check {
+    padding: 0.35rem 0.875rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--accent-border);
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.1s, border-color 0.1s;
+  }
+
+  .btn-check:hover { background: #dde5ff; border-color: var(--accent); }
+
+  .btn-check:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .check-result {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.25rem 0.625rem;
+    border-radius: 100px;
+    display: none;
+  }
+
+  .check-result.visible { display: inline-block; }
+  .check-result.ok { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+  .check-result.err { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+
+  /* Open questions */
+  .open-q { margin-bottom: 0.875rem; }
+
+  .open-q textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.625rem 0.875rem;
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    resize: vertical;
+    background: var(--surface-2);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+    transition: border-color 0.15s;
+  }
+
+  .open-q textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  .open-q table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+  }
+
+  .open-q th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .open-q td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .open-q td input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+  }
+
+  .open-q td input:focus { outline: none; }
+
+  .open-q tr:hover td { background: var(--surface-2); }
+
+  /* Schema box */
+  .schema-box {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 0.875rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .schema-box strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .schema-box .schema-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.1s, border-color 0.1s;
+  }
+
+  .btn:hover { background: var(--surface-2); border-color: var(--text-primary); }
+
+  .btn-primary {
+    background: var(--text-primary);
+    color: #fff;
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover { background: #333; }
+
+  .progress-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+
+  /* Score panel */
+  .score-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    display: none;
+  }
+
+  .score-panel.visible { display: block; }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .score-metric {
+    background: var(--surface-2);
+    border-radius: var(--radius);
+    padding: 0.875rem 1rem;
+    text-align: center;
+  }
+
+  .score-metric .val {
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .score-metric .lbl {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .grade-result {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  .review-toggle {
+    margin-top: 0.875rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: var(--font-ui);
+    padding: 0;
+  }
+
+  .review-toggle:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="exam-header">
+  <h1>Data Warehouses – Final Exam</h1>
+  <p>B Term 1 &nbsp;·&nbsp; 30 June 2025 &nbsp;·&nbsp; 32 questions &nbsp;·&nbsp; 40 points</p>
+</div>
+
+<div class="parts-banner">
+  <strong>4 exam parts:</strong>
+  <span class="part-chip">A · SQL for data analysis</span>
+  <span class="part-chip">B · OLTP / OLAP</span>
+  <span class="part-chip">C · DW architecture &amp; data models</span>
+  <span class="part-chip">D · Data integration, reporting &amp; visualisation</span>
+</div>
+
+<div class="scoring-bar">
+  <span class="scoring-label">Grade scale:</span>
+  <span class="grade-chip">0–21 → 2.0</span>
+  <span class="grade-chip">22–25 → 3.0</span>
+  <span class="grade-chip">26–29 → 3.5</span>
+  <span class="grade-chip">30–33 → 4.0</span>
+  <span class="grade-chip">34–36 → 4.5</span>
+  <span class="grade-chip">37–40 → 5.0</span>
+</div>
+
+<div class="exam-body">
+
+  <!-- ══════════════════════════════════════════════
+       PART A – SQL FOR DATA ANALYSIS
+       Questions: Q3, Q4, Q6
+       ══════════════════════════════════════════════ -->
+  <div class="section-title">
+    <span class="part-badge">PART A</span>
+    SQL for Data Analysis
+    <span class="part-count">3 questions</span>
+  </div>
+  <p class="section-subtitle">Mark all correct answers. Each question may have more than one correct answer. Use <em>Check answer</em> to verify each question individually.</p>
+
+  <!-- Q3 -->
+  <div class="question-card" id="q3">
+    <div class="question-header">
+      <div class="q-num">Q3</div>
+      <div class="q-text">SQL grouping operators:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="3" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Order of attributes in grouping sets defines a path in grouping graph</span></label>
+      <label class="option"><input type="checkbox" data-q="3" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">N attributes in a GROUP BY CUBE translate to N+1 grouping sets</span></label>
+      <label class="option"><input type="checkbox" data-q="3" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">GROUP BY GROUPING SETS requires explicit definition of individual groupings</span></label>
+      <label class="option"><input type="checkbox" data-q="3" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Grouping operators are used to replace multiple union'ed GROUP BY queries</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(3, this)">Check answer</button>
+      <span class="check-result" id="cr3"></span>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="q4">
+    <div class="question-header">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Query <code style="font-size:0.82em;background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--border)">SELECT Customer, Year(OrderDate), AVG(TotalSales) OVER (PARTITION BY Customer ORDER BY YEAR(OrderDate)) FROM Sales;</code> results in number of rows equal to:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="4" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Number of rows in the Sales table</span></label>
+      <label class="option"><input type="checkbox" data-q="4" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Unique years in Sales table</span></label>
+      <label class="option"><input type="checkbox" data-q="4" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Unique combination of customers and years in Sales table</span></label>
+      <label class="option"><input type="checkbox" data-q="4" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Unique customers in Sales table</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(4, this)">Check answer</button>
+      <span class="check-result" id="cr4"></span>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="q6">
+    <div class="question-header">
+      <div class="q-num">Q6</div>
+      <div class="q-text">The result of <code style="font-size:0.82em;background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--border)">SELECT Time, Product, AVG(Amount) FROM Sales GROUP BY CUBE (Time, Product)</code> is identical to:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="6" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Union of 2 GROUP BY statements</span></label>
+      <label class="option"><input type="checkbox" data-q="6" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Union of 3 GROUP BY statements</span></label>
+      <label class="option"><input type="checkbox" data-q="6" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Union of 4 GROUP BY statements</span></label>
+      <label class="option"><input type="checkbox" data-q="6" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Union of 1 GROUP BY statement</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(6, this)">Check answer</button>
+      <span class="check-result" id="cr6"></span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       PART B – OLTP / OLAP
+       Questions: Q1, Q2, Q5, Q7, Q8, Q9, Q17
+       ══════════════════════════════════════════════ -->
+  <div class="section-title" style="margin-top:3rem;">
+    <span class="part-badge">PART B</span>
+    OLTP / OLAP
+    <span class="part-count">7 questions</span>
+  </div>
+  <p class="section-subtitle">Mark all correct answers. Each question may have more than one correct answer.</p>
+
+  <!-- Q1 -->
+  <div class="question-card" id="q1">
+    <div class="question-header">
+      <div class="q-num">Q1</div>
+      <div class="q-text">OLAP relates to?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="1" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Automating clerical data processing tasks of an organization</span></label>
+      <label class="option"><input type="checkbox" data-q="1" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">On-line data storage system connected to the Internet</span></label>
+      <label class="option"><input type="checkbox" data-q="1" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Transactional system that collects business data</span></label>
+      <label class="option"><input type="checkbox" data-q="1" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Analytical system for reporting business data</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(1, this)">Check answer</button>
+      <span class="check-result" id="cr1"></span>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="q2">
+    <div class="question-header">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Operational operations focus mainly on:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="2" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Handling atomic transactions</span></label>
+      <label class="option"><input type="checkbox" data-q="2" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Performing scan focused read operations</span></label>
+      <label class="option"><input type="checkbox" data-q="2" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Very fast update of data</span></label>
+      <label class="option"><input type="checkbox" data-q="2" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Detailed and up-to-date data</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(2, this)">Check answer</button>
+      <span class="check-result" id="cr2"></span>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="q5">
+    <div class="question-header">
+      <div class="q-num">Q5</div>
+      <div class="q-text">What makes analysis of operational data difficult?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="5" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">High denormalization of source data structures</span></label>
+      <label class="option"><input type="checkbox" data-q="5" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Different modelling requirements for source data</span></label>
+      <label class="option"><input type="checkbox" data-q="5" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Inconsistent definitions of data in data sources</span></label>
+      <label class="option"><input type="checkbox" data-q="5" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">High stress on source data systems</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(5, this)">Check answer</button>
+      <span class="check-result" id="cr5"></span>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="q7">
+    <div class="question-header">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Data profiling involves collecting information about:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="7" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Data business rules</span></label>
+      <label class="option"><input type="checkbox" data-q="7" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Data descriptive statistics like min/max values</span></label>
+      <label class="option"><input type="checkbox" data-q="7" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Dimensional key implementation methods</span></label>
+      <label class="option"><input type="checkbox" data-q="7" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Fact table key implementation methods</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(7, this)">Check answer</button>
+      <span class="check-result" id="cr7"></span>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="q8">
+    <div class="question-header">
+      <div class="q-num">Q8</div>
+      <div class="q-text">A cell in a base cuboid is uniquely identified by:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="8" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">A single measure and all attributes from a single hierarchy</span></label>
+      <label class="option"><input type="checkbox" data-q="8" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">All measures and set of 'All' members from all dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="8" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Set of 'All' members from all dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="8" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">A key attribute from each dimension</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(8, this)">Check answer</button>
+      <span class="check-result" id="cr8"></span>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-card" id="q9">
+    <div class="question-header">
+      <div class="q-num">Q9</div>
+      <div class="q-text">A hierarchy in a dimensional model can be defined:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="9" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Between attributes of different dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="9" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Between different measures</span></label>
+      <label class="option"><input type="checkbox" data-q="9" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Between attributes from a single dimension with a self-join relation</span></label>
+      <label class="option"><input type="checkbox" data-q="9" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Between dimension's attributes with a strict n:n relationship</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(9, this)">Check answer</button>
+      <span class="check-result" id="cr9"></span>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="question-card" id="q17">
+    <div class="question-header">
+      <div class="q-num">Q17</div>
+      <div class="q-text">ROLAP architecture:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="17" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Is preferred for wide and deep data cubes</span></label>
+      <label class="option"><input type="checkbox" data-q="17" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Stores aggregated values using array-based storage structures</span></label>
+      <label class="option"><input type="checkbox" data-q="17" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Uses relational DBMSes to store and manage data</span></label>
+      <label class="option"><input type="checkbox" data-q="17" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Not tailored towards sparse cubes</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(17, this)">Check answer</button>
+      <span class="check-result" id="cr17"></span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       PART C – DW ARCHITECTURE & DATA MODELS
+       Questions: Q10, Q11, Q12, Q14, Q15, Q16, Q18,
+                  Q19, Q20, Q21, Q22, Q25, Q26, Q27,
+                  Q28, Q30, Q31, Q32
+       ══════════════════════════════════════════════ -->
+  <div class="section-title" style="margin-top:3rem;">
+    <span class="part-badge">PART C</span>
+    DW Architecture &amp; Data Models
+    <span class="part-count">18 questions</span>
+  </div>
+  <p class="section-subtitle">Mark all correct answers. Each question may have more than one correct answer.</p>
+
+  <!-- Q10 -->
+  <div class="question-card" id="q10">
+    <div class="question-header">
+      <div class="q-num">Q10</div>
+      <div class="q-text">In a snowflake schema:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="10" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">A fact table is not directly connected to at least one dimension table</span></label>
+      <label class="option"><input type="checkbox" data-q="10" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Multiple fact tables are directly connected to each other</span></label>
+      <label class="option"><input type="checkbox" data-q="10" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">A fact table is directly connected to each dimension table</span></label>
+      <label class="option"><input type="checkbox" data-q="10" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Multiple fact tables are connected through dimension tables to each other</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(10, this)">Check answer</button>
+      <span class="check-result" id="cr10"></span>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="question-card" id="q11">
+    <div class="question-header">
+      <div class="q-num">Q11</div>
+      <div class="q-text">Snowflake schema is typically used when:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="11" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Higher data redundancy in dimensional table is not an issue</span></label>
+      <label class="option"><input type="checkbox" data-q="11" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Fact table consists of multiple parallel hierarchies – to separate them</span></label>
+      <label class="option"><input type="checkbox" data-q="11" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Dimension table contains a group of attributes whose values are often missing – to separate them</span></label>
+      <label class="option"><input type="checkbox" data-q="11" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Dimension table has multiple levels (with multiple attributes each) in a hierarchy – to separate them</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(11, this)">Check answer</button>
+      <span class="check-result" id="cr11"></span>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="question-card" id="q12">
+    <div class="question-header">
+      <div class="q-num">Q12</div>
+      <div class="q-text">In a minimal schema to cover a simple request of analysing daily and hourly number of passing by sedan and SUV vehicles in different intersections we need <em>(do not count surrogate keys)</em>:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="12" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Fact table with 1 measure</span></label>
+      <label class="option"><input type="checkbox" data-q="12" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Snowflake schema with 5 dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="12" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Fact table with 2 measures</span></label>
+      <label class="option"><input type="checkbox" data-q="12" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Star schema with 3 dimension tables</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(12, this)">Check answer</button>
+      <span class="check-result" id="cr12"></span>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="question-card" id="q14">
+    <div class="question-header">
+      <div class="q-num">Q14</div>
+      <div class="q-text">Degenerate dimension:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="14" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Is used for attributes with low cardinality</span></label>
+      <label class="option"><input type="checkbox" data-q="14" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Is directly stored in a fact table</span></label>
+      <label class="option"><input type="checkbox" data-q="14" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Requires a new dimension table</span></label>
+      <label class="option"><input type="checkbox" data-q="14" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Is used for attributes with high cardinality</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(14, this)">Check answer</button>
+      <span class="check-result" id="cr14"></span>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="question-card" id="q15">
+    <div class="question-header">
+      <div class="q-num">Q15</div>
+      <div class="q-text">You are designing a DW using data from two sources: A (length in cm) and B (length in mm). The user wants to analyse using both scales. How would you handle this?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="15" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Keep original values – as there is only single version of truth</span></label>
+      <label class="option"><input type="checkbox" data-q="15" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Keep representation from system B in [mm] and transform values from system A</span></label>
+      <label class="option"><input type="checkbox" data-q="15" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Keep representation from system A in [cm] and transform values from system B</span></label>
+      <label class="option"><input type="checkbox" data-q="15" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Create two attributes: one in [cm] and one in [mm]</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(15, this)">Check answer</button>
+      <span class="check-result" id="cr15"></span>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="question-card" id="q16">
+    <div class="question-header">
+      <div class="q-num">Q16</div>
+      <div class="q-text">Dimensional design – the dimensional model should follow:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="16" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Solely the existing operational data model</span></label>
+      <label class="option"><input type="checkbox" data-q="16" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">The corporate data model and only consider the operational data model</span></label>
+      <label class="option"><input type="checkbox" data-q="16" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">The existing operational model and only consider the corporate data</span></label>
+      <label class="option"><input type="checkbox" data-q="16" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">It's a new model – shouldn't follow operational nor corporate models</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(16, this)">Check answer</button>
+      <span class="check-result" id="cr16"></span>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="question-card" id="q18">
+    <div class="question-header">
+      <div class="q-num">Q18</div>
+      <div class="q-text">Degenerate dimension:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="18" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Is best suited for attributes with a predefined set of low-cardinality attributes (like flags)</span></label>
+      <label class="option"><input type="checkbox" data-q="18" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Can be prepared outside of the ETL process</span></label>
+      <label class="option"><input type="checkbox" data-q="18" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Should be avoided and attributes should be treated as part of larger dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="18" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Should be stored inside of the fact table</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(18, this)">Check answer</button>
+      <span class="check-result" id="cr18"></span>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="question-card" id="q19">
+    <div class="question-header">
+      <div class="q-num">Q19</div>
+      <div class="q-text">While analysing the sales process, we should definitively separate Customer and Salesperson dimensions when:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="19" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Customer and Salesperson can only be studied in the context of a fact</span></label>
+      <label class="option"><input type="checkbox" data-q="19" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Customer and Salesperson need to be browseable</span></label>
+      <label class="option"><input type="checkbox" data-q="19" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Order is handled by multiple sales representatives (one for invoicing, one for shipping, etc.)</span></label>
+      <label class="option"><input type="checkbox" data-q="19" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Customer has a uniquely assigned sales representative</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(19, this)">Check answer</button>
+      <span class="check-result" id="cr19"></span>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="question-card" id="q20">
+    <div class="question-header">
+      <div class="q-num">Q20</div>
+      <div class="q-text">In a hotel room booking system – what could be a fact in this reality?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="20" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Hotel location</span></label>
+      <label class="option"><input type="checkbox" data-q="20" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Room price without tax</span></label>
+      <label class="option"><input type="checkbox" data-q="20" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Making a booking</span></label>
+      <label class="option"><input type="checkbox" data-q="20" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Time of check-out</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(20, this)">Check answer</button>
+      <span class="check-result" id="cr20"></span>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="question-card" id="q21">
+    <div class="question-header">
+      <div class="q-num">Q21</div>
+      <div class="q-text">In SCD Type 2:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="21" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Changes are tracked using separate columns and allow preserving limited history</span></label>
+      <label class="option"><input type="checkbox" data-q="21" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Surrogate keys are required to properly handle this SCD type</span></label>
+      <label class="option"><input type="checkbox" data-q="21" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">On change, overwrites old values with new values</span></label>
+      <label class="option"><input type="checkbox" data-q="21" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Tracks historical data by creating multiple versions of a record in the dimension table</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(21, this)">Check answer</button>
+      <span class="check-result" id="cr21"></span>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="question-card" id="q22">
+    <div class="question-header">
+      <div class="q-num">Q22</div>
+      <div class="q-text">User wants to analyse sales data based on a product's rating (evaluated yearly) in the past 3 years, comparing performance across different rating periods. Which SCD type should be used for rating attributes?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="22" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">SCD Type 0</span></label>
+      <label class="option"><input type="checkbox" data-q="22" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">SCD Type 1</span></label>
+      <label class="option"><input type="checkbox" data-q="22" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">SCD Type 2</span></label>
+      <label class="option"><input type="checkbox" data-q="22" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">SCD Type 3</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(22, this)">Check answer</button>
+      <span class="check-result" id="cr22"></span>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="question-card" id="q25">
+    <div class="question-header">
+      <div class="q-num">Q25</div>
+      <div class="q-text">Two dimensions fall into the same dimension table:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="25" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">If they are only related in one context</span></label>
+      <label class="option"><input type="checkbox" data-q="25" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">If they share a natural affinity</span></label>
+      <label class="option"><input type="checkbox" data-q="25" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">If they are related in multiple contexts</span></label>
+      <label class="option"><input type="checkbox" data-q="25" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">When relationships between them is determined by facts</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(25, this)">Check answer</button>
+      <span class="check-result" id="cr25"></span>
+    </div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="question-card" id="q26">
+    <div class="question-header">
+      <div class="q-num">Q26</div>
+      <div class="q-text">Assuming all attributes of a Location dimension are handled by SCD 0:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="26" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">All old values are replaced by new ones</span></label>
+      <label class="option"><input type="checkbox" data-q="26" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">It can be loaded outside of the ETL process</span></label>
+      <label class="option"><input type="checkbox" data-q="26" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">On refresh, all changes in the dimension values need to be handled</span></label>
+      <label class="option"><input type="checkbox" data-q="26" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Location dimension cannot be handled by SCD 0</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(26, this)">Check answer</button>
+      <span class="check-result" id="cr26"></span>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="question-card" id="q27">
+    <div class="question-header">
+      <div class="q-num">Q27</div>
+      <div class="q-text">To cover analysing monthly sales amount and quantity for apples, bananas, and pears in different branches, we need <em>(do not count IDs as attributes)</em>:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="27" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Star schema with 5 dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="27" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Snowflake schema with 4 dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="27" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Star or snowflake schema with 3 dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="27" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Fact table with a single measure and 3 foreign keys</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(27, this)">Check answer</button>
+      <span class="check-result" id="cr27"></span>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="question-card" id="q28">
+    <div class="question-header">
+      <div class="q-num">Q28</div>
+      <div class="q-text">"Report the monthly number and value of apples and oranges sold in different shops" – a simple multidimensional model requires <em>(do not count IDs as attributes)</em>:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="28" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Fact table with 1 measure</span></label>
+      <label class="option"><input type="checkbox" data-q="28" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Fact table with 2 measures</span></label>
+      <label class="option"><input type="checkbox" data-q="28" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Fact table with 3 foreign keys</span></label>
+      <label class="option"><input type="checkbox" data-q="28" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Fact table with 3 measures</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(28, this)">Check answer</button>
+      <span class="check-result" id="cr28"></span>
+    </div>
+  </div>
+
+  <!-- Schema reference box for Q30–32 -->
+  <div class="schema-box">
+    <div class="schema-title">Schema reference (Questions 30–32)</div>
+    <strong>Calendar:</strong> DateID, Date, DayOfMonth, DayOfWeek<br>
+    <strong>OrderStatus:</strong> OrderStatusID, StatusName<br>
+    <strong>Order (Fact):</strong> OrderID, OrderTimeID, ShipTimeID, OrderStatusID, CustomerID, ProductID, BrandID, EmployeeID, TotalAmount<br>
+    <strong>Customer:</strong> CustomerID, Name, Address1, Address2, Address3<br>
+    <strong>Brand:</strong> BrandID, BrandName (varchar 100), BrandType (varchar 10)<br>
+    <strong>Employee:</strong> EmployeeID, EmployeeName (varchar 50), EmployeeType (varchar 10)<br>
+    <strong>Supplier:</strong> SupplierID, SupplierName (varchar 200), SupplierType (varchar 100)<br>
+    <strong>Product:</strong> ProductID, ProductName (varchar 200), ProductPrice, ProductSupplierID<br>
+    <em style="color:var(--text-muted)">Relationships: 1 Supplier → * Products &nbsp;|&nbsp; 1 Product → * Orders &nbsp;|&nbsp; 1 Employee → * Orders</em>
+  </div>
+
+  <!-- Q30 -->
+  <div class="question-card" id="q30">
+    <div class="question-header">
+      <div class="q-num">Q30</div>
+      <div class="q-text">Assume the schema above – what are the requirements for such a schema?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="30" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">There is only a single context in which a Product relates to a Supplier</span></label>
+      <label class="option"><input type="checkbox" data-q="30" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">There is a natural affinity between a Supplier and a Product</span></label>
+      <label class="option"><input type="checkbox" data-q="30" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Only existence of a transaction defines a relation between a Supplier and a Product</span></label>
+      <label class="option"><input type="checkbox" data-q="30" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Supplier and Product are browseable</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(30, this)">Check answer</button>
+      <span class="check-result" id="cr30"></span>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="question-card" id="q31">
+    <div class="question-header">
+      <div class="q-num">Q31</div>
+      <div class="q-text">Mark sentences which are true for Kimball's approach:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="31" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Focuses around the notion of conformed dimensions</span></label>
+      <label class="option"><input type="checkbox" data-q="31" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Utilises normalized model for enterprise data warehouse</span></label>
+      <label class="option"><input type="checkbox" data-q="31" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Focuses on multidimensional model for the data warehouse</span></label>
+      <label class="option"><input type="checkbox" data-q="31" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Focuses on top-down approach – from data warehouse to data marts</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(31, this)">Check answer</button>
+      <span class="check-result" id="cr31"></span>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="question-card" id="q32">
+    <div class="question-header">
+      <div class="q-num">Q32</div>
+      <div class="q-text">Assume the schema above, where there are 1M orders, 10 different BrandNames and 2 different BrandTypes:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="32" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Bitmap index for BrandType has 10 bits</span></label>
+      <label class="option"><input type="checkbox" data-q="32" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Bitmap join index for BrandType is 2 binary vectors with 1M bits each</span></label>
+      <label class="option"><input type="checkbox" data-q="32" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Bitmap join index for BrandType has 10 bits</span></label>
+      <label class="option"><input type="checkbox" data-q="32" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Bitmap index for BrandType is 10 binary vectors with 2 bits each</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(32, this)">Check answer</button>
+      <span class="check-result" id="cr32"></span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       PART D – DATA INTEGRATION, REPORTING & VIS
+       Questions: Q13, Q23, Q24, Q29
+       ══════════════════════════════════════════════ -->
+  <div class="section-title" style="margin-top:3rem;">
+    <span class="part-badge">PART D</span>
+    Data Integration, Reporting &amp; Visualisation
+    <span class="part-count">4 questions</span>
+  </div>
+  <p class="section-subtitle">Mark all correct answers. Each question may have more than one correct answer.</p>
+
+  <!-- Q13 -->
+  <div class="question-card" id="q13">
+    <div class="question-header">
+      <div class="q-num">Q13</div>
+      <div class="q-text">What are the advantages of the Update Driven Approach?</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="13" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">High efficiency in processing highly aggregated data</span></label>
+      <label class="option"><input type="checkbox" data-q="13" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Offloading data processing to the design/maintenance stage</span></label>
+      <label class="option"><input type="checkbox" data-q="13" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Limited data redundancy</span></label>
+      <label class="option"><input type="checkbox" data-q="13" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Access to most current, up to date, data</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(13, this)">Check answer</button>
+      <span class="check-result" id="cr13"></span>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="question-card" id="q23">
+    <div class="question-header">
+      <div class="q-num">Q23</div>
+      <div class="q-text">Incremental load in a data warehouse requires:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="23" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Ability to create data warehouse structures</span></label>
+      <label class="option"><input type="checkbox" data-q="23" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Ability to identify data elements which have changed</span></label>
+      <label class="option"><input type="checkbox" data-q="23" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Ability to identify new dimensions and measures</span></label>
+      <label class="option"><input type="checkbox" data-q="23" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Ability to identify data elements which are new</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(23, this)">Check answer</button>
+      <span class="check-result" id="cr23"></span>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="question-card" id="q24">
+    <div class="question-header">
+      <div class="q-num">Q24</div>
+      <div class="q-text">Partial cube materialization is characterised by / requires:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="24" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Physical storage of each cell in each cuboid</span></label>
+      <label class="option"><input type="checkbox" data-q="24" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Additional mechanisms for cuboid selection</span></label>
+      <label class="option"><input type="checkbox" data-q="24" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">Best ETL performance</span></label>
+      <label class="option"><input type="checkbox" data-q="24" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">The least amount of storage needed</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(24, this)">Check answer</button>
+      <span class="check-result" id="cr24"></span>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="question-card" id="q29">
+    <div class="question-header">
+      <div class="q-num">Q29</div>
+      <div class="q-text">Mark situations in which an update-driven approach should be used:</div>
+    </div>
+    <div class="options">
+      <label class="option"><input type="checkbox" data-q="29" value="A"><div class="option-box"></div><span class="option-letter">A</span><span class="option-text">Data is periodically removed from the source systems</span></label>
+      <label class="option"><input type="checkbox" data-q="29" value="B"><div class="option-box"></div><span class="option-letter">B</span><span class="option-text">Fresh data is required</span></label>
+      <label class="option"><input type="checkbox" data-q="29" value="C"><div class="option-box"></div><span class="option-letter">C</span><span class="option-text">High query performance is required</span></label>
+      <label class="option"><input type="checkbox" data-q="29" value="D"><div class="option-box"></div><span class="option-letter">D</span><span class="option-text">Limited data redundancy is preferred</span></label>
+    </div>
+    <div class="question-footer">
+      <button class="btn-check" onclick="checkOne(29, this)">Check answer</button>
+      <span class="check-result" id="cr29"></span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       PART II – OPEN QUESTIONS
+       ══════════════════════════════════════════════ -->
+  <div class="section-title" style="margin-top:3rem;">
+    <span class="part-badge">PART II</span>
+    Open Questions
+    <span class="part-count" style="background:var(--surface-2);border-color:var(--border);color:var(--text-muted);">2 pts each</span>
+  </div>
+
+  <div class="question-card open-q" id="oq1">
+    <div class="question-header">
+      <div class="q-num">OQ1</div>
+      <div class="q-text">What are the key distinctions between measures and dimension attributes? Briefly justify your answer.</div>
+    </div>
+    <textarea placeholder="Write your answer here…"></textarea>
+  </div>
+
+  <div class="question-card open-q" id="oq2">
+    <div class="question-header">
+      <div class="q-num">OQ2</div>
+      <div class="q-text">Assume the schema above. How would you modify it to include information about an employee being associated with a particular Supplier (an employee can be associated with multiple suppliers)? Briefly justify your answer.</div>
+    </div>
+    <textarea placeholder="Write your answer here…"></textarea>
+  </div>
+
+  <div class="question-card open-q" id="oq3">
+    <div class="question-header">
+      <div class="q-num">OQ3</div>
+      <div class="q-text">Assume the schema above. How would you handle a situation (within an ETL process) in which an order is missing employee details (no employee information is available)? Briefly justify your answer.</div>
+    </div>
+    <textarea placeholder="Write your answer here…"></textarea>
+  </div>
+
+  <div class="question-card open-q" id="oq4">
+    <div class="question-header">
+      <div class="q-num">OQ4</div>
+      <div class="q-text">Name the fact type for each given example:</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Example (measures in brackets)</th>
+          <th style="width:200px;">Fact type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Student's class attendance <em>(no measures)</em></td>
+          <td><input type="text" placeholder="Your answer…" /></td>
+        </tr>
+        <tr>
+          <td>Support ticket handling <em>(time to refund)</em></td>
+          <td><input type="text" placeholder="Your answer…" /></td>
+        </tr>
+        <tr>
+          <td>Monthly account balance <em>(balance amount)</em></td>
+          <td><input type="text" placeholder="Your answer…" /></td>
+        </tr>
+        <tr>
+          <td>Football match summary <em>(number of yellow cards in a game)</em></td>
+          <td><input type="text" placeholder="Your answer…" /></td>
+        </tr>
+        <tr>
+          <td>Hourly traffic at a junction <em>(number of cars passing by)</em></td>
+          <td><input type="text" placeholder="Your answer…" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="btn btn-primary" onclick="submitExam()">Submit all answers</button>
+    <button class="btn" onclick="resetExam()">Reset</button>
+    <span class="progress-text" id="progress-text">0 / 32 answered</span>
+  </div>
+
+  <!-- Score panel -->
+  <div class="score-panel" id="score-panel">
+    <div class="score-grid">
+      <div class="score-metric">
+        <div class="val" id="score-correct">–</div>
+        <div class="lbl">Correct questions</div>
+      </div>
+      <div class="score-metric">
+        <div class="val" id="score-pct">–</div>
+        <div class="lbl">Score percentage</div>
+      </div>
+      <div class="score-metric">
+        <div class="val" id="score-points">–</div>
+        <div class="lbl">Estimated points</div>
+      </div>
+    </div>
+    <div class="grade-result" id="grade-result"></div>
+    <button class="review-toggle" onclick="scrollToFirst()">↓ Review incorrect answers</button>
+  </div>
+
+</div>
+
+<script>
+const ANSWERS = {
+  1: ['D'],
+  2: ['A','C','D'],
+  3: ['C','D'],
+  4: ['A'],
+  5: ['A','B','C','D'],
+  6: ['C'],
+  7: ['A','B'],
+  8: ['D'],
+  9: ['C'],
+  10: ['A'],
+  11: ['C','D'],
+  12: ['A','D'],
+  13: ['A','B'],
+  14: ['B','D'],
+  15: ['D'],
+  16: ['B'],
+  17: ['A','C'],
+  18: ['D'],
+  19: ['A','C'],
+  20: ['C'],
+  21: ['B','D'],
+  22: ['D'],
+  23: ['B','D'],
+  24: ['B'],
+  25: ['A','B'],
+  26: ['B'],
+  27: ['C'],
+  28: ['B','C'],
+  29: ['A','C'],
+  30: ['A','B','D'],
+  31: ['A','C'],
+  32: ['A','B']
+};
+
+const GRADES = [
+  [37, '5.0'], [34, '4.5'], [30, '4.0'], [26, '3.5'], [22, '3.0'], [0, '2.0']
+];
+
+// Track which questions have been individually checked
+const checked = new Set();
+let submitted = false;
+
+// Checkbox interaction
+document.querySelectorAll('.option input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    if (cb.disabled) return;
+    const label = cb.closest('.option');
+    if (cb.checked) label.classList.add('selected');
+    else label.classList.remove('selected');
+
+    const q = cb.dataset.q;
+    const card = document.getElementById('q' + q);
+    const any = [...document.querySelectorAll(`input[data-q="${q}"]`)].some(x => x.checked);
+    if (any) card.classList.add('answered');
+    else card.classList.remove('answered');
+
+    updateProgress();
+  });
+});
+
+function updateProgress() {
+  const answered = Object.keys(ANSWERS).filter(q =>
+    [...document.querySelectorAll(`input[data-q="${q}"]`)].some(x => x.checked)
+  ).length;
+  document.getElementById('progress-text').textContent = answered + ' / 32 answered';
+}
+
+// ── Per-question check ──────────────────────────────────────
+function checkOne(qNum, btn) {
+  if (submitted) return;
+
+  const correctOpts = ANSWERS[qNum];
+  const card = document.getElementById('q' + qNum);
+  const selected = [...document.querySelectorAll(`input[data-q="${qNum}"]:checked`)].map(x => x.value);
+  const isFullyCorrect = arrEqual(selected.slice().sort(), correctOpts.slice().sort());
+
+  // Colour options
+  document.querySelectorAll(`input[data-q="${qNum}"]`).forEach(cb => {
+    const label = cb.closest('.option');
+    cb.disabled = true;
+    label.classList.remove('selected');
+    const val = cb.value;
+    if (correctOpts.includes(val) && cb.checked) {
+      label.classList.add('correct-answer');
+    } else if (!correctOpts.includes(val) && cb.checked) {
+      label.classList.add('wrong-pick');
+    } else if (correctOpts.includes(val) && !cb.checked) {
+      label.classList.add('missed-answer');
+    }
+  });
+
+  // Card state
+  card.classList.remove('answered');
+  card.classList.add(isFullyCorrect ? 'correct' : 'incorrect');
+
+  // Inline result badge
+  const cr = document.getElementById('cr' + qNum);
+  cr.textContent = isFullyCorrect ? '✓ Correct' : '✗ Incorrect';
+  cr.className = 'check-result visible ' + (isFullyCorrect ? 'ok' : 'err');
+
+  // Disable button
+  btn.disabled = true;
+  btn.textContent = 'Checked';
+
+  checked.add(qNum);
+}
+
+// ── Full exam submit ────────────────────────────────────────
+function submitExam() {
+  if (submitted) return;
+  submitted = true;
+
+  let correct = 0;
+  let firstWrong = null;
+
+  Object.entries(ANSWERS).forEach(([qNum, correctOpts]) => {
+    const q = parseInt(qNum);
+    const card = document.getElementById('q' + qNum);
+
+    if (checked.has(q)) {
+      // Already graded individually — just count
+      if (card.classList.contains('correct')) correct++;
+      else if (!firstWrong) firstWrong = card;
+      return;
+    }
+
+    const selected = [...document.querySelectorAll(`input[data-q="${qNum}"]:checked`)].map(x => x.value);
+    const isFullyCorrect = arrEqual(selected.slice().sort(), correctOpts.slice().sort());
+
+    card.classList.remove('answered');
+    if (isFullyCorrect) {
+      card.classList.add('correct');
+      correct++;
+    } else {
+      card.classList.add('incorrect');
+      if (!firstWrong) firstWrong = card;
+    }
+
+    document.querySelectorAll(`input[data-q="${qNum}"]`).forEach(cb => {
+      const label = cb.closest('.option');
+      cb.disabled = true;
+      const val = cb.value;
+      label.classList.remove('selected');
+      if (correctOpts.includes(val) && cb.checked) {
+        label.classList.add('correct-answer');
+      } else if (!correctOpts.includes(val) && cb.checked) {
+        label.classList.add('wrong-pick');
+      } else if (correctOpts.includes(val) && !cb.checked) {
+        label.classList.add('missed-answer');
+      }
+    });
+
+    // Update check button state for unchecked questions
+    const btn = card.querySelector('.btn-check');
+    if (btn) { btn.disabled = true; btn.textContent = 'Checked'; }
+    const cr = document.getElementById('cr' + qNum);
+    if (cr) {
+      cr.textContent = isFullyCorrect ? '✓ Correct' : '✗ Incorrect';
+      cr.className = 'check-result visible ' + (isFullyCorrect ? 'ok' : 'err');
+    }
+  });
+
+  const pct = Math.round((correct / 32) * 100);
+  const points = Math.round((correct / 32) * 32);
+  const grade = GRADES.find(([min]) => points >= min)[1];
+
+  document.getElementById('score-correct').textContent = correct + '/32';
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('score-points').textContent = '~' + points + 'p';
+
+  const gradeEl = document.getElementById('grade-result');
+  if (parseFloat(grade) >= 4.0) {
+    gradeEl.style.background = 'var(--success-bg)';
+    gradeEl.style.color = 'var(--success)';
+    gradeEl.style.border = '1px solid var(--success-border)';
+  } else if (parseFloat(grade) >= 3.0) {
+    gradeEl.style.background = 'var(--warning-bg)';
+    gradeEl.style.color = 'var(--warning)';
+    gradeEl.style.border = '1px solid var(--warning-border)';
+  } else {
+    gradeEl.style.background = 'var(--danger-bg)';
+    gradeEl.style.color = 'var(--danger)';
+    gradeEl.style.border = '1px solid var(--danger-border)';
+  }
+  gradeEl.textContent = 'Estimated grade: ' + grade;
+
+  document.getElementById('score-panel').classList.add('visible');
+  document.getElementById('score-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window._firstWrong = firstWrong;
+}
+
+function scrollToFirst() {
+  if (window._firstWrong) window._firstWrong.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetExam() {
+  submitted = false;
+  checked.clear();
+
+  document.querySelectorAll('.option input[type=checkbox]').forEach(cb => {
+    cb.checked = false;
+    cb.disabled = false;
+    const label = cb.closest('.option');
+    label.classList.remove('selected','correct-answer','wrong-pick','missed-answer');
+  });
+
+  document.querySelectorAll('.question-card').forEach(c =>
+    c.classList.remove('answered','correct','incorrect')
+  );
+
+  document.querySelectorAll('.btn-check').forEach(btn => {
+    btn.disabled = false;
+    btn.textContent = 'Check answer';
+  });
+
+  document.querySelectorAll('.check-result').forEach(cr => {
+    cr.className = 'check-result';
+    cr.textContent = '';
+  });
+
+  document.getElementById('score-panel').classList.remove('visible');
+  document.getElementById('progress-text').textContent = '0 / 32 answered';
+  window._firstWrong = null;
+}
+
+function arrEqual(a, b) {
+  return a.length === b.length && a.every((v, i) => v === b[i]);
+}
+</script>
+</body>
+</html>

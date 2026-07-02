@@ -1,0 +1,404 @@
+TASK 4: DATA PROFILING: DOMAIN DATA DICTIONARY & QUALITY ASSESSMENT
+
+1 – DOMAIN DATA DICTIONARY
+------------------------------------------------------------------------------------
+
+--- File: DW2526-LAB-Rating.csv
+
+#  | Attribute       | Type             | Description
+---|-----------------|------------------|-------------------------------------------
+1  | reviewid        | Numerical, id    | Unique integer identifier for each
+   |                 |                  | questionnaire submission. Serves as the
+   |                 |                  | primary key of the dataset. Sequential
+   |                 |                  | integer starting at 1.
+---|-----------------|------------------|-------------------------------------------
+2  | productid       | Numerical, id    | Integer identifier referencing the product
+   |                 |                  | being rated. Foreign key linking to the
+   |                 |                  | Adventure Works product catalogue.
+---|-----------------|------------------|-------------------------------------------
+3  | date            | Date             | Date of questionnaire submission. Expected
+   |                 |                  | format: MM/DD/YYYY (e.g. "10/23/2011"),
+   |                 |                  | however a significant subset of values is
+   |                 |                  | stoR as Excel serial date numbers
+   |                 |                  | (e.g. "40765" = 11/15/2011).
+---|-----------------|------------------|-------------------------------------------
+4  | ratingWebsite   | Numerical, ratio | Customer rating of the Adventure Works
+   |                 |                  | website experience. Scale: 0.0 – 10.0
+   |                 |                  | (one decimal place).
+---|-----------------|------------------|-------------------------------------------
+5  | ratingShipping  | Numerical, ratio | Customer rating of the shipping/delivery
+   |                 |                  | process. Scale: 0.0 – 10.0 (one decimal
+   |                 |                  | place).
+---|-----------------|------------------|-------------------------------------------
+6  | ratingProduct   | Numerical, ratio | Customer rating of the purchased product
+   |                 |                  | quality. Scale: 0.1 – 10.0 (one decimal
+   |                 |                  | place, subject to floating-point
+   |                 |                  | representation issues).
+---|-----------------|------------------|-------------------------------------------
+7  | ratingOverall   | Numerical, ratio | Overall satisfaction rating. Appears to be
+   |                 |                  | derived as the arithmetic mean of
+   |                 |                  | ratingWebsite, ratingShipping, and
+   |                 |                  | ratingProduct. Range: ~0.77 – 9.77.
+---|-----------------|------------------|-------------------------------------------
+8  | gender          | Text, nominal    | Self-reported gender of the respondent.
+   |                 |                  | Expected values: (Female, Male). Dataset
+   |                 |                  | also contains: non-binary options
+   |                 |                  | (Bigender, Agender, Genderfluid,
+   |                 |                  | Polygender, Non-binary, Genderqueer),
+   |                 |                  | case variants (male, female), and
+   |                 |                  | coded unknowns (0, 1).
+---|-----------------|------------------|-------------------------------------------
+9  | email           | Text             | Email address of the respondent, pre-filled
+   |                 |                  | from their Adventure Cycles account.
+   |                 |                  | Format: user@domain (e.g. "user@gmail.com").
+   |                 |                  | Each value is unique per submission.
+---|-----------------|------------------|-------------------------------------------
+10 | job             | Text             | Job title of the respondent. Free-text field.
+   |                 |                  | Missing/unknown entries are represented as
+   |                 |                  | the string "0" rather than NULL.
+---|-----------------|------------------|-------------------------------------------
+11 | postCode        | Numerical, id    | Postal code of the respondent. Expected
+   |                 |                  | format: numeric postal code. In practice
+   |                 |                  | the field is uniformly 0 (either not
+   |                 |                  | collected or not populated).
+---|-----------------|------------------|-------------------------------------------
+12 | source          | Text, nominal    | Channel through which the user accessed the
+   |                 |                  | questionnaire or made the purchase.
+   |                 |                  | Values: (Twitter, TikTok, YouTube, Google,
+   |                 |                  | Bing, Facebook, Amazon, Other).
+---|-----------------|------------------|-------------------------------------------
+13 | didPurchase     | Boolean          | Indicates whether the user purchased a
+   |                 |                  | product before submitting the review.
+   |                 |                  | Expected values: (TRUE, FALSE / 1, 0),
+   |                 |                  | stoR inconsistently as mixed string
+   |                 |                  | "TRUE" or integer string "0".
+---|-----------------|------------------|-------------------------------------------
+14 | didRecommend    | Boolean          | Indicates whether the user recommended
+   |                 |                  | Adventure Cycles to others.
+   |                 |                  | Values: (1 = yes, 0 = no).
+---|-----------------|------------------|-------------------------------------------
+15 | isUsefull       | Numerical, ratio | Count of other users who found this review
+   |                 |                  | useful (upvote count). Range: 0 – 30+.
+   |                 |                  | Note: attribute name contains a spelling
+   |                 |                  | error ("Usefull" should be "Useful").
+---|-----------------|------------------|-------------------------------------------
+16 | userAgent       | Text             | HTTP User-Agent string of the browser/device
+   |                 |                  | used to submit the questionnaire. Contains
+   |                 |                  | browser name, version, and OS information.
+   |                 |                  | Format: standard UA string
+   |                 |                  | (e.g. "Mozilla/5.0 (Windows NT 6.1;...)").
+---|-----------------|------------------|-------------------------------------------
+17 | ip              | Text             | IPv4 address of the user at submission time.
+   |                 |                  | Used to join with the IPlocation dataset for
+   |                 |                  | geographic enrichment.
+   |                 |                  | Format: X.X.X.X (dotted decimal notation).
+
+
+--- File: DW2526-LAB-IPlocation.csv
+
+#  | Attribute   | Type           | Description
+---|-------------|----------------|----------------------------------------------
+1  | city        | Text           | Name of the city derived from IP geolocation.
+   |             |                | Free-text name of the city where the IP
+   |             |                | address is registeR.
+---|-------------|----------------|----------------------------------------------
+2  | country     | Text           | Full name of the country derived from IP
+   |             |                | geolocation (e.g. "United States", "France").
+---|-------------|----------------|----------------------------------------------
+3  | countrycode | Text, code     | ISO 3166-1 alpha-2 two-letter country code
+   |             |                | (e.g. "US", "FR", "CA", "DE", "GB").
+---|-------------|----------------|----------------------------------------------
+4  | continent   | Text, nominal  | Continent name for the IP address location.
+   |             |                | Values observed: (North America, Europe).
+---|-------------|----------------|----------------------------------------------
+5  | ip          | Text           | IPv4 address used as the primary key and
+   |             |                | foreign key linking to the Rating dataset.
+   |             |                | Format: X.X.X.X (dotted decimal notation).
+
+************************************************************************************
+
+2 – SIMPLIFIED QUALITY ASSESSMENT SHEET
+------------------------------------------------------------------------------------
+Label legend:
+  [G] = Can be used directly, no issues.
+  [O] = Requires additional treatment before use.
+  [R] = Cannot be used in current state; severe issues.
+  [?] = Uncertain; requires domain expert clarification.
+
+--- File: DW2526-LAB-Rating.csv
+
+#  | Attr.          | DB Type    | Data type | Unique | Nulls      | Quality Assessment
+---|----------------|------------|-----------|--------|------------|------------------------------
+1  | reviewid       | int        | nominal   | 1 249  | 0 (0.0%)   | [G] No issues. Values are
+   |                |            |           |        |            | unique and sequential for
+   |                |            |           |        |            | each record. Suitable as PK.
+---|----------------|------------|-----------|--------|------------|------------------------------
+2  | productid      | int        | nominal   | 262    | 0 (0.0%)   | [G] No issues. Consistent
+   |                |            |           |        |            | integer values. 262 distinct
+   |                |            |           |        |            | products rated across 1 249
+   |                |            |           |        |            | reviews. Suitable as FK.
+---|----------------|------------|-----------|--------|------------|------------------------------
+3  | date           | varchar    | interval  | 517    | 0 (0.0%)   | [O] Critical format
+   |                |            |           |        |            | inconsistency. Two distinct
+   |                |            |           |        |            | formats are present:
+   |                |            |           |        |            | (a) MM/DD/YYYY string
+   |                |            |           |        |            | (e.g. "10/23/2011") and
+   |                |            |           |        |            | (b) Excel serial integer
+   |                |            |           |        |            | (e.g. "40765"). Approx.
+   |                |            |           |        |            | 40-50% of records use the
+   |                |            |           |        |            | Excel serial format. Requires
+   |                |            |           |        |            | normalization before any
+   |                |            |           |        |            | time-based analysis. Severity:
+   |                |            |           |        |            | HIGH.
+---|----------------|------------|-----------|--------|------------|------------------------------
+4  | ratingWebsite  | decimal    | ratio     | 101    | 0 (0.0%)   | [G] No issues. Values
+   |                | (4,1)      |           |        |            | range consistently 0.0–10.0.
+   |                |            |           |        |            | Exactly 101 distinct values
+   |                |            |           |        |            | (0.0, 0.1, ..., 10.0).
+---|----------------|------------|-----------|--------|------------|------------------------------
+5  | ratingShipping | decimal    | ratio     | 101    | 0 (0.0%)   | [G] No issues. Same
+   |                | (4,1)      |           |        |            | characteristics as
+   |                |            |           |        |            | ratingWebsite. Values
+   |                |            |           |        |            | consistently 0.0–10.0.
+---|----------------|------------|-----------|--------|------------|------------------------------
+6  | ratingProduct  | float64    | ratio     | 150    | 0 (0.0%)   | [O] Minor floating-point
+   |                |            |           |        |            | precision artefacts present
+   |                |            |           |        |            | (e.g. 7.5999999 instead of
+   |                |            |           |        |            | 7.6). Range 0.1–10.0 is
+   |                |            |           |        |            | valid. Requires rounding to
+   |                |            |           |        |            | 1 decimal place before use.
+   |                |            |           |        |            | Severity: LOW.
+---|----------------|------------|-----------|--------|------------|------------------------------
+7  | ratingOverall  | float64    | ratio     | 646    | 0 (0.0%)   | [O] Appears derived as
+   |                |            |           |        |            | average of the three sub-
+   |                |            |           |        |            | ratings. Many distinct values
+   |                |            |           |        |            | due to floating-point division.
+   |                |            |           |        |            | Range ~0.77–9.77. If computed
+   |                |            |           |        |            | on-the-fly in reports, this
+   |                |            |           |        |            | column may be Rundant.
+   |                |            |           |        |            | Severity: LOW.
+---|----------------|------------|-----------|--------|------------|------------------------------
+8  | gender         | varchar    | nominal   | 12     | 0 (0.0%)   | [O] Severe inconsistency.
+   |                |            |           |        |            | Mixed case: "Male"/"male" (30
+   |                |            |           |        |            | records), "Female"/"female"
+   |                |            |           |        |            | (28 records). Coded unknowns:
+   |                |            |           |        |            | "0" (23 records), "1" (18
+   |                |            |           |        |            | records). Non-binary/other
+   |                |            |           |        |            | categories present (Bigender,
+   |                |            |           |        |            | Agender, Genderfluid,
+   |                |            |           |        |            | Polygender, Non-binary,
+   |                |            |           |        |            | Genderqueer) – ~16 records
+   |                |            |           |        |            | combined. Needs standardisation
+   |                |            |           |        |            | (case normalisation + mapping
+   |                |            |           |        |            | of "0"/"1"). Severity: HIGH.
+---|----------------|------------|-----------|--------|------------|------------------------------
+9  | email          | varchar    | nominal   | 1 249  | 0 (0.0%)   | [G] All values unique and
+   |                |            |           |        |            | follow standard email format
+   |                |            |           |        |            | (user@domain). Can be used as
+   |                |            |           |        |            | a natural user identifier.
+---|----------------|------------|-----------|--------|------------|------------------------------
+10 | job            | varchar    | nominal   | 187    | 0 (0.0%)   | [O] 97 records (7.8%)
+   |                |            |           |        |            | have the string "0" instead
+   |                |            |           |        |            | of a NULL or an explicit
+   |                |            |           |        |            | "Unknown" value. This
+   |                |            |           |        |            | placeholder must be mapped to
+   |                |            |           |        |            | NULL before categorical
+   |                |            |           |        |            | analysis. Severity: MEDIUM.
+---|----------------|------------|-----------|--------|------------|------------------------------
+11 | postCode       | float64    | nominal   | 1      | 26 (2.1%)  | [R] Entirely unusable.
+   |                |            |           |        |            | Only one distinct non-null
+   |                |            |           |        |            | value observed: 0.0 (across
+   |                |            |           |        |            | 1 223 records). 26 records are
+   |                |            |           |        |            | NULL. The field contains no
+   |                |            |           |        |            | meaningful geographic
+   |                |            |           |        |            | information. Should be
+   |                |            |           |        |            | excluded from analysis.
+   |                |            |           |        |            | Severity: EXTREME.
+---|----------------|------------|-----------|--------|------------|------------------------------
+12 | source         | varchar    | nominal   | 8      | 0 (0.0%)   | [G] No issues. Clean
+   |                |            |           |        |            | categorical field with 8
+   |                |            |           |        |            | well-defined values (Twitter,
+   |                |            |           |        |            | TikTok, YouTube, Google, Bing,
+   |                |            |           |        |            | Facebook, Amazon, Other).
+---|----------------|------------|-----------|--------|------------|------------------------------
+13 | didPurchase    | varchar    | nominal   | 2      | 0 (0.0%)   | [O] Boolean field stoR
+   |                |            |           |        |            | with inconsistent encoding:
+   |                |            |           |        |            | 391 records = "TRUE" (string),
+   |                |            |           |        |            | 858 records = "0" (string).
+   |                |            |           |        |            | Neither FALSE nor "1" appears.
+   |                |            |           |        |            | Must be normalised to a
+   |                |            |           |        |            | consistent boolean (0/1 or
+   |                |            |           |        |            | TRUE/FALSE). Severity: HIGH.
+---|----------------|------------|-----------|--------|------------|------------------------------
+14 | didRecommend   | int        | nominal   | 2      | 0 (0.0%)   | [G] Clean binary field.
+   |                |            |           |        |            | Values: 1 (recommended) and
+   |                |            |           |        |            | 0 (did not recommend). No
+   |                |            |           |        |            | issues; usable directly.
+---|----------------|------------|-----------|--------|------------|------------------------------
+15 | isUsefull      | int        | ratio     | 31     | 0 (0.0%)   | [O] Two issues: (1) the
+   |                |            |           |        |            | attribute name contains a
+   |                |            |           |        |            | spelling error ("Usefull"
+   |                |            |           |        |            | instead of "Useful");
+   |                |            |           |        |            | (2) the semantics are
+   |                |            |           |        |            | ambiguous – it appears to be
+   |                |            |           |        |            | an upvote count (range 0–30+),
+   |                |            |           |        |            | not a boolean flag, yet the
+   |                |            |           |        |            | name implies a yes/no field.
+   |                |            |           |        |            | Clarification needed before
+   |                |            |           |        |            | use. Severity: LOW-MEDIUM.
+---|----------------|------------|-----------|--------|------------|------------------------------
+16 | userAgent      | varchar    | nominal   | 447    | 0 (0.0%)   | [O] Raw technical string.
+   |                |            |           |        |            | Not directly usable as a
+   |                |            |           |        |            | dimension. Requires parsing
+   |                |            |           |        |            | to extract meaningful
+   |                |            |           |        |            | attributes (browser name, OS,
+   |                |            |           |        |            | device type). 447 unique
+   |                |            |           |        |            | values across 1 249 records
+   |                |            |           |        |            | confirm reuse. Severity: LOW.
+---|----------------|------------|-----------|--------|------------|------------------------------
+17 | ip             | varchar    | nominal   | 571    | 0 (0.0%)   | [G] IPv4 addresses in
+   |                |            |           |        |            | consistent dotted decimal
+   |                |            |           |        |            | format. 571 distinct IPs in
+   |                |            |           |        |            | 1 249 records indicates
+   |                |            |           |        |            | multiple reviews from the same
+   |                |            |           |        |            | IP (possible shaR networks).
+   |                |            |           |        |            | Usable as FK to IPlocation.
+
+
+--- File: DW2526-LAB-IPlocation.csv
+
+#  | Attr.       | DB Type    | Data type | Unique | Nulls    | Quality Assessment
+---|-------------|------------|-----------|--------|----------|-----------------------------
+1  | city        | varchar    | nominal   | 373    | 0 (0.0%) | [O] Contains clear
+   |             |            |           |        |          | typographical errors in city
+   |             |            |           |        |          | names, e.g. "Washingtn"
+   |             |            |           |        |          | (Washington), "Dalas"
+   |             |            |           |        |          | (Dallas). Exact error count
+   |             |            |           |        |          | requires manual validation
+   |             |            |           |        |          | against a reference list.
+   |             |            |           |        |          | Severity: MEDIUM.
+---|-------------|------------|-----------|--------|----------|-----------------------------
+2  | country     | varchar    | nominal   | 11     | 0 (0.0%) | [O] Contains at least
+   |             |            |           |        |          | one typo: "United Stats"
+   |             |            |           |        |          | instead of "United States".
+   |             |            |           |        |          | Only 11 distinct values
+   |             |            |           |        |          | (US, France, Canada, Germany,
+   |             |            |           |        |          | GB, and a few others). Must
+   |             |            |           |        |          | be corrected before grouping
+   |             |            |           |        |          | by country. Severity: MEDIUM.
+---|-------------|------------|-----------|--------|----------|-----------------------------
+3  | countrycode | char(2)    | nominal   | 6      | 0 (0.0%) | [G] Clean ISO 3166-1
+   |             |            |           |        |          | alpha-2 codes. No issues
+   |             |            |           |        |          | detected. 6 distinct codes
+   |             |            |           |        |          | consistent with observed
+   |             |            |           |        |          | countries. PreferR over
+   |             |            |           |        |          | 'country' for joins/filtering.
+---|-------------|------------|-----------|--------|----------|-----------------------------
+4  | continent   | varchar    | nominal   | 2      | 0 (0.0%) | [O] Only 2 distinct
+   |             |            |           |        |          | values: North America and
+   |             |            |           |        |          | Europe. While technically
+   |             |            |           |        |          | consistent, this extremely
+   |             |            |           |        |          | limited coverage may not
+   |             |            |           |        |          | reflect the actual user base.
+   |             |            |           |        |          | All 500 records fall into
+   |             |            |           |        |          | only these two continents,
+   |             |            |           |        |          | suggesting either a sampling
+   |             |            |           |        |          | bias or incomplete geolocation
+   |             |            |           |        |          | coverage. Severity: LOW.
+---|-------------|------------|-----------|--------|----------|-----------------------------
+5  | ip          | varchar    | nominal   | 500    | 0 (0.0%) | [G] All 500 values are
+   |             |            |           |        |          | unique. Consistent IPv4
+   |             |            |           |        |          | dotted-decimal format.
+   |             |            |           |        |          | Functions as PK of this table
+   |             |            |           |        |          | and FK link to Rating.ip.
+   |             |            |           |        |          | NOTE: The Rating table has
+   |             |            |           |        |          | 571 distinct IPs but this
+   |             |            |           |        |          | table only covers 500, meaning
+   |             |            |           |        |          | ~71 IPs in Rating have no
+   |             |            |           |        |          | matching location record.
+
+
+************************************************************************************
+
+3 – QUALITY ASSESSMENT CONCLUSIONS
+------------------------------------------------------------------------------------
+Total Records Assessed:
+  - DW2526-LAB-Rating.csv:     1 249 records, 17 attributes
+  - DW2526-LAB-IPlocation.csv:   500 records, 5  attributes
+  - TOTAL:                     1 749 records, 22 attributes
+
+Attribute Summary by Status:
+  - G (usable directly):          8 attributes
+  - O (requires treatment):       11 attributes
+  - R (cannot be used as-is):     1 attribute (postCode)
+  - TOTAL attributes with issues: 12 out of 22
+
+Number of Key Issues Identified: 10
+
+Overall Data Quality: MEDIUM-POOR – several attributes are directly usable, but
+a significant number of fields require cleaning or normalisation before they
+can be reliably used in reports or visualisations.
+
+--------------------------------------------------------------------------------
+KEY ISSUES (order by severity):
+--------------------------------------------------------------------------------
+
+1. [EXTREME] postCode (Rating) – Completely uninformative. 1 223 of 1 249
+   records contain the placeholder value 0, and 26 records are NULL. No
+   actual postal code data is present. This field must be excluded from all
+   analyses.
+
+2. [HIGH] date (Rating) – Mixed date formats. Approximately half the records
+   use a MM/DD/YYYY string and the other half use an Excel serial date integer.
+   This makes direct time-series analysis impossible without prior
+   normalisation. Both formats must be converted to a unified date type
+   (e.g. ISO 8601: YYYY-MM-DD).
+
+3. [HIGH] gender (Rating) – Multiple inconsistencies: case variants
+   (Male/male, Female/female), numeric placeholders for unknown (0, 1), and
+   additional non-binary categories. Requires a standardisation mapping:
+   lowercase normalisation, replacement of 0/1 with NULL or "Unknown", and
+   decision on whether to group non-binary categories.
+
+4. [HIGH] didPurchase (Rating) – Boolean field stoR as mixed types: the
+   string "TRUE" (391 records) vs. the string "0" (858 records). "FALSE" or
+   "1" never appear. Must be normalised to a consistent 0/1 or TRUE/FALSE
+   encoding.
+
+5. [MEDIUM] job (Rating) – 97 records (7.8%) use the string "0" as a
+   placeholder for a missing job title instead of NULL. These must be
+   converted to NULL before the field can be used as a categorical dimension.
+
+6. [MEDIUM] city (IPlocation) – Contains spelling errors in city names
+   (e.g. "Washingtn", "Dalas"). The exact count of affected records requires
+   validation against a reference list of city names. Cross-referencing with
+   countrycode or a geolocation API is recommended.
+
+7. [MEDIUM] country (IPlocation) – At least one confirmed typo: "United Stats"
+   instead of "United States". Recommend using 'countrycode' as the primary
+   grouping attribute for country-level analysis until the country name field
+   is fully validated and corrected.
+
+8. [LOW] ratingProduct (Rating) – Floating-point precision artefacts
+   (e.g. 7.5999999 instead of 7.6). Requires rounding to one decimal place
+   before display or aggregation.
+
+9. [LOW] ratingOverall (Rating) – Appears to be a derived field (average of
+   the three sub-ratings). If it is recomputed in PBI measures, storing it
+   in the source creates a risk of inconsistency. Recommend verifying whether
+   to use the stoR value or recalculate it.
+
+10. [LOW] isUsefull (Rating) – Attribute name contains a spelling error
+    ("Usefull" instead of "Useful"). Additionally, its semantics are unclear:
+    it behaves as a count (range 0–30+) but the name suggests a boolean flag.
+    Domain clarification needed; rename in the data model.
+
+--------------------------------------------------------------------------------
+ADDITIONAL NOTE – JOIN COVERAGE:
+  The ip field in Rating has 571 distinct values; the IPlocation table covers
+  only 500 unique IPs. This means approximately 71 IPs from Rating (~12% of
+  distinct IPs, affecting an unknown number of records) will produce NULL
+  location data on a LEFT JOIN. Geographic analysis will therefore be
+  incomplete and any aggregations by city/country will undercount.
+  Severity: MEDIUM.
+--------------------------------------------------------------------------------

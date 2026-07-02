@@ -1,0 +1,72 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|solutionrelative:Adventure Works DW2025.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|solutionrelative:Adventure Works DW2025.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Dim Customer.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{5BA2BD9C-B556-DEF4-AAF4-FC952572A547}|MultidimensionalProject1.dwproj|solutionrelative:Dim Customer.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Adventure Works DW2025.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.cube",
+              "RelativeDocumentMoniker": "Adventure Works DW2025.cube",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.cube [Design]",
+              "RelativeToolTip": "Adventure Works DW2025.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-26T09:38:17.693Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Customer.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Dim Customer.dim",
+              "RelativeDocumentMoniker": "Dim Customer.dim",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Dim Customer.dim [Design]",
+              "RelativeToolTip": "Dim Customer.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-26T09:34:18.862Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Adventure Works DW2025.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.dsv",
+              "RelativeDocumentMoniker": "Adventure Works DW2025.dsv",
+              "ToolTip": "C:\\Users\\alvaro\\Desktop\\alvaro\\wroclaw\\Data Warehouses\\Laboratory\\Lab07\\Tutorial\\MultidimensionalProject1\\Adventure Works DW2025.dsv [Design]",
+              "RelativeToolTip": "Adventure Works DW2025.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-26T09:32:43.928Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+  <style>
+    #diagram {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .mermaid {
+      background: transparent;
+    }
+
+    #legend {
+      max-width: 900px;
+      margin: 10px auto 30px auto;
+      font-family: "Anthropic Sans", sans-serif;
+      font-size: 13px;
+      color: #333;
+    }
+
+    #legend strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    #legend ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    #legend li {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="diagram"></div>
+
+  <script>
+    const diagramDef = `erDiagram
+    DIM_DATE ||--o{ FACT_TRANSACTION : "date_key"
+    DIM_BLOCK ||--o{ FACT_TRANSACTION : "block_key"
+    DIM_TX_TYPE ||--o{ FACT_TRANSACTION : "tx_type_key"
+    DIM_MARKET ||--o{ FACT_TRANSACTION : "market_key"
+
+    FACT_TRANSACTION {
+        int fact_tx_key "PK"
+        int date_key "FK"
+        int block_key "FK"
+        int tx_type_key "FK"
+        int market_key "FK"
+        string txid "DD"
+        int block_height "DD"
+        bigint fee_satoshis "M"
+        decimal fee_rate_sat_vbyte "M"
+        bigint input_value_sat "M"
+        bigint output_value_sat "M"
+        int tx_size_bytes "M"
+        int tx_weight_units "M"
+        decimal btc_price_usd_avg "M"
+        decimal input_value_usd "M"
+        decimal output_value_usd "M"
+        decimal fee_usd "M"
+        bigint market_cap_usd "M"
+        decimal fear_greed_score "M"
+    }
+
+    DIM_DATE {
+        int date_key PK
+        date full_date
+        int year
+        int quarter
+        int month
+        string month_name
+        string day_of_week
+        int week_num
+        boolean is_weekend
+        boolean is_holiday
+        string halving_era
+        int days_since_halving
+        bigint unix_timestamp_day
+    }
+
+    DIM_BLOCK {
+        int block_key PK
+        string difficulty_tier
+        string tx_count_tier
+        string size_tier
+        string halving_era
+        boolean is_epoch_bound
+    }
+
+    DIM_TX_TYPE {
+        int tx_type_key PK
+        boolean is_coinbase
+        boolean segwit_flag
+        string input_count_bucket
+        string output_count_bucket
+        string primary_script_type
+        boolean is_rbf_signalling
+        string size_tier
+    }
+
+    DIM_MARKET {
+        int market_key PK
+        string fear_greed_label
+        string fear_greed_bucket
+        string price_trend
+        string volatility_regime
+        string market_cap_tier
+        string btc_dominance_tier
+        string nvt_signal
+        string cycle_phase
+        int post_halving_months
+    }`;
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      fontFamily: '"Anthropic Sans", sans-serif',
+      themeVariables: {
+        darkMode: matchMedia('(prefers-color-scheme: dark)').matches,
+        fontSize: '13px',
+        fontFamily: '"Anthropic Sans", sans-serif',
+        lineColor: matchMedia('(prefers-color-scheme: dark)').matches ? '#9c9a92' : '#73726c',
+        textColor: '#000000',
+        primaryColor: '#E6F1FB',
+        primaryBorderColor: '#185FA5',
+        secondBkgColor: '#EAF3DE',
+        secondBorderColor: '#3B6D11',
+        tertiaryColor: '#FAEEDA',
+        tertiaryBorderColor: '#854F0B',
+      }
+    });
+
+    mermaid.render('erd', diagramDef).then(({ svg }) => {
+      const container = document.getElementById('diagram');
+      container.innerHTML = svg;
+
+      const svgElement = container.querySelector('svg');
+      if (svgElement) {
+        svgElement.setAttribute('width', '100%');
+      }
+    });
+  </script>
+  <div id="legend">
+    <strong>Legend:</strong>
+    <ul>
+      <li><b>PK</b> - Primary Key (surrogate identifier)</li>
+      <li><b>FK</b> - Foreign Key (reference to dimension)</li>
+      <li><b>DD</b> - Degenerate Dimension (stored in fact table)</li>
+      <li><b>M</b> - Measure (numeric attribute for aggregation)</li>
+    </ul>
+  </div>
+</body>
+
+</html>

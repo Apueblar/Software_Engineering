@@ -1,0 +1,189 @@
+==============================================================
+ BTC Data Warehouse Pipeline — HOW TO RUN
+ Project: Mini Project P3  |  Bitcoin Blockchain Analytics DW
+==============================================================
+
+PREREQUISITES
+-------------
+  - SQL Server instance running (LAPTOP-MKLCFCJJ or your own server)
+  - SQL Server ODBC Driver 17 installed
+  - Python 3.10+ installed and on PATH
+  - Internet access (pipeline calls mempool.space, Yahoo Finance,
+    Alternative.me, and CoinLore APIs)
+
+
+==============================================================
+STEP 1 — CREATE THE DATABASES  (run once, in SSMS)
+==============================================================
+
+Open SQL Server Management Studio (SSMS) and execute the two
+scripts below IN THIS ORDER:
+
+  1. P3\Implementation\01_staging_schema.sql
+       → Creates database:  BTC_Staging
+       → Creates tables:    STG_BLOCKS, STG_TRANSACTIONS,
+                            STG_TX_INPUTS, STG_TX_OUTPUTS,
+                            STG_MARKET_DAILY, STG_FEAR_GREED_RAW,
+                            STG_PIPELINE_LOG
+       → Creates views:     V_TX_INPUT_TOTALS, V_TX_OUTPUT_TOTALS,
+                            V_TX_PRIMARY_SCRIPT
+
+  2. P3\Implementation\02_dw_schema.sql
+       → Creates database:  BTC_DW
+       → Creates tables:    DIM_DATE, DIM_BLOCK, DIM_TX_TYPE,
+                            DIM_MARKET, FACT_TRANSACTION,
+                            ERR_QUALITY_REJECTS
+       → Seeds DIM_DATE with every calendar day from
+         2009-01-03 (Bitcoin genesis) through today.
+
+NOTE: Both scripts are idempotent — they can be re-run safely
+      without dropping existing data.
+
+
+==============================================================
+STEP 2 — INSTALL PYTHON DEPENDENCIES  (run once)
+==============================================================
+
+Open a PowerShell or Command Prompt window, navigate to the
+Implementation folder, and run:
+
+  cd ".\Implementation"
+
+  pip install -r requirements.txt
+
+Required packages: pyodbc, requests, schedule, pyyaml, yfinance
+
+
+==============================================================
+STEP 3 — CONFIGURE THE CONNECTION  (if needed)
+==============================================================
+
+Open config.yaml and verify the following two sections match
+your SQL Server instance:
+
+  database:
+    server:   "LAPTOP-MKLCFCJJ"   ← change if your server name differs
+    database: "BTC_Staging"
+    trusted_connection: "yes"     ← uses Windows Auth; change to
+    driver: "ODBC Driver 17 for SQL Server"    no + add username/password
+                                               if using SQL Auth
+
+  dw_database:
+    server:   "LAPTOP-MKLCFCJJ"   ← must be the SAME server as above
+    database: "BTC_DW"            ← so cross-DB references work
+    trusted_connection: "yes"
+    driver: "ODBC Driver 17 for SQL Server"
+
+IMPORTANT: Both databases must be on the same SQL Server instance
+           so that three-part-name queries (BTC_Staging.dbo.*)
+           executed from the BTC_DW connection resolve correctly.
+
+
+==============================================================
+STEP 4 — RUN THE PIPELINE
+==============================================================
+
+  Option A — Run once immediately (recommended for first run):
+
+    python btc_pipeline.py --run-now
+
+  Option B — Run on a recurring schedule (uses config.yaml interval):
+
+    python btc_pipeline.py --schedule
+
+  Option C — Run on a custom schedule interval:
+
+    python btc_pipeline.py --schedule --days 1   (every 1 day)
+    python btc_pipeline.py --schedule --days 7   (weekly)
+	
+==============================================================
+STEP -4* — RUN THE PIPELINE BACKWARDS
+==============================================================
+
+  Option A — Start / resume using blocks_per_run from config.yaml:
+
+    python btc_pipeline_backwards.py
+
+  Option B — Override batch size:
+
+    python btc_pipeline_backwards.py --batch-size 50    # safe/slow
+	python btc_pipeline_backwards.py --batch-size 500   # fast overnight run
+
+
+  Option Check Progress — Run on a custom schedule interval:
+
+    python btc_pipeline_backwards.py --status
+
+
+==============================================================
+WHAT THE PIPELINE DOES (6 steps, in order)
+==============================================================
+
+  Step 1/6  Blocks          Fetches Bitcoin blocks from mempool.space
+                            → BTC_Staging.dbo.STG_BLOCKS
+
+  Step 2/6  Transactions    Fetches all TXs for each new block
+                            → BTC_Staging.dbo.STG_TRANSACTIONS
+                              BTC_Staging.dbo.STG_TX_INPUTS
+                              BTC_Staging.dbo.STG_TX_OUTPUTS
+
+  Step 3/6  Market OHLCV   Fetches daily BTC price data from Yahoo
+                            Finance; computes 7-day moving average
+                            and 14-day realised volatility in Python
+                            → BTC_Staging.dbo.STG_MARKET_DAILY
+
+  Step 4/6  Fear & Greed   Fetches sentiment index from Alternative.me
+                            → merged into STG_MARKET_DAILY
+
+  Step 5/6  BTC Dominance  Fetches BTC market dominance from CoinLore
+                            → merged into STG_MARKET_DAILY
+
+  Step 6/6  DW Load        Loads from staging into the BTC_DW star schema:
+                            6a — extend DIM_DATE to today   (SCD Type 0)
+                            6b — load DIM_BLOCK             (SCD Type 0)
+                            6c — load DIM_TX_TYPE + DQ      (SCD Type 1)
+                            6d — load DIM_MARKET + DQ       (SCD Type 1)
+                            6e — load FACT_TRANSACTION
+                                 (3 DQ gates + surrogate key lookups
+                                  + 6 pre-computed columns stored)
+                            Rejects → BTC_DW.dbo.ERR_QUALITY_REJECTS
+
+
+==============================================================
+MONITORING & LOGS
+==============================================================
+
+  Log file:      P3\Implementation\btc_pipeline.log
+                 (all steps, row counts, warnings, and errors)
+
+  Pipeline runs: SELECT * FROM BTC_Staging.dbo.STG_PIPELINE_LOG
+                 ORDER BY run_ts DESC;
+
+  DQ rejects:    SELECT * FROM BTC_DW.dbo.ERR_QUALITY_REJECTS
+                 ORDER BY load_ts DESC;
+
+
+==============================================================
+VALIDATION QUERIES  (run in SSMS after the pipeline completes)
+==============================================================
+
+  -- These are included at the bottom of each SQL schema file:
+  --   01_staging_schema.sql  (sections 1–8)
+  --   02_dw_schema.sql       (sections 1–7, including FK check)
+
+  Quick sanity check:
+
+    SELECT COUNT(*), MIN([date]), MAX([date])
+    FROM BTC_DW.dbo.DIM_DATE;
+    -- Expected: ~5,998 rows, 2009-01-03 through today
+
+    SELECT COUNT(*) FROM BTC_DW.dbo.DIM_BLOCK;
+    SELECT COUNT(*) FROM BTC_DW.dbo.FACT_TRANSACTION;
+
+    -- FK integrity (all results must be 0):
+    SELECT 'Missing date_key',  COUNT(*)
+    FROM BTC_DW.dbo.FACT_TRANSACTION f
+    WHERE NOT EXISTS (SELECT 1 FROM BTC_DW.dbo.DIM_DATE d
+                      WHERE d.date_key = f.date_key);
+
+==============================================================

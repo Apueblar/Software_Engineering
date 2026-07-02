@@ -1,0 +1,639 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/4/2026 6:42:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-MKLCFCJJ"
+  DTS:CreatorName="LAPTOP-MKLCFCJJ\alvaro"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{7E74F38D-C99E-498A-90E4-650EEF8B05BF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="3082"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="03_Load"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{62C02972-61A6-4477-8422-495BDF64E508}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestStagConOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{24F21541-708D-4C66-BFD0-19D0D4A1F642}"
+      DTS:ObjectName="DestStagConOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-MKLCFCJJ;Initial Catalog=DWH_DB;Provider=MSOLEDBSQL19.1;Persist Security Info=False;Integrated Security=SSPI;Trust Server Certificate=True;Application Name=SSIS-03_Load-{24F21541-708D-4C66-BFD0-19D0D4A1F642}DestStagConOLEDB;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SrcStagConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ACC60CE2-34B6-442B-9DD5-33072402D940}"
+      DTS:ObjectName="SrcStagConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-MKLCFCJJ;User ID=;Initial Catalog=StagingDB;Provider=MSOLEDBSQL.1;Persist Security Info=False;Integrated Security=SSPI;Initial File Name=;Trust Server Certificate=True;Server SPN=;Authentication=;Access Token=;Application Name=SSIS-03_Load-{ACC60CE2-34B6-442B-9DD5-33072402D940}SourceConnectionOLEDB;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop Create ProductDIM DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop Create ProductDIM DWH"
+      DTS:DTSID="{28DE44E4-A110-405A-A25E-C361BC4F0A46}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Create ProductDIM DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.ProductDIM') IS NOT NULL DROP TABLE dbo.ProductDIM;&#xA;CREATE TABLE dbo.ProductDIM (&#xA;    ProductKey  INT IDENTITY PRIMARY KEY,&#xA;    ProductID   INT,&#xA;    ProductName NVARCHAR(200),&#xA;    SubcategoryName NVARCHAR(100),&#xA;    CategoryName    NVARCHAR(100),&#xA;    Color           NVARCHAR(50)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop Create SalesFact DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop Create SalesFact DWH"
+      DTS:DTSID="{E514076F-CBA8-429A-ADC5-FDA9000BEF31}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Create SalesFact DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.SalesFact') IS NOT NULL DROP TABLE dbo.SalesFact;&#xA;CREATE TABLE dbo.SalesFact (&#xA;    OrderDetailID  INT,&#xA;    ProductKey     INT,&#xA;    TimeKey        INT,&#xA;    SalesPersonKey INT,&#xA;    TerritoryKey   INT,&#xA;    Quantity       INT,&#xA;    UnitPrice      MONEY,&#xA;    TotalAmount    MONEY&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop Create SalesPersonDIM DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop Create SalesPersonDIM DWH"
+      DTS:DTSID="{6BAF44F1-86BB-4CF3-8322-5D039F5EBFCB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Create SalesPersonDIM DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.SalesPersonDIM') IS NOT NULL DROP TABLE dbo.SalesPersonDIM;&#xA;CREATE TABLE dbo.SalesPersonDIM (&#xA;    SalesPersonKey INT IDENTITY PRIMARY KEY,&#xA;    SalesPersonID  INT,&#xA;    FullName       NVARCHAR(200),&#xA;    TerritoryName  NVARCHAR(100)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop Create SalesTerritoryDIM DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop Create SalesTerritoryDIM DWH"
+      DTS:DTSID="{04A7C9EF-D89E-4D94-959D-4F20A090A5FB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Create SalesTerritoryDIM DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.SalesTerritoryDIM') IS NOT NULL DROP TABLE dbo.SalesTerritoryDIM;&#xA;CREATE TABLE dbo.SalesTerritoryDIM (&#xA;    TerritoryKey  INT IDENTITY PRIMARY KEY,&#xA;    TerritoryID   INT,&#xA;    TerritoryName NVARCHAR(100),&#xA;    CountryName   NVARCHAR(100),&#xA;    TerritoryGroup NVARCHAR(50)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Drop Create TimeDIM DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop Create TimeDIM DWH"
+      DTS:DTSID="{1E86495A-76FA-4F99-B65F-E588641FB296}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop Create TimeDIM DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.TimeDIM') IS NOT NULL DROP TABLE dbo.TimeDIM;&#xA;CREATE TABLE dbo.TimeDIM (&#xA;    TimeKey  INT IDENTITY PRIMARY KEY,&#xA;    FullDate DATE,&#xA;    Year     INT,&#xA;    Month    INT,&#xA;    Day      INT,&#xA;    Quarter  INT&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load ProductDIM to DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Load ProductDIM to DWH"
+      DTS:DTSID="{20BF5657-CB5B-4552-842E-3D27EF4AE9CE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load ProductDIM to DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.ProductDIM (ProductID, ProductName, SubcategoryName, CategoryName, Color)&#xA;SELECT ProductID, ProductName, SubcategoryName, CategoryName, Color&#xA;FROM StagingDB.dbo.ProductDIM;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load SalesFact to DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Load SalesFact to DWH"
+      DTS:DTSID="{1A557092-469C-4165-9C8D-C6F0C9E07889}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load SalesFact to DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.SalesFact&#xA;    (OrderDetailID, ProductKey, TimeKey, SalesPersonKey, TerritoryKey, Quantity, UnitPrice, TotalAmount)&#xA;SELECT OrderDetailID, ProductKey, TimeKey, SalesPersonKey, TerritoryKey, Quantity, UnitPrice, TotalAmount&#xA;FROM StagingDB.dbo.SalesFactStaging;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load SalesPersonDIM to DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Load SalesPersonDIM to DWH"
+      DTS:DTSID="{977D7AA2-694D-4558-9EFD-926CA53AE0D6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load SalesPersonDIM to DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.SalesPersonDIM (SalesPersonID, FullName, TerritoryName)&#xA;SELECT SalesPersonID, FullName, TerritoryName&#xA;FROM StagingDB.dbo.SalesPersonDIM;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load SalesTerritoryDIM to DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Load SalesTerritoryDIM to DWH"
+      DTS:DTSID="{BB554C57-004D-4BF1-A5A8-BC1D3F0CE9E1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load SalesTerritoryDIM to DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.SalesTerritoryDIM (TerritoryID, TerritoryName, CountryName, TerritoryGroup)&#xA;SELECT TerritoryID, TerritoryName, CountryName, TerritoryGroup&#xA;FROM StagingDB.dbo.SalesTerritoryDIM;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load TimeDIM to DWH"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Load TimeDIM to DWH"
+      DTS:DTSID="{DFFC2B75-D085-4817-8345-FFC7D272778B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load TimeDIM to DWH"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1C7B02A7-A805-4B77-AE52-592CEC1927EF}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.TimeDIM (FullDate, Year, Month, Day, Quarter)&#xA;SELECT FullDate, Year, Month, Day, Quarter&#xA;FROM StagingDB.dbo.TimeDIM;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{5D6F6EF4-6586-4ED4-8580-81803A2467E5}"
+      DTS:From="Package\Drop Create TimeDIM DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Load TimeDIM to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AE3E21F-A321-42B8-B12C-4CC98CE50103}"
+      DTS:From="Package\Drop Create SalesPersonDIM DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Load SalesPersonDIM to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF4F902C-BD33-469D-8E3B-41A8FB642519}"
+      DTS:From="Package\Drop Create SalesTerritoryDIM DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Load SalesTerritoryDIM to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{72974D38-519A-47CF-B783-B23466B6C675}"
+      DTS:From="Package\Drop Create SalesFact DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Load SalesFact to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{40F1F2DC-B276-4256-A88E-4AFC9ABFE8FF}"
+      DTS:From="Package\Load SalesTerritoryDIM to DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load SalesFact to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{51F34BE0-758A-4E2F-B029-16535F18BE92}"
+      DTS:From="Package\Load SalesPersonDIM to DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Load SalesFact to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{BFAB6F22-F6CF-4422-A558-AD3F5F06C6C5}"
+      DTS:From="Package\Load TimeDIM to DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Load SalesFact to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{FE44478F-1433-4A2A-85DD-FF1BBBDD515B}"
+      DTS:From="Package\Load ProductDIM to DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Load SalesFact to DWH" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{DFD80997-9877-402A-A132-384DC886DCC9}"
+      DTS:From="Package\Drop Create ProductDIM DWH"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Load ProductDIM to DWH" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Load SalesFact to DWH"
+          TopLeft="655.02313052127,567.109243207398" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="283.2,289">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="474.4,0"
+              Start="0,0"
+              End="466.9,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="466.9,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="404,336">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="356.8,0"
+              Start="0,0"
+              End="349.3,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="349.3,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="500,383.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="254.4,0"
+              Start="0,0"
+              End="246.9,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="246.9,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="552,456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.156463854604,111.109243207398"
+              Start="0,0"
+              End="137.156463854604,103.609243207398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.6030541398733" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,77.6030541398733"
+                    Point2="0,81.6030541398733"
+                    Point3="4,81.6030541398733" />
+                  <mssgle:LineSegment
+                    End="133.156463854604,81.6030541398733" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.156463854604,81.6030541398733"
+                    Point2="137.156463854604,81.6030541398733"
+                    Point3="137.156463854604,85.6030541398733" />
+                  <mssgle:LineSegment
+                    End="137.156463854604,103.609243207398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="863.2,403.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83.6435361453964,163.909243207398"
+              Start="0,0"
+              End="-83.6435361453964,156.409243207398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,93.5191127654099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,93.5191127654099"
+                    Point2="0,97.5191127654099"
+                    Point3="-4,97.5191127654099" />
+                  <mssgle:LineSegment
+                    End="-79.6435361453964,97.5191127654099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79.6435361453964,97.5191127654099"
+                    Point2="-83.6435361453964,97.5191127654099"
+                    Point3="-83.6435361453964,101.51911276541" />
+                  <mssgle:LineSegment
+                    End="-83.6435361453964,156.409243207398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="870.8,355.2">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-61.1102028120631,211.909243207398"
+              Start="0,0"
+              End="-61.1102028120631,204.409243207398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,151.634589409583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,151.634589409583"
+                    Point2="0,155.634589409583"
+                    Point3="-4,155.634589409583" />
+                  <mssgle:LineSegment
+                    End="-57.1102028120631,155.634589409583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-57.1102028120631,155.634589409583"
+                    Point2="-61.1102028120631,155.634589409583"
+                    Point3="-61.1102028120631,159.634589409583" />
+                  <mssgle:LineSegment
+                    End="-61.1102028120631,204.409243207398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="851.2,309.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-131.910202812063,257.509243207398"
+              Start="0,0"
+              End="-131.910202812063,250.009243207398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,149.207179992301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,149.207179992301"
+                    Point2="0,153.207179992301"
+                    Point3="-4,153.207179992301" />
+                  <mssgle:LineSegment
+                    End="-127.910202812063,153.207179992301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.910202812063,153.207179992301"
+                    Point2="-131.910202812063,153.207179992301"
+                    Point3="-131.910202812063,157.207179992301" />
+                  <mssgle:LineSegment
+                    End="-131.910202812063,250.009243207398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="857.6,264.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-108.17686947873,302.309243207398"
+              Start="0,0"
+              End="-108.17686947873,294.809243207398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,147.154621603699" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,147.154621603699"
+                    Point2="0,151.154621603699"
+                    Point3="-4,151.154621603699" />
+                  <mssgle:LineSegment
+                    End="-104.17686947873,151.154621603699" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-104.17686947873,151.154621603699"
+                    Point2="-108.17686947873,151.154621603699"
+                    Point3="-108.17686947873,155.154621603699" />
+                  <mssgle:LineSegment
+                    End="-108.17686947873,294.809243207398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="208.8,242.4">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="548.8,0"
+              Start="0,0"
+              End="541.3,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="541.3,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Drop Create SalesTerritoryDIM DWH"
+          TopLeft="265.704082186559,148.609243572039" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Drop Create ProductDIM DWH"
+          TopLeft="8.56122449631245,5.5" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Drop Create SalesPersonDIM DWH"
+          TopLeft="182.030612620685,102.72689067108" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Drop Create SalesFact DWH"
+          TopLeft="438.835715393799,199.960503981441" />
+        <NodeLayout
+          Size="156.8,42.4"
+          Id="Package\Drop Create TimeDIM DWH"
+          TopLeft="89.173469565874,53.5672268486235" />
+        <GroupLayout
+          Text="Group A"
+          ParentId="Package"
+          HeaderHeight="43.2"
+          IsExpanded="True"
+          PanelSize="646.4,305.6"
+          Size="646.4,348.8"
+          Id="72a5373b-47e5-4a3f-b944-79e7f3d02014"
+          TopLeft="37.6122449897338,171.302520778923">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Drop Create SalesTerritoryDIM DWH</s:String>
+            <s:String>Package\Drop Create ProductDIM DWH</s:String>
+            <s:String>Package\Drop Create SalesPersonDIM DWH</s:String>
+            <s:String>Package\Drop Create SalesFact DWH</s:String>
+            <s:String>Package\Drop Create TimeDIM DWH</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\Load SalesTerritoryDIM to DWH"
+          TopLeft="5.5,144.239495676709" />
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\Load SalesPersonDIM to DWH"
+          TopLeft="11.622448992625,96.1722688280854" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Load TimeDIM to DWH"
+          TopLeft="8.56122449631224,50.2899159271265" />
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Load ProductDIM to DWH"
+          TopLeft="8.56122449631238,5.5" />
+        <GroupLayout
+          Text="Group B"
+          ParentId="Package"
+          HeaderHeight="43.2"
+          IsExpanded="True"
+          PanelSize="236.8,192"
+          Size="236.8,235.2"
+          Id="fcd74b87-883e-4233-8e41-4fe2828b600d"
+          TopLeft="748.479593441759,174.723529237488">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Load SalesTerritoryDIM to DWH</s:String>
+            <s:String>Package\Load SalesPersonDIM to DWH</s:String>
+            <s:String>Package\Load TimeDIM to DWH</s:String>
+            <s:String>Package\Load ProductDIM to DWH</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

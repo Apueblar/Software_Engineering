@@ -1,0 +1,138 @@
+version: 2
+
+models:
+  # ── Task 3: Product ────────────────────────────────────────────────────────
+  - name: dim_product
+    description: >
+      Product dimension derived from Production.Product, enriched with
+      sub-category, category, weight class (standardised), and rating
+      aggregates from the external rating.csv file.
+    columns:
+      - name: product_key
+        description: Surrogate primary key (ROW_NUMBER over product_id)
+        data_tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: Natural key from AdventureWorks
+        data_tests:
+          - unique
+          - not_null
+      - name: weight_class
+        description: Derived weight category
+        data_tests:
+          - accepted_values:
+              values: ['Light', 'Medium', 'Heavy', 'Unknown']
+      - name: color
+        description: Standardised color; NULL replaced with 'N/A'
+        data_tests:
+          - not_null
+
+  # ── Task 4: Order Date ─────────────────────────────────────────────────────
+  - name: dim_order_date
+    description: >
+      Date dimension with one row per unique order date.
+      Includes day, month, quarter, half-year and year attributes.
+    columns:
+      - name: date_key
+        description: Integer date key in YYYYMMDD format
+        data_tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: Actual DATE value
+        data_tests:
+          - unique
+          - not_null
+      - name: quarter
+        description: Calendar quarter (1-4)
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+      - name: half_year
+        description: Calendar half (1 or 2)
+        data_tests:
+          - accepted_values:
+              values: [1, 2]
+
+  # ── Task 5: Salesperson ────────────────────────────────────────────────────
+  - name: dim_salesperson
+    description: >
+      Salesperson dimension; joins SalesPerson (quota/bonus/commission)
+      with Person (first/middle/last name).
+    columns:
+      - name: salesperson_key
+        description: Surrogate primary key
+        data_tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Computed full name (handles optional middle name)
+        data_tests:
+          - not_null
+
+  # ── Task 5: Sales Territory ────────────────────────────────────────────────
+  - name: dim_sales_territory
+    description: >
+      Sales territory dimension enriched with country name and continent
+      from Person.CountryRegion.
+    columns:
+      - name: territory_key
+        description: Surrogate primary key
+        data_tests:
+          - unique
+          - not_null
+      - name: territory_continent
+        description: Continent group (e.g. North America, Europe, Pacific)
+        data_tests:
+          - not_null
+
+  # ── Tasks 6 & 7: Fact Sales ───────────────────────────────────────────────
+  - name: fact_sales
+    description: >
+      Fact table at order-line grain. Contains USD measures (line_total)
+      and PLN-converted measures (line_total_pln) using daily NBP rates.
+      Includes rate_trend column ('Rising'/'Falling'/'Stable') for Task 7.
+    columns:
+      - name: sales_fact_key
+        description: Surrogate primary key for fact table
+        data_tests:
+          - unique
+          - not_null
+      - name: sales_order_id
+        description: Original order ID from SalesOrderHeader
+        data_tests:
+          - not_null
+      - name: product_key
+        description: FK → dim_product
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_key
+      - name: salesperson_key
+        description: FK → dim_salesperson
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_salesperson')
+              field: salesperson_key
+      - name: territory_key
+        description: FK → dim_sales_territory
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sales_territory')
+              field: territory_key
+      - name: date_key
+        description: FK → dim_order_date
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_order_date')
+              field: date_key
+      - name: rate_trend
+        description: Direction of USD/PLN rate relative to previous day
+        data_tests:
+          - accepted_values:
+              values: ['Rising', 'Falling', 'Stable']

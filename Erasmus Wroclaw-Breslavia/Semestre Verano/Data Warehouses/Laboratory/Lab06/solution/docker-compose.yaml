@@ -1,0 +1,52 @@
+services:
+  # 1. The Source Database: MSSQL Express
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    user: root # Required to ensure it can read the mounted backup volume
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Pass123
+      - MSSQL_PID=Developer
+    ports:
+      - "2433:1433"
+    volumes:
+      - ./backup:/var/opt/mssql/backup
+      - ./mssql-data:/var/opt/mssql/data  # Persistent data storage
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Pass123' -C -Q 'SELECT 1'"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # Workspace for dbt, dlt, and DuckDB
+# 2. The Transformation & Ingestion Environment (dbt + dlt + DuckDB)
+  # We use a python base to run both dlt and dbt.
+  data_tools:
+    build: .
+    container_name: data_tools
+    volumes:
+      - ./app:/app
+      - ./duckdb_files:/root/.duckdb # Persistence for DuckDB files
+    working_dir: /app
+    environment:
+      - MSSQL_HOST=sqlserver
+      - MSSQL_USER=sa
+      - MSSQL_PASSWORD=YourStrong!Pass123
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+  mssql-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-init
+    volumes:
+      - ./restore_db.sql:/restore_db.sql
+      - ./backup:/var/opt/mssql/backup
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    entrypoint: >
+      /bin/bash -c "
+      /opt/mssql-tools18/bin/sqlcmd -S sqlserver -U sa -P 'YourStrong!Pass123' -C -i /restore_db.sql;
+      echo 'Database Restore Complete.';"

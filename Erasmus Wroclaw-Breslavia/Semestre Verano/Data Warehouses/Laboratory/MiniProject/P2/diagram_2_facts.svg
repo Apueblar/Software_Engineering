@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Grid -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E293B" stroke-dasharray="2 2" stroke-width="0.5"/>
+    </pattern>
+    
+    <!-- Shadow and Glow Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Linear Gradients -->
+    <!-- Dimension Cards -->
+    <linearGradient id="dim-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="dim-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+    <linearGradient id="dim-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Fact Cards -->
+    <linearGradient id="fact-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#18130B" />
+    </linearGradient>
+    <linearGradient id="fact-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7931A" />
+      <stop offset="100%" stop-color="#B25900" />
+    </linearGradient>
+    <linearGradient id="fact-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F7931A" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#F7931A" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Staging Cards -->
+    <linearGradient id="stg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="stg-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <linearGradient id="stg-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.0" />
+    </linearGradient>
+
+    <!-- Error/Reject Cards -->
+    <linearGradient id="err-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#2D1A1A" />
+    </linearGradient>
+    <linearGradient id="err-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </linearGradient>
+    <linearGradient id="err-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Flow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#EF4444" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0EA5E9" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F7931A" />
+    </marker>
+  </defs>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap');
+    
+    /* Global Styles */
+    svg { background-color: #0F172A; font-family: 'Inter', system-ui, sans-serif; }
+    
+    /* Table Cards */
+    .dim-card { fill: url(#dim-grad); stroke: url(#dim-border); stroke-width: 1.5; filter: url(#shadow); }
+    .fact-card { fill: url(#fact-grad); stroke: url(#fact-border); stroke-width: 2; filter: url(#shadow); }
+    .stg-card { fill: url(#stg-grad); stroke: url(#stg-border); stroke-width: 1.5; filter: url(#shadow); }
+    .err-card { fill: url(#err-grad); stroke: url(#err-border); stroke-width: 2; filter: url(#shadow); }
+    
+    /* Headers */
+    .dim-header-bar { fill: url(#dim-header); }
+    .fact-header-bar { fill: url(#fact-header); }
+    .stg-header-bar { fill: url(#stg-header); }
+    .err-header-bar { fill: url(#err-header); }
+    
+    /* Text Styles */
+    .main-title { font-size: 20px; font-weight: 800; fill: #FFFFFF; letter-spacing: -0.5px; }
+    .subtitle { font-size: 12px; fill: #94A3B8; font-weight: 500; }
+    
+    .table-title { font-size: 13px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-subtitle { font-size: 9px; fill: #94A3B8; font-weight: 600; }
+    
+    .attr-pk { font-size: 11px; font-weight: 700; fill: #F59E0B; }
+    .attr-fk { font-size: 11px; font-weight: 700; fill: #38BDF8; }
+    .attr-normal { font-size: 11px; fill: #E2E8F0; font-weight: 500; }
+    .attr-type { font-size: 9.5px; fill: #64748B; font-weight: 600; }
+    .attr-group-title { font-size: 10px; font-weight: 800; fill: #475569; letter-spacing: 0.5px; }
+    
+    /* Lines */
+    .line { stroke: #334155; stroke-width: 1.5; fill: none; }
+    .rel-line { stroke: #475569; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .rel-line-glow { stroke: #38BDF8; stroke-width: 4; fill: none; stroke-opacity: 0.15; filter: url(#glow-blue); stroke-linecap: round; }
+    .rel-line-fact { stroke: #F7931A; stroke-width: 4; fill: none; stroke-opacity: 0.15; filter: url(#glow-orange); stroke-linecap: round; }
+  </style>
+
+  <!-- Background grid pattern -->
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Header Title -->
+  <g transform="translate(30, 45)" filter="url(#shadow)">
+    <text x="0" y="0" class="main-title"></text>
+  </g>
+
+    <g transform="translate(340, 20)" filter="url(#shadow)">
+      <rect width="520" height="60" rx="10" fill="#3B2306" fill-opacity="0.25" stroke="#F7931A" stroke-width="2" filter="url(#glow-orange)"/>
+      <text x="260" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="900" fill="#F7931A" letter-spacing="1px">BITCOIN DATA WAREHOUSE</text>
+      <text x="260" y="44" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">High Level ETL Map: Facts</text>
+    </g>
+    
+    <rect x="70" y="105" width="160" height="40" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="150.0" y="129" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#E2E8F0">STG_TRANSACTIONS</text>
+    
+    <rect x="265" y="105" width="160" height="40" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="345.0" y="129" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#E2E8F0">STG_BLOCKS</text>
+    
+    <rect x="460" y="105" width="180" height="40" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="550.0" y="129" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#E2E8F0">STG_MARKET_DAILY</text>
+    
+    <!-- Curved join paths for Column 1 -->
+    <path d="M 150.0 145 Q 150.0 185 355 185" fill="none" stroke="#F7931A" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M 345.0 145 Q 345.0 185 355 185" fill="none" stroke="#F7931A" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M 550.0 145 Q 550.0 185 355 185" fill="none" stroke="#F7931A" stroke-width="1.5" stroke-dasharray="3 3"/>
+    
+    <!-- Plus symbol at join point -->
+    <circle cx="355" cy="165" r="9" fill="#0B132B" stroke="#F7931A" stroke-width="1.5"/>
+    <text x="355" y="168.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="900" fill="#F7931A">+</text>
+    <line x1="355" y1="185" x2="355" y2="480" stroke="#F7931A" stroke-width="1.5" stroke-dasharray="3 3"/><line x1="355" y1="185" x2="355" y2="480" stroke="#F7931A" stroke-width="1.5" stroke-opacity="0.15" class="rel-line-fact"/>
+    <rect x="190" y="480" width="330" height="50" rx="8" fill="#0F172A" stroke="#F7931A" stroke-width="2" filter="url(#glow-orange)"/>
+    <text x="355.0" y="509" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">FACT_TRANSACTION</text>
+    
+        <circle cx="370" cy="216.5" r="3" fill="#F7931A"/>
+        <text x="380" y="220" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Inner join transactions and blocks on height (RI enforced)</text>
+        
+        <circle cx="370" cy="240.5" r="3" fill="#F7931A"/>
+        <text x="380" y="244" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Join daily market data on transaction date</text>
+        
+        <circle cx="370" cy="264.5" r="3" fill="#F7931A"/>
+        <text x="380" y="268" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Apply DQ gate validations (drop future or negative values)</text>
+        
+        <circle cx="370" cy="288.5" r="3" fill="#F7931A"/>
+        <text x="380" y="292" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Lookup surrogate keys: date_key, block_key, tx_type_key, market_key</text>
+        
+        <circle cx="370" cy="312.5" r="3" fill="#F7931A"/>
+        <text x="380" y="316" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Calculate Fee = inputs - outputs (Satoshi to BTC)</text>
+        
+        <circle cx="370" cy="336.5" r="3" fill="#F7931A"/>
+        <text x="380" y="340" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Derive Transaction Value &amp; Fee in USD using market price</text>
+        
+        <circle cx="370" cy="360.5" r="3" fill="#F7931A"/>
+        <text x="380" y="364" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Row auditing metadata &amp; SCD Type 1 target pipeline</text>
+        
+    <rect x="760" y="105" width="170" height="40" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="845.0" y="129" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#E2E8F0">STG_TRANSACTIONS</text>
+    
+    <rect x="970" y="105" width="160" height="40" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="1050.0" y="129" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="800" fill="#E2E8F0">STG_BLOCKS</text>
+    
+    <!-- Curved join paths for Column 2 -->
+    <path d="M 845.0 145 Q 845.0 185 890 185" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M 1050.0 145 Q 1050.0 185 890 185" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+    
+    <!-- Plus symbol at join point -->
+    <circle cx="890" cy="165" r="9" fill="#0B132B" stroke="#EF4444" stroke-width="1.5"/>
+    <text x="890" y="168.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="900" fill="#EF4444">+</text>
+    <line x1="890" y1="185" x2="890" y2="480" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <rect x="750" y="480" width="280" height="50" rx="8" fill="#0F172A" stroke="#EF4444" stroke-width="2" filter="url(#glow-red)"/>
+    <text x="890.0" y="509" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">ERR_QUALITY_REJECTS</text>
+    
+        <circle cx="905" cy="216.5" r="3" fill="#EF4444"/>
+        <text x="915" y="220" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Capture rejected transaction &amp; block records</text>
+        
+        <circle cx="905" cy="240.5" r="3" fill="#EF4444"/>
+        <text x="915" y="244" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Identify exact failed DQ gate pillar (Completeness, etc.)</text>
+        
+        <circle cx="905" cy="264.5" r="3" fill="#EF4444"/>
+        <text x="915" y="268" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Log error reason description &amp; source payload</text>
+        
+        <circle cx="905" cy="288.5" r="3" fill="#EF4444"/>
+        <text x="915" y="292" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Row auditing metadata</text>
+        
+        <circle cx="905" cy="312.5" r="3" fill="#EF4444"/>
+        <text x="915" y="316" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#E2E8F0">Append raw payload dump for structural debugging</text>
+        </svg>

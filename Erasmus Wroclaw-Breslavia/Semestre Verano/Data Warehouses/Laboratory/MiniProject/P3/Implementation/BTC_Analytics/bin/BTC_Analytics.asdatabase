@@ -1,0 +1,2906 @@
+﻿<Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>BTC_Analytics</ID>
+  <Name>BTC_Analytics</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <LastUpdate>0001-01-01T00:00:00Z</LastUpdate>
+  <DataSourceImpersonationInfo>
+    <ImpersonationMode>Default</ImpersonationMode>
+    <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
+  </DataSourceImpersonationInfo>
+  <Dimensions>
+    <Dimension>
+      <ID>DIM_DATE</ID>
+      <Name>DIM_DATE</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-393" scrolltop="-2878" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7874" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_DATE" left="-44" top="-2562" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000da120000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_DATE" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-393</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-2878</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>-44</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>-2562</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+          <Value>
+            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+              <Shapes NodeWidth="120">
+                <Shape Id="Date Key" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Date Key" />
+                    <Attribute Id="Date" />
+                  </Attributes>
+                  <Position x="20" y="20" />
+                </Shape>
+                <Shape Id="Halving Era" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Halving Era" />
+                  </Attributes>
+                  <Position x="175" y="20" />
+                </Shape>
+                <Shape Id="Day Of Week" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Day Of Week" />
+                  </Attributes>
+                  <Position x="175" y="69" />
+                </Shape>
+                <Shape Id="Is Weekend" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Is Weekend" />
+                  </Attributes>
+                  <Position x="330" y="69" />
+                </Shape>
+                <Shape Id="Day" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Day" />
+                  </Attributes>
+                  <Position x="175" y="118" />
+                </Shape>
+                <Shape Id="Month" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Month" />
+                  </Attributes>
+                  <Position x="330" y="118" />
+                </Shape>
+                <Shape Id="Quarter" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Quarter" />
+                  </Attributes>
+                  <Position x="485" y="118" />
+                </Shape>
+                <Shape Id="Year" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Year" />
+                  </Attributes>
+                  <Position x="640" y="118" />
+                </Shape>
+              </Shapes>
+            </DiagramLayout>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Source xsi:type="DataSourceViewBinding">
+        <DataSourceViewID>BTC_DSV</DataSourceViewID>
+      </Source>
+      <ErrorConfiguration>
+        <KeyNotFound>ReportAndStop</KeyNotFound>
+        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+      </ErrorConfiguration>
+      <CurrentStorageMode>Molap</CurrentStorageMode>
+      <Attributes>
+        <Attribute>
+          <ID>Date Key</ID>
+          <Name>Date Key</Name>
+          <Usage>Key</Usage>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>date_key</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Date</AttributeID>
+              <Name>Date</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Day</AttributeID>
+              <Name>Day</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Day Of Week</AttributeID>
+              <Name>Day Of Week</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Halving Era</AttributeID>
+              <Name>Halving Era</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Day Name</AttributeID>
+              <Name>Day Name</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Date</ID>
+          <Name>Date</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Date</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>date</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Day</ID>
+          <Name>Day</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>day</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>month</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>quarter</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>year</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_DATE</TableID>
+              <ColumnID>day</ColumnID>
+            </Source>
+          </NameColumn>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Month</AttributeID>
+              <Name>Month</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Month</ID>
+          <Name>Month</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>month</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>quarter</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>year</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_DATE</TableID>
+              <ColumnID>month</ColumnID>
+            </Source>
+          </NameColumn>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Quarter</AttributeID>
+              <Name>Quarter</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Quarter</ID>
+          <Name>Quarter</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>quarter</ColumnID>
+              </Source>
+            </KeyColumn>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>year</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_DATE</TableID>
+              <ColumnID>quarter</ColumnID>
+            </Source>
+          </NameColumn>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Year</AttributeID>
+              <Name>Year</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Year</ID>
+          <Name>Year</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>year</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Day Of Week</ID>
+          <Name>Day Of Week</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>day_of_week</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_DATE</TableID>
+              <ColumnID>day_of_week</ColumnID>
+            </Source>
+          </NameColumn>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Is Weekend</AttributeID>
+              <Name>Is Weekend</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Is Weekend</ID>
+          <Name>Is Weekend</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>is_weekend</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Halving Era</ID>
+          <Name>Halving Era</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>20</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>halving_era</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Day Name</ID>
+          <Name>Day Name</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>9</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_DATE</TableID>
+                <ColumnID>day_name</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy>
+          <ID>Hierarchy</ID>
+          <Name>Calendar</Name>
+          <Levels>
+            <Level>
+              <ID>Year</ID>
+              <Name>Year</Name>
+              <SourceAttributeID>Year</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Quarter</ID>
+              <Name>Quarter</Name>
+              <SourceAttributeID>Quarter</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Month</ID>
+              <Name>Month</Name>
+              <SourceAttributeID>Month</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Day</ID>
+              <Name>Day</Name>
+              <SourceAttributeID>Day</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+        <Hierarchy>
+          <ID>Hierarchy 1</ID>
+          <Name>Era</Name>
+          <Levels>
+            <Level>
+              <ID>Halving Era</ID>
+              <Name>Halving Era</Name>
+              <SourceAttributeID>Halving Era</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+        <Hierarchy>
+          <ID>Hierarchy 2</ID>
+          <Name>Weekday</Name>
+          <Levels>
+            <Level>
+              <ID>Is Weekend</ID>
+              <Name>Is Weekend</Name>
+              <SourceAttributeID>Is Weekend</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Day Of Week</ID>
+              <Name>Day Of Week</Name>
+              <SourceAttributeID>Day Of Week</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+      </Hierarchies>
+      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+    </Dimension>
+    <Dimension>
+      <ID>DIM BLOCK</ID>
+      <Name>DIM_BLOCK</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-393" scrolltop="-2791" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6414" y="10583" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_BLOCK" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_BLOCK" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-393</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-2791</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>20</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>0</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+          <Value>
+            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+              <Shapes NodeWidth="170">
+                <Shape Id="Block Key" Expanded="true">
+                  <Attributes>
+                    <Attribute Id="Block Key" />
+                    <Attribute Id="Block Hash" />
+                    <Attribute Id="Block Size Bytes" />
+                    <Attribute Id="Block Timestamp" />
+                    <Attribute Id="Block Weight Units" />
+                    <Attribute Id="Pool Name" />
+                    <Attribute Id="Pool Slug" />
+                  </Attributes>
+                  <Position x="20" y="20" />
+                </Shape>
+                <Shape Id="Block Height" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Block Height" />
+                  </Attributes>
+                  <Position x="237" y="20" />
+                </Shape>
+                <Shape Id="Block Difficulty" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Block Difficulty" />
+                  </Attributes>
+                  <Position x="455" y="20" />
+                </Shape>
+                <Shape Id="Difficulty Tier" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Difficulty Tier" />
+                  </Attributes>
+                  <Position x="672" y="20" />
+                </Shape>
+              </Shapes>
+            </DiagramLayout>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Source xsi:type="DataSourceViewBinding">
+        <DataSourceViewID>BTC_DSV</DataSourceViewID>
+      </Source>
+      <ErrorConfiguration>
+        <KeyNotFound>ReportAndStop</KeyNotFound>
+        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+      </ErrorConfiguration>
+      <CurrentStorageMode>Molap</CurrentStorageMode>
+      <Attributes>
+        <Attribute>
+          <ID>Block Key</ID>
+          <Name>Block Key</Name>
+          <Usage>Key</Usage>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_key</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Block Height</AttributeID>
+              <Name>Block Height</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Block Hash</AttributeID>
+              <Name>Block Hash</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Block Timestamp</AttributeID>
+              <Name>Block Timestamp</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Block Size Bytes</AttributeID>
+              <Name>Block Size Bytes</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Block Weight Units</AttributeID>
+              <Name>Block Weight Units</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Pool Name</AttributeID>
+              <Name>Pool Name</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Pool Slug</AttributeID>
+              <Name>Pool Slug</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Height</ID>
+          <Name>Block Height</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_height</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Block Difficulty</AttributeID>
+              <Name>Block Difficulty</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Hash</ID>
+          <Name>Block Hash</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>64</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_hash</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Timestamp</ID>
+          <Name>Block Timestamp</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Date</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_timestamp</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Size Bytes</ID>
+          <Name>Block Size Bytes</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_size_bytes</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Weight Units</ID>
+          <Name>Block Weight Units</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_weight_units</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Block Difficulty</ID>
+          <Name>Block Difficulty</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Double</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>block_difficulty</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Difficulty Tier</AttributeID>
+              <Name>Difficulty Tier</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Difficulty Tier</ID>
+          <Name>Difficulty Tier</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>DifficultyTierSort</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <DataSize>20</DataSize>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_BLOCK</TableID>
+              <ColumnID>difficulty_tier</ColumnID>
+            </Source>
+          </NameColumn>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Pool Name</ID>
+          <Name>Pool Name</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>100</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>pool_name</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Pool Slug</ID>
+          <Name>Pool Slug</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>100</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_BLOCK</TableID>
+                <ColumnID>pool_slug</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy>
+          <ID>Hierarchy</ID>
+          <Name>Difficulty</Name>
+          <Levels>
+            <Level>
+              <ID>Difficulty Tier</ID>
+              <Name>Difficulty Tier</Name>
+              <SourceAttributeID>Difficulty Tier</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Block Difficulty</ID>
+              <Name>Block Difficulty</Name>
+              <SourceAttributeID>Block Difficulty</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Block Height</ID>
+              <Name>Block Height</Name>
+              <SourceAttributeID>Block Height</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+      </Hierarchies>
+      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+    </Dimension>
+    <Dimension>
+      <ID>DIM_TX_TYPE</ID>
+      <Name>DIM_TX_TYPE</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-393" scrolltop="-3418" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6752" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_TX_TYPE" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000a30e0000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_TX_TYPE" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-393</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-3418</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>20</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>0</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+          <Value>
+            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+              <Shapes NodeWidth="146">
+                <Shape Id="Tx Type Key" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Tx Type Key" />
+                    <Attribute Id="Locktime Flag" />
+                    <Attribute Id="Locktime Marked" />
+                    <Attribute Id="Rbf Flag" />
+                    <Attribute Id="Rbf Marked" />
+                    <Attribute Id="Segwit Marked" />
+                  </Attributes>
+                  <Position x="20" y="20" />
+                </Shape>
+                <Shape Id="Script Type Desc" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Script Type Desc" />
+                  </Attributes>
+                  <Position x="207" y="20" />
+                </Shape>
+                <Shape Id="Coinbase Flag" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Coinbase Flag" />
+                  </Attributes>
+                  <Position x="207" y="69" />
+                </Shape>
+                <Shape Id="Coinbase Marked" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Coinbase Marked" />
+                  </Attributes>
+                  <Position x="395" y="69" />
+                </Shape>
+                <Shape Id="Segwit Flag" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Segwit Flag" />
+                  </Attributes>
+                  <Position x="207" y="118" />
+                </Shape>
+              </Shapes>
+            </DiagramLayout>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Source xsi:type="DataSourceViewBinding">
+        <DataSourceViewID>BTC_DSV</DataSourceViewID>
+      </Source>
+      <ErrorConfiguration>
+        <KeyNotFound>ReportAndStop</KeyNotFound>
+        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+      </ErrorConfiguration>
+      <CurrentStorageMode>Molap</CurrentStorageMode>
+      <Attributes>
+        <Attribute>
+          <ID>Tx Type Key</ID>
+          <Name>Tx Type Key</Name>
+          <Usage>Key</Usage>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>tx_type_key</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Segwit Flag</AttributeID>
+              <Name>Segwit Flag</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Coinbase Flag</AttributeID>
+              <Name>Coinbase Flag</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Rbf Flag</AttributeID>
+              <Name>Rbf Flag</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Locktime Flag</AttributeID>
+              <Name>Locktime Flag</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Script Type Desc</AttributeID>
+              <Name>Script Type Desc</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Segwit Marked</AttributeID>
+              <Name>Segwit Marked</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Rbf Marked</AttributeID>
+              <Name>Rbf Marked</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Locktime Marked</AttributeID>
+              <Name>Locktime Marked</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Script Type Desc</ID>
+          <Name>Script Type Desc</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>20</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>script_type_desc</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Segwit Flag</ID>
+          <Name>Segwit Flag</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>segwit_flag</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Coinbase Flag</ID>
+          <Name>Coinbase Flag</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>coinbase_flag</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Coinbase Marked</AttributeID>
+              <Name>Coinbase Marked</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Rbf Flag</ID>
+          <Name>Rbf Flag</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>rbf_flag</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Locktime Flag</ID>
+          <Name>Locktime Flag</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>locktime_flag</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Coinbase Marked</ID>
+          <Name>Coinbase Marked</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>3</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>coinbase_marked</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Segwit Marked</ID>
+          <Name>Segwit Marked</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>3</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>segwit_marked</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Rbf Marked</ID>
+          <Name>Rbf Marked</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>3</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>rbf_marked</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Locktime Marked</ID>
+          <Name>Locktime Marked</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>3</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_TX_TYPE</TableID>
+                <ColumnID>locktime_marked</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy>
+          <ID>Hierarchy</ID>
+          <Name>Script Evolution</Name>
+          <Levels>
+            <Level>
+              <ID>Script Type Desc</ID>
+              <Name>Script Type Desc</Name>
+              <SourceAttributeID>Script Type Desc</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Segwit Flag</ID>
+              <Name>Segwit Flag</Name>
+              <SourceAttributeID>Segwit Flag</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+        <Hierarchy>
+          <ID>Hierarchy 1</ID>
+          <Name>Transaction Class</Name>
+          <Levels>
+            <Level>
+              <ID>Script Type Desc</ID>
+              <Name>Script Type Desc</Name>
+              <SourceAttributeID>Script Type Desc</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Coinbase Flag</ID>
+              <Name>Coinbase Flag</Name>
+              <SourceAttributeID>Coinbase Flag</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Coinbase Marked</ID>
+              <Name>Coinbase Marked</Name>
+              <SourceAttributeID>Coinbase Marked</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+      </Hierarchies>
+      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+    </Dimension>
+    <Dimension>
+      <ID>DIM_MARKET</ID>
+      <Name>DIM_MARKET</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-97" scrolltop="-3058" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7303" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_MARKET" left="126" top="-2350" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="4297" height="4466" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000c910000072110000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_MARKET" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-97</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-3058</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>126</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>-2350</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+          <Value>
+            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+              <Shapes NodeWidth="200">
+                <Shape Id="Market Key" Expanded="true">
+                  <Attributes>
+                    <Attribute Id="Market Key" />
+                    <Attribute Id="Btc Dominance Percent" />
+                    <Attribute Id="Market Cap Usd" />
+                    <Attribute Id="Nvt Ratio" />
+                    <Attribute Id="Snapshot Date" />
+                    <Attribute Id="Volatility Index" />
+                  </Attributes>
+                  <Position x="20" y="20" />
+                </Shape>
+                <Shape Id="Fear Greed Score" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Fear Greed Score" />
+                  </Attributes>
+                  <Position x="275" y="20" />
+                </Shape>
+                <Shape Id="Fear Greed Label" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Fear Greed Label" />
+                  </Attributes>
+                  <Position x="530" y="20" />
+                </Shape>
+              </Shapes>
+            </DiagramLayout>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Source xsi:type="DataSourceViewBinding">
+        <DataSourceViewID>BTC_DSV</DataSourceViewID>
+      </Source>
+      <UnknownMember>Visible</UnknownMember>
+      <ErrorConfiguration>
+        <KeyNotFound>ReportAndStop</KeyNotFound>
+        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+      </ErrorConfiguration>
+      <CurrentStorageMode>Molap</CurrentStorageMode>
+      <Attributes>
+        <Attribute>
+          <ID>Market Key</ID>
+          <Name>Market Key</Name>
+          <Usage>Key</Usage>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <NullProcessing>UnknownMember</NullProcessing>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>market_key</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Snapshot Date</AttributeID>
+              <Name>Snapshot Date</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Fear Greed Score</AttributeID>
+              <Name>Fear Greed Score</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Btc Dominance Percent</AttributeID>
+              <Name>Btc Dominance Percent</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Market Cap Usd</AttributeID>
+              <Name>Market Cap Usd</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Volatility Index</AttributeID>
+              <Name>Volatility Index</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Nvt Ratio</AttributeID>
+              <Name>Nvt Ratio</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Snapshot Date</ID>
+          <Name>Snapshot Date</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Date</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>snapshot_date</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Fear Greed Score</ID>
+          <Name>Fear Greed Score</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>UnsignedTinyInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>fear_greed_score</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Fear Greed Label</AttributeID>
+              <Name>Fear Greed Label</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Fear Greed Label</ID>
+          <Name>Fear Greed Label</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Integer</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>FearGreedSort</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <DataSize>20</DataSize>
+            <Source xsi:type="ColumnBinding">
+              <TableID>dbo_DIM_MARKET</TableID>
+              <ColumnID>fear_greed_label</ColumnID>
+            </Source>
+          </NameColumn>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Btc Dominance Percent</ID>
+          <Name>Btc Dominance Percent</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Double</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>btc_dominance_percent</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Market Cap Usd</ID>
+          <Name>Market Cap Usd</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Double</DataType>
+              <NullProcessing>UnknownMember</NullProcessing>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>market_cap_usd</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Volatility Index</ID>
+          <Name>Volatility Index</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Double</DataType>
+              <NullProcessing>UnknownMember</NullProcessing>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>volatility_index</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Nvt Ratio</ID>
+          <Name>Nvt Ratio</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>Double</DataType>
+              <NullProcessing>UnknownMember</NullProcessing>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_DIM_MARKET</TableID>
+                <ColumnID>nvt_ratio</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <OrderBy>Key</OrderBy>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy>
+          <ID>Hierarchy</ID>
+          <Name>Sentiment</Name>
+          <Levels>
+            <Level>
+              <ID>Fear Greed Label</ID>
+              <Name>Fear Greed Label</Name>
+              <SourceAttributeID>Fear Greed Label</SourceAttributeID>
+            </Level>
+            <Level>
+              <ID>Fear Greed Score</ID>
+              <Name>Fear Greed Score</Name>
+              <SourceAttributeID>Fear Greed Score</SourceAttributeID>
+            </Level>
+          </Levels>
+        </Hierarchy>
+      </Hierarchies>
+      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+    </Dimension>
+  </Dimensions>
+  <Cubes>
+    <Cube>
+      <ID>BTC_DSV</ID>
+      <Name>BTC_Analytics_Cube</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3152" scrolltop="345" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="65" x="12467" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_DATE" left="6124" top="1721" logicalid="10" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000da120000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_DATE" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_MARKET" left="5828" top="13102" logicalid="11" controlid="2" masterid="0" hint1="0" hint2="0" width="4297" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000c9100000da120000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_MARKET" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_TX_TYPE" left="11381" top="7852" logicalid="12" controlid="3" masterid="0" hint1="0" hint2="0" width="3704" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000a30e0000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_TX_TYPE" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FACT_TRANSACTION" left="6124" top="7226" logicalid="13" controlid="4" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_FACT_TRANSACTION" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_BLOCK" left="584" top="7226" logicalid="14" controlid="5" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_DIM_BLOCK" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+              <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7577" top="6048" logicalid="15" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="1478" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobj>
+                    <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                  </ddsxmlobj>
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dataSet.Relations[FK_FACT_DATE]" vartype="8" />
+                    <property name="Virtual" value="0" vartype="11" />
+                    <property name="VisibleAP" value="0" vartype="3" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="4" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <point x="7976" y="6547" />
+                  <point x="7976" y="7226" />
+                </connector>
+              </ddscontrol>
+              <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7577" top="11926" logicalid="16" controlid="7" masterid="0" hint1="0" hint2="0" width="799" height="1676" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobj>
+                    <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                  </ddsxmlobj>
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dataSet.Relations[FK_FACT_MARKET]" vartype="8" />
+                    <property name="Virtual" value="0" vartype="11" />
+                    <property name="VisibleAP" value="0" vartype="3" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="4" sourceattachpoint="6" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <point x="7976" y="13102" />
+                  <point x="7976" y="12226" />
+                </connector>
+              </ddscontrol>
+              <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="9528" top="9326" logicalid="17" controlid="8" masterid="0" hint1="0" hint2="0" width="2153" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobj>
+                    <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                  </ddsxmlobj>
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dataSet.Relations[FK_FACT_TX_TYPE]" vartype="8" />
+                    <property name="Virtual" value="0" vartype="11" />
+                    <property name="VisibleAP" value="0" vartype="3" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="4" sourceattachpoint="20" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <point x="11381" y="9725" />
+                  <point x="10981" y="9725" />
+                  <point x="10981" y="9726" />
+                  <point x="9828" y="9726" />
+                </connector>
+              </ddscontrol>
+              <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3988" top="9327" logicalid="18" controlid="9" masterid="0" hint1="0" hint2="0" width="2436" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobj>
+                    <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                  </ddsxmlobj>
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dataSet.Relations[FK_FACT_BLOCK]" vartype="8" />
+                    <property name="Virtual" value="0" vartype="11" />
+                    <property name="VisibleAP" value="0" vartype="3" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="4" sourceattachpoint="23" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <point x="4288" y="9726" />
+                  <point x="6124" y="9726" />
+                </connector>
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-3152</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>345</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>584</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>1721</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>65</Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Dimensions>
+        <Dimension>
+          <ID>DIM_BLOCK</ID>
+          <Name>DIM_BLOCK</Name>
+          <DimensionID>DIM BLOCK</DimensionID>
+          <Attributes>
+            <Attribute>
+              <AttributeID>Block Key</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Height</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Hash</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Timestamp</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Size Bytes</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Weight Units</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Block Difficulty</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Difficulty Tier</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Pool Name</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Pool Slug</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        <Dimension>
+          <ID>DIM_MARKET</ID>
+          <Name>DIM_MARKET</Name>
+          <DimensionID>DIM_MARKET</DimensionID>
+          <Attributes>
+            <Attribute>
+              <AttributeID>Market Key</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Snapshot Date</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Fear Greed Score</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Fear Greed Label</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Btc Dominance Percent</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Market Cap Usd</AttributeID>
+              <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Volatility Index</AttributeID>
+              <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Nvt Ratio</AttributeID>
+              <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        <Dimension>
+          <ID>DIM_DATE</ID>
+          <Name>DIM_DATE</Name>
+          <DimensionID>DIM_DATE</DimensionID>
+          <Attributes>
+            <Attribute>
+              <AttributeID>Date Key</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Date</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Day</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Month</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Quarter</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Year</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Day Of Week</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Is Weekend</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Halving Era</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Day Name</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+            <Hierarchy>
+              <HierarchyID>Hierarchy 1</HierarchyID>
+            </Hierarchy>
+            <Hierarchy>
+              <HierarchyID>Hierarchy 2</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        <Dimension>
+          <ID>DIM_TX_TYPE</ID>
+          <Name>DIM_TX_TYPE</Name>
+          <DimensionID>DIM_TX_TYPE</DimensionID>
+          <Attributes>
+            <Attribute>
+              <AttributeID>Tx Type Key</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Script Type Desc</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Segwit Flag</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Coinbase Flag</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Rbf Flag</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Locktime Flag</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Coinbase Marked</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Segwit Marked</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Rbf Marked</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Locktime Marked</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+            <Hierarchy>
+              <HierarchyID>Hierarchy 1</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+      </Dimensions>
+      <Perspectives>
+        <Perspective>
+          <ID>Perspective</ID>
+          <Name>On-Chain Analyst</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Dimensions>
+            <Dimension>
+              <CubeDimensionID>DIM_DATE</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Day</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Day Of Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Is Weekend</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Halving Era</AttributeID>
+                </Attribute>
+              </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy</HierarchyID>
+                </Hierarchy>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy 1</HierarchyID>
+                </Hierarchy>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy 2</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>DIM_TX_TYPE</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Tx Type Key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Script Type Desc</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Segwit Flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Coinbase Flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Rbf Flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Locktime Flag</AttributeID>
+                </Attribute>
+              </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy</HierarchyID>
+                </Hierarchy>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy 1</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>DIM_MARKET</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Market Key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Snapshot Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fear Greed Score</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fear Greed Label</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Btc Dominance Percent</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Market Cap Usd</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Volatility Index</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Nvt Ratio</AttributeID>
+                </Attribute>
+              </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
+            </Dimension>
+          </Dimensions>
+          <MeasureGroups>
+            <MeasureGroup>
+              <MeasureGroupID>FACT TRANSACTION</MeasureGroupID>
+              <Measures>
+                <Measure>
+                  <MeasureID>FACT TRANSACTION Count</MeasureID>
+                </Measure>
+                <Measure>
+                  <MeasureID>Fee Usd</MeasureID>
+                </Measure>
+                <Measure>
+                  <MeasureID>Output Value Usd</MeasureID>
+                </Measure>
+                <Measure>
+                  <MeasureID>Tx Vsize Bytes</MeasureID>
+                </Measure>
+              </Measures>
+            </MeasureGroup>
+          </MeasureGroups>
+          <Calculations>
+            <Calculation>
+              <Name>[Measures].[Avg Fee Rate]</Name>
+              <Type>Member</Type>
+            </Calculation>
+            <Calculation>
+              <Name>[Measures].[Avg Fee Burden %]</Name>
+              <Type>Member</Type>
+            </Calculation>
+            <Calculation>
+              <Name>[Measures].[Avg IO Value Ratio]</Name>
+              <Type>Member</Type>
+            </Calculation>
+            <Calculation>
+              <Name>[Measures].[SegWit Share %]</Name>
+              <Type>Member</Type>
+            </Calculation>
+            <Calculation>
+              <Name>[Measures].[Coinbase Share %]</Name>
+              <Type>Member</Type>
+            </Calculation>
+          </Calculations>
+          <Kpis>
+            <Kpi>
+              <KpiID>KPI</KpiID>
+            </Kpi>
+          </Kpis>
+        </Perspective>
+      </Perspectives>
+      <MeasureGroups>
+        <MeasureGroup>
+          <ID>FACT TRANSACTION</ID>
+          <Name>FACT TRANSACTION</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Measures>
+            <Measure>
+              <ID>Fee Satoshis</ID>
+              <Name>Fee Satoshis</Name>
+              <Source>
+                <DataType>BigInt</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>fee_satoshis</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Fee Rate Sat Vbyte</ID>
+              <Name>Fee Rate Sat Vbyte</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>fee_rate_sat_vbyte</ColumnID>
+                </Source>
+              </Source>
+              <Visible>false</Visible>
+            </Measure>
+            <Measure>
+              <ID>Input Value Sat</ID>
+              <Name>Input Value Sat</Name>
+              <Source>
+                <DataType>BigInt</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>input_value_sat</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Output Value Sat</ID>
+              <Name>Output Value Sat</Name>
+              <Source>
+                <DataType>BigInt</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>output_value_sat</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Tx Size Bytes</ID>
+              <Name>Tx Size Bytes</Name>
+              <Source>
+                <DataType>Integer</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>tx_size_bytes</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Tx Weight Units</ID>
+              <Name>Tx Weight Units</Name>
+              <Source>
+                <DataType>Integer</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>tx_weight_units</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Input Value Usd</ID>
+              <Name>Input Value Usd</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>input_value_usd</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Output Value Usd</ID>
+              <Name>Output Value Usd</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>output_value_usd</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Fee Usd</ID>
+              <Name>Fee Usd</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>fee_usd</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Tx Vsize Bytes</ID>
+              <Name>Tx Vsize Bytes</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>tx_vsize_bytes</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Fee Burden Pct</ID>
+              <Name>Fee Burden Pct</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>fee_burden_pct</ColumnID>
+                </Source>
+              </Source>
+              <Visible>false</Visible>
+            </Measure>
+            <Measure>
+              <ID>Input Value Btc</ID>
+              <Name>Input Value Btc</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>input_value_btc</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Output Value Btc</ID>
+              <Name>Output Value Btc</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>output_value_btc</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Fee Btc</ID>
+              <Name>Fee Btc</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>fee_btc</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Io Value Ratio</ID>
+              <Name>Io Value Ratio</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                  <ColumnID>io_value_ratio</ColumnID>
+                </Source>
+              </Source>
+              <Visible>false</Visible>
+            </Measure>
+            <Measure>
+              <ID>FACT TRANSACTION Count</ID>
+              <Name>Transaction Count</Name>
+              <AggregateFunction>Count</AggregateFunction>
+              <Source>
+                <DataType>Integer</DataType>
+                <DataSize>4</DataSize>
+                <Source xsi:type="RowBinding">
+                  <TableID>dbo_FACT_TRANSACTION</TableID>
+                </Source>
+              </Source>
+            </Measure>
+          </Measures>
+          <StorageMode>Molap</StorageMode>
+          <ErrorConfiguration>
+            <KeyErrorLimit>-1</KeyErrorLimit>
+          </ErrorConfiguration>
+          <ProcessingMode>Regular</ProcessingMode>
+          <Dimensions>
+            <Dimension xsi:type="RegularMeasureGroupDimension">
+              <CubeDimensionID>DIM_BLOCK</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Block Key</AttributeID>
+                  <KeyColumns>
+                    <KeyColumn>
+                      <DataType>Integer</DataType>
+                      <Source xsi:type="ColumnBinding">
+                        <TableID>dbo_FACT_TRANSACTION</TableID>
+                        <ColumnID>block_key</ColumnID>
+                      </Source>
+                    </KeyColumn>
+                  </KeyColumns>
+                  <Type>Granularity</Type>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension xsi:type="RegularMeasureGroupDimension">
+              <CubeDimensionID>DIM_MARKET</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Market Key</AttributeID>
+                  <KeyColumns>
+                    <KeyColumn>
+                      <DataType>Integer</DataType>
+                      <NullProcessing>UnknownMember</NullProcessing>
+                      <Source xsi:type="ColumnBinding">
+                        <TableID>dbo_FACT_TRANSACTION</TableID>
+                        <ColumnID>market_key</ColumnID>
+                      </Source>
+                    </KeyColumn>
+                  </KeyColumns>
+                  <Type>Granularity</Type>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension xsi:type="RegularMeasureGroupDimension">
+              <CubeDimensionID>DIM_DATE</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Date Key</AttributeID>
+                  <KeyColumns>
+                    <KeyColumn>
+                      <DataType>Integer</DataType>
+                      <Source xsi:type="ColumnBinding">
+                        <TableID>dbo_FACT_TRANSACTION</TableID>
+                        <ColumnID>date_key</ColumnID>
+                      </Source>
+                    </KeyColumn>
+                  </KeyColumns>
+                  <Type>Granularity</Type>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension xsi:type="RegularMeasureGroupDimension">
+              <CubeDimensionID>DIM_TX_TYPE</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Tx Type Key</AttributeID>
+                  <KeyColumns>
+                    <KeyColumn>
+                      <DataType>Integer</DataType>
+                      <Source xsi:type="ColumnBinding">
+                        <TableID>dbo_FACT_TRANSACTION</TableID>
+                        <ColumnID>tx_type_key</ColumnID>
+                      </Source>
+                    </KeyColumn>
+                  </KeyColumns>
+                  <Type>Granularity</Type>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <Partitions>
+            <Partition>
+              <ID>FACT TRANSACTION</ID>
+              <Name>FACT TRANSACTION</Name>
+              <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+              <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+              <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+              <State>Unprocessed</State>
+              <Source xsi:type="DsvTableBinding">
+                <DataSourceViewID>BTC_DSV</DataSourceViewID>
+                <TableID>dbo_FACT_TRANSACTION</TableID>
+              </Source>
+              <StorageMode>Molap</StorageMode>
+              <CurrentStorageMode>Molap</CurrentStorageMode>
+              <ProcessingMode>Regular</ProcessingMode>
+            </Partition>
+          </Partitions>
+        </MeasureGroup>
+      </MeasureGroups>
+      <Source>
+        <DataSourceViewID>BTC_DSV</DataSourceViewID>
+      </Source>
+      <MdxScripts>
+        <MdxScript>
+          <ID>MdxScript</ID>
+          <Name>MdxScript</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Commands>
+            <Command>
+              <Text>CALCULATE;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Fee Sustainability Previous Month] AS
+    (
+        [Measures].[Fee Btc],
+        ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+    )
+    /
+    (
+        (
+            [Measures].[Output Value Btc],
+            ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+        )
+        +
+        (
+            [Measures].[Fee Btc],
+            ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+        )
+    ) * 100,
+    FORMAT_STRING = "0.00",
+    VISIBLE = 0;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg Fee Rate] AS
+    [Measures].[Fee Rate Sat Vbyte] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.00",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg Fee Burden %] AS
+    [Measures].[Fee Burden Pct] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.00",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg IO Value Ratio] AS
+    [Measures].[Io Value Ratio] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.0000",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[SegWit Share %]
+ AS Sum(
+        Filter(
+            [DIM_TX_TYPE].[Script Evolution].[Segwit Flag].MEMBERS,
+            [DIM_TX_TYPE].[Script Evolution].CurrentMember.Properties("Key") = "1"
+        ),
+        [Measures].[Transaction Count]
+    ) / [Measures].[Transaction Count] * 100, 
+FORMAT_STRING = "#,##0.00", 
+VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Coinbase Share %]
+ AS Sum(
+        Filter(
+            [DIM_TX_TYPE].[Transaction Class].[Coinbase Flag].MEMBERS,
+            [DIM_TX_TYPE].[Transaction Class].CurrentMember.Properties("Key") = "1"
+        ),
+        [Measures].[Transaction Count]
+    ) / [Measures].[Transaction Count] * 100, 
+FORMAT_STRING = "#,##0.00", 
+VISIBLE = 1; </Text>
+            </Command>
+          </Commands>
+        </MdxScript>
+      </MdxScripts>
+      <Kpis>
+        <Kpi>
+          <ID>KPI</ID>
+          <Name>Network Fee Sustainability</Name>
+          <Value>[Measures].[Fee Btc] / ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100</Value>
+          <Goal>5.0</Goal>
+          <Status>CASE
+    WHEN IsEmpty([Measures].[Fee Btc]) 
+    THEN -1
+    WHEN [Measures].[Fee Btc] / 
+         ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100 &lt; 1 
+    THEN -1
+    WHEN [Measures].[Fee Btc] / 
+         ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100 &lt;= 5 
+    THEN 0
+    ELSE 1
+END</Status>
+          <Trend>CASE
+    WHEN IsEmpty([Measures].[Fee Btc]) 
+    THEN 0
+    WHEN 
+        [Measures].[Fee Btc] / ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100
+        &gt;
+        [Measures].[Fee Sustainability Previous Month]
+    THEN 1
+    ELSE -1
+END</Trend>
+          <TrendGraphic>Smiley Face</TrendGraphic>
+          <StatusGraphic>Gauge - Ascending</StatusGraphic>
+        </Kpi>
+      </Kpis>
+    </Cube>
+  </Cubes>
+  <DataSources>
+    <DataSource xsi:type="RelationalDataSource">
+      <ID>BTC_DW</ID>
+      <Name>BTC_DW</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <ConnectionString>Data Source=LAPTOP-MKLCFCJJ;Initial Catalog=BTC_DW;Integrated Security=True;Trust Server Certificate=True</ConnectionString>
+      <ConnectionStringSecurity>Unchanged</ConnectionStringSecurity>
+      <ImpersonationInfo>
+        <ImpersonationMode>Default</ImpersonationMode>
+        <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
+      </ImpersonationInfo>
+      <ManagedProvider>Microsoft.Data.SqlClient</ManagedProvider>
+      <Timeout>PT0S</Timeout>
+    </DataSource>
+  </DataSources>
+  <DataSourceViews>
+    <DataSourceView>
+      <ID>BTC_DSV</ID>
+      <Name>BTC_DSV</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+          <Value>_ALL_TABLES_</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+          <Value>
+            <Layouts xmlns="">
+              <Diagram>
+                <Name>_ALL_TABLES_</Name>
+                <DiagramLayout>
+                  <dds>
+                    <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="1598" scrolltop="2013" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="13060" y="16658" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                      <font>
+                        <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+                      </font>
+                      <mouseicon>
+                        <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                      </mouseicon>
+                    </diagram>
+                    <layoutmanager>
+                      <ddsxmlobj />
+                    </layoutmanager>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_BLOCK" left="6104" top="0" logicalid="10" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_DIM_BLOCK" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_DATE" left="12208" top="7487" logicalid="11" controlid="2" masterid="0" hint1="0" hint2="0" width="3704" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000da120000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_DIM_DATE" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_MARKET" left="5808" top="14800" logicalid="12" controlid="3" masterid="0" hint1="0" hint2="0" width="4297" height="4466" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="000e0000c910000072110000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_DIM_MARKET" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_TX_TYPE" left="0" top="8026" logicalid="13" controlid="4" masterid="0" hint1="0" hint2="0" width="3704" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000a30e0000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_DIM_TX_TYPE" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FACT_TRANSACTION" left="6104" top="7400" logicalid="14" controlid="5" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_FACT_TRANSACTION" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                    <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7557" top="4501" logicalid="15" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobj>
+                          <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                        </ddsxmlobj>
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dataSet.Relations[FK_FACT_BLOCK]" vartype="8" />
+                          <property name="Virtual" value="0" vartype="11" />
+                          <property name="VisibleAP" value="0" vartype="3" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="5" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                        <point x="7956" y="5000" />
+                        <point x="7956" y="7400" />
+                      </connector>
+                    </ddscontrol>
+                    <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7557" top="12100" logicalid="16" controlid="7" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobj>
+                          <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                        </ddsxmlobj>
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dataSet.Relations[FK_FACT_MARKET]" vartype="8" />
+                          <property name="Virtual" value="0" vartype="11" />
+                          <property name="VisibleAP" value="0" vartype="3" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="5" sourceattachpoint="6" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                        <point x="7956" y="14800" />
+                        <point x="7956" y="12400" />
+                      </connector>
+                    </ddscontrol>
+                    <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="9508" top="9501" logicalid="17" controlid="8" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobj>
+                          <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                        </ddsxmlobj>
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dataSet.Relations[FK_FACT_DATE]" vartype="8" />
+                          <property name="Virtual" value="0" vartype="11" />
+                          <property name="VisibleAP" value="0" vartype="3" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="5" sourceattachpoint="22" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                        <point x="12208" y="9900" />
+                        <point x="9808" y="9900" />
+                      </connector>
+                    </ddscontrol>
+                    <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3404" top="9500" logicalid="18" controlid="9" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobj>
+                          <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                        </ddsxmlobj>
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dataSet.Relations[FK_FACT_TX_TYPE]" vartype="8" />
+                          <property name="Virtual" value="0" vartype="11" />
+                          <property name="VisibleAP" value="0" vartype="3" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="5" sourceattachpoint="21" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                        <point x="3704" y="9899" />
+                        <point x="4904" y="9899" />
+                        <point x="4904" y="9900" />
+                        <point x="6104" y="9900" />
+                      </connector>
+                    </ddscontrol>
+                  </dds>
+                </DiagramLayout>
+                <ShowRelationshipNames>False</ShowRelationshipNames>
+                <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+                <DiagramViewPortLeft>1598</DiagramViewPortLeft>
+                <DiagramViewPortTop>2013</DiagramViewPortTop>
+                <DiagramBoundingLeft>0</DiagramBoundingLeft>
+                <DiagramBoundingTop>0</DiagramBoundingTop>
+                <DiagramZoom>75</DiagramZoom>
+              </Diagram>
+            </Layouts>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <DataSourceID>BTC_DW</DataSourceID>
+      <Schema>
+        <xs:schema id="BTC_DSV" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+          <xs:element name="BTC_DSV" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="1fcd4a7a-1d55-4a0c-be8f-be750d815cef">
+            <xs:complexType>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="dbo_DIM_BLOCK" msprop:DbSchemaName="dbo" msprop:design-time-name="673eb145-4f5d-4a8d-9f81-1e1b60336220" msprop:FriendlyName="DIM_BLOCK" msprop:TableType="Table" msprop:DbTableName="DIM_BLOCK">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="block_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="block_key" msprop:DbColumnName="block_key" msprop:design-time-name="7daf68b7-0b0f-4ac2-85dd-1912e2abfc37" type="xs:int" />
+                      <xs:element name="block_height" msprop:FriendlyName="block_height" msprop:DbColumnName="block_height" msprop:design-time-name="78a3c364-4acc-4a39-ad81-522306901a56" type="xs:int" />
+                      <xs:element name="block_hash" msprop:FriendlyName="block_hash" msprop:DbColumnName="block_hash" msprop:design-time-name="13f1f45f-19a1-4ff8-a6c4-8f80b4a8c5bb">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="64" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="block_timestamp" msprop:FriendlyName="block_timestamp" msprop:DbColumnName="block_timestamp" msprop:design-time-name="a4abdf76-9bf6-4756-bc05-837955a3e960" type="xs:dateTime" />
+                      <xs:element name="block_size_bytes" msprop:FriendlyName="block_size_bytes" msprop:DbColumnName="block_size_bytes" msprop:design-time-name="02336543-c4a6-4ac5-ba0f-5865224e06a9" type="xs:int" />
+                      <xs:element name="block_weight_units" msprop:FriendlyName="block_weight_units" msprop:DbColumnName="block_weight_units" msprop:design-time-name="fd6d8b95-6b71-4b7b-a53a-764e804a8c9f" type="xs:int" />
+                      <xs:element name="block_difficulty" msprop:FriendlyName="block_difficulty" msprop:DbColumnName="block_difficulty" msprop:design-time-name="6e921c2c-7b6f-41e4-b1fc-a7fdff189b0f" type="xs:double" />
+                      <xs:element name="difficulty_tier" msprop:FriendlyName="difficulty_tier" msprop:DbColumnName="difficulty_tier" msprop:design-time-name="666d9f70-97fc-4d83-8757-d340a08cca92">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="20" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="dw_load_timestamp" msprop:FriendlyName="dw_load_timestamp" msprop:DbColumnName="dw_load_timestamp" msprop:design-time-name="0bc029fe-e31a-4db1-b1f0-eb42e7c7dbc7" type="xs:dateTime" />
+                      <xs:element name="dw_source_system" msprop:FriendlyName="dw_source_system" msprop:DbColumnName="dw_source_system" msprop:design-time-name="aac96d1e-34a4-4d3f-a2d0-1f38e2363ea5">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="pool_name" msprop:FriendlyName="pool_name" msprop:DbColumnName="pool_name" msprop:design-time-name="86567288-0ef9-4713-b6d6-12f080bdfb87" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="100" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="pool_slug" msprop:FriendlyName="pool_slug" msprop:DbColumnName="pool_slug" msprop:design-time-name="ae064558-f455-458e-a1f4-2f981c08655a" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="100" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="DifficultyTierSort" msdata:ReadOnly="true" msprop:DbColumnName="DifficultyTierSort" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE difficulty_tier&#xD;&#xA;    WHEN 'Low'     THEN 1&#xD;&#xA;    WHEN 'Medium'  THEN 2&#xD;&#xA;    WHEN 'High'    THEN 3&#xD;&#xA;    WHEN 'Extreme' THEN 4&#xD;&#xA;    ELSE 0&#xD;&#xA;END" msprop:design-time-name="0b524abd-4968-4c29-be4f-91517842d98c" msprop:Description="" type="xs:int" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="dbo_DIM_DATE" msprop:DbSchemaName="dbo" msprop:design-time-name="658b143e-8ba7-4866-890f-b5133dccd5e0" msprop:FriendlyName="DIM_DATE" msprop:TableType="Table" msprop:DbTableName="DIM_DATE">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="date_key" msprop:FriendlyName="date_key" msprop:DbColumnName="date_key" msprop:design-time-name="316f3937-ad36-40f5-a7a0-476f7d68f39a" type="xs:int" />
+                      <xs:element name="date" msprop:FriendlyName="date" msprop:DbColumnName="date" msprop:design-time-name="22eec58b-311b-4a5b-9371-7e0d6ba7080d" type="xs:dateTime" />
+                      <xs:element name="day" msprop:FriendlyName="day" msprop:DbColumnName="day" msprop:design-time-name="5e232420-3029-4504-b8ec-9ff0bd30f6b4" type="xs:unsignedByte" />
+                      <xs:element name="month" msprop:FriendlyName="month" msprop:DbColumnName="month" msprop:design-time-name="a1e67f7e-b145-43eb-84d3-b8621c0c0459" type="xs:unsignedByte" />
+                      <xs:element name="quarter" msprop:FriendlyName="quarter" msprop:DbColumnName="quarter" msprop:design-time-name="255d0c78-ac55-4a83-9063-2d85439cbe10" type="xs:unsignedByte" />
+                      <xs:element name="year" msprop:FriendlyName="year" msprop:DbColumnName="year" msprop:design-time-name="5e66fdea-05f2-462b-aebe-9e746658829e" type="xs:int" />
+                      <xs:element name="day_of_week" msprop:FriendlyName="day_of_week" msprop:DbColumnName="day_of_week" msprop:design-time-name="dfb0936b-b4ca-4011-a9d0-55de8cb30222" type="xs:unsignedByte" />
+                      <xs:element name="is_weekend" msprop:FriendlyName="is_weekend" msprop:DbColumnName="is_weekend" msprop:design-time-name="495e22f8-dcc1-442f-9b24-5db7f5d0c26e" type="xs:unsignedByte" />
+                      <xs:element name="halving_era" msprop:FriendlyName="halving_era" msprop:DbColumnName="halving_era" msprop:design-time-name="b0ef159f-ff88-4b8d-9d6a-045da5551f4a">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="20" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="dw_load_timestamp" msprop:FriendlyName="dw_load_timestamp" msprop:DbColumnName="dw_load_timestamp" msprop:design-time-name="ef785a1a-c05f-4aeb-8e0e-fc49f1b41c51" type="xs:dateTime" />
+                      <xs:element name="dw_source_system" msprop:FriendlyName="dw_source_system" msprop:DbColumnName="dw_source_system" msprop:design-time-name="af9c8fb4-56f0-4de7-8ac3-6dff04b2cf74">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="day_name" msdata:ReadOnly="true" msprop:DbColumnName="day_name" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE day_of_week&#xD;&#xA;  WHEN 1 THEN 'Sunday'&#xD;&#xA;  WHEN 2 THEN 'Monday'&#xD;&#xA;  WHEN 3 THEN 'Tuesday'&#xD;&#xA;  WHEN 4 THEN 'Wednesday'&#xD;&#xA;  WHEN 5 THEN 'Thursday'&#xD;&#xA;  WHEN 6 THEN 'Friday'&#xD;&#xA;  WHEN 7 THEN 'Saturday'&#xD;&#xA;END" msprop:design-time-name="a5774e8d-60ae-448c-9c17-31d02846b50b" msprop:Description="" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="9" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="dbo_DIM_MARKET" msprop:DbSchemaName="dbo" msprop:design-time-name="e9edc550-8eea-4f33-b4b3-505ef46e7a80" msprop:FriendlyName="DIM_MARKET" msprop:TableType="Table" msprop:DbTableName="DIM_MARKET">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="market_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="market_key" msprop:DbColumnName="market_key" msprop:design-time-name="84a45374-f599-4930-b469-4c0a2b862487" type="xs:int" />
+                      <xs:element name="snapshot_date" msprop:FriendlyName="snapshot_date" msprop:DbColumnName="snapshot_date" msprop:design-time-name="b81c16ed-e19e-4f70-aea7-33e8449e377d" type="xs:dateTime" />
+                      <xs:element name="fear_greed_score" msprop:FriendlyName="fear_greed_score" msprop:DbColumnName="fear_greed_score" msprop:design-time-name="8f9f5a5a-31cc-4783-9017-d40357dff9a0" type="xs:unsignedByte" minOccurs="0" />
+                      <xs:element name="fear_greed_label" msprop:FriendlyName="fear_greed_label" msprop:DbColumnName="fear_greed_label" msprop:design-time-name="f25f83c6-6085-47c3-bf42-4a3e7ee27583" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="20" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="btc_dominance_percent" msprop:FriendlyName="btc_dominance_percent" msprop:DbColumnName="btc_dominance_percent" msprop:design-time-name="87d59c2d-20d8-4cfd-9749-9b7c41a95f50" type="xs:double" minOccurs="0" />
+                      <xs:element name="market_cap_usd" msprop:FriendlyName="market_cap_usd" msprop:DbColumnName="market_cap_usd" msprop:design-time-name="62b0e10d-d23e-40b8-b704-87d28be64939" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="volatility_index" msprop:FriendlyName="volatility_index" msprop:DbColumnName="volatility_index" msprop:design-time-name="6ceac63c-48a2-4969-b8ca-c208587f49e4" type="xs:double" minOccurs="0" />
+                      <xs:element name="dw_load_timestamp" msprop:FriendlyName="dw_load_timestamp" msprop:DbColumnName="dw_load_timestamp" msprop:design-time-name="31ae0155-f369-4bf0-9453-5d58e67d1d26" type="xs:dateTime" />
+                      <xs:element name="dw_source_system" msprop:FriendlyName="dw_source_system" msprop:DbColumnName="dw_source_system" msprop:design-time-name="5ca7c1a9-c9fb-48b1-bc99-d4ff7b359fe0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="nvt_ratio" msprop:FriendlyName="nvt_ratio" msprop:DbColumnName="nvt_ratio" msprop:design-time-name="e98a893d-3ce1-401e-9b9c-808b6b2e87e5" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="FearGreedSort" msdata:ReadOnly="true" msprop:DbColumnName="FearGreedSort" msprop:IsLogical="True" msprop:design-time-name="c3346552-1ca0-4747-b99e-ca194d7a864d" msprop:Description="" msprop:ComputedColumnExpression="CASE fear_greed_label&#xD;&#xA;    WHEN 'Extreme Fear'  THEN 1&#xD;&#xA;    WHEN 'Fear'          THEN 2&#xD;&#xA;    WHEN 'Neutral'       THEN 3&#xD;&#xA;    WHEN 'Greed'         THEN 4&#xD;&#xA;    WHEN 'Extreme Greed' THEN 5&#xD;&#xA;    ELSE 0&#xD;&#xA;END" type="xs:int" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="dbo_DIM_TX_TYPE" msprop:DbSchemaName="dbo" msprop:design-time-name="942506db-4add-4d08-945f-b876f9334721" msprop:FriendlyName="DIM_TX_TYPE" msprop:TableType="Table" msprop:DbTableName="DIM_TX_TYPE">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="tx_type_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="tx_type_key" msprop:DbColumnName="tx_type_key" msprop:design-time-name="0f99445c-136d-409e-b4af-7554c49a80ee" type="xs:int" />
+                      <xs:element name="script_type_desc" msprop:FriendlyName="script_type_desc" msprop:DbColumnName="script_type_desc" msprop:design-time-name="d4cb8c68-93da-4a64-852d-f642c1779b4c">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="20" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="segwit_flag" msprop:FriendlyName="segwit_flag" msprop:DbColumnName="segwit_flag" msprop:design-time-name="519a2583-1528-42ae-9f2c-50d641a83d75" type="xs:unsignedByte" />
+                      <xs:element name="coinbase_flag" msprop:FriendlyName="coinbase_flag" msprop:DbColumnName="coinbase_flag" msprop:design-time-name="c17aabab-28c3-48fa-b569-843bb11432ab" type="xs:unsignedByte" />
+                      <xs:element name="rbf_flag" msprop:FriendlyName="rbf_flag" msprop:DbColumnName="rbf_flag" msprop:design-time-name="1d618091-5985-48c6-98ee-88a4a1dc40a1" type="xs:unsignedByte" />
+                      <xs:element name="locktime_flag" msprop:FriendlyName="locktime_flag" msprop:DbColumnName="locktime_flag" msprop:design-time-name="553a179f-ab9b-4c9d-b5df-9a9988fc87d1" type="xs:unsignedByte" />
+                      <xs:element name="dw_load_timestamp" msprop:FriendlyName="dw_load_timestamp" msprop:DbColumnName="dw_load_timestamp" msprop:design-time-name="51a5fad6-de5c-4547-beb5-a10388fee577" type="xs:dateTime" />
+                      <xs:element name="dw_source_system" msprop:FriendlyName="dw_source_system" msprop:DbColumnName="dw_source_system" msprop:design-time-name="3986912f-9d05-41ee-801d-3f048fb4ce87">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="coinbase_marked" msdata:ReadOnly="true" msprop:DbColumnName="coinbase_marked" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE coinbase_flag WHEN 1 THEN 'Yes' ELSE 'No' END" msprop:design-time-name="5466e198-1721-419a-b80c-07e692385cac" msprop:Description="">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="3" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="segwit_marked" msdata:ReadOnly="true" msprop:DbColumnName="segwit_marked" msprop:IsLogical="True" msprop:design-time-name="038e5793-0014-4a37-8567-079c2a0f8047" msprop:Description="" msprop:ComputedColumnExpression="CASE segwit_flag WHEN 1 THEN 'Yes' ELSE 'No' END">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="3" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="rbf_marked" msdata:ReadOnly="true" msprop:DbColumnName="rbf_marked" msprop:IsLogical="True" msprop:design-time-name="9ab0c619-9108-4140-aa9b-ab9eda44b116" msprop:Description="" msprop:ComputedColumnExpression="CASE rbf_flag WHEN 1 THEN 'Yes' ELSE 'No' END">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="3" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="locktime_marked" msdata:ReadOnly="true" msprop:DbColumnName="locktime_marked" msprop:IsLogical="True" msprop:design-time-name="57517677-59dd-44e3-b870-1fdce8f40aba" msprop:Description="" msprop:ComputedColumnExpression="CASE locktime_flag WHEN 1 THEN 'Yes' ELSE 'No' END">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="3" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="dbo_FACT_TRANSACTION" msprop:DbSchemaName="dbo" msprop:design-time-name="670c43a1-e90c-4398-9e01-6018ce71ab87" msprop:FriendlyName="FACT_TRANSACTION" msprop:TableType="Table" msprop:DbTableName="FACT_TRANSACTION">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="tx_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="tx_key" msprop:DbColumnName="tx_key" msprop:design-time-name="50a95475-a06a-4cc7-a1a4-5f54583f8ab1" type="xs:long" />
+                      <xs:element name="date_key" msprop:FriendlyName="date_key" msprop:DbColumnName="date_key" msprop:design-time-name="0bf8a4f5-8f2f-4ed2-95db-36605a671211" type="xs:int" />
+                      <xs:element name="block_key" msprop:FriendlyName="block_key" msprop:DbColumnName="block_key" msprop:design-time-name="bb6e1b58-8060-4eb1-8170-178b8179db4c" type="xs:int" />
+                      <xs:element name="tx_type_key" msprop:FriendlyName="tx_type_key" msprop:DbColumnName="tx_type_key" msprop:design-time-name="e5e99b66-e359-4d29-b544-0b83ea3620f0" type="xs:int" />
+                      <xs:element name="market_key" msprop:FriendlyName="market_key" msprop:DbColumnName="market_key" msprop:design-time-name="703e055d-2c08-494a-a7d8-a9ac57368a4d" type="xs:int" minOccurs="0" />
+                      <xs:element name="txid" msprop:FriendlyName="txid" msprop:DbColumnName="txid" msprop:design-time-name="85848755-befd-4fb4-b879-40ba0cc5a0b0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="64" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="fee_satoshis" msprop:FriendlyName="fee_satoshis" msprop:DbColumnName="fee_satoshis" msprop:design-time-name="428b6b5d-5dd9-418f-b659-b8de8da1c2fd" type="xs:long" />
+                      <xs:element name="fee_rate_sat_vbyte" msprop:FriendlyName="fee_rate_sat_vbyte" msprop:DbColumnName="fee_rate_sat_vbyte" msprop:design-time-name="ec4dc2e4-4a1c-4067-b613-15434744f4f1" type="xs:double" minOccurs="0" />
+                      <xs:element name="input_value_sat" msprop:FriendlyName="input_value_sat" msprop:DbColumnName="input_value_sat" msprop:design-time-name="1f3c44ce-4a4d-4869-b3fb-906dbdce5555" type="xs:long" minOccurs="0" />
+                      <xs:element name="output_value_sat" msprop:FriendlyName="output_value_sat" msprop:DbColumnName="output_value_sat" msprop:design-time-name="2c701987-d329-4096-8283-2944441363f1" type="xs:long" />
+                      <xs:element name="tx_size_bytes" msprop:FriendlyName="tx_size_bytes" msprop:DbColumnName="tx_size_bytes" msprop:design-time-name="ad6f109a-e97b-4022-a5ba-9cd5de24fff9" type="xs:int" />
+                      <xs:element name="tx_weight_units" msprop:FriendlyName="tx_weight_units" msprop:DbColumnName="tx_weight_units" msprop:design-time-name="78155395-eb06-4678-9503-40658e46977f" type="xs:int" />
+                      <xs:element name="btc_price_usd_avg" msprop:FriendlyName="btc_price_usd_avg" msprop:DbColumnName="btc_price_usd_avg" msprop:design-time-name="b53b0e0f-95b9-49b2-9930-0c9c8267f9d1" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="input_value_usd" msprop:FriendlyName="input_value_usd" msprop:DbColumnName="input_value_usd" msprop:design-time-name="1eb06340-ca79-47e0-b6b5-964fdb1ca7fd" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="output_value_usd" msprop:FriendlyName="output_value_usd" msprop:DbColumnName="output_value_usd" msprop:design-time-name="2023fa8b-e233-45c5-a590-1b806b11db11" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="fee_usd" msprop:FriendlyName="fee_usd" msprop:DbColumnName="fee_usd" msprop:design-time-name="8486ab85-d533-4961-9325-185eb6ea56d1" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="market_cap_usd" msprop:FriendlyName="market_cap_usd" msprop:DbColumnName="market_cap_usd" msprop:design-time-name="cc01a5c0-3e86-4033-83a8-292f3bca4630" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="fear_greed_score" msprop:FriendlyName="fear_greed_score" msprop:DbColumnName="fear_greed_score" msprop:design-time-name="5938852d-3e31-4af1-a02b-38e9c67fbfc7" type="xs:unsignedByte" minOccurs="0" />
+                      <xs:element name="tx_vsize_bytes" msprop:FriendlyName="tx_vsize_bytes" msprop:DbColumnName="tx_vsize_bytes" msprop:design-time-name="fe73e30d-72ff-4d72-b3c0-08a33f3cbe7e" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="fee_burden_pct" msprop:FriendlyName="fee_burden_pct" msprop:DbColumnName="fee_burden_pct" msprop:design-time-name="df13666e-f03a-4ec2-b1e4-e7b05d9e891f" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="input_value_btc" msprop:FriendlyName="input_value_btc" msprop:DbColumnName="input_value_btc" msprop:design-time-name="5828ad6b-8047-4f2f-9e9f-dd4e602f7b0b" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="output_value_btc" msprop:FriendlyName="output_value_btc" msprop:DbColumnName="output_value_btc" msprop:design-time-name="215210e0-02b7-440d-951f-98a5553cb20a" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="fee_btc" msprop:FriendlyName="fee_btc" msprop:DbColumnName="fee_btc" msprop:design-time-name="2daeac1e-e35a-4024-a8d7-58d975e76fe8" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="io_value_ratio" msprop:FriendlyName="io_value_ratio" msprop:DbColumnName="io_value_ratio" msprop:design-time-name="c5b49023-5ef2-4c84-bfae-4a95f8e08087" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="dw_load_timestamp" msprop:FriendlyName="dw_load_timestamp" msprop:DbColumnName="dw_load_timestamp" msprop:design-time-name="67cd0c89-a990-4754-b225-299834744546" type="xs:dateTime" />
+                      <xs:element name="dw_source_system" msprop:FriendlyName="dw_source_system" msprop:DbColumnName="dw_source_system" msprop:design-time-name="93b91753-fba8-4e8d-ad55-9c9ab9b23553">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+            <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_DIM_BLOCK" />
+              <xs:field xpath="block_key" />
+            </xs:unique>
+            <xs:unique name="dbo_DIM_DATE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_DIM_DATE" />
+              <xs:field xpath="date_key" />
+            </xs:unique>
+            <xs:unique name="dbo_DIM_MARKET_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_DIM_MARKET" />
+              <xs:field xpath="market_key" />
+            </xs:unique>
+            <xs:unique name="dbo_DIM_TX_TYPE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_DIM_TX_TYPE" />
+              <xs:field xpath="tx_type_key" />
+            </xs:unique>
+            <xs:unique name="dbo_FACT_TRANSACTION_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_FACT_TRANSACTION" />
+              <xs:field xpath="tx_key" />
+            </xs:unique>
+            <xs:keyref name="FK_FACT_TX_TYPE" refer="dbo_DIM_TX_TYPE_Constraint1">
+              <xs:selector xpath=".//dbo_FACT_TRANSACTION" />
+              <xs:field xpath="tx_type_key" />
+            </xs:keyref>
+            <xs:keyref name="FK_FACT_DATE" refer="dbo_DIM_DATE_Constraint1">
+              <xs:selector xpath=".//dbo_FACT_TRANSACTION" />
+              <xs:field xpath="date_key" />
+            </xs:keyref>
+            <xs:keyref name="FK_FACT_MARKET" refer="dbo_DIM_MARKET_Constraint1">
+              <xs:selector xpath=".//dbo_FACT_TRANSACTION" />
+              <xs:field xpath="market_key" />
+            </xs:keyref>
+            <xs:keyref name="FK_FACT_BLOCK" refer="Constraint1">
+              <xs:selector xpath=".//dbo_FACT_TRANSACTION" />
+              <xs:field xpath="block_key" />
+            </xs:keyref>
+          </xs:element>
+        </xs:schema>
+        <BTC_DSV xmlns="" />
+      </Schema>
+    </DataSourceView>
+  </DataSourceViews>
+</Database>

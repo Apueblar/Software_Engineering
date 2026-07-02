@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: aw_staging
+    database: AWStaging
+    schema: raw
+    tables:
+      - name: sales_order_header
+      - name: customer

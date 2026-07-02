@@ -1,0 +1,17 @@
+USE master;
+GO
+
+CREATE LOGIN [NT Service\MSSQLServerOLAPService] 
+FROM WINDOWS;
+GO
+
+USE DWH_DB;
+GO
+
+CREATE USER [NT Service\MSSQLServerOLAPService] 
+FOR LOGIN [NT Service\MSSQLServerOLAPService];
+GO
+
+ALTER ROLE db_datareader 
+ADD MEMBER [NT Service\MSSQLServerOLAPService];
+GO

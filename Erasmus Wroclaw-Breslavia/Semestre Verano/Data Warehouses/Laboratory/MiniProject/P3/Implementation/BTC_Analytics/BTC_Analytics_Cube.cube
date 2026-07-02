@@ -1,0 +1,903 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="9e46526d-1d41-450d-9a8f-9f4900e928ce" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>BTC_DSV</ID>
+  <Name>BTC_Analytics_Cube</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3152" scrolltop="345" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="65" x="12467" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_DATE" left="6124" top="1721" logicalid="10" controlid="1" masterid="0" hint1="0" hint2="0" width="3704" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000da120000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_DATE" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_MARKET" left="5828" top="13102" logicalid="11" controlid="2" masterid="0" hint1="0" hint2="0" width="4297" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000c9100000da120000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_MARKET" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_TX_TYPE" left="11381" top="7852" logicalid="12" controlid="3" masterid="0" hint1="0" hint2="0" width="3704" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e0000a30e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_TX_TYPE" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FACT_TRANSACTION" left="6124" top="7226" logicalid="13" controlid="4" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_FACT_TRANSACTION" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_BLOCK" left="584" top="7226" logicalid="14" controlid="5" masterid="0" hint1="0" hint2="0" width="3704" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000780e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_BLOCK" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7577" top="6048" logicalid="15" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="1478" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_FACT_DATE]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="4" sourceattachpoint="7" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="7976" y="6547" />
+              <point x="7976" y="7226" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7577" top="11926" logicalid="16" controlid="7" masterid="0" hint1="0" hint2="0" width="799" height="1676" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_FACT_MARKET]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="4" sourceattachpoint="6" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="7976" y="13102" />
+              <point x="7976" y="12226" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="9528" top="9326" logicalid="17" controlid="8" masterid="0" hint1="0" hint2="0" width="2153" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_FACT_TX_TYPE]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="4" sourceattachpoint="20" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="11381" y="9725" />
+              <point x="10981" y="9725" />
+              <point x="10981" y="9726" />
+              <point x="9828" y="9726" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3988" top="9327" logicalid="18" controlid="9" masterid="0" hint1="0" hint2="0" width="2436" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_FACT_BLOCK]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="4" sourceattachpoint="23" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="4288" y="9726" />
+              <point x="6124" y="9726" />
+            </connector>
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-3152</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>345</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>584</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>1721</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>65</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="66d87fe1-db19-46a4-ac91-0d3f4184d18d">
+      <ID>DIM_BLOCK</ID>
+      <Name>DIM_BLOCK</Name>
+      <DimensionID>DIM BLOCK</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="c64b303a-4843-4280-9e06-536e84ffad45">
+          <AttributeID>Block Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bd3b2c1a-9646-4d03-9647-bb251d31baf5">
+          <AttributeID>Block Height</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0cd1c5a1-2d5c-4d4a-890a-9ae472467637">
+          <AttributeID>Block Hash</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="01cbb3b0-2b56-4ae6-9353-a0ffc7931810">
+          <AttributeID>Block Timestamp</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="2362e492-f1a8-4b1c-99c6-9b8653317ee1">
+          <AttributeID>Block Size Bytes</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="740acd92-1b7e-41f2-b6da-7a7c41520f32">
+          <AttributeID>Block Weight Units</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e6b73900-2fde-4386-a08b-9642d0c7e9de">
+          <AttributeID>Block Difficulty</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="43a6332a-ef64-4c6f-ba71-b3726ab15031">
+          <AttributeID>Difficulty Tier</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fb840b02-c9fd-4e66-9d12-bba21cca039b">
+          <AttributeID>Pool Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8c65c9e3-f8bf-4347-ad96-94aa0d9edc73">
+          <AttributeID>Pool Slug</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="883ead2a-8039-4e27-a16f-c33201a1ceb8">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="4c492347-49bd-42d3-87ae-5c63522cc45d">
+      <ID>DIM_MARKET</ID>
+      <Name>DIM_MARKET</Name>
+      <DimensionID>DIM_MARKET</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="e78ee61e-7599-4b29-8514-701041c2a7e5">
+          <AttributeID>Market Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="160f2baa-8d27-4701-99ec-59ffe8bb8be4">
+          <AttributeID>Snapshot Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="64a4930d-ceb7-4b25-9ef8-db2df6a7fa5b">
+          <AttributeID>Fear Greed Score</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fee8ce72-ddfa-4381-b28f-c6b8a7d8fa57">
+          <AttributeID>Fear Greed Label</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4eab2d8c-75a2-4269-91f7-2de12552b975">
+          <AttributeID>Btc Dominance Percent</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9ab4fe57-fe92-453c-bfe8-dc26c03f515e">
+          <AttributeID>Market Cap Usd</AttributeID>
+          <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+        </Attribute>
+        <Attribute dwd:design-time-name="6980ad2c-7f9f-45ea-b15d-3345edb285c2">
+          <AttributeID>Volatility Index</AttributeID>
+          <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+        </Attribute>
+        <Attribute dwd:design-time-name="792e4ac1-6cd5-4974-83c3-9fc3cf49034d">
+          <AttributeID>Nvt Ratio</AttributeID>
+          <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="18b5c282-2122-4021-9368-fe49d65686fa">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="2770436f-b6d0-407e-b807-ebe92499b07c">
+      <ID>DIM_DATE</ID>
+      <Name>DIM_DATE</Name>
+      <DimensionID>DIM_DATE</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="5c3e0d32-5c10-4b53-9c0e-0519ef4e8d34">
+          <AttributeID>Date Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f2dc846c-577b-4bf1-bc3c-c882649354be">
+          <AttributeID>Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="85fbab41-20e1-4de0-89f2-8e3be25f5631">
+          <AttributeID>Day</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="98a2153e-3465-47a9-a3e6-77cf0de444a6">
+          <AttributeID>Month</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="183b6230-0c62-4f71-ba06-98d6e5d7ce68">
+          <AttributeID>Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ff7b0491-6307-45a5-af5a-d0886fcb178d">
+          <AttributeID>Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="65846003-b0f3-46cc-a40c-329f1c1b9d4c">
+          <AttributeID>Day Of Week</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ebbee70f-07e5-4e59-a1e5-50864503e79b">
+          <AttributeID>Is Weekend</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="290462d7-3615-452f-95f8-b3bcb24c5765">
+          <AttributeID>Halving Era</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ca62a70a-38c5-4257-a03b-0303bd820598">
+          <AttributeID>Day Name</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="fea9841a-e2f6-4e4a-be90-9ae5209ead96">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c2c97cb2-12b4-4a27-a8ac-45c385698cbc">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="686a2fd4-6172-4d8c-9689-8d267eb5b018">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="4066556d-14cc-4d59-9725-94790179e3d3">
+      <ID>DIM_TX_TYPE</ID>
+      <Name>DIM_TX_TYPE</Name>
+      <DimensionID>DIM_TX_TYPE</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="e5f33294-3db1-4563-a755-cb87cb5c16c9">
+          <AttributeID>Tx Type Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5f89406b-39e1-4ca0-9e31-5d0ab61a7b6e">
+          <AttributeID>Script Type Desc</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dc1ddc17-65e1-4a9e-b51e-6ceaa9ee29f4">
+          <AttributeID>Segwit Flag</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="af5f12f3-03ed-4e5f-98a3-7510c6fb8215">
+          <AttributeID>Coinbase Flag</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b55d2df3-bce6-4980-96c3-7491e7d130fe">
+          <AttributeID>Rbf Flag</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8be790da-6fb5-46e8-83b6-28e31f313e1f">
+          <AttributeID>Locktime Flag</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1624be11-fabb-48af-a7c8-c450bb04c28f">
+          <AttributeID>Coinbase Marked</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="062b3c68-fc18-4dd2-9f23-1997ac05ae4c">
+          <AttributeID>Segwit Marked</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5789630a-d782-45a8-9260-6bc30957da1b">
+          <AttributeID>Rbf Marked</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cbb8514d-b48f-4d94-b099-96d1565cc376">
+          <AttributeID>Locktime Marked</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="7ee90ff3-5bda-425d-ac96-edf8f0f59535">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1042ec47-4333-4748-8958-e98ffd0186cc">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+  </Dimensions>
+  <Perspectives>
+    <Perspective dwd:design-time-name="bd6b85ea-d442-4349-ab3f-d0ec0ad1ee75">
+      <ID>Perspective</ID>
+      <Name>On-Chain Analyst</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Dimensions>
+        <Dimension dwd:design-time-name="56d313ce-602b-49f8-b552-ae844beb23ae">
+          <CubeDimensionID>DIM_DATE</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="ae32f54c-8b2c-4c24-a18c-d43f3a6809e0">
+              <AttributeID>Date</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="4ef3c523-32df-486d-9b21-e58ee198e760">
+              <AttributeID>Day</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="2e2ff32a-56fe-491b-a482-f071d8ca02fd">
+              <AttributeID>Month</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="0ec5bbdd-0842-4105-b3d2-147a54279e13">
+              <AttributeID>Quarter</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="9e586375-2c54-46e7-9088-9c4f34b5588f">
+              <AttributeID>Year</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="b7786b6c-1003-4c47-8f89-f3ba8fc509ed">
+              <AttributeID>Day Of Week</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="992d1656-917a-4c6d-951a-032bab8ce58e">
+              <AttributeID>Is Weekend</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="268e664c-8661-45e2-be7c-bd0cdc56ba67">
+              <AttributeID>Halving Era</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy dwd:design-time-name="f3bdf714-5d22-44ad-8b36-1ca7b57c156c">
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+            <Hierarchy dwd:design-time-name="c2e01cb5-773d-4d56-a47f-4ae72c90d48d">
+              <HierarchyID>Hierarchy 1</HierarchyID>
+            </Hierarchy>
+            <Hierarchy dwd:design-time-name="46c2bd99-1d10-446a-8785-6f1b82536bf3">
+              <HierarchyID>Hierarchy 2</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        <Dimension dwd:design-time-name="38f59aac-5f83-466a-848a-eb04d99d02a9">
+          <CubeDimensionID>DIM_TX_TYPE</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="c1e5471c-9c2a-495f-851f-e01b398aaf24">
+              <AttributeID>Tx Type Key</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="d397f6e0-c60e-405b-a97a-7435d716e12b">
+              <AttributeID>Script Type Desc</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="67523d38-bed4-495e-86e9-be0515110bb2">
+              <AttributeID>Segwit Flag</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="3fe68440-8bbb-47a7-ad2d-bd9037fee5c3">
+              <AttributeID>Coinbase Flag</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="52925ebe-f8bd-4f10-8bfb-3ac06cf92f4a">
+              <AttributeID>Rbf Flag</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="e2326eb3-e5f0-4e43-be73-79b6100f01b6">
+              <AttributeID>Locktime Flag</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy dwd:design-time-name="3752f0f8-3494-4cc3-976d-08ec80826426">
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+            <Hierarchy dwd:design-time-name="ea917f7f-8a4d-432b-aeb6-a9a6497a7fcb">
+              <HierarchyID>Hierarchy 1</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        <Dimension dwd:design-time-name="aaf7e0ef-b0d1-4c2c-ba74-0c13060123e2">
+          <CubeDimensionID>DIM_MARKET</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="5526628c-a586-4195-abc9-d80d7a31799a">
+              <AttributeID>Market Key</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="f4c6bf2b-db31-4a51-81c3-bf39e989131a">
+              <AttributeID>Snapshot Date</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="2f62fbaa-78f2-479a-9b78-aac6e07006d3">
+              <AttributeID>Fear Greed Score</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="49a46dbe-c2e9-4519-a255-fd7a9e08d0e1">
+              <AttributeID>Fear Greed Label</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="4ce9f950-8f1f-4852-bd33-ef7cd872f55b">
+              <AttributeID>Btc Dominance Percent</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="9402ded0-0a1e-417a-adf3-ef5d8d7dec97">
+              <AttributeID>Market Cap Usd</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="c2f2e2be-d2c1-4e1e-8023-c02a023d231c">
+              <AttributeID>Volatility Index</AttributeID>
+            </Attribute>
+            <Attribute dwd:design-time-name="503eb1eb-4ffc-4b48-93cf-755d54208a87">
+              <AttributeID>Nvt Ratio</AttributeID>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy dwd:design-time-name="746057c2-7249-4ee4-9014-68525479e867">
+              <HierarchyID>Hierarchy</HierarchyID>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+      </Dimensions>
+      <MeasureGroups>
+        <MeasureGroup dwd:design-time-name="cc482e98-205e-456b-9f5b-accc6ad16929">
+          <MeasureGroupID>FACT TRANSACTION</MeasureGroupID>
+          <Measures>
+            <Measure dwd:design-time-name="3ca2dc2b-82ac-477f-ad62-0d00ca4386a0">
+              <MeasureID>FACT TRANSACTION Count</MeasureID>
+            </Measure>
+            <Measure dwd:design-time-name="8c62c5d4-53e2-4a15-a76e-a67148be4a69">
+              <MeasureID>Fee Usd</MeasureID>
+            </Measure>
+            <Measure dwd:design-time-name="6ed8c1b7-036d-4944-9d45-704ae10c92f6">
+              <MeasureID>Output Value Usd</MeasureID>
+            </Measure>
+            <Measure dwd:design-time-name="bcbf7574-a943-4b1e-9bfa-f643d0087e17">
+              <MeasureID>Tx Vsize Bytes</MeasureID>
+            </Measure>
+          </Measures>
+        </MeasureGroup>
+      </MeasureGroups>
+      <Calculations>
+        <Calculation dwd:design-time-name="34d46e22-3bfc-4ca3-af47-d3cb817582df">
+          <Name>[Measures].[Avg Fee Rate]</Name>
+          <Type>Member</Type>
+        </Calculation>
+        <Calculation dwd:design-time-name="bc7aaea2-a63e-4a87-9230-14d2ab41e7b1">
+          <Name>[Measures].[Avg Fee Burden %]</Name>
+          <Type>Member</Type>
+        </Calculation>
+        <Calculation dwd:design-time-name="3c12b014-0d71-498c-8908-fb85f8832959">
+          <Name>[Measures].[Avg IO Value Ratio]</Name>
+          <Type>Member</Type>
+        </Calculation>
+        <Calculation dwd:design-time-name="9c30840d-320f-439d-9ec1-66c0d8c8f94b">
+          <Name>[Measures].[SegWit Share %]</Name>
+          <Type>Member</Type>
+        </Calculation>
+        <Calculation dwd:design-time-name="91654739-ad0d-450f-8660-bec3d9365e93">
+          <Name>[Measures].[Coinbase Share %]</Name>
+          <Type>Member</Type>
+        </Calculation>
+      </Calculations>
+      <Kpis>
+        <Kpi dwd:design-time-name="1f24603f-e6d7-41e7-963d-1a63ab92ddb0">
+          <KpiID>KPI</KpiID>
+        </Kpi>
+      </Kpis>
+    </Perspective>
+  </Perspectives>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="82be4121-ea8c-409c-83d5-8720ed07ca98">
+      <ID>FACT TRANSACTION</ID>
+      <Name>FACT TRANSACTION</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="ef9bb723-d08b-48d4-b271-8e57958ae2cf">
+          <ID>Fee Satoshis</ID>
+          <Name>Fee Satoshis</Name>
+          <Source dwd:design-time-name="fe79a667-c3c7-45c4-b485-937e38c1ee6e">
+            <DataType>BigInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="609ef47b-5c48-47fd-b03e-a9982d165e8a">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>fee_satoshis</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f202cbb4-c979-4a2a-8767-6101dd674d76">
+          <ID>Fee Rate Sat Vbyte</ID>
+          <Name>Fee Rate Sat Vbyte</Name>
+          <Source dwd:design-time-name="c223af10-3656-4590-94eb-dc28130003ab">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6b5cef7e-ac51-4649-ae0c-9d424a6b54db">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>fee_rate_sat_vbyte</ColumnID>
+            </Source>
+          </Source>
+          <Visible>false</Visible>
+        </Measure>
+        <Measure dwd:design-time-name="b11c1bcb-718d-4a57-9fe5-6e6cfcb7d074">
+          <ID>Input Value Sat</ID>
+          <Name>Input Value Sat</Name>
+          <Source dwd:design-time-name="6c6a579f-fae4-461a-b494-8cd66c0cd948">
+            <DataType>BigInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="97404126-331a-4894-92f7-4717c7953c8b">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>input_value_sat</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="3b24d419-85eb-49db-927f-c41de6f5b200">
+          <ID>Output Value Sat</ID>
+          <Name>Output Value Sat</Name>
+          <Source dwd:design-time-name="3cc74a06-0852-44e8-9585-3ea2daa3ae1f">
+            <DataType>BigInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="aed90c80-48fb-4ab7-806f-72931de019e8">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>output_value_sat</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="12ecd418-99d8-4e81-b90a-3602bb7de3c4">
+          <ID>Tx Size Bytes</ID>
+          <Name>Tx Size Bytes</Name>
+          <Source dwd:design-time-name="ff14ae33-4bde-416c-b71c-fbd5979ab6c6">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="7c59ddb0-b669-4df5-96e0-7aac82abeef3">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>tx_size_bytes</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="74c5c0a7-3fc1-47bb-9e99-4efdf143b354">
+          <ID>Tx Weight Units</ID>
+          <Name>Tx Weight Units</Name>
+          <Source dwd:design-time-name="3ad09513-a421-4abd-9dff-e9a9dd24949a">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a742cce1-9569-4ad6-8060-d66dc1b8c965">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>tx_weight_units</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="282144aa-5c3e-44f2-a947-3272061f46d7">
+          <ID>Input Value Usd</ID>
+          <Name>Input Value Usd</Name>
+          <Source dwd:design-time-name="281f0428-3fb5-4ddf-a303-390135464404">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b9e394bf-71b0-4db4-93ee-5660f0b6d56c">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>input_value_usd</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="3ac3a409-5715-4028-9251-d450e1e59a82">
+          <ID>Output Value Usd</ID>
+          <Name>Output Value Usd</Name>
+          <Source dwd:design-time-name="e7c1ae58-5cd4-4c6a-9858-e68a487a4fbf">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="1b058226-b91a-4636-afb3-d42686c40d82">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>output_value_usd</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="4d38b1cc-8838-464a-b70d-b46561409656">
+          <ID>Fee Usd</ID>
+          <Name>Fee Usd</Name>
+          <Source dwd:design-time-name="18dc82f4-5623-4593-a8ef-abb741f7ebd9">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c0d0a708-59a2-4ac5-9ae0-ad709ab4a812">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>fee_usd</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="dda45613-a0d2-4ec2-97c1-7679453d4bd9">
+          <ID>Tx Vsize Bytes</ID>
+          <Name>Tx Vsize Bytes</Name>
+          <Source dwd:design-time-name="146d8add-062f-4080-b1b7-9f8afe8ceb8c">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="21ace477-8bc9-47f4-8c2a-08c28b677e5e">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>tx_vsize_bytes</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="5b1c24ca-c623-487e-9c58-4074db211b0c">
+          <ID>Fee Burden Pct</ID>
+          <Name>Fee Burden Pct</Name>
+          <Source dwd:design-time-name="1ce86bc3-8df4-4de5-bd9c-de059dad5372">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f0cb8f55-f35a-440b-be90-1fba327f4481">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>fee_burden_pct</ColumnID>
+            </Source>
+          </Source>
+          <Visible>false</Visible>
+        </Measure>
+        <Measure dwd:design-time-name="4eceed34-616a-4bf6-928b-84baf1ab54f8">
+          <ID>Input Value Btc</ID>
+          <Name>Input Value Btc</Name>
+          <Source dwd:design-time-name="4ad385ea-959d-4878-8aa3-43c0a8e4a89a">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="af1b18d1-52a0-4c7f-abdb-05db8915aa76">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>input_value_btc</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="2ec2a082-7568-4f7a-aa49-9e62c18cc85b">
+          <ID>Output Value Btc</ID>
+          <Name>Output Value Btc</Name>
+          <Source dwd:design-time-name="40fb970f-ddad-4f1b-a2d1-5740c995c27a">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="20f9822b-d117-4452-95ae-0e83146d1883">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>output_value_btc</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="2a2b5c52-5736-4c8c-af89-1c7d1c068913">
+          <ID>Fee Btc</ID>
+          <Name>Fee Btc</Name>
+          <Source dwd:design-time-name="1a6b8776-278b-47f7-9d3b-d723fbdeede2">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="130b3936-fa6e-4750-ba37-6eb395bcc333">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>fee_btc</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="c081dd8c-229a-4653-b556-e907bf271563">
+          <ID>Io Value Ratio</ID>
+          <Name>Io Value Ratio</Name>
+          <Source dwd:design-time-name="5b0e9549-dec3-4091-888f-d6511bcc8bc4">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="74f68021-eed6-4324-b2a1-afab26b6f503">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+              <ColumnID>io_value_ratio</ColumnID>
+            </Source>
+          </Source>
+          <Visible>false</Visible>
+        </Measure>
+        <Measure dwd:design-time-name="c8555d0d-fa9f-461a-a007-0429695597b7">
+          <ID>FACT TRANSACTION Count</ID>
+          <Name>Transaction Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="98f334b6-346e-4c82-bfc5-a57d5d9ed0d9">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="bb457a19-8003-4afa-a233-2e2c3c3191b2">
+              <TableID>dbo_FACT_TRANSACTION</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ErrorConfiguration dwd:design-time-name="7d3482a0-a9c9-42b6-aba0-dd8b348a9111">
+        <KeyErrorLimit>-1</KeyErrorLimit>
+      </ErrorConfiguration>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="8fea21ae-6f26-490c-a7d0-c7a889420b62">
+          <CubeDimensionID>DIM_BLOCK</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="21e68e46-f186-48af-a3bb-48c9c0816f7c">
+              <AttributeID>Block Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="c272e171-5921-4e5b-b17f-4b41a8d35d9c">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="dd1d62f4-9449-4ec8-8031-15e027668197">
+                    <TableID>dbo_FACT_TRANSACTION</TableID>
+                    <ColumnID>block_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ce530730-a476-41d5-bd2d-f3f55930a157">
+          <CubeDimensionID>DIM_MARKET</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="a4e7c170-2d3c-467b-ab6c-1baf5b9af730">
+              <AttributeID>Market Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="693682f6-4dc7-4bc5-9419-d8fceccaa4ce">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="af92cd6b-239f-49e9-90ca-f0c90d27c5f7">
+                    <TableID>dbo_FACT_TRANSACTION</TableID>
+                    <ColumnID>market_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="3419c1a1-97ef-41cc-a988-d8c5199aaa09">
+          <CubeDimensionID>DIM_DATE</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="2c2c02e7-53dc-47a4-acd0-cd069ca1f3ab">
+              <AttributeID>Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="3a0f37fe-294a-4912-b375-fd542fcba00b">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="05fc0778-b2cb-4f1a-88a1-50daba6bd08f">
+                    <TableID>dbo_FACT_TRANSACTION</TableID>
+                    <ColumnID>date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="7756b064-8942-4021-8801-2887b8c15ad2">
+          <CubeDimensionID>DIM_TX_TYPE</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="8570faa7-9177-4873-b8ec-1895f2ace593">
+              <AttributeID>Tx Type Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="c793284d-eca1-437f-bd78-baac9a51330c">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="8845a65e-73be-4fb5-a88c-64b1bb264e39">
+                    <TableID>dbo_FACT_TRANSACTION</TableID>
+                    <ColumnID>tx_type_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="135eda96-8405-4d27-a54c-70862334fe6a">
+    <DataSourceViewID>BTC_DSV</DataSourceViewID>
+  </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="b3b6dfa5-ce41-4891-b1bd-b86fff5697c8">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>CALCULATE;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Fee Sustainability Previous Month] AS
+    (
+        [Measures].[Fee Btc],
+        ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+    )
+    /
+    (
+        (
+            [Measures].[Output Value Btc],
+            ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+        )
+        +
+        (
+            [Measures].[Fee Btc],
+            ParallelPeriod([DIM_DATE].[Calendar].[Month], 1, [DIM_DATE].[Calendar].CurrentMember)
+        )
+    ) * 100,
+    FORMAT_STRING = "0.00",
+    VISIBLE = 0;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg Fee Rate] AS
+    [Measures].[Fee Rate Sat Vbyte] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.00",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg Fee Burden %] AS
+    [Measures].[Fee Burden Pct] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.00",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Avg IO Value Ratio] AS
+    [Measures].[Io Value Ratio] / [Measures].[Transaction Count],
+    FORMAT_STRING = "#,##0.0000",
+    VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[SegWit Share %]
+ AS Sum(
+        Filter(
+            [DIM_TX_TYPE].[Script Evolution].[Segwit Flag].MEMBERS,
+            [DIM_TX_TYPE].[Script Evolution].CurrentMember.Properties("Key") = "1"
+        ),
+        [Measures].[Transaction Count]
+    ) / [Measures].[Transaction Count] * 100, 
+FORMAT_STRING = "#,##0.00", 
+VISIBLE = 1;   
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Coinbase Share %]
+ AS Sum(
+        Filter(
+            [DIM_TX_TYPE].[Transaction Class].[Coinbase Flag].MEMBERS,
+            [DIM_TX_TYPE].[Transaction Class].CurrentMember.Properties("Key") = "1"
+        ),
+        [Measures].[Transaction Count]
+    ) / [Measures].[Transaction Count] * 100, 
+FORMAT_STRING = "#,##0.00", 
+VISIBLE = 1; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
+  <Kpis>
+    <Kpi dwd:design-time-name="12d3e642-965a-4002-a3a9-16bf38fadcda">
+      <ID>KPI</ID>
+      <Name>Network Fee Sustainability</Name>
+      <Value>[Measures].[Fee Btc] / ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100</Value>
+      <Goal>5.0</Goal>
+      <Status>CASE
+    WHEN IsEmpty([Measures].[Fee Btc]) 
+    THEN -1
+    WHEN [Measures].[Fee Btc] / 
+         ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100 &lt; 1 
+    THEN -1
+    WHEN [Measures].[Fee Btc] / 
+         ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100 &lt;= 5 
+    THEN 0
+    ELSE 1
+END</Status>
+      <Trend>CASE
+    WHEN IsEmpty([Measures].[Fee Btc]) 
+    THEN 0
+    WHEN 
+        [Measures].[Fee Btc] / ([Measures].[Output Value Btc] + [Measures].[Fee Btc]) * 100
+        &gt;
+        [Measures].[Fee Sustainability Previous Month]
+    THEN 1
+    ELSE -1
+END</Trend>
+      <TrendGraphic>Smiley Face</TrendGraphic>
+      <StatusGraphic>Gauge - Ascending</StatusGraphic>
+    </Kpi>
+  </Kpis>
+</Cube>

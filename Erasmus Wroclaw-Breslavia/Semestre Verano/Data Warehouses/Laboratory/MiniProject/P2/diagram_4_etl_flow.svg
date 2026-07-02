@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Grid -->
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E293B" stroke-dasharray="2 2" stroke-width="0.5"/>
+    </pattern>
+    
+    <!-- Shadow and Glow Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComponentTransfer in="blur" result="boost">
+        <feFuncA type="linear" slope="1.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="boost" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Linear Gradients -->
+    <!-- Dimension Cards -->
+    <linearGradient id="dim-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="dim-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+    <linearGradient id="dim-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Fact Cards -->
+    <linearGradient id="fact-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#18130B" />
+    </linearGradient>
+    <linearGradient id="fact-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7931A" />
+      <stop offset="100%" stop-color="#B25900" />
+    </linearGradient>
+    <linearGradient id="fact-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F7931A" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#F7931A" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Staging Cards -->
+    <linearGradient id="stg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="stg-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <linearGradient id="stg-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.0" />
+    </linearGradient>
+
+    <!-- Error/Reject Cards -->
+    <linearGradient id="err-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#2D1A1A" />
+    </linearGradient>
+    <linearGradient id="err-border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </linearGradient>
+    <linearGradient id="err-header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.0" />
+    </linearGradient>
+    
+    <!-- Flow Markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#EF4444" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0EA5E9" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F7931A" />
+    </marker>
+  </defs>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap');
+    
+    /* Global Styles */
+    svg { background-color: #0F172A; font-family: 'Inter', system-ui, sans-serif; }
+    
+    /* Table Cards */
+    .dim-card { fill: url(#dim-grad); stroke: url(#dim-border); stroke-width: 1.5; filter: url(#shadow); }
+    .fact-card { fill: url(#fact-grad); stroke: url(#fact-border); stroke-width: 2; filter: url(#shadow); }
+    .stg-card { fill: url(#stg-grad); stroke: url(#stg-border); stroke-width: 1.5; filter: url(#shadow); }
+    .err-card { fill: url(#err-grad); stroke: url(#err-border); stroke-width: 2; filter: url(#shadow); }
+    
+    /* Headers */
+    .dim-header-bar { fill: url(#dim-header); }
+    .fact-header-bar { fill: url(#fact-header); }
+    .stg-header-bar { fill: url(#stg-header); }
+    .err-header-bar { fill: url(#err-header); }
+    
+    /* Text Styles */
+    .main-title { font-size: 20px; font-weight: 800; fill: #FFFFFF; letter-spacing: -0.5px; }
+    .subtitle { font-size: 12px; fill: #94A3B8; font-weight: 500; }
+    
+    .table-title { font-size: 13px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-subtitle { font-size: 9px; fill: #94A3B8; font-weight: 600; }
+    
+    .attr-pk { font-size: 11px; font-weight: 700; fill: #F59E0B; }
+    .attr-fk { font-size: 11px; font-weight: 700; fill: #38BDF8; }
+    .attr-normal { font-size: 11px; fill: #E2E8F0; font-weight: 500; }
+    .attr-type { font-size: 9.5px; fill: #64748B; font-weight: 600; }
+    .attr-group-title { font-size: 10px; font-weight: 800; fill: #475569; letter-spacing: 0.5px; }
+    
+    /* Lines */
+    .line { stroke: #334155; stroke-width: 1.5; fill: none; }
+    .rel-line { stroke: #475569; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .rel-line-glow { stroke: #38BDF8; stroke-width: 4; fill: none; stroke-opacity: 0.15; filter: url(#glow-blue); stroke-linecap: round; }
+    .rel-line-fact { stroke: #F7931A; stroke-width: 4; fill: none; stroke-opacity: 0.15; filter: url(#glow-orange); stroke-linecap: round; }
+  </style>
+
+  <!-- Background grid pattern -->
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Header Title -->
+  <g transform="translate(30, 45)" filter="url(#shadow)">
+    <text x="0" y="0" class="main-title">ETL Flow Map - FACT_TRANSACTION Loading Process</text>
+  </g>
+
+    <!-- Table: STG_TRANSACTIONS -->
+    <g filter="url(#shadow)">
+      <rect x="50" y="130" width="180" height="110" rx="8" class="stg-card"/>
+      <path d="M 50 138 Q 50 130 58 130 L 222 130 Q 230 130 230 138 L 230 165 L 50 165 Z" class="stg-header-bar"/>
+      <line x1="50" y1="130" x2="230" y2="130" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="50" y1="165" x2="230" y2="165" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="62" y="146" class="table-title">STG_TRANSACTIONS</text>
+      <text x="62" y="158" class="table-subtitle">Source: bitcoind getblock API</text>
+      
+    </g>
+    <circle cx="66" cy="179.5" r="3" fill="#94A3B8"/><text x="76" y="183" class="attr-normal">txid</text><text x="216" y="183" text-anchor="end" class="attr-type">VARCHAR(64)</text><circle cx="66" cy="195.5" r="3" fill="#94A3B8"/><text x="76" y="199" class="attr-normal">fee</text><text x="216" y="199" text-anchor="end" class="attr-type">BIGINT</text><circle cx="66" cy="211.5" r="3" fill="#94A3B8"/><text x="76" y="215" class="attr-normal">size, weight</text><text x="216" y="215" text-anchor="end" class="attr-type">INT</text><circle cx="66" cy="227.5" r="3" fill="#94A3B8"/><text x="76" y="231" class="attr-normal">dominant_script_type</text>
+    <!-- Table: STG_BLOCKS -->
+    <g filter="url(#shadow)">
+      <rect x="50" y="265" width="180" height="110" rx="8" class="stg-card"/>
+      <path d="M 50 273 Q 50 265 58 265 L 222 265 Q 230 265 230 273 L 230 300 L 50 300 Z" class="stg-header-bar"/>
+      <line x1="50" y1="265" x2="230" y2="265" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="50" y1="300" x2="230" y2="300" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="62" y="281" class="table-title">STG_BLOCKS</text>
+      <text x="62" y="293" class="table-subtitle">Source: bitcoind getblock API</text>
+      
+    </g>
+    <circle cx="66" cy="314.5" r="3" fill="#94A3B8"/><text x="76" y="318" class="attr-normal">height</text><text x="216" y="318" text-anchor="end" class="attr-type">INT</text><circle cx="66" cy="330.5" r="3" fill="#94A3B8"/><text x="76" y="334" class="attr-normal">hash</text><text x="216" y="334" text-anchor="end" class="attr-type">VARCHAR(64)</text><circle cx="66" cy="346.5" r="3" fill="#94A3B8"/><text x="76" y="350" class="attr-normal">difficulty</text><text x="216" y="350" text-anchor="end" class="attr-type">FLOAT</text><circle cx="66" cy="362.5" r="3" fill="#94A3B8"/><text x="76" y="366" class="attr-normal">weight_units</text><text x="216" y="366" text-anchor="end" class="attr-type">INT</text>
+    <!-- Table: STG_MARKET_DAILY -->
+    <g filter="url(#shadow)">
+      <rect x="50" y="400" width="180" height="110" rx="8" class="stg-card"/>
+      <path d="M 50 408 Q 50 400 58 400 L 222 400 Q 230 400 230 408 L 230 435 L 50 435 Z" class="stg-header-bar"/>
+      <line x1="50" y1="400" x2="230" y2="400" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="50" y1="435" x2="230" y2="435" stroke="#94A3B8" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="62" y="416" class="table-title">STG_MARKET_DAILY</text>
+      <text x="62" y="428" class="table-subtitle">Source: external api</text>
+      
+    </g>
+    <circle cx="66" cy="449.5" r="3" fill="#94A3B8"/><text x="76" y="453" class="attr-normal">date</text><text x="216" y="453" text-anchor="end" class="attr-type">DATE</text><circle cx="66" cy="465.5" r="3" fill="#94A3B8"/><text x="76" y="469" class="attr-normal">price_usd</text><text x="216" y="469" text-anchor="end" class="attr-type">NUMERIC</text><circle cx="66" cy="481.5" r="3" fill="#94A3B8"/><text x="76" y="485" class="attr-normal">market_cap</text><text x="216" y="485" text-anchor="end" class="attr-type">NUMERIC</text><circle cx="66" cy="497.5" r="3" fill="#94A3B8"/><text x="76" y="501" class="attr-normal">fear_greed_score</text>
+    <!-- DQ Gate Diamond -->
+    <g filter="url(#shadow)">
+      <polygon points="310,280 350,320 310,360 270,320" fill="#2D1A1A" stroke="#EF4444" stroke-width="2.5" filter="url(#glow-red)"/>
+      <text x="310" y="310" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="900" fill="#EF4444" letter-spacing="0.5px">DATA QUALITY</text>
+      <text x="310" y="326" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="900" fill="#FFFFFF">DQ GATE</text>
+      <text x="310" y="340" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#94A3B8">4 Pillars</text>
+    </g>
+    
+    <line x1="230" y1="185" x2="280" y2="300" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)" />
+    
+    <line x1="230" y1="320" x2="265" y2="320" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)" />
+    
+    <line x1="230" y1="455" x2="280" y2="340" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)" />
+    
+    <line x1="350" y1="320" x2="440" y2="205" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)" />
+    
+    <line x1="310" y1="360" x2="440" y2="485" stroke="#EF4444" stroke-width="2" marker-end="url(#arrow-red)" />
+    <text x="395" y="250" text-anchor="middle" font-family="Inter" font-size="10" font-weight="800" fill="#10B981">VALID DATA</text><text x="390" y="440" text-anchor="middle" font-family="Inter" font-size="10" font-weight="800" fill="#EF4444">REJECTED</text>
+    <!-- Table: Dimension Lookups -->
+    <g filter="url(#shadow)">
+      <rect x="450" y="150" width="180" height="110" rx="8" class="dim-card"/>
+      <path d="M 450 158 Q 450 150 458 150 L 622 150 Q 630 150 630 158 L 630 185 L 450 185 Z" class="dim-header-bar"/>
+      <line x1="450" y1="150" x2="630" y2="150" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="450" y1="185" x2="630" y2="185" stroke="#38BDF8" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="462" y="166" class="table-title">Dimension Lookups</text>
+      <text x="462" y="178" class="table-subtitle">Lookup surrogate keys</text>
+      
+    </g>
+    <circle cx="466" cy="199.5" r="3" fill="#94A3B8"/><text x="476" y="203" class="attr-normal">date_key lookup</text><circle cx="466" cy="215.5" r="3" fill="#94A3B8"/><text x="476" y="219" class="attr-normal">block_key lookup</text><circle cx="466" cy="231.5" r="3" fill="#94A3B8"/><text x="476" y="235" class="attr-normal">tx_type_key lookup</text><circle cx="466" cy="247.5" r="3" fill="#94A3B8"/><text x="476" y="251" class="attr-normal">market_key lookup</text>
+    <!-- Table: FACT Assembly -->
+    <g filter="url(#shadow)">
+      <rect x="680" y="150" width="180" height="110" rx="8" class="dim-card"/>
+      <path d="M 680 158 Q 680 150 688 150 L 852 150 Q 860 150 860 158 L 860 185 L 680 185 Z" class="dim-header-bar"/>
+      <line x1="680" y1="150" x2="860" y2="150" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+      <line x1="680" y1="185" x2="860" y2="185" stroke="#38BDF8" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="692" y="166" class="table-title">FACT Assembly</text>
+      <text x="692" y="178" class="table-subtitle">Calculate metrics</text>
+      
+    </g>
+    <circle cx="696" cy="199.5" r="3" fill="#94A3B8"/><text x="706" y="203" class="attr-normal">Multiply sats * USD price</text><circle cx="696" cy="215.5" r="3" fill="#94A3B8"/><text x="706" y="219" class="attr-normal">Calculate input/output USD</text><circle cx="696" cy="231.5" r="3" fill="#94A3B8"/><text x="706" y="235" class="attr-normal">Format audit loaded metadata</text>
+    <!-- Table: FACT_TRANSACTION -->
+    <g filter="url(#shadow)">
+      <rect x="910" y="150" width="210" height="110" rx="8" class="fact-card"/>
+      <path d="M 910 158 Q 910 150 918 150 L 1112 150 Q 1120 150 1120 158 L 1120 185 L 910 185 Z" class="fact-header-bar"/>
+      <line x1="910" y1="150" x2="1120" y2="150" stroke="#F7931A" stroke-width="3" stroke-linecap="round"/>
+      <line x1="910" y1="185" x2="1120" y2="185" stroke="#F7931A" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="922" y="166" class="table-title">FACT_TRANSACTION</text>
+      <text x="922" y="178" class="table-subtitle">Target DW Table</text>
+      
+    </g>
+    <circle cx="926" cy="199.5" r="3" fill="#94A3B8"/><text x="936" y="203" class="attr-normal">BigInt Transaction PK</text><circle cx="926" cy="215.5" r="3" fill="#94A3B8"/><text x="936" y="219" class="attr-normal">4 Foreign Keys conformed</text><rect x="922" y="223" width="186" height="18" rx="4" fill="#10B981" fill-opacity="0.1" stroke="#10B981" stroke-width="1" stroke-opacity="0.3"/><text x="930" y="236" font-family="'Inter', sans-serif" font-size="10" font-weight="900" fill="#34D399" letter-spacing="0.5px">12 VOLUME &amp; SENTIMENT MEASURES</text><circle cx="926" cy="247.5" r="3" fill="#94A3B8"/><text x="936" y="251" class="attr-normal">Audit Timestamp &amp; Source</text>
+    <line x1="630" y1="205" x2="675" y2="205" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-blue)" />
+    
+    <line x1="860" y1="205" x2="905" y2="205" stroke="#F7931A" stroke-width="2" marker-end="url(#arrow-orange)" />
+    
+    <!-- Table: ERR_QUALITY_REJECTS -->
+    <g filter="url(#shadow)">
+      <rect x="450" y="430" width="180" height="110" rx="8" class="err-card"/>
+      <path d="M 450 438 Q 450 430 458 430 L 622 430 Q 630 430 630 438 L 630 465 L 450 465 Z" class="err-header-bar"/>
+      <line x1="450" y1="430" x2="630" y2="430" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/>
+      <line x1="450" y1="465" x2="630" y2="465" stroke="#EF4444" stroke-opacity="0.15" stroke-width="1"/>
+      <text x="462" y="446" class="table-title">ERR_QUALITY_REJECTS</text>
+      <text x="462" y="458" class="table-subtitle">Error audit repository</text>
+      
+    </g>
+    <circle cx="466" cy="479.5" r="3" fill="#94A3B8"/><text x="476" y="483" class="attr-normal">rejected_record_id</text><circle cx="466" cy="495.5" r="3" fill="#94A3B8"/><text x="476" y="499" class="attr-normal">failed_dq_gate_pillar</text><circle cx="466" cy="511.5" r="3" fill="#94A3B8"/><text x="476" y="515" class="attr-normal">error_reason_description</text><circle cx="466" cy="527.5" r="3" fill="#94A3B8"/><text x="476" y="531" class="attr-normal">raw_payload_dump</text></svg>

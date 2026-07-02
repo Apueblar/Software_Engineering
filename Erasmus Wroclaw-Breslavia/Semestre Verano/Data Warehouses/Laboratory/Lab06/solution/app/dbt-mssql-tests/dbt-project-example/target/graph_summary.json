@@ -1,0 +1,1 @@
+{"_invocation_id": "744079ff-0a24-46b4-9884-dd6d3a7f8aaf", "linked": {"0": {"name": "source.adventure_works_transform.aw_staging.sales_order_header", "type": "source", "succ": [2]}, "1": {"name": "source.adventure_works_transform.aw_staging.customer", "type": "source"}, "2": {"name": "model.adventure_works_transform.stg_sales", "type": "model"}}}

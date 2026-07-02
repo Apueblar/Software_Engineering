@@ -1,0 +1,20 @@
+version: 2
+
+# Maps raw tables that dlt loaded into AWStaging.[Extract]
+# NOTE: dlt lowercases all table/column names automatically
+sources:
+  - name: raw_aw
+    database: StarSchema
+    schema: extract
+    tables:
+      - name: product
+      - name: product_subcategory
+      - name: product_category
+      - name: product_rating
+      - name: sales_order_header
+      - name: sales_order_detail
+      - name: sales_person
+      - name: sales_territory
+      - name: person
+      - name: country_region
+      - name: currency_rate_data

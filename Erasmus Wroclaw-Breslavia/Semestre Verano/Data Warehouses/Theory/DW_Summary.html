@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Warehouses — Complete Study Summary (Parts 3 & 4)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6380;
+  --blue: #4d9fff;
+  --blue-dim: #1a3d6b;
+  --teal: #2dd4bf;
+  --teal-dim: #0f3d38;
+  --amber: #fbbf24;
+  --amber-dim: #3d2e0a;
+  --red: #f87171;
+  --red-dim: #3d1212;
+  --green: #4ade80;
+  --green-dim: #0d3320;
+  --purple: #a78bfa;
+  --purple-dim: #2d1f5e;
+  --pink: #f472b6;
+  --pink-dim: #3d1230;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', serif;
+  --sans: 'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── HEADER ── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(77,159,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+header h1 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8eaf0 30%, #4d9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-sub { font-size: 14px; color: var(--text2); margin-bottom: 18px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-color: var(--blue); }
+.badge-teal { background: var(--teal-dim); color: var(--teal); border-color: var(--teal); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); border-color: var(--red); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); border-color: var(--purple); }
+.badge-green { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+/* ── NAV ── */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.nav-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+nav a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  letter-spacing: 0.3px;
+}
+nav a:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-dim); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1160px; margin: 0 auto; padding: 32px 60px 80px; }
+
+/* ── PART HEADER ── */
+.part-header {
+  margin: 60px 0 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+  text-align: center;
+}
+.part-header h1 {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text);
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.part-header-sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── TOPIC CARD ── */
+.topic {
+  margin-bottom: 48px;
+  scroll-margin-top: 70px;
+}
+.topic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.topic-icon { font-size: 22px; flex-shrink: 0; }
+.topic h2 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+.topic-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SUMMARY BOX ── */
+.summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.summary strong { color: var(--text); }
+.summary-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+/* ── TWO / THREE COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .container { padding: 20px 20px 60px; }
+  nav { padding: 10px 20px; }
+  header { padding: 28px 20px 22px; }
+}
+
+/* ── INFO CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.card-title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card ul { list-style: none; padding: 0; }
+.card ul li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.card ul li::before { content: '›'; position: absolute; left: 0; color: var(--text3); }
+.card ul li strong { color: var(--text); }
+
+/* ── DEFINITION TABLE ── */
+.def-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.def-table th {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  padding: 8px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.def-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.def-table tr:last-child td { border-bottom: none; }
+.def-table tr:hover td { background: rgba(255,255,255,0.02); }
+.def-table td:first-child {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: 600;
+}
+.def-table td strong { color: var(--text); }
+.def-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.def-wrap-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── CODE ── */
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--teal);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--text2);
+}
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px;
+}
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-teal { background: var(--teal-dim); color: var(--teal); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-green { background: var(--green-dim); color: var(--green); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── SEPARATOR ── */
+.sep { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* ── WARN / TIP BOX ── */
+.warn-box {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.warn-box strong { color: var(--red); }
+.tip-box {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.tip-box strong { color: var(--teal); }
+
+/* ── EXAM QUESTIONS ── */
+.exam-header { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 14px; font-weight: 700; background: var(--surface); padding: 14px 18px; border-bottom: 1px solid var(--border); border-top-left-radius: 8px; border-top-right-radius: 8px; color: var(--amber); }
+.exam-section { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; }
+.exam-body { padding: 14px 18px; }
+.exam-q { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.exam-q:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.exam-q-text { font-size: 13px; color: var(--text); margin-bottom: 10px; font-weight: 500; font-family: var(--sans); }
+.exam-options { display: flex; flex-direction: column; gap: 5px; }
+.exam-opt { font-size: 13px; color: var(--text2); padding: 6px 10px; border-radius: 5px; border: 1px solid transparent; cursor: pointer; transition: all 0.15s; display: flex; gap: 8px; align-items: flex-start; user-select: none; }
+.exam-opt:hover { border-color: var(--border); background: var(--surface); }
+.exam-opt.correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.exam-opt.wrong { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+.exam-opt.revealed-correct { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.opt-letter { font-family: var(--mono); font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+.exam-reveal { margin-top: 10px; display: none; }
+.exam-reveal.show { display: block; }
+.exam-explanation { font-size: 12px; color: var(--text2); background: var(--surface); border-left: 3px solid var(--teal); padding: 8px 12px; border-radius: 0 4px 4px 0; font-style: italic; }
+.show-btn { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--amber); background: var(--amber-dim); border: 1px solid var(--amber); border-radius: 4px; padding: 5px 12px; cursor: pointer; margin-top: 8px; transition: all 0.15s; }
+.show-btn:hover { background: var(--amber); color: #000; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-kicker">📊 Data Warehouses · WUST</div>
+  <h1>Data Warehouses<br>Complete Study Summary</h1>
+  <div class="header-sub">Divided into Part 3 (Architecture & Data Models) and Part 4 (Integration, Reporting & Visualisation)</div>
+  <div class="badges">
+    <span class="badge badge-blue">DW Architecture</span>
+    <span class="badge badge-teal">Data Models</span>
+    <span class="badge badge-amber">ETL</span>
+    <span class="badge badge-purple">OLAP</span>
+    <span class="badge badge-green">Visualisation</span>
+  </div>
+</header>
+
+<nav>
+  <span class="nav-label">Part 3 →</span>
+  <a href="#t4">ETL & Data Integration</a>
+  <a href="#t5">DW Definitions</a>
+  <a href="#t6">Multidimensional Model</a>
+  <a href="#t7">OLAP Operations</a>
+  <a href="#t8">Dimensional Model Details</a>
+  <a href="#t9">SCD</a>
+  <a href="#t10">Dimensional Design</a>
+  <a href="#t12">DW Architecture</a>
+  <a href="#t13">Physical Aspects</a>
+  <span class="nav-label" style="margin-left: 10px;">Part 4 →</span>
+  <a href="#t4-2">Data Map & ETL</a>
+  <a href="#t4-3">ETL Staging</a>
+  <a href="#t4-4">BI Ecosystem</a>
+  <a href="#t11">ETL Details</a>
+  <a href="#t14">Visualisation</a>
+  <span class="nav-label" style="margin-left: 10px;">Practice →</span>
+  <a href="#exam">Final Exam</a>
+</nav>
+
+<div class="container">
+
+<div class="part-header" id="part3">
+  <div class="part-header-sub">Lectures 4–8, 12, 13</div>
+  <h1>Part 3 — DW Architecture & Data Models</h1>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 4: ETL & Data Integration -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">01</span>
+    <span class="topic-icon">🔄</span>
+    <h2>ETL & Data Integration (Lecture 4)</h2>
+    <span class="topic-tag badge badge-blue">Foundational</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    <strong>ETL</strong> extracts and transforms data externally before loading; <strong>ELT</strong> loads raw data into scalable cloud targets first and transforms in-place. <strong>Data Profiling</strong> (structure, content, business rules) is the mandatory first step. Quality is defined by Kimball's <strong>5C's</strong> (business view) and DAMA's <strong>6 dimensions</strong> (technical view).
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📊 ETL Phases & CDC</div>
+      <ul>
+        <li><strong>Extraction</strong> — pull data from source systems.</li>
+        <li><strong>Transformation</strong> — cleanse, harmonise, derive, aggregate.</li>
+        <li><strong>Loading</strong> — write to DW (full or incremental).</li>
+        <li><strong>CDC</strong> — detects row-level changes (timestamp, triggers, log-based).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">✨ Data Quality Frameworks</div>
+      <ul>
+        <li><strong>Kimball's 5C's:</strong> Clean, Consistent, Conformed, Current, Comprehensive.</li>
+        <li><strong>6 DAMA Dimensions:</strong> Accuracy, Validity, Consistency, Uniqueness, Timeliness, Completeness.</li>
+        <li><strong>Data Profiling Screens:</strong> Structure, Content, Business Rule.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam trap:</strong> 5C's are Kimball's <em>business</em> language; 6D are the <em>technical</em> measurement dimensions. A "Conformed" business goal maps to both Uniqueness and Consistency technically.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 5: Data Warehouses: Definitions & Architecture -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">02</span>
+    <span class="topic-icon">🏛️</span>
+    <h2>Data Warehouses: Definitions & Architecture (Lecture 5)</h2>
+    <span class="topic-tag badge badge-purple">Architecture</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Inmon's DW is <strong>subject-oriented, integrated, time-variant, and non-volatile</strong> — a read-only historical store for decision-making, contrasting with volatile OLTP systems. The ecosystem adds an <strong>ODS</strong> for near-real-time current data and <strong>Data Marts</strong> as subject-specific DW subsets for individual departments.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🎮 Inmon's 4 Characteristics</div>
+      <ul>
+        <li><strong>Subject-Oriented</strong> — organised around business subjects.</li>
+        <li><strong>Integrated</strong> — resolves inconsistencies from multiple sources.</li>
+        <li><strong>Non-Volatile</strong> — data is read-only (frozen) once loaded.</li>
+        <li><strong>Time-Variant</strong> — contains historical snapshots.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">⚡ DW Components & Grain</div>
+      <ul>
+        <li><strong>Staging Area:</strong> ETL processing (no business users).</li>
+        <li><strong>Organisation Area:</strong> multidimensional data model (direct querying).</li>
+        <li><strong>Access Area:</strong> BI tools and reporting.</li>
+        <li><strong>Granularity:</strong> level of detail (multiple levels kept simultaneously).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 6: Multidimensional Data Model -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">03</span>
+    <span class="topic-icon">🧊</span>
+    <h2>Multidimensional Data Model (Lecture 6)</h2>
+    <span class="topic-tag badge badge-teal">Core</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Data is modelled as <strong>Facts</strong> (measurable events) and <strong>Dimensions</strong> (descriptive context). The <strong>Star Schema</strong> denormalizes dimensions for speed; the <strong>Snowflake Schema</strong> normalizes them. OLAP cubes enable rapid slicing, dicing, and aggregation via <strong>ROLAP</strong> (relational) or <strong>MOLAP</strong> (array-based) storage.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔄 DW Schemas</div>
+      <ul>
+        <li><strong>Star Schema:</strong> central fact table + denormalised dimension tables. Fast and simple.</li>
+        <li><strong>Snowflake Schema:</strong> normalised dimensions (hierarchy levels are separated into tables). Because of this, <strong>the fact table is NOT directly connected to at least one dimension table</strong> (the outriggers).</li>
+        <li><strong>Fact Constellation:</strong> multiple fact tables sharing conformed dimensions.</li>
+        <li><strong>Schema Math:</strong> Analysing "monthly sales in branches" requires 3 dimensions (Time, Branch, Product). Analysing "number and value" requires 2 measures.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🧠 Storage Types</div>
+      <ul>
+        <li><strong>ROLAP (Relational):</strong> data stored in RDBMS.</li>
+        <li><strong>MOLAP (Multidimensional):</strong> data stored in multidimensional database (MDBMS).</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="tip-box">
+    <strong>🎯 Key rule:</strong> If an attribute is commonly aggregated → it's a <strong>fact</strong>. If an attribute drives aggregations → it's a <strong>dimension</strong>.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 7: Dimensions, OLAP Operations & OLAP Architectures -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">04</span>
+    <span class="topic-icon">📊</span>
+    <h2>Dimensions, OLAP Operations & Architectures (Lecture 7)</h2>
+    <span class="topic-tag badge badge-amber">OLAP</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    OLAP enables interactive navigation via <strong>Roll-up</strong>, <strong>Drill-down</strong>, <strong>Slice</strong>, <strong>Dice</strong>, and <strong>Pivot</strong>. Measures are <strong>additive</strong> (sum across all dims), <strong>semi-additive</strong> (e.g., balances — not across time), or <strong>non-additive</strong> (e.g., ratios). Hierarchies (Day→Month→Year) structure the drill paths within dimensions.
+  </div>
+
+  <div class="def-wrap" style="margin-bottom:20px;">
+    <div class="def-wrap-title">OLAP Operations & Hierarchies</div>
+    <table class="def-table">
+      <tr><td>Drill Down / Roll Up</td><td>Navigate between coarse and detailed levels of aggregation.</td></tr>
+      <tr><td>Slice / Dice</td><td>Filter on one (Slice) or multiple (Dice) dimensions.</td></tr>
+      <tr><td>Drill-Across</td><td>Query multiple fact tables via conformed dimensions.</td></tr>
+      <tr><td>Hierarchies</td><td>Defined <strong>between attributes from a single dimension table</strong> (e.g., Day &rarr; Month). Handled via flattening (Star) or snowflaking (Snowflake).</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 8: Dimensional Model Details -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">05</span>
+    <span class="topic-icon">🧩</span>
+    <h2>Dimensional Model Details (Lecture 8)</h2>
+    <span class="topic-tag badge badge-purple">Modelling</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Fact tables come in three types: <strong>Transaction</strong> (one row per event), <strong>Periodic Snapshot</strong> (regular status measurements), and <strong>Accumulating Snapshot</strong> (updated as an entity moves through milestones). Special dimensions include Conformed, Junk, Degenerate, and Role-Playing. Measures are Distributive, Algebraic, or Holistic based on how they can be partitioned and recomputed.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 Fact Table Types & Cubes</div>
+      <ul>
+        <li><strong>Transaction:</strong> one row per event (append only). Grain = individual transaction.</li>
+        <li><strong>Periodic Snapshot:</strong> status measurement at intervals (e.g., monthly balances). Dense snapshots.</li>
+        <li><strong>Accumulating Snapshot:</strong> updated as an entity progresses through milestones. Tracks lags (days between steps).</li>
+        <li><strong>Factless Fact:</strong> captures occurrences/events without numerical measures (e.g., student attendance).</li>
+        <li><strong>Base Cuboid (N-D):</strong> Lowest level of summarization for all N dimensions.</li>
+        <li><strong>Apex Cuboid (0-D):</strong> Highest level of summarization (total sum over all dimensions).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔬 Special Dimensions & Keys</div>
+      <ul>
+        <li><strong>Conformed Dimension:</strong> shared across multiple fact tables, enabling <em>drill-across</em> queries.</li>
+        <li><strong>Junk Dimension:</strong> groups miscellaneous low-cardinality flags (under 26 dims).</li>
+        <li><strong>Degenerate Dimension:</strong> high-cardinality key (e.g. Order ID) <strong>stored directly inside the fact table</strong> with no separate dimension table.</li>
+        <li><strong>Role-Playing Dimension:</strong> referenced multiple times for different roles (e.g., order date, ship date).</li>
+        <li><strong>Surrogate Keys:</strong> Anonymous integer primary keys assigned in sequence. Protects DW from operational source changes.</li>
+        <li><strong>Durable Supernatural Key:</strong> A persistent integer key for an entity that never changes, even if multiple surrogate keys exist over time due to SCD tracking.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🌲 Hierarchies & Drilling</div>
+      <ul>
+        <li><strong>Balanced Hierarchy:</strong> Fixed number of clearly defined levels (e.g., Time).</li>
+        <li><strong>Unbalanced/Ragged Hierarchy:</strong> Recursive self-joins (e.g., employee to manager). Handled using a <strong>Hierarchy Bridge Table</strong> (contains parent_id, sub_id, levels_removed). Flattening is a limited alternative.</li>
+        <li><strong>Drill Down:</strong> Simply adding a row header (dimension attribute) to the GROUP BY expression in a SQL query.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">🔢 Types of Measures</div>
+      <ul>
+        <li><strong>Distributive:</strong> Computed by partitioning data, computing sub-aggregates, and combining them (e.g., SUM, MIN, MAX, COUNT).</li>
+        <li><strong>Algebraic:</strong> Requires a consolidating function at the final stage (e.g., AVG = SUM/COUNT, Standard Deviation).</li>
+        <li><strong>Holistic:</strong> No constant bound on storage size needed to describe a sub-aggregate (e.g., MODE, MEDIAN, RANK).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9: Slowly Changing Dimensions (SCD) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">06</span>
+    <span class="topic-icon">⏳</span>
+    <h2>Slowly Changing Dimensions (SCD) (Lecture 9)</h2>
+    <span class="topic-tag badge badge-red">SCD</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    SCDs manage how dimensional attributes change over time. <strong>Type 1</strong> overwrites (destroys history), <strong>Type 2</strong> adds a new row (full history, requires surrogate keys), <strong>Type 3</strong> adds a column (one prior value). Types 5, 6, and 7 are combinations. Key exam fact: <strong>Type 6 = 1+2+3</strong>, <strong>Type 5 = 1+4</strong>.
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">SCD Types</div>
+    <table class="def-table">
+      <tr><td>Type 0</td><td><strong>Passive:</strong> value never changes; changes are completely ignored. Ideal for "original" attributes (e.g. credit score at account opening).</td></tr>
+      <tr><td>Type 1</td><td><strong>Overwrite:</strong> old value lost; only current data kept. Very easy to implement but destroys history.</td></tr>
+      <tr><td>Type 2</td><td><strong>New Row:</strong> full history preserved by creating a new version of the record. <strong>Requires surrogate keys</strong>. Best for year-over-year comparisons (e.g., sales by historical rating).</td></tr>
+      <tr><td>Type 3</td><td><strong>New Column:</strong> one prior value preserved in the same row. Sometimes called an <em>alternate reality</em>, allowing grouping by current or historical values without joins.</td></tr>
+      <tr><td>Type 4</td><td><strong>History Table / Mini-Dimension:</strong> volatile attributes split into a separate, rapidly changing table.</td></tr>
+      <tr><td>Type 5</td><td><strong>Type 1 + 4:</strong> Embeds a "current profile" mini-dimension key in the base dimension that is overwritten as a Type 1 attribute.</td></tr>
+      <tr><td>Type 6</td><td><strong>1+2+3:</strong> combines overwriting, new rows, and historical columns.</td></tr>
+      <tr><td>Type 7</td><td><strong>Dual Type 1 & 2:</strong> Adds the natural key to the fact table for direct connection to the current profile, bypassing the surrogate key for "as-is" analysis.</td></tr>
+    </table>
+  </div>
+  
+  <div class="tip-box">
+    <strong>🎯 Quiz trap:</strong> Type 6 = 1+2+3. Type 5 = 1+4. Type 7 achieves Type 6 results via dual keys instead of column overwrites.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10: Dimensional Design -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">07</span>
+    <span class="topic-icon">🏗️</span>
+    <h2>Dimensional Design (Lecture 10)</h2>
+    <span class="topic-tag badge badge-amber">Design</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Kimball's <strong>4-Step Process</strong>: choose the business process → declare the grain → identify dimensions → define measures. Design strategies range from <strong>Top-Down (Inmon)</strong> to <strong>Bottom-Up (Kimball)</strong>. Conceptual tools like <strong>DFM</strong> and <strong>Dot Modelling</strong> bridge requirements to physical schemas.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📐 4 Steps of Dimensional Modelling</div>
+      <ul>
+        <li><strong>Step 1: Choose Process</strong> — a business event (not a department). The grain of the process defines the atomic level.</li>
+        <li><strong>Step 2: Choose Grain</strong> — the finest level of detail (e.g., individual POS transaction line item). <em>Declare before dimensions.</em></li>
+        <li><strong>Step 3: Choose Dimensions</strong> — all the context (who, what, where, when). Ask "How do business people describe the data?"</li>
+        <li><strong>Step 4: Define Measures</strong> — the numeric facts tied to the grain. Must be consistent and additive at the declared grain.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">✨ Conceptual Modelling Techniques</div>
+      <ul>
+        <li><strong>Dot Modelling:</strong> Dot = central facts. Arrows = hierarchy paths. Separate worksheets for Data Model, Entities, Hierarchies, Fact Usage Matrix.</li>
+        <li><strong>DFM (Dimensional Fact Model):</strong> Tree-structured visual schema. Handles <em>cross-dimensional attributes</em> (e.g., VAT depending on both Product AND Country) using circular arcs.</li>
+        <li><strong>StarER:</strong> Combines Star schema performance with ER model semantics.</li>
+        <li><strong>ME/R Model:</strong> E/R specialization explicitly for multidimensional structures.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">⚖️ Design Strategies</div>
+      <ul>
+        <li><strong>Top-Down (Inmon):</strong> Normalized EDW first → feeds dependent data marts. High integration but slow delivery.</li>
+        <li><strong>Bottom-Up (Kimball):</strong> Atomic data marts first via Enterprise Bus. Fast ROI.</li>
+        <li><strong>Hybrid:</strong> Core normalized DW + parallel dimensional marts. Uses ODS and Data Vaults for flexibility.</li>
+        <li><strong>Supply-Driven:</strong> Driven by available sources. Risk: collecting unused data.</li>
+        <li><strong>Demand-Driven:</strong> Driven by user requirements. Risk: users may not know what's possible.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">🔑 Enterprise Bus Matrix</div>
+      <ul>
+        <li>A grid: <strong>Business Processes</strong> (rows) vs <strong>Conformed Dimensions</strong> (columns).</li>
+        <li>Used by Kimball to coordinate integration across marts without a monolithic EDW.</li>
+        <li><strong>Conformed Dimension:</strong> Same attributes and keys across multiple fact tables.</li>
+        <li><strong>Drill-Across:</strong> Query joining two fact tables via shared conformed dimensions.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 12: DW Architecture & Data Flows -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">08</span>
+    <span class="topic-icon">🌊</span>
+    <h2>DW Architecture & Data Flows (Lecture 12)</h2>
+    <span class="topic-tag badge badge-purple">Architecture</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    The goal is a <strong>SSoT</strong> (physical storage) and <strong>SVoT</strong> (semantic layer). Modern patterns include <strong>Data Vault</strong> (Hubs/Links/Satellites), <strong>Medallion</strong> (Bronze→Silver→Gold), and <strong>MDM</strong> for governing golden records of critical entities. Three metadata types — business, technical, operational — track definitions, lineage, and pipeline health.
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Architectures & MDM</div>
+    <table class="def-table">
+      <tr><td>Data Vault</td><td>Hubs (keys), Links (relationships), Satellites (context) — flexible schema for dynamic sources.</td></tr>
+      <tr><td>MDM</td><td>Master Data Management — unifying core data (Customers, Products) across the enterprise.</td></tr>
+      <tr><td>Modern Data Stack</td><td>ELT pattern, cloud MPP engines (Snowflake/BigQuery), Medallion Architecture (Bronze, Silver, Gold).</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 13: Physical Aspects of OLAP -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t13">
+  <div class="topic-header">
+    <span class="topic-number">09</span>
+    <span class="topic-icon">⚙️</span>
+    <h2>Physical Aspects of OLAP (Lecture 13)</h2>
+    <span class="topic-tag badge badge-blue">Physical</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    A full N-dimensional cube has 2<sup>N</sup> cuboids. <strong>Partial materialization</strong> (lattice) gives the best cost/performance trade-off but requires a cuboid selection mechanism. <strong>Bitmap Indexes</strong> suit low-cardinality columns; <strong>Columnar Storage</strong> (vertical partitioning) drastically cuts I/O for analytical queries.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🧱 Materialization</div>
+      <ul>
+        <li><strong>Full Materialization:</strong> All 2<sup>N</sup> cuboids pre-computed. Maximum query performance, massive storage cost.</li>
+        <li><strong>No Materialization:</strong> All queries computed on-the-fly from base data. Zero storage overhead, slowest queries.</li>
+        <li><strong>Partial Materialization:</strong> A selected subset of cuboids pre-computed. Requires an additional <em>cuboid selection mechanism</em> to route queries to the correct aggregate table. Best trade-off.</li>
+        <li><strong>Lattice of Cuboids:</strong> Visual representation showing which cuboids can be derived from which. Higher-level cuboids can be computed from lower ones.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">⚡ Indexes &amp; Storage</div>
+      <ul>
+        <li><strong>Bitmap Index:</strong> One binary vector (bit string) per dimension attribute value. Very compact for low-cardinality columns. Enables fast AND/OR operations.</li>
+        <li><strong>Join Index:</strong> Pre-materializes the join between fact and dimension tables as a set of RID lists. Eliminates join cost at query time.</li>
+        <li><strong>Columnar Storage:</strong> Each column stored separately (vertical partitioning). Enables compression (repeated values), and only loads columns needed by a query.</li>
+        <li><strong>Partitioning:</strong> Horizontal split of a table (by date range, region). Enables partition pruning to skip irrelevant data entirely.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>🎯 Exam trap:</strong> Columnar storage = vertical partitioning applied systematically across all columns. It is NOT about partitioning rows. <br><br>
+    <strong>Partial Cube Materialization</strong> saves space and ETL time but explicitly requires <em>additional mechanisms for cuboid selection</em> at query time to route queries to the correct aggregate table.
+  </div>
+</div>
+
+
+<div class="part-header" id="part4" style="margin-top: 80px;">
+  <div class="part-header-sub">Lectures 1, 5, 9, 10, 11, 14</div>
+  <h1>Part 4 — Data Integration, Reporting & Visualisation</h1>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 9B: Logical Data Map & ETL Design -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4-2">
+  <div class="topic-header">
+    <span class="topic-number">10</span>
+    <span class="topic-icon">🗺️</span>
+    <h2>Logical Data Map & ETL Design (Lecture 9)</h2>
+    <span class="topic-tag badge badge-amber">ETL Design</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    The <strong>Logical Data Map</strong> is the ETL blueprint — it maps every target attribute to its source, transformation logic, data types, and anomaly handling <em>before</em> any code is written. Skipping it forces developers to make critical business decisions in isolation, leading to integration failures.
+  </div>
+
+  <div class="def-wrap">
+    <div class="def-wrap-title">Logical Data Map Columns</div>
+    <table class="def-table">
+      <tr><td>Target Table / Column</td><td>The destination attribute in the DW dimensional model.</td></tr>
+      <tr><td>Source Table / Column</td><td>The originating field in the source system.</td></tr>
+      <tr><td>Transformation Logic</td><td>Exact business rule applied (e.g., UPPER(last_name), COALESCE(val,0)).</td></tr>
+      <tr><td>Data Type</td><td>Source and target data types (mismatches are a common bug source).</td></tr>
+      <tr><td>Anomaly Handling</td><td>What to do with NULLs, out-of-range values, or missing FK references.</td></tr>
+      <tr><td>Test Cases</td><td>Specific examples to validate correctness of the transformation rule.</td></tr>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Key principle:</strong> The Logical Data Map forces business decisions to be made <em>before</em> physical coding begins. Without it, developers make critical data interpretation decisions in isolation — a recipe for disaster.
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 10B: ETL Staging, Data Quality & Architecture -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4-3">
+  <div class="topic-header">
+    <span class="topic-number">11</span>
+    <span class="topic-icon">🚧</span>
+    <h2>ETL Staging, Data Quality & Architecture (Lecture 10)</h2>
+    <span class="topic-tag badge badge-teal">Staging</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    The <strong>Staging Area</strong> isolates ETL workloads from source systems and enables checkpoint restarts. Load sequence: static dims → SCD Type 1 → SCD Type 2 → other dims → <strong>fact tables last</strong> (via surrogate key lookup). Data quality flows SOR → SOI → SOA.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🚦 Load Sequencing</div>
+      <ul>
+        <li><strong>Step 1:</strong> Permanent / static dimensions (Date, etc.).</li>
+        <li><strong>Step 2:</strong> SCD Type 1 updates (overwrite).</li>
+        <li><strong>Step 3:</strong> SCD Type 2 inserts (new rows).</li>
+        <li><strong>Step 4:</strong> Remaining dimension types (junk, mini-dims).</li>
+        <li><strong>Step 5:</strong> Fact tables — using surrogate key lookups from already-loaded dimensions.</li>
+        <li><strong>Late-Arriving Facts:</strong> Look up the dimension row valid at the fact's event date, not current date.</li>
+        <li><strong>Late-Arriving Dimensions:</strong> Insert a placeholder row, back-fill once the real data arrives.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🔒 Staging Properties</div>
+      <ul>
+        <li>No surrogate keys — stores natural keys from source systems.</li>
+        <li>No indexes (for fast bulk inserts) — indexes added post-load.</li>
+        <li>Temporary: can be truncated after each successful DW load cycle.</li>
+        <li>Enables <strong>incremental loads</strong> by comparing current vs. previous snapshots (full diff).</li>
+        <li><strong>Audit columns:</strong> ETL batch ID, load timestamp, source system ID added to every row for full lineage.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 1&5: BI Ecosystem -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t4-4">
+  <div class="topic-header">
+    <span class="topic-number">12</span>
+    <span class="topic-icon">🌐</span>
+    <h2>BI Ecosystem (Lecture 1 & 5)</h2>
+    <span class="topic-tag badge badge-purple">BI</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Classic stack: SQL Server → SSIS (ETL) → SSAS (cubes) → SSRS/Power BI (reporting). Modern stack: cloud MPP engines (Snowflake, BigQuery), <strong>Lakehouses</strong> (Delta Lake), streaming (Kafka), and self-service BI. Architectures evolve towards <strong>Data Mesh</strong> (domain ownership) and <strong>Data Fabric</strong> (governed integration).
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🧰 Microsoft BI Stack</div>
+      <ul>
+        <li><strong>SQL Server:</strong> Relational OLTP + DW engine.</li>
+        <li><strong>SSIS:</strong> SQL Server Integration Services — ETL tool (data pipelines).</li>
+        <li><strong>SSAS:</strong> SQL Server Analysis Services — Multidimensional OLAP cubes and Tabular models.</li>
+        <li><strong>SSRS:</strong> SQL Server Reporting Services — Paginated reports.</li>
+        <li><strong>Power BI:</strong> Self-service visualization + semantic model.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">☁️ Modern BI Trends</div>
+      <ul>
+        <li><strong>Cloud MPP:</strong> Snowflake, BigQuery, Azure Synapse — massively parallel analytical SQL.</li>
+        <li><strong>Data Lake:</strong> Raw storage (S3, ADLS). Schema-on-read. Risk: data swamp.</li>
+        <li><strong>Lakehouse:</strong> ACID + DW on top of a data lake (Delta Lake, Apache Iceberg).</li>
+        <li><strong>Streaming:</strong> Kafka + Flink for real-time pipelines (sub-second latency).</li>
+        <li><strong>Data Mesh:</strong> Domain teams own their data as products. Federated computational governance.</li>
+        <li><strong>Data Fabric:</strong> Metadata-driven integration layer across heterogeneous stores.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 11: ETL (Extract, Transform, Load) -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">13</span>
+    <span class="topic-icon">🚂</span>
+    <h2>ETL (Extract, Transform, Load) (Lecture 11)</h2>
+    <span class="topic-tag badge badge-blue">ETL</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    ETL consumes ~70% of DW project effort. <strong>CDC</strong> enables incremental extraction. Transformation applies Column/Structure/Business Rule quality screens and data conforming. The Load phase generates surrogate keys and handles late-arriving data — never use NULLs for missing FK references, use a default key (e.g., -1).
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">🔧 Extraction & Loading</div>
+      <ul>
+        <li><strong>Extraction:</strong> Push vs Pull; Online vs Offline.</li>
+        <li><strong>CDC:</strong> Crucial for incremental loads. Requires the ability to identify precisely which data elements have changed.</li>
+        <li><strong>Loading:</strong> Generate surrogate keys in ETL, handle late-arriving facts, execute checkpointed massive loads.</li>
+        <li><strong>Missing Data:</strong> Never use NULLs in fact tables for missing dimensions; assign a default surrogate key (e.g., -1 for "Unknown").</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🧹 Clean & Conform</div>
+      <ul>
+        <li><strong>Quality Screens:</strong> Filters implementing tests in the data flow. Categories: <strong>Column Screens</strong> (unexpected NULLs/ranges), <strong>Structure Screens</strong> (PK/FK integrity), <strong>Business Rule Screens</strong> (customer logic).</li>
+        <li><strong>Error Handling:</strong> Error Event Schema to log violations without halting execution.</li>
+        <li><strong>Conforming & Units:</strong> Aligning disparate systems (e.g., transforming cm to mm to match a target standard representation).</li>
+        <li><strong>Data Observability:</strong> Proactive ML-based monitoring of pipelines (volume, arrival time, lineage) vs. static Data Quality checks ("Does this column have nulls?").</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- TOPIC 14: Data Visualisation -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="t14">
+  <div class="topic-header">
+    <span class="topic-number">14</span>
+    <span class="topic-icon">📈</span>
+    <h2>Data Visualisation (Lecture 14)</h2>
+    <span class="topic-tag badge badge-green">Visualisation</span>
+  </div>
+
+  <div class="summary">
+    <div class="summary-title">Summary</div>
+    Choose charts by comparison type: bar/column for ranking, line for time trends, scatter for correlation. Effective dashboards follow <strong>ACES</strong> (Accurate, Clear, Empowering, Succinct), use the <strong>Z-pattern</strong>, limit to <strong>7±2 widgets</strong>, and maximize the data-to-ink ratio. Pre-attentive attributes (colour, size, shape) guide the viewer's eye instantly.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--blue);">📊 Chart Selection Guide</div>
+      <ul>
+        <li><strong>Ranking (Item):</strong> Horizontal Bar (many items), Column (few items).</li>
+        <li><strong>Time Dynamics:</strong> Line chart (continuous trend), Column (discrete periods).</li>
+        <li><strong>Composition (Structure):</strong> Stacked Bar / Pie / Donut (use sparingly — hard to compare angles).</li>
+        <li><strong>Correlation:</strong> Scatter / Dot chart.</li>
+        <li><strong>Distribution:</strong> Histogram, Box Plot.</li>
+        <li><strong>Geospatial:</strong> Map / Choropleth chart.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal);">🖥️ Dashboard Design Rules</div>
+      <ul>
+        <li><strong>ACES Framework:</strong> Accurate (correct data), Clear (unambiguous), Empowering (actionable), Succinct (concise).</li>
+        <li><strong>5-Second Rule:</strong> Key message grasped within 5 seconds.</li>
+        <li><strong>Z-Pattern:</strong> Most critical info in top-left. Eye scans Z-shape.</li>
+        <li><strong>7±2 Widgets:</strong> Limit cognitive load (Miller's Law).</li>
+        <li><strong>No Scrolling:</strong> All critical info visible above the fold.</li>
+        <li><strong>Data-to-Ink Ratio:</strong> Remove non-data ink (gridlines, borders, 3D effects).</li>
+        <li><strong>Consistent Colour:</strong> Same colour = same meaning across all widgets.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--amber);">🧠 Pre-attentive Attributes</div>
+      <ul>
+        <li>Brain processes instantly without conscious effort: <strong>colour (hue, intensity), shape, size, position, orientation, motion</strong>.</li>
+        <li>Use sparingly — encoding too many simultaneously defeats their purpose.</li>
+        <li><strong>Pop-out effect:</strong> A single differently-coloured item spotted in &lt;200ms.</li>
+        <li>Strategically using pre-attentive attributes directs attention to the most important insight on a dashboard.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--purple);">📋 KPI &amp; Report Types</div>
+      <ul>
+        <li><strong>KPI (Key Performance Indicator):</strong> Quantifiable metric tied to a business goal. Must show: target, actual, and trend.</li>
+        <li><strong>Operational Report:</strong> Detailed row-level transaction data for daily operations.</li>
+        <li><strong>Analytical Report:</strong> Summarized, cross-dimensional, trend-based for decision-making.</li>
+        <li><strong>Self-service BI:</strong> Power BI / Tableau allow business users to build their own reports without IT involvement.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠ Exam trap:</strong> Dashboard effectiveness depends on accurate underlying data first — a beautiful dashboard with bad data is worse than no dashboard. Also: Pie charts are almost always the wrong choice when comparing values (use bar charts instead).
+  </div>
+</div>
+
+<hr class="sep"/>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- INTERACTIVE EXAM QUESTIONS -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="topic" id="exam">
+  <div class="topic-header">
+    <span class="topic-icon">📝</span>
+    <h2>Interactive Exam Practice</h2>
+    <span class="topic-tag badge badge-amber">Final Exam 2026</span>
+  </div>
+
+  <div class="exam-section">
+    <div class="exam-header">
+      <span>📝</span>
+      <span class="exam-header-text">Final Exam — Parts 3 & 4 (MCQ)</span>
+    </div>
+    <div class="exam-body">
+
+      <div class="exam-q" id="q9">
+        <div class="exam-q-text">9. A hierarchy in a dimensional model can be defined:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q9','a')"><span class="opt-letter">a)</span> Between attributes of different dimensions</div>
+          <div class="exam-opt" onclick="answer(this,'q9','b')"><span class="opt-letter">b)</span> Between different measures</div>
+          <div class="exam-opt" onclick="answer(this,'q9','c')"><span class="opt-letter">c)</span> Between attributes from a single dimension with a self-join relation</div>
+          <div class="exam-opt" onclick="answer(this,'q9','d')"><span class="opt-letter">d)</span> Between dimension's attributes with a strict n:n relationship</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q9')">Show Answer</button>
+        <div class="exam-reveal" id="q9-reveal">
+          <div class="exam-explanation">✅ Best Answer: c) — Hierarchies often map attributes within a single dimension table. <em>(Note: Answers are inferred based on DW theory)</em></div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q10">
+        <div class="exam-q-text">10. In a snowflake schema?</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q10','a')"><span class="opt-letter">a)</span> A fact table is not directly connected to at least one dimension table</div>
+          <div class="exam-opt" onclick="answer(this,'q10','b')"><span class="opt-letter">b)</span> Multiple fact tables are directly connected to each other forming</div>
+          <div class="exam-opt" onclick="answer(this,'q10','c')"><span class="opt-letter">c)</span> A fact table is directly connected to each dimension table</div>
+          <div class="exam-opt" onclick="answer(this,'q10','d')"><span class="opt-letter">d)</span> Multiple fact tables are connected through dimension tables to each other</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q10')">Show Answer</button>
+        <div class="exam-reveal" id="q10-reveal">
+          <div class="exam-explanation">✅ Best Answer: a) — Because dimensions are normalized, some dimensions (outriggers) only connect to base dimensions, not directly to the fact table.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q11">
+        <div class="exam-q-text">11. Snowflake schema is typically used when:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q11','a')"><span class="opt-letter">a)</span> Higher data redundancy in dimensional table is not an issue/problem</div>
+          <div class="exam-opt" onclick="answer(this,'q11','b')"><span class="opt-letter">b)</span> Fact table consists of multiple parallel hierarchies – to separate them</div>
+          <div class="exam-opt" onclick="answer(this,'q11','c')"><span class="opt-letter">c)</span> Dimension table contains a certain group of attributes which values are often missing – to separate them</div>
+          <div class="exam-opt" onclick="answer(this,'q11','d')"><span class="opt-letter">d)</span> Dimension table has multiple levels (with multiple attributes each) in a hierarchy – to separate them</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q11')">Show Answer</button>
+        <div class="exam-reveal" id="q11-reveal">
+          <div class="exam-explanation">✅ Best Answer: d) — Normalizing hierarchical levels (e.g., City -> State -> Country) into separate tables creates the snowflake shape.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q12">
+        <div class="exam-q-text">12. In a minimal schema to cover a simple request of analysing daily and hourly number of passing by sedan and SUV vehicles in different intersections we need (do not count surrogate keys):</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q12','a')"><span class="opt-letter">a)</span> Fact table with 1 measure</div>
+          <div class="exam-opt" onclick="answer(this,'q12','b')"><span class="opt-letter">b)</span> Snowflake schema with 5 dimensions</div>
+          <div class="exam-opt" onclick="answer(this,'q12','c')"><span class="opt-letter">c)</span> Fact table with 2 measures</div>
+          <div class="exam-opt" onclick="answer(this,'q12','d')"><span class="opt-letter">d)</span> Star schema with 3 dimension tables</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q12')">Show Answer</button>
+        <div class="exam-reveal" id="q12-reveal">
+          <div class="exam-explanation">✅ Best Answer: d) — 3 dimensions (Time/Date, Vehicle Type, Intersection) and 1 fact table containing the count measure.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q14">
+        <div class="exam-q-text">14. Degenerate dimension – mark correct answers:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q14','a')"><span class="opt-letter">a)</span> Is used for attributes with low cardinality</div>
+          <div class="exam-opt" onclick="answer(this,'q14','b')"><span class="opt-letter">b)</span> Is directly stored in a fact table</div>
+          <div class="exam-opt" onclick="answer(this,'q14','c')"><span class="opt-letter">c)</span> Requires a new dimension table</div>
+          <div class="exam-opt" onclick="answer(this,'q14','d')"><span class="opt-letter">d)</span> Is used for attributes with high cardinality</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q14')">Show Answer</button>
+        <div class="exam-reveal" id="q14-reveal">
+          <div class="exam-explanation">✅ Best Answer: b) (and d) — A degenerate dimension is stored directly in the fact table without a separate dimension table (e.g., an order number, which has high cardinality).</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q21">
+        <div class="exam-q-text">21. In SCD Type 2:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q21','a')"><span class="opt-letter">a)</span> Changes are tracked using separate columns in dimension table and allow preserving limited history</div>
+          <div class="exam-opt" onclick="answer(this,'q21','b')"><span class="opt-letter">b)</span> Surrogate keys are required to properly handle this SCD type</div>
+          <div class="exam-opt" onclick="answer(this,'q21','c')"><span class="opt-letter">c)</span> On change, overwrites old values with new values</div>
+          <div class="exam-opt" onclick="answer(this,'q21','d')"><span class="opt-letter">d)</span> Tracks historical data by creating multiple versions of a record in the dimension table</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q21')">Show Answer</button>
+        <div class="exam-reveal" id="q21-reveal">
+          <div class="exam-explanation">✅ Best Answer: d) (and b) — Type 2 preserves history by creating a new row for each change, which necessitates the use of surrogate keys.</div>
+        </div>
+      </div>
+
+      <div class="exam-q" id="q31">
+        <div class="exam-q-text">31. Mark sentences which are true for Kimball's approach:</div>
+        <div class="exam-options">
+          <div class="exam-opt" onclick="answer(this,'q31','a')"><span class="opt-letter">a)</span> Focuses around the notion of conformed dimensions</div>
+          <div class="exam-opt" onclick="answer(this,'q31','b')"><span class="opt-letter">b)</span> Utilises normalized model for enterprise data warehouse</div>
+          <div class="exam-opt" onclick="answer(this,'q31','c')"><span class="opt-letter">c)</span> Focuses on multidimensional model for the data warehouse</div>
+          <div class="exam-opt" onclick="answer(this,'q31','d')"><span class="opt-letter">d)</span> Focuses on top-down approach – from data warehouse to data marts</div>
+        </div>
+        <button class="show-btn" onclick="reveal('q31')">Show Answer</button>
+        <div class="exam-reveal" id="q31-reveal">
+          <div class="exam-explanation">✅ Best Answer: a) (and c) — Kimball uses a bottom-up approach (unlike Inmon's top-down) and heavily relies on conformed dimensions across multidimensional data marts.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const correctAnswers = {
+  q9: 'c', q10: 'a', q11: 'd', q12: 'd', q14: 'b',
+  q21: 'd', q31: 'a'
+};
+
+function answer(el, qId, chosen) {
+  const qEl = document.getElementById(qId);
+  const opts = qEl.querySelectorAll('.exam-opt');
+  opts.forEach(o => { o.classList.remove('correct','wrong'); o.onclick = null; });
+  const correct = correctAnswers[qId];
+  const letters = ['a','b','c','d'];
+  opts.forEach((o, i) => {
+    if (letters[i] === correct) o.classList.add('correct');
+    else if (letters[i] === chosen && chosen !== correct) o.classList.add('wrong');
+  });
+  reveal(qId);
+}
+
+function reveal(qId) {
+  const r = document.getElementById(qId + '-reveal');
+  if (r) { r.classList.add('show'); }
+  const qEl = document.getElementById(qId);
+  const correct = correctAnswers[qId];
+  const letters = ['a','b','c','d'];
+  const opts = qEl.querySelectorAll('.exam-opt');
+  opts.forEach((o, i) => {
+    if (letters[i] === correct) o.classList.add('revealed-correct');
+    o.onclick = null;
+  });
+}
+</script>
+
+</body>
+</html>

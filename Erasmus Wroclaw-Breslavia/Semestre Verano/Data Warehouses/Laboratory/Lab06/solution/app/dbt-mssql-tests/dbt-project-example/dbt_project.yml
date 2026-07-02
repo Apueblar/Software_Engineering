@@ -1,0 +1,27 @@
+name: 'adventure_works_transform'
+version: '1.0.0'
+config-version: 2
+
+# This name must match the profile name in your profiles.yml
+profile: 'adventure_works_dw'
+
+# These paths define where dbt looks for different file types
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+# By default, everything in models/staging/ will be materialized as a view
+# unless overridden in the .sql file (like we did with materialized='table')
+models:
+  adventure_works_transform:
+    staging:
+      +schema: raw
+      +materialized: view

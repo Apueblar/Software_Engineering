@@ -1,0 +1,307 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="fe51971f-a1ba-4c37-8202-012a831d84ee" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DIM_MARKET</ID>
+  <Name>DIM_MARKET</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-97" scrolltop="-3058" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7303" y="15367" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DIM_MARKET" left="126" top="-2350" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="4297" height="4466" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000c910000072110000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_DIM_MARKET" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-97</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-3058</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>126</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>-2350</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="-16" ViewPortY="-37" xmlns="">
+          <Shapes NodeWidth="200">
+            <Shape Id="Market Key" Expanded="true">
+              <Attributes>
+                <Attribute Id="Market Key" />
+                <Attribute Id="Btc Dominance Percent" />
+                <Attribute Id="Market Cap Usd" />
+                <Attribute Id="Nvt Ratio" />
+                <Attribute Id="Snapshot Date" />
+                <Attribute Id="Volatility Index" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Fear Greed Score" Expanded="false">
+              <Attributes>
+                <Attribute Id="Fear Greed Score" />
+              </Attributes>
+              <Position x="275" y="20" />
+            </Shape>
+            <Shape Id="Fear Greed Label" Expanded="false">
+              <Attributes>
+                <Attribute Id="Fear Greed Label" />
+              </Attributes>
+              <Position x="530" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="09ede142-9391-4058-9a16-470ccc5f6514">
+    <DataSourceViewID>BTC_DSV</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="e20fd63c-136f-4c72-aa82-b8386e018e7c">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="3c1944d7-6ee1-4ee4-9602-b4edacf00ceb">
+      <ID>Market Key</ID>
+      <Name>Market Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="dea5f211-7426-46ec-9477-5d56327314b0">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a0a74da0-fcbd-4d82-99d7-5c1c2afa3431">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>market_key</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="891f7338-dcf8-4fa4-8396-ddc89422181c">
+          <AttributeID>Snapshot Date</AttributeID>
+          <Name>Snapshot Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="db9f92dd-d759-4596-9890-0188aff7da5c">
+          <AttributeID>Fear Greed Score</AttributeID>
+          <Name>Fear Greed Score</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8fdce67b-469b-4ea2-baa4-6b3a27ab32f6">
+          <AttributeID>Btc Dominance Percent</AttributeID>
+          <Name>Btc Dominance Percent</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="90a0a3c8-0d5a-49bc-a411-adf36a3d16aa">
+          <AttributeID>Market Cap Usd</AttributeID>
+          <Name>Market Cap Usd</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c95183ac-1bd0-4fd0-b494-a622e76e77ef">
+          <AttributeID>Volatility Index</AttributeID>
+          <Name>Volatility Index</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="df90244f-c33c-4ed2-83e6-fa680ead480a">
+          <AttributeID>Nvt Ratio</AttributeID>
+          <Name>Nvt Ratio</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="aa46d95b-9efa-4742-b0e4-2db43bb522c1">
+      <ID>Snapshot Date</ID>
+      <Name>Snapshot Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bf86c5cd-f471-422d-a416-5a4dedd113e2">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="711c7ad3-6f70-49d8-8cfd-9a26461d2d07">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>snapshot_date</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1c61e8ef-ccdb-44c1-8baa-f1645b893a72">
+      <ID>Fear Greed Score</ID>
+      <Name>Fear Greed Score</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b7637b0c-2a4c-4dbf-ae29-0b27ef192d98">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7e6b03c8-de69-4074-b149-e608ba32f095">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>fear_greed_score</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="c1bcd18c-4d10-4a3b-8de6-83eceeed22a7">
+          <AttributeID>Fear Greed Label</AttributeID>
+          <Name>Fear Greed Label</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f73bb645-c2fb-4b2b-b274-c60bf5df3251">
+      <ID>Fear Greed Label</ID>
+      <Name>Fear Greed Label</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1710c1d2-6384-441f-a982-b9d743fdb63e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6ecf28c2-1a5d-410e-b323-b8ad597231c9">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>FearGreedSort</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="9796ba52-964b-4ac5-8ed0-2be8bbec93cb">
+        <DataType>WChar</DataType>
+        <DataSize>20</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="8f46e4ff-7433-43c1-bd44-8ffee61cc4f7">
+          <TableID>dbo_DIM_MARKET</TableID>
+          <ColumnID>fear_greed_label</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1b7aff83-9340-430d-a216-9162aeb5718d">
+      <ID>Btc Dominance Percent</ID>
+      <Name>Btc Dominance Percent</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="48ef64db-61db-4444-9de7-1eb86c4ae385">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6ffc718c-91db-4d97-8c19-e2af9175331b">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>btc_dominance_percent</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8e2d4cdb-1bf4-40aa-a97b-e19247f60ea2">
+      <ID>Market Cap Usd</ID>
+      <Name>Market Cap Usd</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="71867988-dbe5-4916-a5ce-293985761c6d">
+          <DataType>Double</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0bcc5519-ce0f-4d00-9365-cd59fc0a9f98">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>market_cap_usd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8fcb518b-5e40-4de2-951a-c7ef4637c45a">
+      <ID>Volatility Index</ID>
+      <Name>Volatility Index</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5c7b8180-7d47-4650-bdc1-82133a53eba4">
+          <DataType>Double</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3b69719b-b084-47ad-84f2-dd359182ceaf">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>volatility_index</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="28dc481f-63cb-4055-a262-8f8a67a2a2dd">
+      <ID>Nvt Ratio</ID>
+      <Name>Nvt Ratio</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="987f1a15-9644-4db0-b095-b1ca61bfce54">
+          <DataType>Double</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dbc0962f-4010-481b-a819-733ebde8ccbe">
+            <TableID>dbo_DIM_MARKET</TableID>
+            <ColumnID>nvt_ratio</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="a3028fd5-d629-41ab-9552-c3a0ac6877e5">
+      <ID>Hierarchy</ID>
+      <Name>Sentiment</Name>
+      <Levels>
+        <Level dwd:design-time-name="67a40cd6-9200-4a28-8e6e-bb8c561e54cd">
+          <ID>Fear Greed Label</ID>
+          <Name>Fear Greed Label</Name>
+          <SourceAttributeID>Fear Greed Label</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="3d106770-6e95-4267-8ca9-ba1e87ddb145">
+          <ID>Fear Greed Score</ID>
+          <Name>Fear Greed Score</Name>
+          <SourceAttributeID>Fear Greed Score</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

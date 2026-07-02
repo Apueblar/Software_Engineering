@@ -1,0 +1,5 @@
+version: 2
+
+# This file is superseded by src_adventureworks.yml which defines
+# the complete 'raw_aw' source pointing to AWStaging.[Extract].
+# Kept here for reference only — no active models use this source anymore.

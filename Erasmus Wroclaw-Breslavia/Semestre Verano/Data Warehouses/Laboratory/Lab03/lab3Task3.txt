@@ -1,0 +1,10 @@
+TASK 3:
+The three approaches covered across the two lab assignments represent a progression in data modelling maturity for analytical reporting.
+
+Lab 2 Task 2 - Raw Online Transaction Processing (OLTP) in Power BI: The simplest setup - Power BI connects directly to the normalised SQL Server tables and handles relationships at query time. However, OLTP schemas are designed for transactional workloads, not analysis. The many small normalised tables produce slow queries, and any change to the source schema immediately breaks reports. This approach has no data redundancy but is the least suited for BI work.
+
+Lab 3 Task 1 - One Big Table (OBT): All required data is pre-joined into a single wide denormalised table via one SQL query (or view). This removes the need to define relationships in Power BI and makes the model very easy to consume. The trade-off is significant data redundancy - product names, rep names, territory names etc. are repeated on every row - and the SQL query becomes large and hard to maintain. Performance for reads is good because only one table scan is needed.
+
+Lab 3 Task 2 - Star Schema (Dimensional Model): The most complex to set up but the best fit for BI. Data is split into a fact table (FactSales) and dimension tables (DimProduct, DimDate, DimSalesRep). Attribute values are stored once in dimensions, eliminating redundancy. Power BI's DAX engine (VertiPaq) is specifically optimised for this pattern, making queries fast even on large datasets. Time intelligence, role-playing dimensions, and additive facts are all natural in this model. Changes are isolated - adding a new date attribute only touches DimDate.
+
+Summary: Raw OLTP < OBT < Star Schema in terms of analytical suitability and long-term maintainability. OBT is a good quick-start option for small teams; Star Schema is the standard for production data warehouses.
