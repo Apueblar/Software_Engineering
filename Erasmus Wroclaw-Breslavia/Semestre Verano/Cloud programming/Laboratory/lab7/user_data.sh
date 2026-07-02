@@ -3,9 +3,9 @@ set -e
 exec > /var/log/user_data.log 2>&1
 
 # -- Variables ------------------------------------------------------------------
-GITHUB_USER="pwr-cloudprogramming"
-GITHUB_PAT="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"
-REPO_NAME="clprog2026-a04-thu1304"
+GITHUB_USER="..."
+GITHUB_PAT="..."
+REPO_NAME="..."
 REPO_URL="https://${GITHUB_PAT}@github.com/${GITHUB_USER}/${REPO_NAME}.git"
 
 # -- Get public IP from IMDS ----------------------------------------------------
